@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.patchBuilder.Xml.QueryBuilder;
+import org.patchBuilder.QueryBuilder;
 import org.patchBuilder.utils.CONST;
 
 public abstract class AbstractPatchQuery implements QueryBuilder {

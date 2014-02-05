@@ -1,4 +1,4 @@
-package org.patchBuilder.Xml;
+package org.patchBuilder;
 
 import java.io.File;
 import java.util.List;
