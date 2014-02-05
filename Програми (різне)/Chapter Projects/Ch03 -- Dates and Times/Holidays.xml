@@ -1,0 +1,36 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly'>
+		<s:AttributeType name='HolidayID' rs:number='1' rs:maydefer='true' rs:writeunknown='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='Date' rs:number='2' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'>
+			<s:datatype dt:type='dateTime' rs:dbtype='variantdate' dt:maxLength='16' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='Description' rs:number='3' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'>
+			<s:datatype dt:type='string' dt:maxLength='50'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row HolidayID='1' Date='2000-01-01T00:00:00' Description='New Year&#x27;s Day'/>
+	<z:row HolidayID='2' Date='2000-12-25T00:00:00' Description='Christmas Day'/>
+	<z:row HolidayID='3' Date='2000-01-17T00:00:00' Description='Martin Luther King Day'/>
+	<z:row HolidayID='4' Date='2000-02-21T00:00:00' Description='President&#x27;s Day'/>
+	<z:row HolidayID='5' Date='2000-05-29T00:00:00' Description='Memorial Day'/>
+	<z:row HolidayID='6' Date='2000-07-04T00:00:00' Description='Independence Day'/>
+	<z:row HolidayID='7' Date='2000-09-04T00:00:00' Description='Labor Day'/>
+	<z:row HolidayID='8' Date='2000-11-11T00:00:00' Description='Veteran&#x27;s Day'/>
+	<z:row HolidayID='9' Date='2000-11-23T00:00:00' Description='Thanksgiving'/>
+	<z:row HolidayID='17' Date='2000-12-31T00:00:00' Description='New Year&#x27;s Eve'/>
+	<z:row HolidayID='18' Date='2000-12-24T00:00:00' Description='Christmas Eve'/>
+	<z:row HolidayID='23' Date='1999-12-24T00:00:00' Description='Christmas Eve'/>
+	<z:row HolidayID='24' Date='1999-12-25T00:00:00' Description='Christmas Day'/>
+	<z:row HolidayID='26' Date='1999-12-31T00:00:00' Description='New Year&#x27;s Eve'/>
+	<z:row HolidayID='27' Date='1999-07-04T00:00:00' Description='Independence Day'/>
+</rs:data>
+</xml>

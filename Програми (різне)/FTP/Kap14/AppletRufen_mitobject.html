@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title> Hallo Applet </title>
+
+</head>
+
+
+<body>
+  
+<p>HTML ruft Applet. Bitte antworten.</p>
+  
+
+<table>
+
+    <tr>
+
+      <th>APPLET</th>
+
+      <th>OBJECT</th>
+      <th>EMBED</th>
+
+    </tr>
+
+    <tr>
+
+      <td>
+<applet code = "HalloWWW.class"
+                  width  = "350" height = "200" >
+          Sorry, Applet kann nicht angezeigt werden.
+
+          </applet>
+
+      </td>
+
+      <td>
+<object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+	
+                  width="350" height="200">
+
+            <PARAM name="code" value="HalloWWW.class">
+
+            Sorry, Applet kann nicht angezeigt werden.
+
+          </object>
+
+      </td>
+
+      <td>
+<embed type="application/x-java-applet;version=1.7"
+
+                 width="350" height="200" code="HalloWWW.class">
+            <noembed>
+Sorry, Applet kann nicht angezeigt werden
+</noembed>
+
+          </embed>
+      </td>
+    </tr>
+  
+</table>
+
+
+
+</body>
+
+</html>

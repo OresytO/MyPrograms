@@ -1,0 +1,16 @@
+/////////////////////////////////////////////////////////////
+//
+// Resource script for creating embedded .WAV files
+//
+// Make sure each WAVE resource is assigned a unique number
+//
+/////////////////////////////////////////////////////////////
+
+101 WAVE DISCARDABLE "GO.WAV"
+
+201 WAVE DISCARDABLE "NORTH.WAV"
+202 WAVE DISCARDABLE "EAST.WAV"
+203 WAVE DISCARDABLE "SOUTH.WAV"
+204 WAVE DISCARDABLE "WEST.WAV"
+
+// End .RC file
