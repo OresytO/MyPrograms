@@ -1,1 +1,0 @@
-/out:wave.dll /dll /machine:I386 /noentry wave.res
