@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="285" key="DIALOG_WIDTH"/>
+		<item value="238" key="DIALOG_Y_ORIGIN"/>
+		<item value="853" key="DIALOG_X_ORIGIN"/>
+		<item value="428" key="DIALOG_HEIGHT"/>
+		<item value="1|Segoe UI|8.4|0|WINDOWS|1|-14|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wholeword"/>
+		<item value="res1" key="selection"/>
+		<list key="findhistory">
+			<item value="RES1"/>
+			<item value="final static "/>
+			<item value="WorkList"/>
+			<item value="Coffee"/>
+			<item value="Work"/>
+			<item value="Parser2"/>
+			<item value="Parser3"/>
+			<item value="Parser1"/>
+		</list>
+		<list key="replacehistory">
+			<item value="res1"/>
+			<item value=""/>
+			<item value="PriceList"/>
+			<item value="Test"/>
+			<item value="Parser3"/>
+			<item value="Parser1"/>
+			<item value="Parser2"/>
+		</list>
+	</section>
+</section>

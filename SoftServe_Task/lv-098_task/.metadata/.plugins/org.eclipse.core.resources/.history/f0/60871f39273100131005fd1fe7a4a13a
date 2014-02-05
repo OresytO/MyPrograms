@@ -1,0 +1,13 @@
+package test;
+
+public class CONSTANTS {
+	public final static String RES1 = "res1.txt";
+	public final static String RES2 = "res2.txt";
+	public final static String RES3 = "res3.txt";
+	
+	public final static String[] sourceDestination = {
+		"C:\\Users\\orecto\\Desktop\\res1.txt",
+		"C:\\Users\\orecto\\Desktop\\res2.txt",
+		"C:\\Users\\orecto\\Desktop\\res3.txt"
+	};
+}
