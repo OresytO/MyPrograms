@@ -1,0 +1,56 @@
+@CHARSET "ISO-8859-1";
+
+h6 {
+	width: 170px;
+	background: #343434;
+}
+
+.divmenu {
+	width: 145px;
+}
+
+.ui-widget-content {
+	border: 1px solid #331D1D;
+	background: #D0D0D0;
+	color: #484848;
+}
+
+/*
+,.ui-widget-header 
+,.ui-state-default
+	background: #9933CC;
+	color: #FF33CC #222222;
+*/
+.ui-state-default {
+	border: 1px solid #6f95ad;
+	background: #909090;
+	color: #F8F8F8;
+	font-weight: bold;
+}
+
+.button {
+	background: #A8A8A8;
+	padding: 2px 5px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	-webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	-moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+	color: white;
+	font-size: 11px;
+	font-family: Georgia, serif;
+	text-decoration: none;
+}
+
+.button:hover {
+	border-top-color: #312b8a;
+	background: #312b8a;
+	color: #e3dae3;
+}
+
+.button:active {
+	border-top-color: #1b5c22;
+	background: #1b5c22;
+}

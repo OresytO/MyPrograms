@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="lv-098_JAVA">
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <property name="context-root" value="lv-098_JAVA"/>
+        <property name="java-output-path" value="/lv-098_JAVA/target/classes"/>
+    </wb-module>
+</project-modules>

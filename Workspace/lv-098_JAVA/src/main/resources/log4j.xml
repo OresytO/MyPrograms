@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="LV098_JAVA/lv098.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p (%F:%L:%M)  %c{1}  - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- Application Loggers -->
+	<logger name="tc.lv.main">
+		<level value="info" />
+	</logger>
+
+	<logger name="tc.lv.dao">
+		<level value="info" />
+	</logger>
+
+	<logger name="tc.lv.domain">
+		<level value="info" />
+	</logger>
+
+	<logger name="tc.lv.exception">
+		<level value="info" />
+	</logger>
+
+	<logger name="tc.lv.service">
+		<level value="info" />
+	</logger>
+
+	<logger name="tc.lv.utils">
+		<level value="info" />
+	</logger>
+
+	<logger name="tc.lv.web">
+		<level value="info" />
+	</logger>
+
+	<logger name="webapp">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="file" />
+	</root>
+
+</log4j:configuration>

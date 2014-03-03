@@ -1,0 +1,16 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.classpath
+*.project
+*.springBeans
+
+# Folders #
+.settings
+/target
+
+#config db connect#
+/src/main/resources/META-INF/persistence.xml

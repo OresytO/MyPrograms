@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="base.definition" template="/views/tiles/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/views/tiles/header.jsp" />
+		<put-attribute name="menu" value="/views/tiles/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/views/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="result.definition" template="/views/tiles/resultLayout.jsp">
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="signin" extends="base.definition">
+		<put-attribute name="body" value="/views/user/signin.jsp" />
+	</definition>
+
+	<definition name="signinFailure" extends="base.definition">
+		<put-attribute name="body" value="/views/user/signinFailure.jsp" />
+	</definition>
+
+	<definition name="welcome" extends="base.definition">
+		<put-attribute name="body" value="/views/tiles/welcome.jsp" />
+	</definition>
+
+	<definition name="registration" extends="base.definition">
+		<put-attribute name="body" value="/views/user/registration.jsp" />
+	</definition>
+
+	<!-- admin views -->
+	<definition name="admin_addIpToList" extends="base.definition">
+		<put-attribute name="body" value="/views/admin/addIpToList.jsp" />
+	</definition>
+
+	<definition name="admin_addNewSource" extends="base.definition">
+		<put-attribute name="body" value="/views/admin/addNewSource.jsp" />
+	</definition>
+
+	<definition name="admin_deleteSource" extends="base.definition">
+		<put-attribute name="body" value="/views/admin/deleteSource.jsp" />
+	</definition>
+
+	<definition name="admin_deleteIpFromList" extends="base.definition">
+		<put-attribute name="body" value="/views/admin/deleteIpFromList.jsp" />
+	</definition>
+
+	<definition name="admin_updateSources" extends="base.definition">
+		<put-attribute name="body" value="/views/admin/updateSources.jsp" />
+	</definition>
+
+	<!-- secure views -->
+
+	<definition name="secure_blackListMap" extends="base.definition">
+		<put-attribute name="body" value="/views/secure/blackListMap.jsp" />
+	</definition>
+
+	<definition name="secure_whiteListMap" extends="base.definition">
+		<put-attribute name="body" value="/views/secure/whiteListMap.jsp" />
+	</definition>
+
+	<definition name="secure_showIpListFromWL" extends="base.definition">
+		<put-attribute name="body"
+			value="/views/secure/paginationWhiteListAndBlackList.jsp" />
+	</definition>
+
+	<definition name="secure_showIpListFromBL" extends="base.definition">
+		<put-attribute name="body"
+			value="/views/secure/paginationWhiteListAndBlackList.jsp" />
+	</definition>
+
+	<definition name="secure_showIpListByCountry" extends="base.definition">
+		<put-attribute name="body"
+			value="/views/secure/paginationIpListByCountryAndCity.jsp" />
+	</definition>
+
+	<definition name="secure_showIpListByCity" extends="base.definition">
+		<put-attribute name="body"
+			value="/views/secure/paginationIpListByCountryAndCity.jsp" />
+	</definition>
+
+	<!-- Result page -->
+	<definition name="result" extends="result.definition">
+		<put-attribute name="body" value="/views/result/result.jsp" />
+	</definition>
+
+	<definition name="secure_table" extends="result.definition">
+		<put-attribute name="body" value="/views/secure/table.jsp" />
+	</definition>
+
+
+	<!-- Page is under construction -->
+	<definition name="secure_inProgres" extends="base.definition">
+		<put-attribute name="body" value="/views/tiles/inProgres.jsp" />
+	</definition>
+</tiles-definitions>
