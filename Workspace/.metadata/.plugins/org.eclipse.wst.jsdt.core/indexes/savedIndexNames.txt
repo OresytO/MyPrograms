@@ -1,3 +1,0 @@
-INDEX VERSION 1.122+D:\TOP SECRET\Top Secret\MyPrograms\Workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-83201660.index
-303365994.index

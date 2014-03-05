@@ -4,8 +4,10 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.patchBuilder.templates.AbstractPatchQuery;
+
 public interface QueryBuilder {
-    QueryBuilder build(Map<Integer, List<String>> map);
+    QueryBuilder build(Map<String, List<String>> map);
 
     QueryBuilder headerComment(String ticketCode, String Summary, String clientName, String Environments, int updatedRowCount, int runningTime);
 
@@ -19,4 +21,6 @@ public interface QueryBuilder {
 
     @Override
     String toString();
+
+    AbstractPatchQuery addNewVar(String varName, String varValue);
 }

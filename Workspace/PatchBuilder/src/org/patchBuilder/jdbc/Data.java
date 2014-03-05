@@ -1,13 +1,32 @@
 package org.patchBuilder.jdbc;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ReviewTag")
+@NamedQueries({
+// -----
+@NamedQuery(name = "First_Query", query = "SELECT From Data"),
+// -----
+})
 public class Data {
 
+	@Id
+	@Column(name = "ReviewVersionID")
 	private String field1;
 
+	@Column(name = "TagID")
 	private String field2;
 
+	@Column(name = "OrderIdx")
 	private String field3;
 
+	@Column(name = "LastUpdateTimestamp")
 	private String field4;
 
 	public Data() {

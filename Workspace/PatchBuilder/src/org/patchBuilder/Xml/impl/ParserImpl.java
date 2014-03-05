@@ -17,9 +17,9 @@ import org.patchBuilder.utils.CONST;
 public class ParserImpl implements Parser {
 
     @Override
-    public Map<Integer, List<String>> parse(String path, List<String> tags) {
+    public Map<String, List<String>> parse(String path, List<String> tags) {
         File input = new File(path);
-        Map<Integer, List<String>> map = new HashMap<>();
+        Map<String, List<String>> map = new HashMap<>();
         Integer i = 0;
         String str;
         Document doc;
@@ -33,11 +33,12 @@ public class ParserImpl implements Parser {
                     } else {
                         str = elements.getElementsByTag(tag).text();
                         str = fixString(str);
-                        // str = (str == null || str.equals(CONST.NULL)) ? null : str;
+                        // str = (str == null || str.equals(CONST.NULL)) ? null
+                        // : str;
                         temp.add(str);
                     }
                 }
-                map.put(i, temp);
+                map.put(i.toString(), temp);
             }
         } catch (IOException e) {
             e.printStackTrace();
