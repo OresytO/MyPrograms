@@ -74,7 +74,8 @@ public class Excel {
         List<String> list = new ArrayList<>();
         Iterator<Cell> cellIterator = row.cellIterator();
         while (cellIterator.hasNext()) {
-            list.add(cellIterator.next().getStringCellValue());
+            String str = cellIterator.next().getStringCellValue().replaceAll("\u00A0", "");
+            list.add(str);
         }
         return list;
     }
@@ -94,7 +95,7 @@ public class Excel {
         String str = "";
         for (int i = 1; i < rowList.size(); i++) {
             str = rowList.get(i).getCell(indexOfColumn).getStringCellValue();
-            list.add(str.trim());
+            list.add(str);
         }
         list.remove(list.size() - 1);
         return list;

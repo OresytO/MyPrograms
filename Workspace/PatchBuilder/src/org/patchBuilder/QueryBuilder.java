@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.patchBuilder.templates.AbstractPatchQuery;
+import org.patchBuilder.templates.ReviewTagFixQuery;
 
 public interface QueryBuilder {
     QueryBuilder build(Map<String, List<String>> map);
@@ -23,4 +24,6 @@ public interface QueryBuilder {
     String toString();
 
     AbstractPatchQuery addNewVar(String varName, String varValue);
+
+    ReviewTagFixQuery build(Map<String, List<String>> tagMap, List<String> localeList);
 }

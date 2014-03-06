@@ -39,4 +39,10 @@ public class AnswerFrenchFixQuery extends AbstractPatchQuery {
         }
         return this;
     }
+
+    @Override
+    public ReviewTagFixQuery build(Map<String, List<String>> tagMap, List<String> localeList) {
+        new RuntimeException();
+        return null;
+    }
 }

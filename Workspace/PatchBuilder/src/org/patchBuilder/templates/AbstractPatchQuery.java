@@ -23,7 +23,7 @@ public abstract class AbstractPatchQuery implements QueryBuilder {
 
     @Override
     public abstract AbstractPatchQuery build(Map<String, List<String>> map);
-    
+
     @Override
     public AbstractPatchQuery headerComment(String ticketCode, String Summary, String clientName, String Environments, int updatedRowCount, int runningTime) {
         query.append("-- Ticket: ").append(ticketCode).append(CONST.EOL);
@@ -43,13 +43,13 @@ public abstract class AbstractPatchQuery implements QueryBuilder {
 
     @Override
     public AbstractPatchQuery getClientIDForName(String name) {
-        query.append("SELECT @cid := ID FROM Client WHERE Name = '").append(name).append("';").append(CONST.EOL).append(CONST.EOL);
+        query.append("SELECT @CID := ID FROM Client WHERE Name = '").append(name).append("';").append(CONST.EOL).append(CONST.EOL);
         return this;
     }
 
     @Override
     public AbstractPatchQuery addNewVar(String varName, String varValue) {
-        query.append("SET @").append(varName.toUpperCase()).append(" := ").append(varValue).append(CONST.EOL).append(CONST.EOL);
+        query.append("SET @").append(varName.toUpperCase()).append(" := ").append(varValue).append(';').append(CONST.EOL).append(CONST.EOL);
         return this;
     }
 
@@ -58,16 +58,6 @@ public abstract class AbstractPatchQuery implements QueryBuilder {
         query.delete(0, query.length());
         return this;
     }
-
-    // protected StringBuilder insert(String value) {
-    // temp.delete(0, temp.length());
-    // if (value == null || value.equals(CONST.NULL)) {
-    // temp.append(CONST.NULL).append(",").append(CONST.EOL);
-    // } else {
-    // temp.append(CONST.QUO).append(value).append(CONST.QUO).append(",").append(CONST.EOL);
-    // }
-    // return temp;
-    // }
 
     @Override
     public File write2File(File output) {
@@ -84,4 +74,7 @@ public abstract class AbstractPatchQuery implements QueryBuilder {
     public String toString() {
         return query.toString();
     }
+
+    @Override
+    public abstract ReviewTagFixQuery build(Map<String, List<String>> tagMap, List<String> localeList);
 }
