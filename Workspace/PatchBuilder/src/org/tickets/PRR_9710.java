@@ -12,10 +12,10 @@ import org.patchBuilder.templates.ReviewTagFixQuery;
 
 public class PRR_9710 {
     public static final String INPUT_FILE_PATH = "D:\\input\\starwood_tags_locale_mapping.xlsx";
-    public static final String OUTPUT_FILE_PATH = "D:\\output\\PRR_9710.sql";
+    public static final String OUTPUT_FILE_PATH = "D:\\output\\PRR_9710(1).sql";
 
     public static void main(String[] args) {
-
+        System.out.println("BEGIN!!!");
         // ------getting infomation from file-------- //
         Row row = Excel.open(INPUT_FILE_PATH, 0, 0);
         if (row == null)
@@ -27,6 +27,7 @@ public class PRR_9710 {
         ReviewTagFixQuery query = new ReviewTagFixQuery();
         query.build(tagMap, localeList);
         query.write2File(new File(OUTPUT_FILE_PATH));
+        System.out.println("END!!!");
 
     }
 

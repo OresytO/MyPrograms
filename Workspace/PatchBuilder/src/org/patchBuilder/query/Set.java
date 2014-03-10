@@ -33,7 +33,7 @@ public class Set {
     }
 
     public static void add(String field, String value) {
-        if (Validator.isNotNull(value)) {
+        if (Validator.isNotNull(value) && expCount >= 1) {
             temp = new StringBuilder();
             temp.append(CONST.TAB).append(field).append(Oper.EQU);
             temp.append(CONST.QUO).append(value).append(CONST.QUO).append(",").append(CONST.EOL);

@@ -13,7 +13,7 @@ public class Where {
 
     public static void begin(String field, Oper operation, Object value) {
         if (expCount >= 1)
-            throw new IllegalArgumentException("You must end Where block before begin. You can't begin one block twice!!!");
+            throw new IllegalArgumentException("You must end previose Where block before begin. You can't begin one block twice!!!");
         temp = new StringBuilder();
         query = new StringBuilder();
         query.append("WHERE ");

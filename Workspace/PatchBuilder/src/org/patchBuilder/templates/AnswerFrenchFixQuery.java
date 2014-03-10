@@ -18,7 +18,7 @@ public class AnswerFrenchFixQuery extends AbstractPatchQuery {
 
     public AnswerFrenchFixQuery(StringBuilder query) {
         super(query);
-        this.query = query;
+        AnswerFrenchFixQuery.query = query;
     }
 
     @Override
