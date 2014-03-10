@@ -45,7 +45,7 @@ public class Insert {
     public static StringBuilder end() {
         expCount = 0;
         fieldValues.delete(fieldValues.length() - 4, fieldValues.length());
-        query.append(")").append(CONST.EOL).append("VALUES (").append(fieldValues).append(CONST.EOL).append(");").append(CONST.EOL).append(CONST.EOL);
+        query.append(")").append(CONST.EOL).append("VALUES ").append(fieldValues).append(";").append(CONST.EOL).append(CONST.EOL);
         return query;
     }
 }

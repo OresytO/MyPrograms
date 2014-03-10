@@ -67,6 +67,8 @@ public class ReviewTagFixQuery extends AbstractPatchQuery {
         query.append(CONST.TAB).append("SELECT DimensionExternalID, Label FROM Tag WHERE ClientID = @CID").append(CONST.EOL);
         query.append(");").append(CONST.EOL).append(CONST.EOL);
 
+        query.append("DROP TABLE IF EXISTS IncommingMapping;").append(CONST.EOL);
+
         List<String> list;
         for (String tag : tagMap.keySet()) {
             list = tagMap.get(tag);
