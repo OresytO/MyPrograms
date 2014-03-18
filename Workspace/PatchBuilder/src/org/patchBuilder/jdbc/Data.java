@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "Tag")
 @NamedQueries({
 // -----
-@NamedQuery(name = "First_Query", query = "SELECT d From Data d")
+@NamedQuery(name = "First_Query", query = "SELECT d FROM Data d")
 // -----
 })
 public class Data {
