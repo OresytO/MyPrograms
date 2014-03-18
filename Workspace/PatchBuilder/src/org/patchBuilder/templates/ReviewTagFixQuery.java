@@ -49,8 +49,7 @@ public class ReviewTagFixQuery extends AbstractPatchQuery {
                 for (String dimID : dimensionExternalID) {
                     temp.delete(0, temp.length());
                     if (set.add(dimID + " " + tagStr))
-                        Insert.add(temp.append("@CID, ").append(CONST.QUO).append(dimID).append(CONST.QUO).append(", ").append(CONST.QUO).append(tagStr)
-                                .append(CONST.QUO));
+                        Insert.add(temp.append("@CID, ").append(CONST.QUO).append(dimID).append(CONST.QUO).append(", ").append(CONST.QUO).append(tagStr).append(CONST.QUO));
                 }
         query.append(Insert.end());
 
@@ -79,8 +78,8 @@ public class ReviewTagFixQuery extends AbstractPatchQuery {
             query.append("JOIN (SELECT id, DimensionExternalID, ").append(CONST.EOL);
             query.append(CONST.TAB).append("CASE label").append(CONST.EOL);
             for (int i = 0; i < list.size(); i++)
-                query.append(CONST.TAB2).append("WHEN ").append(CONST.QUO).append(list.get(i)).append(CONST.QUO).append(" THEN '").append(localeList.get(i))
-                        .append("'").append(CONST.EOL);
+                query.append(CONST.TAB2).append("WHEN ").append(CONST.QUO).append(list.get(i)).append(CONST.QUO).append(" THEN '").append(localeList.get(i)).append("'")
+                        .append(CONST.EOL);
             query.append(CONST.TAB).append("END AS locale").append(CONST.EOL);
             query.append("FROM  Tag").append(CONST.EOL);
             query.append("WHERE ClientID = @CID AND label IN (");
@@ -89,8 +88,7 @@ public class ReviewTagFixQuery extends AbstractPatchQuery {
             query.delete(query.length() - 2, query.length());
             query.append(")) temp ON temp.locale = rv.DisplayLocale").append(CONST.EOL);
             query.append("SET rt.TagID = temp.ID").append(CONST.EOL);
-            Where.begin("rt.TagID", Oper.EQU,
-                    "(SELECT ID FROM Tag WHERE ClientID = @CID AND Label = @OLD_TAG  AND DimensionExternalID = temp.DimensionExternalID)");
+            Where.begin("rt.TagID", Oper.EQU, "(SELECT ID FROM Tag WHERE ClientID = @CID AND Label = @OLD_TAG  AND DimensionExternalID = temp.DimensionExternalID)");
             query.append(Where.end()).append(CONST.EOL);
         }
         return this;

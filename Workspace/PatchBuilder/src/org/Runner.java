@@ -10,9 +10,6 @@ import javax.persistence.Persistence;
 import org.patchBuilder.jdbc.Data;
 
 public class Runner {
-    public static final String OUTPUT_FILE_PATH = "D:\\output\\result.sql";
-    public static final String INPUT_FILE_PATH1 = "D:\\input\\result-c4-temp1.xml";
-    public static final String INPUT_FILE_PATH2 = "D:\\input\\result-c4-temp2.xml";
 
     public static void main(String[] args) throws IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("primary");
