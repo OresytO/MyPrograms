@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.domain.City;
-import com.domain.Status;
 
 @Entity
 @Table(name = "Deliveries")
@@ -70,4 +68,8 @@ public class Delivery implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "SenderPlace")
     private City senderPlace;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "PowerOfAttorney")
+    private PowerOfAttorney powerOfAttorney;
 }
