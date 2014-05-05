@@ -8,30 +8,35 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ReviewTag")
+@Table(name = "Tag")
 @NamedQueries({
 // -----
-@NamedQuery(name = "First_Query", query = "SELECT From Data")
+@NamedQuery(name = "First_Query", query = "SELECT d FROM Data d")
 // -----
 })
 public class Data {
 
     @Id
-    @Column(name = "ReviewVersionID")
+    @Column(name = "ID")
     private String field1;
 
-    @Column(name = "TagID")
-    private String field2;
-
-    @Column(name = "OrderIdx")
+    @Column(name = "DimensionExternalID")
     private String field3;
 
-    @Column(name = "LastUpdateTimestamp")
+    @Column(name = "Label")
     private String field4;
+
+    @Column(name = "CreateTimestamp")
+    private String field5;
+
+    @Column(name = "LastUpdateTimestamp")
+    private String field6;
 
     public Data() {
 
     }
+
+    // -----
 
     public String getField1() {
         return field1;
@@ -39,14 +44,6 @@ public class Data {
 
     public void setField1(String field1) {
         this.field1 = field1;
-    }
-
-    public String getField2() {
-        return field2;
-    }
-
-    public void setField2(String field2) {
-        this.field2 = field2;
     }
 
     public String getField3() {
@@ -65,9 +62,20 @@ public class Data {
         this.field4 = field4;
     }
 
-    @Override
-    public String toString() {
-        return "Data [field1=" + field1 + ", field2=" + field2 + ", field3=" + field3 + ", field4=" + field4 + "]";
+    public String getField5() {
+        return field5;
+    }
+
+    public void setField5(String field5) {
+        this.field5 = field5;
+    }
+
+    public String getField6() {
+        return field6;
+    }
+
+    public void setField6(String field6) {
+        this.field6 = field6;
     }
 
     @Override
@@ -75,9 +83,10 @@ public class Data {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((field1 == null) ? 0 : field1.hashCode());
-        result = prime * result + ((field2 == null) ? 0 : field2.hashCode());
         result = prime * result + ((field3 == null) ? 0 : field3.hashCode());
         result = prime * result + ((field4 == null) ? 0 : field4.hashCode());
+        result = prime * result + ((field5 == null) ? 0 : field5.hashCode());
+        result = prime * result + ((field6 == null) ? 0 : field6.hashCode());
         return result;
     }
 
@@ -95,11 +104,6 @@ public class Data {
                 return false;
         } else if (!field1.equals(other.field1))
             return false;
-        if (field2 == null) {
-            if (other.field2 != null)
-                return false;
-        } else if (!field2.equals(other.field2))
-            return false;
         if (field3 == null) {
             if (other.field3 != null)
                 return false;
@@ -110,7 +114,22 @@ public class Data {
                 return false;
         } else if (!field4.equals(other.field4))
             return false;
+        if (field5 == null) {
+            if (other.field5 != null)
+                return false;
+        } else if (!field5.equals(other.field5))
+            return false;
+        if (field6 == null) {
+            if (other.field6 != null)
+                return false;
+        } else if (!field6.equals(other.field6))
+            return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Data [field1=" + field1 + ", field3=" + field3 + ", field4=" + field4 + ", field5=" + field5 + ", field6=" + field6 + "]";
     }
 
 }
