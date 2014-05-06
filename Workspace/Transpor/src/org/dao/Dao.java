@@ -1,4 +1,4 @@
-package dao;
+package org.dao;
 
 public interface Dao {
 

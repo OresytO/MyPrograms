@@ -1,4 +1,4 @@
-package domain;
+package org.domain;
 
 import java.util.Set;
 

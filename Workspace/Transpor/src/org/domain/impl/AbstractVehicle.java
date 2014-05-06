@@ -1,4 +1,4 @@
-package domain.impl;
+package org.domain.impl;
 
 import java.util.Set;
 
@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import domain.Stop;
-import domain.Vehicle;
+import org.domain.Stop;
+import org.domain.Vehicle;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

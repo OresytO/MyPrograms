@@ -1,4 +1,4 @@
-package domain.impl;
+package org.domain.impl;
 
 import java.util.Set;
 
@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import domain.Stop;
-import domain.Vehicle;
+import org.domain.Stop;
+import org.domain.Vehicle;
 
 @Entity
 @Table(name = "stops")

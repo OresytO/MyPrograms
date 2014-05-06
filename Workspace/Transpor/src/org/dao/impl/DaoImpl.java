@@ -1,4 +1,4 @@
-package dao.impl;
+package org.dao.impl;
 
 public class DaoImpl {
 
