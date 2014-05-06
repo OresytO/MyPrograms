@@ -6,20 +6,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "vehicles")
-public class AbstractVehicle {
+public class Vehicle {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     protected Integer id;
 
@@ -38,12 +40,12 @@ public class AbstractVehicle {
         this.id = id;
     }
 
-    public String getNumberOfRout() {
+    public String getRouteNumber() {
         return routeNumber;
     }
 
-    public void setNumberOfRout(String numberOfRout) {
-        this.routeNumber = numberOfRout;
+    public void setRouteNumber(String routeNumber) {
+        this.routeNumber = routeNumber;
     }
 
     public Set<Stop> getStops() {

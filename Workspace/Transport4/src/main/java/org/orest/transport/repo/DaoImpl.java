@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.orest.transport.domain.AbstractVehicle;
 import org.orest.transport.domain.Stop;
+import org.orest.transport.domain.Vehicle;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +25,8 @@ public class DaoImpl implements Dao {
 
     @Transactional
     @Override
-    public List<? extends AbstractVehicle> findAllVehicles(Class<? extends AbstractVehicle> vehicleType) {
-        List<? extends AbstractVehicle> stops = entityManager.createQuery("from " + vehicleType.getSimpleName(), vehicleType).getResultList();
+    public List<? extends Vehicle> findAllVehicles(Class<? extends Vehicle> vehicleType) {
+        List<? extends Vehicle> stops = entityManager.createQuery("from " + vehicleType.getSimpleName(), vehicleType).getResultList();
         return stops;
     }
 }

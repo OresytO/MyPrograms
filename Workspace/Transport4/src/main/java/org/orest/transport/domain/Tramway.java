@@ -5,6 +5,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tramway")
-public class Tramway extends AbstractVehicle {
+public class Tramway extends Vehicle {
 
 }

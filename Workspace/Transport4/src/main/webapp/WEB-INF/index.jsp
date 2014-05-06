@@ -11,7 +11,7 @@
 	<h1>List of All Vehicles</h1>
 	<ul>
 		<c:forEach var="v" items="${vehicles}">
-			<li>${v.id}-${v.something}</li>
+			<li>${v.id}-${v.routeNumber}</li>
 		</c:forEach>
 	</ul>
 </body>

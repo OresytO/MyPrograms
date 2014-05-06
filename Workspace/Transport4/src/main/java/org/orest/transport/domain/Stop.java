@@ -24,7 +24,7 @@ public class Stop {
     private String name;
 
     @ManyToMany(mappedBy = "stops", fetch = FetchType.LAZY)
-    private Set<AbstractVehicle> vehicles;
+    private Set<Vehicle> vehicles;
 
     public Integer getId() {
         return id;
@@ -42,12 +42,12 @@ public class Stop {
         this.name = name;
     }
 
-    public Set<AbstractVehicle> getVehicles() {
+    public Set<Vehicle> getVehicles() {
         // return vehicles;
         return null;
     }
 
-    public void setVehicles(Set<AbstractVehicle> abstractVehicles) {
+    public void setVehicles(Set<Vehicle> vehicles) {
         // this.vehicles = vehicles;
     }
 

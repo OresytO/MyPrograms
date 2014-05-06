@@ -2,8 +2,7 @@ package org.orest.transport.mvc;
 
 import java.util.List;
 
-import org.orest.transport.domain.AbstractVehicle;
-import org.orest.transport.domain.Bus;
+import org.orest.transport.domain.Vehicle;
 import org.orest.transport.repo.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +22,13 @@ public class TransportController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String list(Model model) {
-        List<? extends AbstractVehicle> vehicles = dao.findAllVehicles(Bus.class);
+        // List<Vehicle> vehicles = (List<Vehicle>) dao.findAllVehicles(Bus.class);
+        // vehicles.addAll(dao.findAllVehicles(Tramway.class));
+        // vehicles.addAll(dao.findAllVehicles(Subway.class));
+        // vehicles.addAll(dao.findAllVehicles(Trolleybus.class));
+
+        List<Vehicle> vehicles = (List<Vehicle>) dao.findAllVehicles(Vehicle.class);
         model.addAttribute("vehicles", vehicles);
         return "index";
     }
-
 }

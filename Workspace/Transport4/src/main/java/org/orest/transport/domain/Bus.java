@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bus")
-public class Bus extends AbstractVehicle {
+public class Bus extends Vehicle {
 
     public Bus() {
         super();
