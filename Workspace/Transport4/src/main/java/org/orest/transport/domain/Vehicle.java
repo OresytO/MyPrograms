@@ -2,6 +2,7 @@ package org.orest.transport.domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +29,7 @@ public class Vehicle {
     @Column(name = "route_number")
     private String routeNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
     @JoinTable(name = "vehicles_to_stops", joinColumns = { @JoinColumn(name = "vechicle_id", updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = "stop_id", updatable = true, nullable = true) })
     protected Set<Stop> stops;
 

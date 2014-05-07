@@ -9,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "stops")
+@NamedQuery(name = "findByName", query = "select s from Stop s where s.name = ?1")
 public class Stop {
 
     @Id
@@ -43,12 +45,15 @@ public class Stop {
     }
 
     public Set<Vehicle> getVehicles() {
-        // return vehicles;
-        return null;
+        return vehicles;
     }
 
     public void setVehicles(Set<Vehicle> vehicles) {
-        // this.vehicles = vehicles;
+        this.vehicles = vehicles;
+    }
+
+    public boolean addVehicle(Vehicle vehicle) {
+        return this.getVehicles().add(vehicle);
     }
 
 }
