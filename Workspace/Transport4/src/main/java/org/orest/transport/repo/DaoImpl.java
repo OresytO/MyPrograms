@@ -80,6 +80,8 @@ public class DaoImpl implements Dao {
     @Override
     public void removeRoute(Class<? extends Route> routeType, String routeName) {
         Route route = findRouteByName(routeName, routeType);
+        if (route == null)
+            return;
         Set<Stop> stops = new HashSet<>();
         for (Stop stop : route.getStops()) {
             if (stop.getRoutes().contains(route) && stop.getRoutes().size() == 1) {
