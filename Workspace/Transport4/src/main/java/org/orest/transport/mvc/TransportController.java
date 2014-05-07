@@ -23,7 +23,6 @@ public class TransportController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayingListOfRoutesAndStops(Model model) {
-        System.out.println("GET");
         List<? extends Route> routes = dao.findAllRoutes(BusRoute.class);
         model.addAttribute("buses", routes);
         routes = dao.findAllRoutes(TramwayRoute.class);
@@ -66,9 +65,10 @@ public class TransportController {
     public String removeRoute(@RequestParam(value = "numOfRoute") String numOfRoute, @RequestParam(value = "routeType") String routeType) {
         if (numOfRoute.length() == 0)
             throw new IllegalArgumentException("empty number of route!");
-        dao.addRoute(getType(routeType), numOfRoute);
+        dao.removeRoute(getType(routeType), numOfRoute);
         return "redirect:/";
     }
+
     private Class<? extends Route> getType(String vehicleType) {
         if (vehicleType.equalsIgnoreCase("busRoute"))
             return BusRoute.class;

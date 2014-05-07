@@ -21,4 +21,6 @@ public interface Dao {
 
     void addRoute(Class<? extends Route> routeType, String numOfRoute);
 
+    void removeRoute(Class<? extends Route> routeType, String routeName);
+
 }

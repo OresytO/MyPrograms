@@ -1,5 +1,6 @@
 package org.orest.transport.repo;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -75,6 +76,25 @@ public class DaoImpl implements Dao {
         removeStopFromRoute(stop, route);
     }
 
+    @Transactional
+    @Override
+    public void removeRoute(Class<? extends Route> routeType, String routeName) {
+        Route route = findRouteByName(routeName, routeType);
+        Set<Stop> stops = new HashSet<>();
+        for (Stop stop : route.getStops()) {
+            if (stop.getRoutes().contains(route) && stop.getRoutes().size() == 1) {
+                stops.add(stop);
+            }
+        }
+        for (Stop stop : stops)
+            removeStopFromRoute(stop, route);
+        removeRoute(route);
+    }
+
+    private void removeRoute(Route route) {
+        entityManager.remove(route);
+    }
+
     @Override
     public Route findRouteByID(Integer id, Class<? extends Route> routeType) {
         return entityManager.find(routeType, id);
@@ -107,6 +127,7 @@ public class DaoImpl implements Dao {
             entityManager.merge(stop);
         else
             entityManager.remove(stop);
+        entityManager.flush();
     }
 
     private boolean isEmptySet(Set<?> set) {
