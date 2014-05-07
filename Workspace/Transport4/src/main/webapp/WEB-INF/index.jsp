@@ -8,17 +8,17 @@
 <title>Transport</title>
 </head>
 <body>
-	<h1>List of All Tramwayes</h1>
+	<h1>List of All Tramway Routes</h1>
 	<ul>
 		<c:forEach var="tw" items="${tramwayes}">
-			<li>number of route № ${tw.routeNumber} has next stops: <c:forEach
+			<li>number of route № ${tw.numOfRoute} has next stops: <c:forEach
 					var="stop" items="${tw.stops}">
                     ${stop.name}; 
                 </c:forEach>
 				<FORM NAME="tramwayes${tw.id}" METHOD="POST">
 					<input type="text" name="Name" /> <input type="HIDDEN"
-						name="vechicleId" value="${tw.id}" /> <input type="HIDDEN"
-						name="vechicleType" value="tramway" /> <INPUT NAME="AddStop"
+						name="routeId" value="${tw.id}" /> <input type="HIDDEN"
+						name="routeType" value="tramwayRoute" /> <INPUT NAME="AddStop"
 						TYPE="button" VALUE="Add stop"
 						onClick="javascript:button1(this.form);"><INPUT
 						NAME="RemoveStop" TYPE="button" VALUE="Remove stop"
@@ -27,11 +27,11 @@
 			</li>
 		</c:forEach>
 	</ul>
-	<FORM NAME="Adding route" METHOD="GET">
-		<input type="text" name="Name" /> <input type="HIDDEN"
-			name="vechicleId" value="${tw.id}" /> <input type="HIDDEN"
-			name="vechicleType" value="tramway" /> <INPUT TYPE="submit"
-			VALUE="Add route">
+	<FORM NAME="Adding route" METHOD="POST">
+		Enter № of route <input type="text" name="numOfRoute" /> <input
+			type="HIDDEN" name="routeType" value="tramwayRoute" /> <INPUT
+			NAME="AddRoute" TYPE="button" VALUE="Add Route"
+			onClick="javascript:button3(this.form);">
 	</FORM>
 	<SCRIPT LANGUAGE="JavaScript">
 	<!--
@@ -42,6 +42,11 @@
 
 		function button2(form) {
 			form.action = "removeStop";
+			form.submit();
+		}
+
+		function button3(form) {
+			form.action = "addRoute";
 			form.submit();
 		}
 	// -->

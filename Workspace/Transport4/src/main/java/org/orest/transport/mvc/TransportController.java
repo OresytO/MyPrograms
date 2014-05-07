@@ -2,11 +2,11 @@ package org.orest.transport.mvc;
 
 import java.util.List;
 
-import org.orest.transport.domain.Bus;
-import org.orest.transport.domain.Subway;
-import org.orest.transport.domain.Tramway;
-import org.orest.transport.domain.Trolleybus;
-import org.orest.transport.domain.Vehicle;
+import org.orest.transport.domain.BusRoute;
+import org.orest.transport.domain.Route;
+import org.orest.transport.domain.SubwayRoute;
+import org.orest.transport.domain.TramwayRoute;
+import org.orest.transport.domain.TrolleybusRoute;
 import org.orest.transport.repo.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,51 +22,62 @@ public class TransportController {
     private Dao dao;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String displayingListOfVehiclesAndStops(Model model) {
+    public String displayingListOfRoutesAndStops(Model model) {
         System.out.println("GET");
-        List<? extends Vehicle> vehicles = dao.findAllVehicles(Bus.class);
-        model.addAttribute("buses", vehicles);
-        vehicles = dao.findAllVehicles(Tramway.class);
-        model.addAttribute("tramwayes", vehicles);
-        vehicles = dao.findAllVehicles(Subway.class);
-        model.addAttribute("subwayes", vehicles);
-        vehicles = dao.findAllVehicles(Trolleybus.class);
-        model.addAttribute("trolleybuses", vehicles);
+        List<? extends Route> routes = dao.findAllRoutes(BusRoute.class);
+        model.addAttribute("buses", routes);
+        routes = dao.findAllRoutes(TramwayRoute.class);
+        model.addAttribute("tramwayes", routes);
+        routes = dao.findAllRoutes(SubwayRoute.class);
+        model.addAttribute("subwayes", routes);
+        routes = dao.findAllRoutes(TrolleybusRoute.class);
+        model.addAttribute("trolleybuses", routes);
 
         return "index";
     }
 
-    @RequestMapping(value = "/adding", method = RequestMethod.POST, params = { "vechicleId", "vechicleType", "Name" })
-    public String addingStopToRoute(@RequestParam(value = "vechicleId") Integer id, @RequestParam(value = "vechicleType") String vehicleType,
-            @RequestParam(value = "Name") String name, Model model) {
+    @RequestMapping(value = "/adding", method = RequestMethod.POST, params = { "routeId", "routeType", "Name" })
+    public String addingStopToRoute(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
+            @RequestParam(value = "Name") String name) {
         if (name.length() == 0)
             throw new IllegalArgumentException("empty name!");
-        System.out.println("POST");
-        String res = dao.addStop(id, getType(vehicleType), name);
-        System.out.println("res " + res);
+        dao.addStop(id, getType(routeType), name);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/removeStop", method = RequestMethod.POST, params = { "vechicleId", "vechicleType", "Name" })
-    public String removeStop(@RequestParam(value = "vechicleId") Integer id, @RequestParam(value = "vechicleType") String vehicleType,
-            @RequestParam(value = "Name") String stopName, Model model) {
+    @RequestMapping(value = "/removeStop", method = RequestMethod.POST, params = { "routeId", "routeType", "Name" })
+    public String removeStop(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
+            @RequestParam(value = "Name") String stopName) {
         if (stopName.length() == 0)
             throw new IllegalArgumentException("empty name!");
-        System.out.println("POST");
-        String res = dao.removeStopFromVehicle(id, getType(vehicleType), stopName);
-        System.out.println("res " + res);
+        dao.removeStopFromRoute(id, getType(routeType), stopName);
         return "redirect:/";
     }
 
-    private Class<? extends Vehicle> getType(String vehicleType) {
-        if (vehicleType.equalsIgnoreCase("bus"))
-            return Bus.class;
-        if (vehicleType.equalsIgnoreCase("tramway"))
-            return Tramway.class;
-        if (vehicleType.equalsIgnoreCase("trolleybus"))
-            return Trolleybus.class;
-        if (vehicleType.equalsIgnoreCase("subway"))
-            return Subway.class;
+    @RequestMapping(value = "/addRoute", method = RequestMethod.POST, params = { "numOfRoute", "routeType" })
+    public String addRoute(@RequestParam(value = "numOfRoute") String numOfRoute, @RequestParam(value = "routeType") String routeType) {
+        if (numOfRoute.length() == 0)
+            throw new IllegalArgumentException("empty number of route!");
+        dao.addRoute(getType(routeType), numOfRoute);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/removeRoute", method = RequestMethod.POST, params = { "numOfRoute", "routeType" })
+    public String removeRoute(@RequestParam(value = "numOfRoute") String numOfRoute, @RequestParam(value = "routeType") String routeType) {
+        if (numOfRoute.length() == 0)
+            throw new IllegalArgumentException("empty number of route!");
+        dao.addRoute(getType(routeType), numOfRoute);
+        return "redirect:/";
+    }
+    private Class<? extends Route> getType(String vehicleType) {
+        if (vehicleType.equalsIgnoreCase("busRoute"))
+            return BusRoute.class;
+        if (vehicleType.equalsIgnoreCase("tramwayRoute"))
+            return TramwayRoute.class;
+        if (vehicleType.equalsIgnoreCase("trolleybusRoute"))
+            return TrolleybusRoute.class;
+        if (vehicleType.equalsIgnoreCase("subwayRoute"))
+            return SubwayRoute.class;
         throw new IllegalArgumentException("unsupported vehicle type!");
     }
 }

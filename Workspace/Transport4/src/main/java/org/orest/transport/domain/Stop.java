@@ -1,5 +1,6 @@
 package org.orest.transport.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Stop {
     private String name;
 
     @ManyToMany(mappedBy = "stops", fetch = FetchType.LAZY)
-    private Set<Vehicle> vehicles;
+    private Set<Route> routes = new HashSet<Route>();
 
     public Integer getId() {
         return id;
@@ -44,20 +45,20 @@ public class Stop {
         this.name = name;
     }
 
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
+    public Set<Route> getRoutes() {
+        return routes;
     }
 
-    public void setVehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
+    public void setRoutes(Set<Route> routes) {
+        this.routes = routes;
     }
 
-    public boolean addVehicle(Vehicle vehicle) {
-        return this.getVehicles().add(vehicle);
+    public boolean addRoute(Route route) {
+        return this.getRoutes().add(route);
     }
 
-    public boolean removeVehicle(Vehicle vehicle) {
-        return this.getVehicles().remove(vehicle);
+    public boolean removeRoute(Route route) {
+        return this.getRoutes().remove(route);
     }
 
     @Override
@@ -84,6 +85,4 @@ public class Stop {
             return false;
         return true;
     }
-    
-    
 }

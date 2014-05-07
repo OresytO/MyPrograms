@@ -5,12 +5,12 @@
 		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<!-- <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
-		<class>org.orest.transport.domain.Vehicle</class>
-		<class>org.orest.transport.domain.Bus</class>
+		<class>org.orest.transport.domain.Route</class>
+		<class>org.orest.transport.domain.BusRoute</class>
 		<class>org.orest.transport.domain.Stop</class>
-		<class>org.orest.transport.domain.Subway</class>
-		<class>org.orest.transport.domain.Tramway</class>
-		<class>org.orest.transport.domain.Trolleybus</class>
+		<class>org.orest.transport.domain.SubwayRoute</class>
+		<class>org.orest.transport.domain.TramwayRoute</class>
+		<class>org.orest.transport.domain.TrolleybusRoute</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.connection.show_sql" value="true" />

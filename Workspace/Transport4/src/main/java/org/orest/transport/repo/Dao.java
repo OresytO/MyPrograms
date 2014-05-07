@@ -2,21 +2,23 @@ package org.orest.transport.repo;
 
 import java.util.List;
 
+import org.orest.transport.domain.Route;
 import org.orest.transport.domain.Stop;
-import org.orest.transport.domain.Vehicle;
 
 public interface Dao {
 
     List<Stop> findAllStops();
 
-    List<? extends Vehicle> findAllVehicles(Class<? extends Vehicle> vehicleType);
+    List<? extends Route> findAllRoutes(Class<? extends Route> vehicleType);
 
-    Vehicle findVehicleByID(Integer id, Class<? extends Vehicle> vehicleType);
+    Route findRouteByID(Integer id, Class<? extends Route> vehicleType);
 
     Stop findStopByName(String name);
 
-    String addStop(Integer id, Class<? extends Vehicle> vehicleType, String stopName);
+    void addStop(Integer id, Class<? extends Route> vehicleType, String stopName);
 
-    String removeStopFromVehicle(Integer id, Class<? extends Vehicle> vehicleType, String stopName);
+    void removeStopFromRoute(Integer id, Class<? extends Route> vehicleType, String stopName);
+
+    void addRoute(Class<? extends Route> routeType, String numOfRoute);
 
 }

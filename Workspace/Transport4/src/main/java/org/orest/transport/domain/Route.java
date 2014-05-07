@@ -1,5 +1,6 @@
 package org.orest.transport.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,20 +19,20 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "vehicles")
-public class Vehicle {
+@Table(name = "routes")
+public class Route {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     protected Integer id;
 
-    @Column(name = "route_number")
-    private String routeNumber;
+    @Column(name = "number_of_route")
+    private String numOfRoute;
 
     @ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-    @JoinTable(name = "vehicles_to_stops", joinColumns = { @JoinColumn(name = "vechicle_id", updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = "stop_id", updatable = true, nullable = true) })
-    protected Set<Stop> stops;
+    @JoinTable(name = "routes_to_stops", joinColumns = { @JoinColumn(name = "route_id", updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = "stop_id", updatable = true, nullable = true) })
+    protected Set<Stop> stops = new HashSet<Stop>();
 
     public Integer getId() {
         return id;
@@ -41,12 +42,12 @@ public class Vehicle {
         this.id = id;
     }
 
-    public String getRouteNumber() {
-        return routeNumber;
+    public String getNumOfRoute() {
+        return numOfRoute;
     }
 
-    public void setRouteNumber(String routeNumber) {
-        this.routeNumber = routeNumber;
+    public void setNumOfRoute(String numOfRoute) {
+        this.numOfRoute = numOfRoute;
     }
 
     public Set<Stop> getStops() {
@@ -69,7 +70,7 @@ public class Vehicle {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((routeNumber == null) ? 0 : routeNumber.hashCode());
+        result = prime * result + ((numOfRoute == null) ? 0 : numOfRoute.hashCode());
         return result;
     }
 
@@ -81,11 +82,11 @@ public class Vehicle {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Vehicle other = (Vehicle) obj;
-        if (routeNumber == null) {
-            if (other.routeNumber != null)
+        Route other = (Route) obj;
+        if (numOfRoute == null) {
+            if (other.numOfRoute != null)
                 return false;
-        } else if (!routeNumber.equals(other.routeNumber))
+        } else if (!numOfRoute.equals(other.numOfRoute))
             return false;
         return true;
     }
