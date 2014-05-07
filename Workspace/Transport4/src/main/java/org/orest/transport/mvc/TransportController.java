@@ -36,13 +36,24 @@ public class TransportController {
         return "index";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, params = { "vechicleId", "vechicleType", "Name" })
+    @RequestMapping(value = "/adding", method = RequestMethod.POST, params = { "vechicleId", "vechicleType", "Name" })
     public String addingStopToRoute(@RequestParam(value = "vechicleId") Integer id, @RequestParam(value = "vechicleType") String vehicleType,
             @RequestParam(value = "Name") String name, Model model) {
         if (name.length() == 0)
             throw new IllegalArgumentException("empty name!");
         System.out.println("POST");
         String res = dao.addStop(id, getType(vehicleType), name);
+        System.out.println("res " + res);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/removeStop", method = RequestMethod.POST, params = { "vechicleId", "vechicleType", "Name" })
+    public String removeStop(@RequestParam(value = "vechicleId") Integer id, @RequestParam(value = "vechicleType") String vehicleType,
+            @RequestParam(value = "Name") String stopName, Model model) {
+        if (stopName.length() == 0)
+            throw new IllegalArgumentException("empty name!");
+        System.out.println("POST");
+        String res = dao.removeStopFromVehicle(id, getType(vehicleType), stopName);
         System.out.println("res " + res);
         return "redirect:/";
     }

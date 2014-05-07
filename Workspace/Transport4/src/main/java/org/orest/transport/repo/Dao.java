@@ -17,4 +17,6 @@ public interface Dao {
 
     String addStop(Integer id, Class<? extends Vehicle> vehicleType, String stopName);
 
+    String removeStopFromVehicle(Integer id, Class<? extends Vehicle> vehicleType, String stopName);
+
 }

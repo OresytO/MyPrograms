@@ -15,11 +15,14 @@
 					var="stop" items="${tw.stops}">
                     ${stop.name}; 
                 </c:forEach>
-				<FORM NAME="${tw.id} + tramwayes" METHOD="POST">
+				<FORM NAME="tramwayes${tw.id}" METHOD="POST">
 					<input type="text" name="Name" /> <input type="HIDDEN"
 						name="vechicleId" value="${tw.id}" /> <input type="HIDDEN"
-						name="vechicleType" value="tramway" /> <INPUT TYPE="submit"
-						VALUE="Add stop">
+						name="vechicleType" value="tramway" /> <INPUT NAME="AddStop"
+						TYPE="button" VALUE="Add stop"
+						onClick="javascript:button1(this.form);"><INPUT
+						NAME="RemoveStop" TYPE="button" VALUE="Remove stop"
+						onClick="javascript:button2(this.form);">
 				</FORM>
 			</li>
 		</c:forEach>
@@ -30,6 +33,18 @@
 			name="vechicleType" value="tramway" /> <INPUT TYPE="submit"
 			VALUE="Add route">
 	</FORM>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+		function button1(form) {
+			form.action = "adding";
+			form.submit();
+		}
 
+		function button2(form) {
+			form.action = "removeStop";
+			form.submit();
+		}
+	// -->
+	</SCRIPT>
 </body>
 </html>

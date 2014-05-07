@@ -1,6 +1,7 @@
 package org.orest.transport.repo;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -38,18 +39,21 @@ public class DaoImpl implements Dao {
         if (stop == null) {
             stop = new Stop();
             stop.setName(stopName);
-            // stop.addVehicle(vehicle);
             entityManager.persist(stop);
-            res = stop.getName();
         }
-        // else {
-        // stop.addVehicle(vehicle);
-        // stop = entityManager.merge(stop);
-        // }
-        res.concat(vehicle.getStops().toString());
         vehicle.addStop(stop);
-        res.concat(vehicle.getStops().toString());
         entityManager.merge(vehicle);
+        return res;
+    }
+
+    @Transactional
+    @Override
+    public String removeStopFromVehicle(Integer id, Class<? extends Vehicle> vehicleType, String stopName) {
+        String res = "";
+        Stop stop = findStopByName(stopName);
+        Vehicle vehicle = findVehicleByID(id, vehicleType);
+
+        removeStopFromVehicle(stop, vehicle);
         return res;
     }
 
@@ -67,5 +71,29 @@ public class DaoImpl implements Dao {
             return null;
         }
         return stop;
+    }
+
+    private void removeStopFromVehicle(Stop stop, Vehicle vehicle) {
+        if (stop == null)
+            return;
+        if (vehicle == null)
+            throw new IllegalArgumentException("vehicle can't be null!!");
+        if (isEmptySet(vehicle.getStops()))
+            throw new IllegalArgumentException("vehicle can't be null or empty!!");
+        if (isEmptySet(stop.getVehicles()))
+            return;
+
+        stop.removeVehicle(vehicle);
+        vehicle.removeStop(stop);
+        if (stop.getVehicles().size() > 0)
+            entityManager.merge(stop);
+        else
+            entityManager.remove(stop);
+    }
+
+    private boolean isEmptySet(Set set) {
+        if (set == null || set.size() <= 0)
+            return true;
+        return false;
     }
 }
