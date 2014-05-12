@@ -16,24 +16,20 @@
                     ${stop.name}; 
                 </c:forEach>
 				<FORM NAME="tramwayes${tw.id}" METHOD="POST">
-					<input type="text" name="Name" /> <input type="HIDDEN"
-						name="routeId" value="${tw.id}" /> <input type="HIDDEN"
-						name="routeType" value="tramwayRoute" /> <INPUT NAME="AddStop"
-						TYPE="button" VALUE="Add stop"
-						onClick="javascript:button1(this.form);"><INPUT
-						NAME="RemoveStop" TYPE="button" VALUE="Remove stop"
-						onClick="javascript:button2(this.form);">
+					<input type="text" name="Name" /> 
+					<input type="HIDDEN" name="routeId" value="${tw.id}" /> 
+					<input type="HIDDEN" name="routeType" value="tramwayRoute" /> 
+					<INPUT NAME="AddStop" TYPE="button" VALUE="Add stop" onClick="javascript:button1(this.form);">
+					<INPUT NAME="RemoveStop" TYPE="button" VALUE="Remove stop" onClick="javascript:button2(this.form);">
 				</FORM>
 			</li>
 		</c:forEach>
 	</ul>
 	<FORM NAME="Adding route" METHOD="POST">
-		Enter № of route <input type="text" name="numOfRoute" /> <input
-			type="HIDDEN" name="routeType" value="tramwayRoute" /> <INPUT
-			NAME="AddRoute" TYPE="button" VALUE="Add Route"
-			onClick="javascript:button3(this.form);"> <INPUT
-			NAME="RemoveRoute" TYPE="button" VALUE="Remove Route"
-			onClick="javascript:button4(this.form);">
+		Enter № of route <input type="text" name="numOfRoute" /> 
+		<input type="HIDDEN" name="routeType" value="tramwayRoute" /> 
+		<INPUT NAME="AddRoute" TYPE="button" VALUE="Add Route" onClick="javascript:button3(this.form);"> 
+		<INPUT NAME="RemoveRoute" TYPE="button" VALUE="Remove Route" onClick="javascript:button4(this.form);">
 	</FORM>
 	<h1>List of All Bus Routes</h1>
 	<ul>

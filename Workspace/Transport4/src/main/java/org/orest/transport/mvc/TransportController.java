@@ -2,6 +2,7 @@ package org.orest.transport.mvc;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.orest.transport.domain.BusRoute;
 import org.orest.transport.domain.Route;
 import org.orest.transport.domain.SubwayRoute;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TransportController {
 
+    private static Logger log = Logger.getLogger(TransportController.class.getName());
+
     @Autowired
     private Dao dao;
 
@@ -31,7 +34,8 @@ public class TransportController {
         model.addAttribute("subwayes", routes);
         routes = dao.findAllRoutes(TrolleybusRoute.class);
         model.addAttribute("trolleybuses", routes);
-
+        log.info("index");
+        System.out.println("111");
         return "index";
     }
 
@@ -41,6 +45,7 @@ public class TransportController {
         if (name.length() == 0)
             throw new IllegalArgumentException("empty name!");
         dao.addStop(id, getType(routeType), name);
+        log.warn("redirect:/");
         return "redirect:/";
     }
 
@@ -50,6 +55,7 @@ public class TransportController {
         if (stopName.length() == 0)
             throw new IllegalArgumentException("empty name!");
         dao.removeStopFromRoute(id, getType(routeType), stopName);
+        log.error("redirect:/");
         return "redirect:/";
     }
 
@@ -58,6 +64,7 @@ public class TransportController {
         if (numOfRoute.length() == 0)
             throw new IllegalArgumentException("empty number of route!");
         dao.addRoute(getType(routeType), numOfRoute);
+        log.debug("redirect:/");
         return "redirect:/";
     }
 
@@ -66,6 +73,7 @@ public class TransportController {
         if (numOfRoute.length() == 0)
             throw new IllegalArgumentException("empty number of route!");
         dao.removeRoute(getType(routeType), numOfRoute);
+        log.info("redirect:/");
         return "redirect:/";
     }
 
