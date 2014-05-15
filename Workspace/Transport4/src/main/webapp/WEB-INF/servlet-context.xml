@@ -32,9 +32,6 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:annotation-config />
-	<!-- <aop:aspectj-autoproxy /> -->
-	<aop:aspectj-autoproxy>
-		<aop:include name="daoAop" />
-	</aop:aspectj-autoproxy>
-	<bean id="daoAop" class="org.orest.transport.aop.DaoAop" />
+	<aop:aspectj-autoproxy />
+	<!-- <aop:aspectj-autoproxy> <aop:include name="daoAop" /> </aop:aspectj-autoproxy> <bean id="daoAop" class="org.orest.transport.aop.DaoAop" /> -->
 </beans>

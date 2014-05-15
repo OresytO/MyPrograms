@@ -85,4 +85,10 @@ public class Stop {
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Stop [id=" + id + ", name=" + name + "]";
+    }
+
 }

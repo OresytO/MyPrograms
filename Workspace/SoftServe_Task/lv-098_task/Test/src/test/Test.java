@@ -1,37 +1,79 @@
 package test;
 
-import java.util.Date;
-
-import test.parser.Parser;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Test {
-	public static void main(String[] args) {
-		Date start = null;
-		Date end = null;
-		long count = 0;
-		String path = "";
-		int avrg = 0;
-		int n = 100;
-		for (int j = 0; j < n; j++) {
-			count = 0;
-			for (int i = 0; i < Config.sourceDestination.length; i++) {
-				path = Config.sourceDestination[i];
-				start = new Date();
-				Parser p = ParserFactory.getParser(path);
-				end = new Date();
-				// System.out.println(path);
-				// System.out.println("IPv4: " + p.getListIPv4().size());
-				// System.out.println("IPv6: " + p.getListIPv6().size());
-				// System.out.println("duration BufferedReader(FileReader)"
-				// + (end.getTime() - start.getTime()) + " ms\n");
-				count += end.getTime() - start.getTime();
-			}
-			// System.out.println("Total time: " + count + " ms.");
-			avrg += count;
-		}
-		System.out.println("Sum total duration: " + avrg + "ms. "
-				+ (avrg / 1000.0) + "sec.");
-		System.out.println("Average duration: " + ((float) avrg / n) + "ms.");
+    public static void main(String[] args) {
+        Sentence sentence = new Sentence(Arrays.asList(new Word(Arrays.asList(new SubWord("fir"), new SubWord("st "))),
+                new Word(Arrays.asList(new SubWord("sec"), new SubWord("ond "))), new Word(Arrays.asList(new SubWord("thi"), new SubWord("rd "))), new Word(
+                        Arrays.asList(new SubWord("four"), new SubWord("th.")))));
+        System.out.println(sentence);
+    }
+}
 
-	}
+class Sentence {
+    private List<Word> words;
+
+    public Sentence(List<Word> words) {
+        this.words = words;
+    }
+
+    @Override
+    public String toString() {
+        String str = "Your text is: \"";
+        for (Word word : words) {
+            str += word;
+        }
+        return str + "\"";
+    }
+
+}
+
+class Word {
+    private List<SubWord> word;
+
+    public Word(List<SubWord> word) {
+        this.word = word;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (SubWord subWord : word) {
+            str += subWord;
+        }
+        return str;
+    }
+
+}
+
+class SubWord {
+    private String subWord;
+
+    public SubWord(String subWord) {
+        this.subWord = subWord;
+    }
+
+    public String getSubWord() {
+        return subWord;
+    }
+
+    @Override
+    public String toString() {
+        return subWord;
+    }
+
+}
+
+class MyList<T> extends ArrayList<T> {
+
+    @Override
+    public String toString() {
+        return this.toString();
+    }
+
+
+    
 }

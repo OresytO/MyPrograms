@@ -13,35 +13,40 @@ public class DaoAop {
 
     public static Logger log = Logger.getLogger(DaoAop.class.getName());
 
-    @Pointcut("execution(* org.orest.transport.repo.Dao.findAllStops())")
+    @Pointcut("execution(* org.orest.transport.repo.*.find*(..))")
+    private void findAll() {
+    }
+
+    @Pointcut("execution(* org.orest.transport.repo.*.add*(..))")
     private void addAll() {
     }
 
-    @Pointcut("execution(* org.orest.transport.repo.*remove*(..))")
+    @Pointcut("execution(* org.orest.transport.repo.*.remove*(..))")
     private void removeAll() {
     }
 
     @Before("addAll()")
     public void logginingBeforeAdd() {
-        System.out.println("logginingBeforeAdd");
         log.info("logginingBeforeAdd");
     }
 
     @Before("removeAll()")
     public void logginingBeforeRemove() {
-        System.out.println("logginingBeforeRemove");
         log.info("logginingBeforeRemove");
     }
 
     @AfterReturning(pointcut = "addAll()", returning = "retVal")
     public void logginingAfterAdd(Object retVal) {
-        System.out.println("logginingAfterAdd " + retVal.getClass().getSimpleName());
-        log.info("logginingAfterAdd " + retVal.getClass().getSimpleName());
+        log.debug("logginingAfterAdd 111");
     }
 
     @AfterReturning(pointcut = "removeAll()", returning = "retVal")
     public void logginingAfterRemove(Object retVal) {
-        System.out.println("logginingAfterRemove " + retVal.getClass().getSimpleName());
-        log.info("logginingAfterRemove " + retVal.getClass().getSimpleName());
+        log.info("logginingAfterRemove 111");
+    }
+
+    @AfterReturning(pointcut = "findAll()", returning = "retVal")
+    public void logginingAfterFind(Object retVal) {
+        log.info("logginingAfterFind " + retVal.toString());
     }
 }

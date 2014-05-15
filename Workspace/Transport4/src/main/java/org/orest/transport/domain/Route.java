@@ -91,4 +91,9 @@ public class Route {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " [id=" + id + ", numOfRoute=" + numOfRoute + ", stops=" + stops + "]";
+    }
+
 }
