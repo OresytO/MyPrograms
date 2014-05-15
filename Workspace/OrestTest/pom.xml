@@ -1,11 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.orest.transport</groupId>
-	<artifactId>transport</artifactId>
+	<groupId>org.orest</groupId>
+	<artifactId>orest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>Transport</name>
+	<name>Test project</name>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -22,8 +23,17 @@
 
 	<properties>
 		<spring.version>4.0.4.RELEASE</spring.version>
-		<hibernate.version>4.3.4.Final</hibernate.version>
-		<org.slf4j.version>1.7.7</org.slf4j.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
+		<commons.version>2.3</commons.version>
+		<aspectj.version>1.6.11</aspectj.version>
+		<mysql.version>5.1.25</mysql.version>
+		<jstl.version>1.2</jstl.version>
+		<eclipse.persistence.version>2.5.0</eclipse.persistence.version>
+		<javax.servlet.version>2.5</javax.servlet.version>
+		<commons.dbcp.version>1.4</commons.dbcp.version>
+		<log4j.version>1.2.17</log4j.version>
+		<poi.version>3.10-FINAL</poi.version>
+		<jtds.version>1.3.1</jtds.version>
 	</properties>
 
 	<dependencies>
@@ -53,19 +63,19 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.6.11</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.11</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
-			<version>1.6.11</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 
 
@@ -82,53 +92,103 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
+		<!-- Eclipse -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
-			<version>2.4.2</version>
+			<version>${eclipse.persistence.version}</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 
 		<!-- Java EE -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- POI Librarys -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-excelant</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>openxml4j</artifactId>
+			<version>1.0-beta</version>
 		</dependency>
 
 		<!-- Others -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.25</version>
+			<version>${commons.dbcp.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j.version}</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>jcl-over-slf4j</artifactId> 
-			<version>${org.slf4j-version}</version> <scope>runtime</scope> </dependency> 
-			<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
-			<version>${org.slf4j-version}</version> <scope>runtime</scope> </dependency> 
-			<dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> <version>1.2.17</version> 
-			<exclusions> <exclusion> <groupId>javax.mail</groupId> <artifactId>mail</artifactId> 
-			</exclusion> <exclusion> <groupId>javax.jms</groupId> <artifactId>jms</artifactId> 
-			</exclusion> <exclusion> <groupId>com.sun.jdmk</groupId> <artifactId>jmxtools</artifactId> 
-			</exclusion> <exclusion> <groupId>com.sun.jmx</groupId> <artifactId>jmxri</artifactId> 
-			</exclusion> </exclusions> <scope>runtime</scope> </dependency> -->
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>${jtds.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
+
 
 
 	</dependencies>
