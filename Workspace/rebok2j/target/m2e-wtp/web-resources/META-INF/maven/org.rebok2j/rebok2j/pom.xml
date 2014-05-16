@@ -1,11 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.orest.transport</groupId>
-	<artifactId>transport</artifactId>
+	<groupId>org.rebok2j</groupId>
+	<artifactId>rebok2j</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Transport</name>
+	<name>Rebok2J</name>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -13,8 +14,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -22,10 +23,13 @@
 
 	<properties>
 		<spring.version>4.0.4.RELEASE</spring.version>
-		<hibernate.version>4.3.4.Final</hibernate.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
+		<mysql.version>5.1.25</mysql.version>
+		<jstl.version>1.2</jstl.version>
+		<eclipse.persistence.version>2.5.0</eclipse.persistence.version>
+		<javax.servlet.version>2.5</javax.servlet.version>
 		<log4j.version>1.2.17</log4j.version>
 	</properties>
-
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -33,16 +37,19 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
@@ -68,7 +75,6 @@
 			<version>1.6.11</version>
 		</dependency>
 
-
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -82,36 +88,39 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
+		<!-- Eclipse -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
-			<version>2.4.2</version>
+			<version>${eclipse.persistence.version}</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 
 		<!-- Java EE -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
 		</dependency>
 
 		<!-- Others -->
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.25</version>
+			<version>${mysql.version}</version>
 		</dependency>
 
 		<dependency>
@@ -119,19 +128,5 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>jcl-over-slf4j</artifactId> 
-			<version>${org.slf4j-version}</version> <scope>runtime</scope> </dependency> 
-			<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
-			<version>${org.slf4j-version}</version> <scope>runtime</scope> </dependency> 
-			<dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> <version>1.2.17</version> 
-			<exclusions> <exclusion> <groupId>javax.mail</groupId> <artifactId>mail</artifactId> 
-			</exclusion> <exclusion> <groupId>javax.jms</groupId> <artifactId>jms</artifactId> 
-			</exclusion> <exclusion> <groupId>com.sun.jdmk</groupId> <artifactId>jmxtools</artifactId> 
-			</exclusion> <exclusion> <groupId>com.sun.jmx</groupId> <artifactId>jmxri</artifactId> 
-			</exclusion> </exclusions> <scope>runtime</scope> </dependency> -->
-
-
 	</dependencies>
-
 </project>
