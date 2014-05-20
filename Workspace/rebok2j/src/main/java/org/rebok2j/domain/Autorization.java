@@ -20,7 +20,7 @@ public class Autorization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long Id;
+    private Long Id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "autorization")
     private Set<Delivery> deliveries;

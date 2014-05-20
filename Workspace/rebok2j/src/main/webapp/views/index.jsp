@@ -8,7 +8,7 @@
 <title>Transport</title>
 </head>
 <body>
-	<h1>List of All Tramway Routes</h1>
+	<h1>List of All Tramway Routes 1</h1>
 	<ul>
 		<c:forEach var="tw" items="${tramwayes}">
 			<li>number of route № ${tw.numOfRoute} has next stops: <c:forEach
@@ -35,6 +35,22 @@
 			NAME="RemoveRoute" TYPE="button" VALUE="Remove Route"
 			onClick="javascript:button4(this.form);">
 	</FORM>
+
+	<form:select path="country" items="${countryList}" multiple="true" />
+	<select>
+		<c:forEach var="item" items="${countryList}">
+			<option>${item}</option>
+		</c:forEach>
+	</select>
+
+	<select>
+		<c:forEach var="item" items="${countryList}">
+			<option>
+				<c:out value="${item}" />
+			</option>
+		</c:forEach>
+	</select>
+
 	<h1>List of All Bus Routes</h1>
 	<ul>
 		<c:forEach var="tw" items="${buses}">

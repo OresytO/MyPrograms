@@ -31,7 +31,7 @@ public class CourierCompanyDaoImpl extends AbstractDao implements CourierCompany
     }
 
     @Override
-    public CourierCompany findById(Integer id) {
+    public CourierCompany findById(Long id) {
         return entityManager.find(CourierCompany.class, id);
     }
 }

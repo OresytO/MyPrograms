@@ -31,7 +31,7 @@ public class DaoImpl<T> extends AbstractDao implements Dao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T findById(Integer id) {
+    public T findById(Long id) {
         return (T) entityManager.find(Object.class, id);
     }
 }

@@ -10,6 +10,6 @@ public interface DeliveryDao {
 
     void remove(CourierCompany courierCompany);
 
-    CourierCompany findById(Integer id);
+    CourierCompany findById(Long id);
 
 }

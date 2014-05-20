@@ -31,7 +31,7 @@ public class AutorizationDaoImpl extends AbstractDao implements AutorizationDao 
     }
 
     @Override
-    public Autorization findById(Integer id) {
+    public Autorization findById(Long id) {
         return entityManager.find(Autorization.class, id);
     }
 

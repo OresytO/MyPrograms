@@ -10,6 +10,6 @@ public interface AutorizationDao {
 
     void remove(Autorization autorization);
 
-    Autorization findById(Integer id);
+    Autorization findById(Long id);
 
 }

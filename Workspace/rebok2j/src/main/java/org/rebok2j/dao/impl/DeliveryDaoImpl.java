@@ -30,7 +30,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
     }
 
     @Override
-    public CourierCompany findById(Integer id) {
+    public CourierCompany findById(Long id) {
         return entityManager.find(CourierCompany.class, id);
     }
 }

@@ -8,6 +8,6 @@ public interface Dao<T> {
 
     void remove(T entity);
 
-    T findById(Integer id);
+    T findById(Long id);
 
 }
