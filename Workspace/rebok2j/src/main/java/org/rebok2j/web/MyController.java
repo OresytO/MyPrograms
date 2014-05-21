@@ -20,7 +20,7 @@ public class MyController extends AbstractControler {
     @Autowired
     private Service service;
 
-    // @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcomePage(Model model) {
         service.getAutorazation(1L);
         List<String> list = new ArrayList<String>();
@@ -38,7 +38,7 @@ public class MyController extends AbstractControler {
         return "redirect:/";
     }
 
-    @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+    // @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
     public ModelAndView welcomePage() {
 
         ModelAndView model = new ModelAndView();
