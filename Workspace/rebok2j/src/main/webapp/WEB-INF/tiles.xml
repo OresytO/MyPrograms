@@ -13,16 +13,8 @@
 		<put-attribute name="footer" value="/views/tiles/footer.jsp" />
 	</definition>
 
-	<definition name="result.definition" template="/views/tiles/resultLayout.jsp">
-		<put-attribute name="body" value="" />
-	</definition>
-
 	<definition name="signin" extends="base.definition">
 		<put-attribute name="body" value="/views/user/signin.jsp" />
-	</definition>
-
-	<definition name="signinFailure" extends="base.definition">
-		<put-attribute name="body" value="/views/user/signinFailure.jsp" />
 	</definition>
 
 	<definition name="welcome" extends="base.definition">
