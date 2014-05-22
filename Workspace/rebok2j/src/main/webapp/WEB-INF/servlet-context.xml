@@ -7,12 +7,37 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>WEB-INF/jpa.properties</value>
+		</property>
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" />
+			<bean
+				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" />
 		</property>
 		<property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml" />
 		<property name="persistenceUnitName" value="primary" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="javax.persistence.jdbc.driver">${javax.persistence.jdbc.driver}</prop>
+				<prop key="javax.persistence.jdbc.url">${javax.persistence.jdbc.url}</prop>
+				<prop key="javax.persistence.jdbc.user">${javax.persistence.jdbc.user}</prop>
+				<prop key="javax.persistence.jdbc.password">${javax.persistence.jdbc.password}</prop>
+				<prop key="javax.persistence.schema-generation.create-source">${javax.persistence.schema-generation.create-source}
+				</prop>
+				<prop key="javax.persistence.schema-generation.drop-source">${javax.persistence.schema-generation.drop-source}
+				</prop>
+				<prop key="javax.persistence.sql-load-script-source">${javax.persistence.sql-load-script-source}</prop>
+				<prop key="javax.persistence.schema-generation.database.action">${javax.persistence.schema-generation.database.action}
+				</prop>
+				<prop key="eclipselink.weaving">${eclipselink.weaving}</prop>
+			</props>
+		</property>
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
