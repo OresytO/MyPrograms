@@ -14,7 +14,7 @@
 	</definition>
 
 	<definition name="signin" extends="base.definition">
-		<put-attribute name="body" value="/views/user/signin.jsp" />
+		<put-attribute name="body" value="/views/signin.jsp" />
 	</definition>
 
 	<definition name="welcome" extends="base.definition">
