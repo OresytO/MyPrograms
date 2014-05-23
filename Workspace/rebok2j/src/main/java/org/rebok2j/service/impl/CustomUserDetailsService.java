@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * A custom {@link UserDetailsService} where user information is retrieved from a JPA repository
  */
-@Service("CustomUserDetailsService")
+@Service
 @Transactional(readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -28,24 +28,16 @@ public class CustomUserDetailsService implements UserDetailsService {
     /**
      * Returns a populated {@link UserDetails} object. The username is first retrieved from the database and then mapped to a {@link UserDetails} object.
      */
-
+    @Override
     public UserDetails loadUserByUsername(String userNickname) throws UsernameNotFoundException {
         try {
             org.rebok2j.domain.User domainUser = userDao.findByNickname(userNickname);
-
-            boolean enabled = true;
             boolean accountNonExpired = true;
             boolean credentialsNonExpired = true;
             boolean accountNonLocked = true;
 
-            return new User(
-                    domainUser.getUserName(), 
-                    domainUser.getPassword().toLowerCase(), 
-                    enabled, 
-                    accountNonExpired, 
-                    credentialsNonExpired, 
-                    accountNonLocked,
-                    getGrantedAuthorities(domainUser.getRoles()));
+            return new User(domainUser.getUserName(), domainUser.getPassword().toLowerCase(), domainUser.getEnabled(), accountNonExpired,
+                    credentialsNonExpired, accountNonLocked, getGrantedAuthorities(domainUser.getRoles()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
