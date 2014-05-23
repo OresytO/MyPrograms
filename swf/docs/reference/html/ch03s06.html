@@ -1,0 +1,17 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>3.6.&nbsp;Scope searching algorithm</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch03.html" title="3.&nbsp;Expression Language (EL)"><link rel="prev" href="ch03s05.html" title="3.5.&nbsp;Special EL variables"><link rel="next" href="ch04.html" title="4.&nbsp;Rendering views"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3.6.&nbsp;Scope searching algorithm</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s05.html">Prev</a>&nbsp;</td><th width="60%" align="center">3.&nbsp;Expression Language (EL)</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch04.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="el-scope-searching"></a>3.6.&nbsp;Scope searching algorithm</h2></div></div></div><p>
+			When assigning a variable in one of the flow scopes, referencing that scope is required.
+			For example:
+		</p><pre class="programlisting">
+&lt;<span class="hl-tag">set</span> <span class="hl-attribute">name</span>=<span class="hl-value">"requestScope.hotelId"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"requestParameters.id"</span> <span class="hl-attribute">type</span>=<span class="hl-value">"long"</span> /&gt;
+		</pre><p>
+			When simply accessing a variable in one of the scopes, referencing the scope is optional.
+			For example:
+		</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"entityManager.persist(booking)"</span> /&gt;
+		</pre><p>
+			If no scope is specified, like in the use of <code class="code">booking</code> above, a scope searching algorithm will be employed.
+			The algorithm will look in request, flash, view, flow, and conversation scope for the variable.
+			If no such variable is found, an <code class="code">EvaluationException</code> will be thrown.
+		</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s05.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">3.5.&nbsp;Special EL variables&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;4.&nbsp;Rendering views</td></tr></table></div></body></html>

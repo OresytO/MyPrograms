@@ -1,0 +1,42 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>12.4.&nbsp;Configuring Web Flow to render JSF views</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch12.html" title="12.&nbsp;JSF Integration"><link rel="prev" href="ch12s03.html" title="12.3.&nbsp;Configuring web.xml"><link rel="next" href="ch12s05.html" title="12.5.&nbsp;Configuring faces-config.xml"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">12.4.&nbsp;Configuring Web Flow to render JSF views</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch12s03.html">Prev</a>&nbsp;</td><th width="60%" align="center">12.&nbsp;JSF Integration</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch12s05.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="spring-faces-webflow-config"></a>12.4.&nbsp;Configuring Web Flow to render JSF views</h2></div></div></div><p>
+            The next step is to configure Web Flow to render JSF views. To do this, in your Spring Web Flow
+            configuration include the
+            <code class="code">faces</code>
+            namespace and link in the faces
+            <code class="code">flow-builder-services</code>
+            :
+        </p><pre class="programlisting">
+&lt;<span class="hl-tag">?xml version="1.0" encoding="UTF-8"?</span>&gt;
+&lt;<span class="hl-tag">beans</span> <span class="hl-attribute">xmlns</span>=<span class="hl-value">"http://www.springframework.org/schema/beans"</span>
+       <span class="hl-attribute">xmlns:xsi</span>=<span class="hl-value">"http://www.w3.org/2001/XMLSchema-instance"</span>
+       <span class="hl-attribute">xmlns:webflow</span>=<span class="hl-value">"http://www.springframework.org/schema/webflow-config"</span>
+       <span class="hl-attribute">xmlns:faces</span>=<span class="hl-value">"http://www.springframework.org/schema/faces"</span>
+       <span class="hl-attribute">xsi:schemaLocation</span>=<span class="hl-value">"
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/webflow-config
+           http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+           http://www.springframework.org/schema/faces
+           http://www.springframework.org/schema/faces/spring-faces-2.0.xsd"</span>&gt;
+
+	&lt;<span class="hl-comment">!-- Executes flows: the central entry point into the Spring Web Flow system --</span>&gt;
+	&lt;<span class="hl-tag">webflow:flow-executor</span> <span class="hl-attribute">id</span>=<span class="hl-value">"flowExecutor"</span> /&gt;
+
+	&lt;<span class="hl-comment">!-- The registry of executable flow definitions --</span>&gt;
+	&lt;<span class="hl-tag">webflow:flow-registry</span> <span class="hl-attribute">id</span>=<span class="hl-value">"flowRegistry"</span> <span class="hl-attribute">flow-builder-services</span>=<span class="hl-value">"facesFlowBuilderServices"</span>&gt;
+		&lt;<span class="hl-tag">webflow:flow-location</span> <span class="hl-attribute">path</span>=<span class="hl-value">"/WEB-INF/flows/main/main.xml"</span> /&gt;
+		&lt;<span class="hl-tag">webflow:flow-location</span> <span class="hl-attribute">path</span>=<span class="hl-value">"/WEB-INF/flows/booking/booking.xml"</span> /&gt;
+	&lt;<span class="hl-tag">/webflow:flow-registry</span>&gt;
+
+	&lt;<span class="hl-comment">!-- Configures the Spring Web Flow JSF integration --</span>&gt;
+	&lt;<span class="hl-tag">faces:flow-builder-services</span> <span class="hl-attribute">id</span>=<span class="hl-value">"facesFlowBuilderServices"</span> /&gt;
+
+&lt;<span class="hl-tag">/beans</span>&gt;
+        </pre><p>
+        	The <code class="code">faces:flow-builder-services</code> tag also several other defaults appropriate for a JSF environment.
+        	Specifically, the Unified EL is configured as the default Expression Language.
+        </p><p>
+            See the swf-booking-faces reference application in the distribution for a complete working example.
+       	</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch12s03.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch12.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch12s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">12.3.&nbsp;Configuring web.xml&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;12.5.&nbsp;Configuring faces-config.xml</td></tr></table></div></body></html>

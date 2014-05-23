@@ -1,0 +1,62 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>12.8.&nbsp;Enhancing The User Experience With Rich Web Forms</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch12.html" title="12.&nbsp;JSF Integration"><link rel="prev" href="ch12s07.html" title="12.7.&nbsp;Handling JSF Events With Spring Web Flow"><link rel="next" href="ch12s09.html" title="12.9.&nbsp;Third-Party Component Library Integration"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">12.8.&nbsp;Enhancing The User Experience With Rich Web Forms</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch12s07.html">Prev</a>&nbsp;</td><th width="60%" align="center">12.&nbsp;JSF Integration</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch12s09.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="spring-faces-ui-controls"></a>12.8.&nbsp;Enhancing The User Experience With Rich Web Forms</h2></div></div></div><p>
+            JSF and Web Flow combine to provide and extensive server-side validation model for your web application, but
+            excessive roundtrips to the server to execute this validation and return error messages can be a tedious
+            experience for your users. Spring Faces provides a number of client-side rich validation controls that can
+            enhance the user experience by applying simple validations that give immediate feedback. Some simple
+            examples are illustrated below. See the Spring Faces taglib docs for a complete tag reference.
+        </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="spring-faces-text-validation"></a>12.8.1.&nbsp;Validating a Text Field</h3></div></div></div><p>
+                Simple client-side text validation can be applied with the
+                <code class="code">clientTextValidator</code>
+                component:
+            </p><pre class="programlisting"> 
+&lt;<span class="hl-tag">sf:clientTextValidator</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span>&gt;
+    &lt;<span class="hl-tag">h:inputText</span> <span class="hl-attribute">id</span>=<span class="hl-value">"creditCardName"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"#{booking.creditCardName}"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span>/&gt;
+&lt;<span class="hl-tag">/sf:clientTextValidator</span>&gt;
+            </pre><p>
+                This will apply client-side required validation to the child
+                <code class="code">inputText</code>
+                component, giving the user a clear indicator if the field is left blank.
+            </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="spring-faces-number-validation"></a>12.8.2.&nbsp;Validating a Numeric Field</h3></div></div></div><p>
+                Simple client-side numeric validation can be applied with the
+                <code class="code">clientNumberValidator</code>
+                component:
+            </p><pre class="programlisting"> 
+&lt;<span class="hl-tag">sf:clientTextValidator</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> <span class="hl-attribute">regExp</span>=<span class="hl-value">"[0-9]{16}"</span> 
+                        <span class="hl-attribute">invalidMessage</span>=<span class="hl-value">"A 16-digit credit card number is required."</span>&gt;
+    &lt;<span class="hl-tag">h:inputText</span> <span class="hl-attribute">id</span>=<span class="hl-value">"creditCard"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"#{booking.creditCard}"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span>/&gt;
+&lt;<span class="hl-tag">/sf:clientTextValidator</span>&gt;
+            </pre><p>
+                This will apply client-side validation to the child
+                <code class="code">inputText</code>
+                component, giving the user a clear indicator if the field is left blank, is not numeric, or does not
+                match the given regular expression.
+            </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="spring-faces-date-validation"></a>12.8.3.&nbsp;Validating a Date Field</h3></div></div></div><p>
+                Simple client-side date validation with a rich calendar popup can be applied with the
+                <code class="code">clientDateValidator</code>
+                component:
+            </p><pre class="programlisting"> 
+&lt;<span class="hl-tag">sf:clientDateValidator</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> &gt;
+    &lt;<span class="hl-tag">h:inputText</span> <span class="hl-attribute">id</span>=<span class="hl-value">"checkinDate"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"#{booking.checkinDate}"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span>&gt;
+	   	&lt;<span class="hl-tag">f:convertDateTime</span> <span class="hl-attribute">pattern</span>=<span class="hl-value">"yyyy-MM-dd"</span> <span class="hl-attribute">timeZone</span>=<span class="hl-value">"EST"</span>/&gt;
+	&lt;<span class="hl-tag">/h:inputText</span>&gt;
+&lt;<span class="hl-tag">/sf:clientDateValidator</span>&gt;
+            </pre><p>
+                This will apply client-side validation to the child
+                <code class="code">inputText</code>
+                component, giving the user a clear indicator if the field is left blank or is not a valid date.
+            </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="spring-faces-validate-all"></a>12.8.4.&nbsp;Preventing an Invalid Form Submission</h3></div></div></div><p>
+                The
+                <code class="code">validateAllOnClick</code>
+                component can be used to intercept the "onclick" event of a child component and suppress the event if
+                all client-side validations do not pass.
+            </p><pre class="programlisting"> 
+&lt;<span class="hl-tag">sf:validateAllOnClick</span>&gt;
+    &lt;<span class="hl-tag">sf:commandButton</span> <span class="hl-attribute">id</span>=<span class="hl-value">"proceed"</span> <span class="hl-attribute">action</span>=<span class="hl-value">"proceed"</span> <span class="hl-attribute">processIds</span>=<span class="hl-value">"*"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"Proceed"</span>/&gt;&amp;#160;
+&lt;<span class="hl-tag">/sf:validateAllOnClick</span>&gt;
+            </pre><p>
+                This will prevent the form from being submitted when the user clicks the "proceed" button if the form is
+                invalid. When the validations are executed, the user is given clear and immediate indicators of the
+                problems that need to be corrected.
+            </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch12s07.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch12.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch12s09.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">12.7.&nbsp;Handling JSF Events With Spring Web Flow&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;12.9.&nbsp;Third-Party Component Library Integration</td></tr></table></div></body></html>

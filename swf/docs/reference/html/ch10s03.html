@@ -1,0 +1,16 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>10.3.&nbsp;Mapping URLs to Flows</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch10.html" title="10.&nbsp;Spring MVC Integration"><link rel="prev" href="ch10s02.html" title="10.2.&nbsp;Configuring web.xml"><link rel="next" href="ch10s04.html" title="10.4.&nbsp;Flow Handlers"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">10.3.&nbsp;Mapping URLs to Flows</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10s02.html">Prev</a>&nbsp;</td><th width="60%" align="center">10.&nbsp;Spring MVC Integration</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch10s04.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="spring-mvc-config-spring-url-mapping"></a>10.3.&nbsp;Mapping URLs to Flows</h2></div></div></div><p>
+			The <code class="code">DispatcherServlet</code> maps request URLs to handlers.
+			A simple way to create URL mapping rules is to define a <code class="code">SimpleUrlHandlerMapping</code>:
+		</p><pre class="programlisting">
+&lt;<span class="hl-tag">bean</span> <span class="hl-attribute">id</span>=<span class="hl-value">"flowUrlMappings"</span> <span class="hl-attribute">class</span>=<span class="hl-value">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;
+    &lt;<span class="hl-tag">property</span> <span class="hl-attribute">name</span>=<span class="hl-value">"mappings"</span>&gt;
+        &lt;<span class="hl-tag">value</span>&gt;
+            /hotels/booking=bookingFlowHandler
+        &lt;<span class="hl-tag">/value</span>&gt;
+    &lt;<span class="hl-tag">/property</span>&gt;
+&lt;<span class="hl-tag">/bean</span>&gt;
+		</pre><p>
+			The example above maps the servlet-relative request URL <code class="code">/hotels/booking</code> to the <code class="code">bookingFlowHandler</code>.
+		</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10s02.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch10.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch10s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">10.2.&nbsp;Configuring web.xml&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;10.4.&nbsp;Flow Handlers</td></tr></table></div></body></html>

@@ -1,0 +1,77 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>3.5.&nbsp;Special EL variables</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch03.html" title="3.&nbsp;Expression Language (EL)"><link rel="prev" href="ch03s04.html" title="3.4.&nbsp;EL usage"><link rel="next" href="ch03s06.html" title="3.6.&nbsp;Scope searching algorithm"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3.5.&nbsp;Special EL variables</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s04.html">Prev</a>&nbsp;</td><th width="60%" align="center">3.&nbsp;Expression Language (EL)</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch03s06.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="el-variables"></a>3.5.&nbsp;Special EL variables</h2></div></div></div><p>
+			There are several implicit variables you may reference from within a flow.
+			These variables are discussed in this section.
+		</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-flowScope"></a>3.5.1.&nbsp;flowScope</h3></div></div></div><p>
+				Use <code class="code">flowScope</code> to assign a flow variable.
+				Flow scope gets allocated when a flow starts and destroyed when the flow ends.  With the default 
+                implementation, any objects stored in flow scope need to be Serializable.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"searchService.findHotel(hotelId)"</span> <span class="hl-attribute">result</span>=<span class="hl-value">"flowScope.hotel"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-viewScope"></a>3.5.2.&nbsp;viewScope</h3></div></div></div><p>
+				Use <code class="code">viewScope</code> to assign a view variable.
+				View scope gets allocated when a <code class="code">view-state</code> enters and destroyed when the state exits.
+				View scope is <span class="emphasis"><em>only</em></span> referenceable from within a <code class="code">view-state</code>.  With the 
+                default implementation, any objects stored in view scope need to be Serializable.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">on-render</span>&gt;
+    &lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"searchService.findHotels(searchCriteria)"</span> <span class="hl-attribute">result</span>=<span class="hl-value">"viewScope.hotels"</span>
+              <span class="hl-attribute">result-type</span>=<span class="hl-value">"dataModel"</span> /&gt;
+&lt;<span class="hl-tag">/on-render</span>&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-requestScope"></a>3.5.3.&nbsp;requestScope</h3></div></div></div><p>
+				Use <code class="code">requestScope</code> to assign a request variable.
+				Request scope gets allocated when a flow is called and destroyed when the flow returns.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">set</span> <span class="hl-attribute">name</span>=<span class="hl-value">"requestScope.hotelId"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"requestParameters.id"</span> <span class="hl-attribute">type</span>=<span class="hl-value">"long"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-flashScope"></a>3.5.4.&nbsp;flashScope</h3></div></div></div><p>
+				Use <code class="code">flashScope</code> to assign a flash variable.
+				Flash scope gets allocated when a flow starts, cleared after every view render, and destroyed when the 
+                flow ends.  With the default implementation, any objects stored in flash scope need to be Serializable.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">set</span> <span class="hl-attribute">name</span>=<span class="hl-value">"flashScope.statusMessage"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"'Booking confirmed'"</span> /&gt;				
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-conversationScope"></a>3.5.5.&nbsp;conversationScope</h3></div></div></div><p>
+				Use <code class="code">conversationScope</code> to assign a conversation variable.
+				Conversation scope gets allocated when a top-level flow starts and destroyed when the top-level flow ends.
+				Conversation scope is shared by a top-level flow and all of its subflows.  With the default 
+                implementation, conversation scoped objects are stored in the HTTP session and should generally be 
+                Serializable to account for typical session replication.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"searchService.findHotel(hotelId)"</span> <span class="hl-attribute">result</span>=<span class="hl-value">"conversationScope.hotel"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-requestParameters"></a>3.5.6.&nbsp;requestParameters</h3></div></div></div><p>
+				Use <code class="code">requestParameters</code> to access a client request parameter:
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">set</span> <span class="hl-attribute">name</span>=<span class="hl-value">"requestScope.hotelId"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"requestParameters.id"</span> <span class="hl-attribute">type</span>=<span class="hl-value">"long"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-currentEvent"></a>3.5.7.&nbsp;currentEvent</h3></div></div></div><p>
+				Use <code class="code">currentEvent</code> to access attributes of the current <code class="code">Event</code>:
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"booking.guests.add(currentEvent.guest)"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-currentUser"></a>3.5.8.&nbsp;currentUser</h3></div></div></div><p>
+				Use <code class="code">currentUser</code> to access the authenticated <code class="code">Principal</code>:
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"bookingService.createBooking(hotelId, currentUser.name)"</span> 
+          <span class="hl-attribute">result</span>=<span class="hl-value">"flowScope.booking"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-messageContext"></a>3.5.9.&nbsp;messageContext</h3></div></div></div><p>
+				Use <code class="code">messageContext</code> to access a context for retrieving and creating flow execution messages, including error and success messages.
+				See the <code class="code">MessageContext</code> Javadocs for more information.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"bookingValidator.validate(booking, messageContext)"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-resourceBundle"></a>3.5.10.&nbsp;resourceBundle</h3></div></div></div><p>
+				Use <code class="code">resourceBundle</code> to access a message resource.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">set</span> <span class="hl-attribute">name</span>=<span class="hl-value">"flashScope.successMessage"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"resourceBundle.successMessage"</span> /&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-requestContext"></a>3.5.11.&nbsp;flowRequestContext</h3></div></div></div><p>
+				Use <code class="code">flowRequestContext</code> to access the <code class="code">RequestContext</code> API, which is a representation of the current flow request.
+				See the API Javadocs for more information.
+			</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-flowExecutionContext"></a>3.5.12.&nbsp;flowExecutionContext</h3></div></div></div><p>
+				Use <code class="code">flowExecutionContext</code> to access the <code class="code">FlowExecutionContext</code> API, which is a representation of the current flow state.
+				See the API Javadocs for more information.
+			</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-flowExecutionUrl"></a>3.5.13.&nbsp;flowExecutionUrl</h3></div></div></div><p>
+				Use <code class="code">flowExecutionUrl</code> to access the context-relative URI for the current flow execution view-state.
+			</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="el-variable-externalContext"></a>3.5.14.&nbsp;externalContext</h3></div></div></div><p>
+				Use <code class="code">externalContext</code> to access the client environment, including user session attributes.
+				See the <code class="code">ExternalContext</code> API JavaDocs for more information.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"searchService.suggestHotels(externalContext.sessionMap.userProfile)"</span> 
+          <span class="hl-attribute">result</span>=<span class="hl-value">"viewScope.hotels"</span> /&gt;
+			</pre></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s04.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch03s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">3.4.&nbsp;EL usage&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;3.6.&nbsp;Scope searching algorithm</td></tr></table></div></body></html>

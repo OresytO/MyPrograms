@@ -1,0 +1,29 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>7.3.&nbsp;The secured element</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch07.html" title="7.&nbsp;Securing Flows"><link rel="prev" href="ch07s02.html" title="7.2.&nbsp;How do I secure a flow?"><link rel="next" href="ch07s04.html" title="7.4.&nbsp;The SecurityFlowExecutionListener"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">7.3.&nbsp;The secured element</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a>&nbsp;</td><th width="60%" align="center">7.&nbsp;Securing Flows</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch07s04.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="flow-security-secured-element"></a>7.3.&nbsp;The secured element</h2></div></div></div><p>
+			The secured element designates that its containing element should apply the authorization check before fully entering.
+			This may not occur more then once per stage of the flow execution that is secured.
+		</p><p>
+			Three phases of flow execution can be secured: flows, states and transitions.
+			In each case the syntax for the secured element is identical.
+		</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="flow-security-secured-element-attributes"></a>7.3.1.&nbsp;Security attributes</h3></div></div></div><p>
+				The <code class="code">attributes</code> attribute is a comma separated list of Spring Security authorization attributes.
+				Often, these are specific security roles.
+				The attributes are compared against the user's granted attributes by a Spring Security access decision manager.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">secured</span> <span class="hl-attribute">attributes</span>=<span class="hl-value">"ROLE_USER"</span> /&gt;
+			</pre><p>
+				By default, a role based access decision manager is used to determine if the user is allowed access.
+				This will need to be overridden if your application is not using authorization roles.
+			</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="flow-security-secured-element-match"></a>7.3.2.&nbsp;Matching type</h3></div></div></div><p>
+				There are two types of matching available: <code class="code">any</code> and <code class="code">all</code>.
+				Any, allows access if at least one of the required security attributes is granted to the user.
+				All, allows access only if each of the required security attributes are granted to the user.
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">secured</span> <span class="hl-attribute">attributes</span>=<span class="hl-value">"ROLE_USER, ROLE_ANONYMOUS"</span> <span class="hl-attribute">match</span>=<span class="hl-value">"any"</span> /&gt;
+			</pre><p>
+				This attribute is optional.
+				If not defined, the default value is <code class="code">any</code>.
+			</p><p>
+				The <code class="code">match</code> attribute will only be respected if the default access decision manager is used.
+			</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s02.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch07s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">7.2.&nbsp;How do I secure a flow?&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;7.4.&nbsp;The SecurityFlowExecutionListener</td></tr></table></div></body></html>

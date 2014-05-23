@@ -1,0 +1,61 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>4.8.&nbsp;Specifying bindings explicitly</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch04.html" title="4.&nbsp;Rendering views"><link rel="prev" href="ch04s07.html" title="4.7.&nbsp;Suppressing binding"><link rel="next" href="ch04s09.html" title="4.9.&nbsp;Validating a model"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">4.8.&nbsp;Specifying bindings explicitly</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s07.html">Prev</a>&nbsp;</td><th width="60%" align="center">4.&nbsp;Rendering views</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch04s09.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="view-binder"></a>4.8.&nbsp;Specifying bindings explicitly</h2></div></div></div><p>
+			Use the <code class="code">binder</code> element to configure the exact set of model bindings usable by the view.
+			This is particularly useful in a Spring MVC environment for restricting the set of "allowed fields" per view.
+		</p><pre class="programlisting">
+&lt;<span class="hl-tag">view-state</span> <span class="hl-attribute">id</span>=<span class="hl-value">"enterBookingDetails"</span> <span class="hl-attribute">model</span>=<span class="hl-value">"booking"</span>&gt;
+    &lt;<span class="hl-tag">binder</span>&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCard"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardName"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardExpiryMonth"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardExpiryYear"</span> /&gt;
+    &lt;<span class="hl-tag">/binder</span>&gt;
+    &lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"proceed"</span> <span class="hl-attribute">to</span>=<span class="hl-value">"reviewBooking"</span> /&gt;
+    &lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"cancel"</span> <span class="hl-attribute">to</span>=<span class="hl-value">"cancel"</span> <span class="hl-attribute">bind</span>=<span class="hl-value">"false"</span> /&gt;
+&lt;<span class="hl-tag">/view-state</span>&gt;
+
+		</pre><p>
+			If the binder element is not specified, all public properties of the model are eligible for binding by the view.
+			With the binder element specified, only the explicitly configured bindings are allowed.
+		</p><p>
+			Each binding may also apply a converter to format the model property value for display in a custom manner.
+			If no converter is specified, the default converter for the model property's type will be used.		
+		</p><pre class="programlisting">
+&lt;<span class="hl-tag">view-state</span> <span class="hl-attribute">id</span>=<span class="hl-value">"enterBookingDetails"</span> <span class="hl-attribute">model</span>=<span class="hl-value">"booking"</span>&gt;
+    &lt;<span class="hl-tag">binder</span>&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"checkinDate"</span> <span class="hl-attribute">converter</span>=<span class="hl-value">"shortDate"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"checkoutDate"</span> <span class="hl-attribute">converter</span>=<span class="hl-value">"shortDate"</span> /&gt;    
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCard"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardName"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardExpiryMonth"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardExpiryYear"</span> /&gt;
+    &lt;<span class="hl-tag">/binder</span>&gt;
+    &lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"proceed"</span> <span class="hl-attribute">to</span>=<span class="hl-value">"reviewBooking"</span> /&gt;
+    &lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"cancel"</span> <span class="hl-attribute">to</span>=<span class="hl-value">"cancel"</span> <span class="hl-attribute">bind</span>=<span class="hl-value">"false"</span> /&gt;
+&lt;<span class="hl-tag">/view-state</span>&gt;
+
+		</pre><p>
+			In the example above, the <code class="code">shortDate</code> converter is bound to the 
+			<code class="code">checkinDate</code> and <code class="code">checkoutDate</code> properties.
+			Custom converters may be registered with the application's ConversionService.
+		</p><p>
+			Each binding may also apply a required check that will generate a validation error
+			if the user provided value is null on form postback:
+		</p><pre class="programlisting">
+&lt;<span class="hl-tag">view-state</span> <span class="hl-attribute">id</span>=<span class="hl-value">"enterBookingDetails"</span> <span class="hl-attribute">model</span>=<span class="hl-value">"booking"</span>&gt;
+    &lt;<span class="hl-tag">binder</span>&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"checkinDate"</span> <span class="hl-attribute">converter</span>=<span class="hl-value">"shortDate"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"checkoutDate"</span> <span class="hl-attribute">converter</span>=<span class="hl-value">"shortDate"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCard"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardName"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardExpiryMonth"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> /&gt;
+        &lt;<span class="hl-tag">binding</span> <span class="hl-attribute">property</span>=<span class="hl-value">"creditCardExpiryYear"</span> <span class="hl-attribute">required</span>=<span class="hl-value">"true"</span> /&gt;
+    &lt;<span class="hl-tag">/binder</span>&gt;
+    &lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"proceed"</span> <span class="hl-attribute">to</span>=<span class="hl-value">"reviewBooking"</span>&gt;
+    &lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"cancel"</span> <span class="hl-attribute">to</span>=<span class="hl-value">"bookingCancelled"</span> <span class="hl-attribute">bind</span>=<span class="hl-value">"false"</span> /&gt;
+&lt;<span class="hl-tag">/view-state</span>&gt;
+		</pre><p>
+			In the example above, all of the bindings are required.
+			If one or more blank input values are bound, validation errors will be generated and the view will re-render with those errors.
+		</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s07.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch04s09.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">4.7.&nbsp;Suppressing binding&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;4.9.&nbsp;Validating a model</td></tr></table></div></body></html>

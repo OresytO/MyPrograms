@@ -1,0 +1,19 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>4.3.&nbsp;Specifying view identifiers</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch04.html" title="4.&nbsp;Rendering views"><link rel="prev" href="ch04s02.html" title="4.2.&nbsp;Defining view states"><link rel="next" href="ch04s04.html" title="4.4.&nbsp;View scope"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">4.3.&nbsp;Specifying view identifiers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s02.html">Prev</a>&nbsp;</td><th width="60%" align="center">4.&nbsp;Rendering views</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch04s04.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="view-explicit"></a>4.3.&nbsp;Specifying view identifiers</h2></div></div></div><p>
+			Use the <code class="code">view</code> attribute to explictly specify the id of the view to render.
+		</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="view-explicit-flowrelative"></a>4.3.1.&nbsp;Flow relative view ids</h3></div></div></div><p>
+				The view id may be a relative path to view resource in the flow's working directory:
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">view-state</span> <span class="hl-attribute">id</span>=<span class="hl-value">"enterBookingDetails"</span> <span class="hl-attribute">view</span>=<span class="hl-value">"bookingDetails.xhtml"</span>&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="view-explicit-absolute"></a>4.3.2.&nbsp;Absolute view ids</h3></div></div></div><p>
+				The view id may be a absolute path to a view resource in the webapp root directory:
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">view-state</span> <span class="hl-attribute">id</span>=<span class="hl-value">"enterBookingDetails"</span> <span class="hl-attribute">view</span>=<span class="hl-value">"/WEB-INF/hotels/booking/bookingDetails.xhtml"</span>&gt;
+			</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="view-explicit-logical"></a>4.3.3.&nbsp;Logical view ids</h3></div></div></div><p>
+				With some view frameworks, such as Spring MVC's view framework, the view id may also be a logical identifier resolved by the framework:
+			</p><pre class="programlisting">
+&lt;<span class="hl-tag">view-state</span> <span class="hl-attribute">id</span>=<span class="hl-value">"enterBookingDetails"</span> <span class="hl-attribute">view</span>=<span class="hl-value">"bookingDetails"</span>&gt;
+			</pre><p>
+				See the Spring MVC integration section for more information on how to integrate with the MVC <code class="code">ViewResolver</code> infrastructure.
+			</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s02.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch04s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">4.2.&nbsp;Defining view states&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;4.4.&nbsp;View scope</td></tr></table></div></body></html>

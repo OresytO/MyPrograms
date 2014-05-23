@@ -1,0 +1,132 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>12.9.&nbsp;Third-Party Component Library Integration</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch12.html" title="12.&nbsp;JSF Integration"><link rel="prev" href="ch12s08.html" title="12.8.&nbsp;Enhancing The User Experience With Rich Web Forms"><link rel="next" href="ch13.html" title="13.&nbsp;Portlet Integration"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">12.9.&nbsp;Third-Party Component Library Integration</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch12s08.html">Prev</a>&nbsp;</td><th width="60%" align="center">12.&nbsp;JSF Integration</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch13.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="spring-faces-component-libraries"></a>12.9.&nbsp;Third-Party Component Library Integration</h2></div></div></div><p>
+            Spring Faces strives to be compatible with any third-party JSF component library. By honoring all of the
+            standard semantics of the JSF specification within the SWF-driven JSF lifecycle, third-party libraries in
+            general should "just work". The main thing to remember is that configuration in web.xml will change slightly
+            since Spring Faces requests are not routed through the standard FacesServlet. Typically, anything that is
+            traditionally mapped to the FacesServlet should be mapped to the Spring DispatcherServlet instead. (You can
+            also map to both if for example you are migrating a legacy JSF application page-by-page.) In some cases, a
+            deeper level of integration can be achieved by configuring special flow services that are "aware" of a
+            particular component library, and these will be noted in the examples to follow.
+        </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="spring-faces-with-richfaces"></a>12.9.1.&nbsp;Rich Faces Integration</h3></div></div></div><p>
+                To use the Rich Faces component library with Spring Faces, the following filter configuration is needed
+                in web.xml (in addition to the typical Spring Faces configuration):
+            </p><pre class="programlisting"> 
+&lt;<span class="hl-tag">filter</span>&gt; 
+    &lt;<span class="hl-tag">display-name</span>&gt;RichFaces Filter&lt;<span class="hl-tag">/display-name</span>&gt; 
+    &lt;<span class="hl-tag">filter-name</span>&gt;richfaces&lt;<span class="hl-tag">/filter-name</span>&gt; 
+    &lt;<span class="hl-tag">filter-class</span>&gt;org.ajax4jsf.Filter&lt;<span class="hl-tag">/filter-class</span>&gt; 
+&lt;<span class="hl-tag">/filter</span>&gt; 
+
+&lt;<span class="hl-tag">filter-mapping</span>&gt; 
+    &lt;<span class="hl-tag">filter-name</span>&gt;richfaces&lt;<span class="hl-tag">/filter-name</span>&gt; 
+    &lt;<span class="hl-tag">servlet-name</span>&gt;Spring Web MVC Dispatcher Servlet&lt;<span class="hl-tag">/servlet-name</span>&gt;
+    &lt;<span class="hl-tag">dispatcher</span>&gt;REQUEST&lt;<span class="hl-tag">/dispatcher</span>&gt;
+    &lt;<span class="hl-tag">dispatcher</span>&gt;FORWARD&lt;<span class="hl-tag">/dispatcher</span>&gt;
+    &lt;<span class="hl-tag">dispatcher</span>&gt;INCLUDE&lt;<span class="hl-tag">/dispatcher</span>&gt;
+&lt;<span class="hl-tag">/filter-mapping</span>&gt;
+            </pre><p>
+                For deeper integration (including the ability to have a view with combined use of the Spring Faces Ajax
+                components and Rich Faces Ajax components), configure the RichFacesAjaxHandler on your FlowController:
+            </p><pre class="programlisting"> 
+&lt;<span class="hl-tag">bean</span> <span class="hl-attribute">id</span>=<span class="hl-value">"flowController"</span> <span class="hl-attribute">class</span>=<span class="hl-value">"org.springframework.webflow.mvc.servlet.FlowController"</span>&gt;
+    &lt;<span class="hl-tag">property</span> <span class="hl-attribute">name</span>=<span class="hl-value">"flowExecutor"</span> <span class="hl-attribute">ref</span>=<span class="hl-value">"flowExecutor"</span> /&gt;
+    &lt;<span class="hl-tag">property</span> <span class="hl-attribute">name</span>=<span class="hl-value">"ajaxHandler"</span>&gt;
+        &lt;<span class="hl-tag">bean</span> <span class="hl-attribute">class</span>=<span class="hl-value">"org.springframework.faces.richfaces.RichFacesAjaxHandler"</span>/&gt;
+    &lt;<span class="hl-tag">/property</span>&gt;
+&lt;<span class="hl-tag">/bean</span>&gt;
+            </pre><p>
+                RichFaces Ajax components can be used in conjunction with the
+                <code class="code">render</code>
+                tag to render partial fragments on an Ajax request. Instead of embedding the ids of the components to be
+                re-rendered directly in the view template (as you traditionally do with Rich Faces), you can bind the
+                <code class="code">reRender</code>
+                attribute of a RichFaces Ajax component to a special
+                <code class="code">flowRenderFragments</code>
+                EL variable. For example, in your view template you can have a fragment that you would potentially like
+                to re-render in response to a particular event:
+            </p><pre class="programlisting">
+&lt;<span class="hl-tag">h:form</span> <span class="hl-attribute">id</span>=<span class="hl-value">"hotels"</span>&gt;
+    &lt;<span class="hl-tag">a4j:outputPanel</span> <span class="hl-attribute">id</span>=<span class="hl-value">"searchResultsFragment"</span>&gt;
+        &lt;<span class="hl-tag">h:outputText</span> <span class="hl-attribute">id</span>=<span class="hl-value">"noHotelsText"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"No Hotels Found"</span> <span class="hl-attribute">rendered</span>=<span class="hl-value">"#{hotels.rowCount == 0}"</span>/&gt;
+        &lt;<span class="hl-tag">h:dataTable</span> <span class="hl-attribute">id</span>=<span class="hl-value">"hotels"</span> <span class="hl-attribute">styleClass</span>=<span class="hl-value">"summary"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"#{hotels}"</span> <span class="hl-attribute">var</span>=<span class="hl-value">"hotel"</span> <span class="hl-attribute">rendered</span>=<span class="hl-value">"#{hotels.rowCount &gt; 0}"</span>&gt;
+            &lt;<span class="hl-tag">h:column</span>&gt;
+                &lt;<span class="hl-tag">f:facet</span> <span class="hl-attribute">name</span>=<span class="hl-value">"header"</span>&gt;Name&lt;<span class="hl-tag">/f:facet</span>&gt;
+                #{hotel.name}
+            &lt;<span class="hl-tag">/h:column</span>&gt;
+            &lt;<span class="hl-tag">h:column</span>&gt;
+                &lt;<span class="hl-tag">f:facet</span> <span class="hl-attribute">name</span>=<span class="hl-value">"header"</span>&gt;Address&lt;<span class="hl-tag">/f:facet</span>&gt;
+                #{hotel.address}
+            &lt;<span class="hl-tag">/h:column</span>&gt;
+        &lt;<span class="hl-tag">/h:dataTable</span>&gt;
+    &lt;<span class="hl-tag">/a4j:outputPanel</span>&gt;
+&lt;<span class="hl-tag">/h:form</span>&gt;
+            </pre><p>
+                then a RichFaces Ajax
+                <code class="code">commandLink</code>
+                to fire the event:
+            </p><pre class="programlisting">
+&lt;<span class="hl-tag">a4j:commandLink</span> <span class="hl-attribute">id</span>=<span class="hl-value">"nextPageLink"</span> <span class="hl-attribute">value</span>=<span class="hl-value">"More Results"</span> <span class="hl-attribute">action</span>=<span class="hl-value">"next"</span> <span class="hl-attribute">reRender</span>=<span class="hl-value">"#{flowRenderFragments}"</span> /&gt;
+            </pre><p>
+                and then in your flow definition a
+                <code class="code">transition</code>
+                to handle the event:
+            </p><pre class="programlisting">
+&lt;<span class="hl-tag">transition</span> <span class="hl-attribute">on</span>=<span class="hl-value">"next"</span>&gt;
+    &lt;<span class="hl-tag">evaluate</span> <span class="hl-attribute">expression</span>=<span class="hl-value">"searchCriteria.nextPage()"</span> /&gt;
+    &lt;<span class="hl-tag">render</span> <span class="hl-attribute">fragments</span>=<span class="hl-value">"hotels:searchResultsFragment"</span> /&gt;
+&lt;<span class="hl-tag">/transition</span>&gt;
+            </pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="spring-faces-with-trinidad"></a>12.9.2.&nbsp;Apache MyFaces Trinidad Integration</h3></div></div></div><p>
+                The Apache MyFaces Trinidad library has been tested with the Spring Faces integration and proven to fit
+                in nicely. Deeper integration to allow the Trinidad components and Spring Faces components to play
+                well together has not yet been attempted, but Trinidad provides a pretty thorough solution on its own
+                when used in conjunction with the Spring Faces integration layer.
+            </p><p>
+                Typical Trinidad + Spring Faces configuration is as follows in web.xml (in addition to the typical
+                Spring Faces configuration):
+            </p><pre class="programlisting">
+&lt;<span class="hl-tag">context-param</span>&gt;
+    &lt;<span class="hl-tag">param-name</span>&gt;javax.faces.STATE_SAVING_METHOD&lt;<span class="hl-tag">/param-name</span>&gt;
+    &lt;<span class="hl-tag">param-value</span>&gt;server&lt;<span class="hl-tag">/param-value</span>&gt;
+&lt;<span class="hl-tag">/context-param</span>&gt;
+
+&lt;<span class="hl-tag">context-param</span>&gt;
+    &lt;<span class="hl-tag">param-name</span>&gt;
+        org.apache.myfaces.trinidad.CHANGE_PERSISTENCE
+    &lt;<span class="hl-tag">/param-name</span>&gt;
+    &lt;<span class="hl-tag">param-value</span>&gt;session&lt;<span class="hl-tag">/param-value</span>&gt;
+&lt;<span class="hl-tag">/context-param</span>&gt;
+
+&lt;<span class="hl-tag">context-param</span>&gt;
+    &lt;<span class="hl-tag">param-name</span>&gt;
+        org.apache.myfaces.trinidad.ENABLE_QUIRKS_MODE
+    &lt;<span class="hl-tag">/param-name</span>&gt;
+    &lt;<span class="hl-tag">param-value</span>&gt;false&lt;<span class="hl-tag">/param-value</span>&gt;
+&lt;<span class="hl-tag">/context-param</span>&gt;
+
+&lt;<span class="hl-tag">filter</span>&gt;
+    &lt;<span class="hl-tag">filter-name</span>&gt;Trinidad Filter&lt;<span class="hl-tag">/filter-name</span>&gt;
+    &lt;<span class="hl-tag">filter-class</span>&gt;
+        org.apache.myfaces.trinidad.webapp.TrinidadFilter
+    &lt;<span class="hl-tag">/filter-class</span>&gt;
+&lt;<span class="hl-tag">/filter</span>&gt;
+
+&lt;<span class="hl-tag">filter-mapping</span>&gt;
+    &lt;<span class="hl-tag">filter-name</span>&gt;Trinidad Filter&lt;<span class="hl-tag">/filter-name</span>&gt;
+    &lt;<span class="hl-tag">servlet-name</span>&gt;Spring MVC Dispatcher Servlet&lt;<span class="hl-tag">/servlet-name</span>&gt;
+&lt;<span class="hl-tag">/filter-mapping</span>&gt;
+
+&lt;<span class="hl-tag">servlet</span>&gt;
+    &lt;<span class="hl-tag">servlet-name</span>&gt;Trinidad Resource Servlet&lt;<span class="hl-tag">/servlet-name</span>&gt;
+    &lt;<span class="hl-tag">servlet-class</span>&gt;
+        org.apache.myfaces.trinidad.webapp.ResourceServlet
+    &lt;<span class="hl-tag">/servlet-class</span>&gt;
+&lt;<span class="hl-tag">/servlet</span>&gt;
+
+&lt;<span class="hl-tag">servlet-mapping</span>&gt;
+    &lt;<span class="hl-tag">servlet-name</span>&gt;resources&lt;<span class="hl-tag">/servlet-name</span>&gt;
+    &lt;<span class="hl-tag">url-pattern</span>&gt;/adf/*&lt;<span class="hl-tag">/url-pattern</span>&gt;
+&lt;<span class="hl-tag">/servlet-mapping</span>&gt;
+
+            </pre></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch12s08.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch12.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch13.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">12.8.&nbsp;Enhancing The User Experience With Rich Web Forms&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;13.&nbsp;Portlet Integration</td></tr></table></div></body></html>

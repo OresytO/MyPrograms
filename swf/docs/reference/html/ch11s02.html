@@ -1,0 +1,19 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>11.2.&nbsp;Serving Javascript Resources</title><link rel="stylesheet" href="css/stylesheet.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><link rel="home" href="index.html" title="Spring Web Flow 2 Reference Guide"><link rel="up" href="ch11.html" title="11.&nbsp;Spring JavaScript Quick Reference"><link rel="prev" href="ch11.html" title="11.&nbsp;Spring JavaScript Quick Reference"><link rel="next" href="ch11s03.html" title="11.3.&nbsp;Including Spring Javascript in a Page"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">11.2.&nbsp;Serving Javascript Resources</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11.html">Prev</a>&nbsp;</td><th width="60%" align="center">11.&nbsp;Spring JavaScript Quick Reference</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch11s03.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="spring-js-resource-servlet"></a>11.2.&nbsp;Serving Javascript Resources</h2></div></div></div><p>
+            Spring JS provides a generic <code class="code">ResourceServlet</code> to serve web resources such as JavaScript and CSS files from jar files, as well as the webapp root directory.
+            This servlet provides a convenient way to serve Spring.js files to your pages.
+            To deploy this servlet, declare the following in <code class="code">web.xml</code>:
+        </p><pre class="programlisting">
+&lt;<span class="hl-comment">!-- Serves static resource content from .jar files such as spring-js.jar --</span>&gt;
+&lt;<span class="hl-tag">servlet</span>&gt;
+    &lt;<span class="hl-tag">servlet-name</span>&gt;Resource Servlet&lt;<span class="hl-tag">/servlet-name</span>&gt;
+    &lt;<span class="hl-tag">servlet-class</span>&gt;org.springframework.js.resource.ResourceServlet&lt;<span class="hl-tag">/servlet-class</span>&gt;
+&lt;<span class="hl-tag">/servlet</span>&gt;
+        
+&lt;<span class="hl-comment">!-- Map all /resources requests to the Resource Servlet for handling --</span>&gt;
+&lt;<span class="hl-tag">servlet-mapping</span>&gt;
+    &lt;<span class="hl-tag">servlet-name</span>&gt;Resource Servlet&lt;<span class="hl-tag">/servlet-name</span>&gt;
+    &lt;<span class="hl-tag">url-pattern</span>&gt;/resources/*&lt;<span class="hl-tag">/url-pattern</span>&gt;
+&lt;<span class="hl-tag">/servlet-mapping</span>&gt;
+        </pre></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch11.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch11.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch11s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">11.&nbsp;Spring JavaScript Quick Reference&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;11.3.&nbsp;Including Spring Javascript in a Page</td></tr></table></div></body></html>
