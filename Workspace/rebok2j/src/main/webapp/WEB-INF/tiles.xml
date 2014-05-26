@@ -24,5 +24,24 @@
 	<definition name="registration" extends="base.definition">
 		<put-attribute name="body" value="/views/user/registration.jsp" />
 	</definition>
+	
+
+
+
+	<definition name="first" extends="base.definition">
+		<put-attribute name="body" value="/views/flows/first.jsp" />
+	</definition>
+
+	<definition name="second" extends="base.definition">
+		<put-attribute name="body" value="/views/flows/second.jsp" />
+	</definition>
+
+	<definition name="third" extends="base.definition">
+		<put-attribute name="body" value="/views/flows/third.jsp" />
+	</definition>
+
+	<definition name="end" extends="base.definition">
+		<put-attribute name="body" value="/views/flows/end.jsp" />
+	</definition>
 
 </tiles-definitions>

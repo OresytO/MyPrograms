@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="firstflow">
+
+	<view-state id="firstflow" view="first">
+		<transition on="next" to="secondflow" />
+	</view-state>
+
+	<view-state id="secondflow" view="second">
+		<transition on="next" to="thirdflow" />
+		<transition on="prev" to="firstflow" />
+		<transition on="startOver" to="firstflow" />
+	</view-state>
+
+	<view-state id="thirdflow" view="third">
+		<transition on="next" to="endflow" />
+		<transition on="prev" to="secondflow" />
+		<transition on="startOver" to="firstflow" />
+	</view-state>
+
+	<end-state id="endflow" view="end" />
+</flow>
