@@ -19,7 +19,7 @@ public class MyController extends AbstractControler {
     @Autowired
     private Service service;
 
-    // @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcomePage(Model model) {
         service.getAutorazation(1L);
         List<String> list = new ArrayList<String>();
@@ -33,19 +33,19 @@ public class MyController extends AbstractControler {
     }
 
     @RequestMapping(value = "/adding", method = RequestMethod.POST, params = { "routeId", "routeType", "Name" })
-    public String addingStopToRoute(@RequestParam(value = "routeId") Integer id,
-            @RequestParam(value = "routeType") String routeType, @RequestParam(value = "Name") String name) {
+    public String addingStopToRoute(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
+            @RequestParam(value = "Name") String name) {
         return "redirect:/";
     }
 
-    @RequestMapping(value = { "/", "/welcome" })
+    @RequestMapping(value = { "/" })
     public String index() {
         return "welcome";
     }
 
-    @RequestMapping(value = "/signin")
+    @RequestMapping(value = "/login")
     public String signin() {
-        return "signin";
+        return "login";
     }
 
 }

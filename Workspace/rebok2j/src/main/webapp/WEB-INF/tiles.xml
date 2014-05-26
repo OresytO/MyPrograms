@@ -5,43 +5,47 @@
 
 <tiles-definitions>
 
-	<definition name="base.definition" template="/views/tiles/layout.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/views/tiles/header.jsp" />
-		<put-attribute name="menu" value="/views/tiles/menu.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/views/tiles/footer.jsp" />
-	</definition>
+    <definition name="base.definition" template="/views/tiles/layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/views/tiles/header.jsp" />
+        <put-attribute name="menu" value="/views/tiles/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/views/tiles/footer.jsp" />
+    </definition>
 
-	<definition name="signin" extends="base.definition">
-		<put-attribute name="body" value="/views/signin.jsp" />
-	</definition>
+    <definition name="login" extends="base.definition">
+        <put-attribute name="body" value="/views/security/login.jsp" />
+    </definition>
 
-	<definition name="welcome" extends="base.definition">
-		<put-attribute name="body" value="/views/tiles/welcome.jsp" />
-	</definition>
+    <definition name="logout" extends="base.definition">
+        <put-attribute name="body" value="/views/security/logout.jsp" />
+    </definition>
 
-	<definition name="registration" extends="base.definition">
-		<put-attribute name="body" value="/views/user/registration.jsp" />
-	</definition>
-	
+    <definition name="welcome" extends="base.definition">
+        <put-attribute name="body" value="/views/tiles/welcome.jsp" />
+    </definition>
+
+    <definition name="registration" extends="base.definition">
+        <put-attribute name="body" value="/views/user/registration.jsp" />
+    </definition>
 
 
 
-	<definition name="first" extends="base.definition">
-		<put-attribute name="body" value="/views/flows/first.jsp" />
-	</definition>
 
-	<definition name="second" extends="base.definition">
-		<put-attribute name="body" value="/views/flows/second.jsp" />
-	</definition>
+    <definition name="first" extends="base.definition">
+        <put-attribute name="body" value="/views/user/first.jsp" />
+    </definition>
 
-	<definition name="third" extends="base.definition">
-		<put-attribute name="body" value="/views/flows/third.jsp" />
-	</definition>
+    <definition name="second" extends="base.definition">
+        <put-attribute name="body" value="/views/user/second.jsp" />
+    </definition>
 
-	<definition name="end" extends="base.definition">
-		<put-attribute name="body" value="/views/flows/end.jsp" />
-	</definition>
+    <definition name="third" extends="base.definition">
+        <put-attribute name="body" value="/views/user/third.jsp" />
+    </definition>
+
+    <definition name="end" extends="base.definition">
+        <put-attribute name="body" value="/views/guest/end.jsp" />
+    </definition>
 
 </tiles-definitions>
