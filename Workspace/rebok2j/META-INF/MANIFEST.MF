@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: rebok2j
+Bundle-SymbolicName: rebok2j
+Bundle-Version: 1.0.0.qualifier
+Export-Package: org.rebok2j,
+ org.rebok2j.dao,
+ org.rebok2j.dao.impl,
+ org.rebok2j.domain,
+ org.rebok2j.service,
+ org.rebok2j.service.impl,
+ org.rebok2j.web

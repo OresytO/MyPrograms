@@ -1,5 +1,7 @@
 package org.rebok2j.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,5 +19,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByNickname(String nickname) {
         return entityManager.createNamedQuery("User.findByNickname", User.class).setParameter("nickname", nickname).getSingleResult();
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return entityManager.createNamedQuery("User.findAllUsers", User.class).getResultList();
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return entityManager.find(User.class, id);
     }
 }

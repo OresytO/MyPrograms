@@ -13,12 +13,17 @@
         <put-attribute name="footer" value="/views/tiles/footer.jsp" />
     </definition>
 
+    <!-- Security block -->
     <definition name="login" extends="base.definition">
         <put-attribute name="body" value="/views/security/login.jsp" />
     </definition>
 
     <definition name="logout" extends="base.definition">
         <put-attribute name="body" value="/views/security/logout.jsp" />
+    </definition>
+
+    <definition name="denied" extends="base.definition">
+        <put-attribute name="body" value="/views/security/denied.jsp" />
     </definition>
 
     <definition name="welcome" extends="base.definition">
@@ -29,18 +34,16 @@
         <put-attribute name="body" value="/views/user/registration.jsp" />
     </definition>
 
-
-
-
-    <definition name="first" extends="base.definition">
+    <!-- Menu block -->
+    <definition name="user_addNewDelivery" extends="base.definition">
         <put-attribute name="body" value="/views/user/first.jsp" />
     </definition>
 
-    <definition name="second" extends="base.definition">
+    <definition name="user_editExistingDelivery" extends="base.definition">
         <put-attribute name="body" value="/views/user/second.jsp" />
     </definition>
 
-    <definition name="third" extends="base.definition">
+    <definition name="user_printAutorization" extends="base.definition">
         <put-attribute name="body" value="/views/user/third.jsp" />
     </definition>
 

@@ -1,5 +1,7 @@
 package org.rebok2j.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Deliveries")
-public class Delivery {
+public class Delivery implements Serializable {
+
+    private static final long serialVersionUID = -6048746691997605170L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +24,7 @@ public class Delivery {
     private Long Id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "courierCompany", nullable = false)
+    @JoinColumn(name = "courierCompanyId", nullable = false)
     private CourierCompany courierCompany;
 
     @Column(name = "deliveryCode")
@@ -48,14 +52,14 @@ public class Delivery {
     private Boolean recieved;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "typeOfDelivery", nullable = false)
+    @JoinColumn(name = "typeOfDeliveryId", nullable = false)
     private DeliveryType typeOfDelivery;
 
     @Column(name = "creationDate")
     private String creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autorization", nullable = false)
+    @JoinColumn(name = "autorizationId", nullable = false)
     private Autorization autorization;
 
     /*-----------------------------------------------------------*/
@@ -191,9 +195,9 @@ public class Delivery {
 
     @Override
     public String toString() {
-        return "Delivery [Id=" + Id + ", courierCompany=" + courierCompany + ", deliveryCode=" + deliveryCode + ", weight=" + weight + ", size=" + size + ", cost=" + cost
-                + ", dateOfSending=" + dateOfSending + ", dateOfReceiving=" + dateOfReceiving + ", sended=" + sended + ", recieved=" + recieved + ", typeOfDelivery="
-                + typeOfDelivery + ", creationDate=" + creationDate + "]";
+        return "Delivery [Id=" + Id + ", courierCompany=" + courierCompany + ", deliveryCode=" + deliveryCode + ", weight=" + weight + ", size=" + size
+                + ", cost=" + cost + ", dateOfSending=" + dateOfSending + ", dateOfReceiving=" + dateOfReceiving + ", sended=" + sended + ", recieved="
+                + recieved + ", typeOfDelivery=" + typeOfDelivery + ", creationDate=" + creationDate + "]";
     }
 
 }

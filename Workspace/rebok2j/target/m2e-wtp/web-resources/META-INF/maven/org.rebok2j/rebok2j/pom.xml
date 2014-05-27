@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<name>Rebok2J</name>
 
-<!--  	<build>
+  	<!-- <build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

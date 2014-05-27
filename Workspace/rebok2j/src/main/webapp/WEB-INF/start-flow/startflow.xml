@@ -3,19 +3,27 @@
     xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
     start-state="firstflow">
 
-    <view-state id="firstflow" view="first">
+    <!-- <on-start> <evaluate expression="userService.findUserById(1)" result="flowScope.user" /> </on-start> -->
+
+    <view-state id="firstflow" model="user" view="user_addNewDelivery">
         <secured attributes="ROLE_USER" />
         <transition on="next" to="secondflow" />
+        <transition on="get" to="getflow" />
     </view-state>
 
-    <view-state id="secondflow" view="second">
+    <action-state id="getflow">
+        <evaluate expression="userService.getAllUsers()" result="flowScope.users" />
+        <transition to="firstflow" />
+    </action-state>
+
+    <view-state id="secondflow" model="user" view="user_editExistingDelivery">
         <secured attributes="ROLE_USER" />
         <transition on="next" to="thirdflow" />
         <transition on="prev" to="firstflow" />
         <transition on="startOver" to="firstflow" />
     </view-state>
 
-    <view-state id="thirdflow" view="third">
+    <view-state id="thirdflow" view="user_printAutorization">
         <secured attributes="ROLE_USER" />
         <transition on="next" to="endflow" />
         <transition on="prev" to="secondflow" />

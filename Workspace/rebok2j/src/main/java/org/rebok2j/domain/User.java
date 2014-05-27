@@ -1,5 +1,6 @@
 package org.rebok2j.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,8 +19,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Users")
-@NamedQueries(@NamedQuery(name = "User.findByNickname", query = "select u from User u where u.userNickname = :nickname"))
-public class User {
+@NamedQueries({ @NamedQuery(name = "User.findByNickname", query = "select u from User u where u.userNickname = :nickname"),
+        @NamedQuery(name = "User.findAllUsers", query = "select u from User u") })
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -7588331808777137405L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +43,7 @@ public class User {
     private Boolean enabled;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles", joinColumns = { @JoinColumn(name = "user_id", updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = "role_id", updatable = true, nullable = true) })
+    @JoinTable(name = "UsersRoles", joinColumns = { @JoinColumn(name = "user_id", updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = "role_id", updatable = true, nullable = true) })
     private Set<Role> roles;
 
     /*-----------------------------------------------------------*/
@@ -95,26 +99,14 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
-        return result;
-    }
+    // @Override
+    // public int hashCode() {
+    // return userNickname.hashCode();
+    // }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return userNickname.equalsIgnoreCase((String) obj);
     }
 
     @Override

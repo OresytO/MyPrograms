@@ -1,5 +1,6 @@
 package org.rebok2j.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "IdTypes")
-public class IdType {
+public class IdType implements Serializable {
+
+    private static final long serialVersionUID = -8981711113476946436L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

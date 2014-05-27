@@ -1,5 +1,6 @@
 package org.rebok2j.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +16,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Autorizations")
-public class Autorization {
+public class Autorization implements Serializable {
+
+    private static final long serialVersionUID = 7473471713802663734L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +29,11 @@ public class Autorization {
     private Set<Delivery> deliveries;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "signedPerson", nullable = false)
+    @JoinColumn(name = "signedPersonId", nullable = false)
     private Staff signedPerson;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "forwarder", nullable = false)
+    @JoinColumn(name = "forwarderId", nullable = false)
     private Staff forwarder;
 
     @Column(name = "autorizationCode")
@@ -128,8 +131,8 @@ public class Autorization {
 
     @Override
     public String toString() {
-        return "Autorization [Id=" + Id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", autorizationCode=" + autorizationCode
-                + ", dateofAutorization=" + dateofAutorization + ", creationDate=" + creationDate + "]";
+        return "Autorization [Id=" + Id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", autorizationCode="
+                + autorizationCode + ", dateofAutorization=" + dateofAutorization + ", creationDate=" + creationDate + "]";
     }
 
 }

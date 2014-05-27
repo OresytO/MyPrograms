@@ -1,5 +1,6 @@
 package org.rebok2j.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Locations")
-public class Location {
+public class Location implements Serializable {
+
+    private static final long serialVersionUID = 5683268872194039757L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

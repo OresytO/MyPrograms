@@ -1,5 +1,6 @@
 package org.rebok2j.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +16,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CourierCompanies")
-public class CourierCompany {
+public class CourierCompany implements Serializable {
+    private static final long serialVersionUID = -8599566022985360241L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -137,8 +140,8 @@ public class CourierCompany {
 
     @Override
     public String toString() {
-        return "CourierCompany [Id=" + Id + ", idType=" + idType + ", location=" + location + ", companyName=" + companyName + ", warehouseCode=" + warehouseCode + ", address="
-                + address + ", phones=" + phones + "]";
+        return "CourierCompany [Id=" + Id + ", idType=" + idType + ", location=" + location + ", companyName=" + companyName + ", warehouseCode="
+                + warehouseCode + ", address=" + address + ", phones=" + phones + "]";
     }
 
 }
