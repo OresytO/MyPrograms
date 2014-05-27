@@ -14,17 +14,16 @@
     <sec:authorize access="hasRole('ROLE_USER')">
         <div>
             <p>
-                <a class="button" href="user_addNewDelivery" title="<spring:message code="label.addNewDelivery"/>"><spring:message
+                <a class="button" href="addNewDelivery" title="<spring:message code="label.addNewDelivery"/>"><spring:message
                         code="label.addNewDelivery" /></a>
             </p>
             <p>
-                <a class="button" href="user_editExistingDelivery"
+                <a class="button" href="editExistingDelivery"
                     title="<spring:message code="label.editExistingDelivery"/>"><spring:message
                         code="label.editExistingDelivery" /></a>
             </p>
             <p>
-                <a class="button" href="user_printAutorization"
-                    title="<spring:message code="label.printAuthorization"/>"><spring:message
+                <a class="button" href="printAutorization" title="<spring:message code="label.printAuthorization"/>"><spring:message
                         code="label.printAuthorization" /></a>
             </p>
         </div>

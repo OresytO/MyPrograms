@@ -7,15 +7,18 @@
 <%@ page session="false"%>
 
 <div>
-    <span style="float: right"> <a href="?lang=en">en</a> | <a href="?lang=ua">ua</a>
-    </span> <em><strong> <font size="5">Гість</font></strong></em> <em><strong> <font size="5"><spring:message
-                    code="label.guest"
-                /></font>
+    <span style="float: right"> 
+    <a href="?lang=en">en</a> | <a href="?lang=ua">ua</a>
+    </span> 
+    <em><strong> 
+        <font size="5"><spring:message code="label.guest" /></font>
     </strong></em>
 </div>
 <div>
-    <a class="btn btn-small btn-primary" href="login" id="getContentLogin">loginOrRegistration"</a>
-    <%-- <a class="btn btn-small btn-primary"
-		href="<c:url value="/j_spring_security_logout"/>">label.logout</a> --%>
-    <a class="btn btn-small btn-primary" href="logout" id="getContentLogou">label.logout"</a>
+    <a class="btn btn-small btn-primary" href="login" id="getContentLogin">
+        <spring:message code="label.loginOrRegistration" />
+    </a> 
+    <a class="btn btn-small btn-primary" href="logout" id="getContentLogout">
+        <spring:message code="label.logout" />
+    </a>
 </div>

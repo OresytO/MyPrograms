@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF8" pageEncoding="UTF8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -17,37 +18,68 @@
         <strong><spring:message code="label.addNewDelivery" /></strong>
     </legend>
     <form id="addNewDelivery" action="" method="post" style="text-align: left">
-        <label for="deliveryType"> <spring:message code="label.deliveryType" />
-        </label><br> <select id="deliveryType">
-            <c:forEach var="user" items="${users}">
-                <option value="${user.id}">${user.userNickname}</option>
-            </c:forEach>
-        </select> <label for="departurDate"> <spring:message code="label.departurDate" />
-        </label><br> <select id="departurDate">
-            <c:forEach var="user" items="${users}">
-                <option value="${user.id}">${user.userNickname}</option>
-            </c:forEach>
-        </select> <label for="receiveDate"> <spring:message code="label.receiveDate" />
-        </label> <br> <select id="receiveDate">
-            <c:forEach var="user" items="${users}">
-                <option value="${user.id}">${user.userNickname}</option>
-            </c:forEach>
-        </select> <label for="placeOfDeparture"> <spring:message code="label.placeOfDeparture" />
-        </label><br> <select id="placeOfDeparture">
-            <c:forEach var="user" items="${users}">
-                <option value="${user.id}">${user.userNickname}</option>
-            </c:forEach>
-        </select> <br> <label for="courierCompany"> <spring:message code="label.courierCompany" />
-        </label><br> <select id="courierCompany">
-            <c:forEach var="user" items="${users}">
-                <option value="${user.id}">${user.userNickname}</option>
-            </c:forEach>
-        </select> <br> <label for="contactPerson"> <spring:message code="label.contactPerson" />
-        </label><br> <select id="contactPerson">
-            <c:forEach var="user" items="${users}">
-                <option value="${user.id}">${user.userNickname}</option>
-            </c:forEach>
-        </select> <br> <label for="weight"> <spring:message code="label.weight" />
+        <fieldset>
+            <legend style="color: green" align="left">
+                <strong><spring:message code="label.deliveryType" /></strong>
+            </legend>
+            <select id="deliveryType">
+                <c:forEach var="user" items="${users}">
+                    <option value="${user.id}">${user.userNickname}</option>
+                </c:forEach>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend style="color: green" align="left">
+                <strong><spring:message code="label.departurDate" /></strong>
+            </legend>
+            <select id="departurDate">
+                <c:forEach var="user" items="${users}">
+                    <option value="${user.id}">${user.userNickname}</option>
+                </c:forEach>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend style="color: green" align="left">
+                <strong><spring:message code="label.receiveDate" /></strong>
+            </legend>
+            <select id="receiveDate">
+                <c:forEach var="user" items="${users}">
+                    <option value="${user.id}">${user.userNickname}</option>
+                </c:forEach>
+            </select>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend style="color: green" align="left">
+                <strong><spring:message code="label.placeOfDeparture" /></strong>
+            </legend>
+            <select id="placeOfDeparture">
+                <c:forEach var="user" items="${users}">
+                    <option value="${user.id}">${user.userNickname}</option>
+                </c:forEach>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend style="color: green" align="left">
+                <strong><spring:message code="label.courierCompany" /></strong>
+            </legend>
+            <select id="courierCompany">
+                <c:forEach var="user" items="${users}">
+                    <option value="${user.id}">${user.userNickname}</option>
+                </c:forEach>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend style="color: green" align="left">
+                <strong><spring:message code="label.contactPerson" /></strong>
+            </legend>
+            <select id="contactPerson">
+                <c:forEach var="user" items="${users}">
+                    <option value="${user.id}">${user.userNickname}</option>
+                </c:forEach>
+            </select>
+        </fieldset>
+        <br> <label for="weight"> <spring:message code="label.weight" />
         </label><br> <select id="weight">
             <c:forEach var="user" items="${users}">
                 <option value="${user.id}">${user.userNickname}</option>

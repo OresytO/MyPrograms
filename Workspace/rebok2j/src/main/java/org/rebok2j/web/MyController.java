@@ -31,14 +31,14 @@ public class MyController extends AbstractControler {
         return "login";
     }
 
-    @RequestMapping(value = "/user_addNewDelivery")
+    // @RequestMapping(value = "/user_addNewDelivery")
     public String addNewDelivery() {
-        return "user_addNewDelivery";
+        return "addNewDelivery";
     }
 
     @RequestMapping(value = "/user_editExistingDelivery")
     public String editExistingDelivery() {
-        return "user_editExistingDelivery";
+        return "editExistingDelivery";
     }
 
     @RequestMapping(value = "/user_printAutorization")
