@@ -15,26 +15,96 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
-
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
+<style>
+.wrapper {
+	min-width: 1000px;
+	max-width: 5000px;
+	margin: 0 auto;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+}
+
+.header {
+	height: 150px;
+	background: #FFE680;
+}
+
+.middle {
+	width: 100%;
+	padding: 0 0 100px;
+	position: relative;
+}
+
+.middle:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+
+.container {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+
+.body {
+	padding: 0 0 0 270px;
+}
+
+.menu {
+	float: left;
+	width: 250px;
+	margin-left: -100%;
+	position: relative;
+	background: #B5E3FF;
+}
+
+.footer {
+	margin: -100px auto 0;
+	min-width: 1000px;
+	max-width: 5000px;
+	height: 100px;
+	background: #BFF08E;
+	position: relative;
+}
+</style>
 </head>
 <body>
 
-    <div id="header" style="FONT-SIZE: x-small;">
-        <tiles:insertAttribute name="header" />
-    </div>
+    <div class="wrapper">
 
-    <div>
-        <div id="menu">
-            <tiles:insertAttribute name="menu" />
+        <div class="header">
+            <tiles:insertAttribute name="header" />
         </div>
-        <div id="body">
-            <tiles:insertAttribute name="body" />
+        <!-- .header-->
+
+        <div class="middle">
+
+            <div class="container">
+                <div class="body">
+                    <tiles:insertAttribute name="body" />
+                </div>
+                <!-- .content -->
+            </div>
+            <!-- .container-->
+
+            <div class="menu">
+                <tiles:insertAttribute name="menu" />
+            </div>
+            <!-- .left-sidebar -->
+
         </div>
+        <!-- .middle-->
+
     </div>
-    <div id="footer">
+    <!-- .wrapper -->
+
+    <div class="footer">
         <tiles:insertAttribute name="footer" />
     </div>
+    <!-- .footer -->
+
 </body>
 </html>

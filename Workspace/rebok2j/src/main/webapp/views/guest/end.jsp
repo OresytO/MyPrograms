@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <a href="<c:url value='/startflow'/>">Start new Wizard Flow </a>
+    <a href="<c:url value='/addNewDelivery'/>">Start new Wizard Flow </a>
     <select property="year">
         <option value="">-- None --</option>
         <option value="1980">1980</option>
