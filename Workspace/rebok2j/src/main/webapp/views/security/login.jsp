@@ -3,6 +3,20 @@
 <%@ page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <title><spring:message code="label.login" /></title>
+<style>
+
+.login-form{
+
+}
+
+.control-label {
+	
+}
+
+.field {
+	
+}
+</style>
 
 <fieldset>
     <legend style="color: green" align="left">

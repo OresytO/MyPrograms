@@ -7,18 +7,19 @@
 <%@ page session="false"%>
 
 <div>
-    <span style="float: right"> 
-    <a href="?lang=en">en</a> | <a href="?lang=ua">ua</a>
-    </span> 
-    <em><strong> 
-        <font size="5"><spring:message code="label.guest" /></font>
-    </strong></em>
+    <span style="float: right"> <a href="?lang=en">en</a> | <a href="?lang=ua">ua</a>
+    </span>
+    <sec:authorize access="isAnonymous()">
+        <em><strong> <font size="3" color="#FFFFFF"><spring:message code="label.guest" /></font></strong></em>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <em><strong> <font size="3" color="#FFFFFF"><spring:message code="label.welcome" /> <sec:authentication
+                        property="name" /> </font></strong></em>
+    </sec:authorize>
 </div>
 <div>
-    <a class="btn btn-small btn-primary" href="login" id="getContentLogin">
-        <spring:message code="label.loginOrRegistration" />
-    </a> 
-    <a class="btn btn-small btn-primary" href="logout" id="getContentLogout">
-        <spring:message code="label.logout" />
+    <a class="btn btn-small btn-primary" href="login" id="getContentLogin"> <spring:message
+            code="label.loginOrRegistration" />
+    </a> <a class="btn btn-small btn-primary" href="logout" id="getContentLogout"> <spring:message code="label.logout" />
     </a>
 </div>
