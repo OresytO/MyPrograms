@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
 
@@ -51,4 +51,22 @@
         <put-attribute name="body" value="/views/guest/end.jsp" />
     </definition>
 
+    <!-- flow block -->
+    <definition name="base.addNewDelivery" extends="base.definition">
+        <put-attribute name="body">
+            <definition template="/views/tiles/addNewDelivery.jsp">
+                <put-attribute name="one" value="/tiles/headlines.jsp" />
+            </definition>
+        </put-attribute>
+    </definition>
+
+    <!-- <definition name="base.addNewDelivery.wrapper" template="/views/tiles/addNewDelivery.jsp"> <put-attribute name="base.addNewDelivery.body"> </definition> -->
+
+    <definition name="user_deliveryType" extends="base.addNewDelivery">
+        <put-attribute name="base.addNewDelivery.body" value="/views/user/deliveryType.jsp" />
+    </definition>
+
+    <definition name="user_dates" extends="base.addNewDelivery">
+        <put-attribute name="base.addNewDelivery.body" value="/views/user/dates.jsp" />
+    </definition>
 </tiles-definitions>

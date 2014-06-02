@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "Users")
 @NamedQueries({ @NamedQuery(name = "User.findByNickname", query = "select u from User u where u.userNickname = :nickname"),
         @NamedQuery(name = "User.findAllUsers", query = "select u from User u") })
-public class User implements Serializable {
+public class User implements Serializable, Comparable<User> {
 
     private static final long serialVersionUID = -7588331808777137405L;
 
@@ -112,6 +112,11 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User [Id=" + Id + ", userName=" + userName + "]";
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.getUserNickname().compareToIgnoreCase(o.getUserNickname());
     }
 
 }

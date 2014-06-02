@@ -53,7 +53,7 @@ public class MyController extends AbstractControler {
         }
         model.addAttribute("returnUrl", request.getHeader("Referer"));
         model.addAttribute("returnUrl", request.getHeader("Referer"));
-        return "welcome";
+        return "user_dates";
     }
 
     @RequestMapping(value = "/user_editExistingDelivery")
