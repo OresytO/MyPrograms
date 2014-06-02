@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 .globalDiv {
@@ -38,34 +39,41 @@
 }
 </style>
 
-<h2>first JSP</h2>
-<h3>
-    Enter Personal Details
-    <sec:authentication property="name" />
-</h3>
-<form action="" method="post">
-    <input type="text" /> <br /> <input type="submit" name="_eventId_next" value="next" /> <br />
-    <!-- <input
-        type="submit" name="_eventId_get" value="get" /> -->
-</form>
+<script type="text/javascript">
+	function onChange(select) {
+		var selectedOption = select.options[select.selectedIndex];
+		if (selectedOption.label == 'Add new one') {
+			// window.location.href = "/welcome";
+			var form = document.getElementById("addNewDelivery");
+			form.action = "/addNewSelectOption";
+			form.submit();
+		}
+	}
+</script>
+
 <div class="globalDiv">
-    <fieldset>
-        <legend class="legend">
-            <strong><spring:message code="label.addNewDelivery" /></strong>
-        </legend>
-        <form id="addNewDelivery" action="" method="post" style="text-align: left">
+    <form id="addNewDelivery" method="post" style="text-align: left">
+        <fieldset>
+            <legend class="legend">
+                <strong><spring:message code="label.addNewDelivery" /> <sec:authentication property="name" /></strong>
+            </legend>
             <div class="blockDiv">
                 <div class="innerDiv">
                     <fieldset>
                         <legend class="legend">
                             <strong><spring:message code="label.deliveryType" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="deliveryType" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="innerDiv">
@@ -73,12 +81,17 @@
                         <legend class="legend">
                             <strong><spring:message code="label.departurDate" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="departurDate" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="innerDiv">
@@ -86,12 +99,17 @@
                         <legend class="legend">
                             <strong><spring:message code="label.receiveDate" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="receiveDate" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
             </div>
@@ -101,12 +119,17 @@
                         <legend class="legend">
                             <strong><spring:message code="label.placeOfDeparture" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="placeOfDeparture" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="innerDiv">
@@ -114,12 +137,17 @@
                         <legend class="legend">
                             <strong><spring:message code="label.courierCompany" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="courierCompany" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="innerDiv">
@@ -127,12 +155,17 @@
                         <legend class="legend">
                             <strong><spring:message code="label.contactPerson" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="contactPerson" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
             </div>
@@ -142,12 +175,17 @@
                         <legend class="legend">
                             <strong><spring:message code="label.weight" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="weight" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="innerDiv">
@@ -155,15 +193,21 @@
                         <legend class="legend">
                             <strong><spring:message code="label.size" /></strong>
                         </legend>
-                        <form:select path="users" class="dropDown">
-                            <form:options items="${users}" itemValue="id" itemLabel="userNickname" />
-                            <form:option value="addNewOne">
+                        <select class="dropDown" name="size" onchange="javascript:onChange(this);">
+                            <c:forEach var="user" items="${users}">
+                                <c:if test="user.value">
+                                    <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
+                                </c:if>
+                                <option value="${user.key.id}">${user.key.userNickname}</option>
+                            </c:forEach>
+                            <option value="addNewOne">
                                 <spring:message code="label.addNewOne" />
-                            </form:option>
-                        </form:select>
+                            </option>
+                        </select>
                     </fieldset>
                 </div>
             </div>
-        </form>
-    </fieldset>
+        </fieldset>
+        ${returnUrl}
+    </form>
 </div>

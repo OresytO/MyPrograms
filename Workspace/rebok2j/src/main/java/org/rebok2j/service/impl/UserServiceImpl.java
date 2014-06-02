@@ -1,6 +1,8 @@
 package org.rebok2j.service.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.rebok2j.dao.UserDao;
 import org.rebok2j.domain.User;
@@ -22,5 +24,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(Long id) {
         return userDao.findUserById(id);
+    }
+
+    @Override
+    public Map<User, Boolean> getAllUsersMap() {
+        Map<User, Boolean> map = new TreeMap<>();
+        for (User user : getAllUsers()) {
+            map.put(user, false);
+        }
+        return map;
     }
 }

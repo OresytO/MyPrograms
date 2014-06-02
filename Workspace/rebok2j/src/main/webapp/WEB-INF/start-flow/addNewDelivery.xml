@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-    start-state="firstflow">
+    xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" start-state="firstflow">
 
     <on-start>
-        <evaluate expression="userService.getAllUsers()" result="flowScope.users" />
+        <evaluate expression="userService.getAllUsersMap()" result="flowScope.users" />
     </on-start>
 
-    <view-state id="firstflow" model="user" view="user_addNewDelivery">
+    <view-state id="firstflow" view="user_addNewDelivery">
         <secured attributes="ROLE_USER" />
         <transition on="next" to="secondflow" />
         <!-- <transition on="get" to="getflow" /> -->
     </view-state>
 
-    <!-- <action-state id="getflow"> <evaluate expression="userService.getAllUsers()" result="flowScope.users" /> <transition 
-        to="firstflow" /> </action-state> -->
+    <!-- <action-state id="getflow"> <evaluate expression="userService.getAllUsers()" result="flowScope.users" /> <transition to="firstflow" /> </action-state> -->
 
     <view-state id="secondflow" model="user" view="user_editExistingDelivery">
         <secured attributes="ROLE_USER" />

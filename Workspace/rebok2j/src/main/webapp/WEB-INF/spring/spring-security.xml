@@ -14,6 +14,7 @@
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/user" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/addNewSelectOption" access="hasRole('ROLE_USER')" />
 
         <form-login login-page="/login" authentication-failure-url="/login/failure" default-target-url="/" />
 
