@@ -1,16 +1,9 @@
 package org.rebok2j.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.rebok2j.domain.User;
+import org.rebok2j.models.DropDownList;
 
 public interface UserService {
 
-    List<User> getAllUsers();
-
-    User findUserById(Long id);
-
-    Map<User, Boolean> getAllUsersMap();
+    DropDownList fillDropDownList() throws InstantiationException, IllegalAccessException;
 
 }

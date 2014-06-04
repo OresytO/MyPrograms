@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "IdTypes")
-public class IdType implements Serializable {
+public class IdType implements Serializable, Comparable<IdType> {
 
     private static final long serialVersionUID = -8981711113476946436L;
 
@@ -83,6 +83,11 @@ public class IdType implements Serializable {
     @Override
     public String toString() {
         return "IdType [Id=" + Id + ", idName=" + idName + "]";
+    }
+
+    @Override
+    public int compareTo(IdType o) {
+        return this.getIdName().compareTo(o.getIdName());
     }
 
 }

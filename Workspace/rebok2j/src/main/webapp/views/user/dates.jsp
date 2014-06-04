@@ -8,7 +8,7 @@
                 <strong><spring:message code="label.departurDate" /></strong>
             </legend>
             <select class="dropDown" name="departurDate" onchange="javascript:onChange(this);">
-                <c:forEach var="user" items="${users}">
+                <c:forEach var="user" items="${users.map}">
                     <c:if test="user.value">
                         <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
                     </c:if>
@@ -26,7 +26,7 @@
                 <strong><spring:message code="label.receiveDate" /></strong>
             </legend>
             <select class="dropDown" name="receiveDate" onchange="javascript:onChange(this);">
-                <c:forEach var="user" items="${users}">
+                <c:forEach var="user" items="${users.map}">
                     <c:if test="user.value">
                         <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
                     </c:if>

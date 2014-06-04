@@ -43,9 +43,10 @@ public class DaoImpl<T> extends AbstractDao implements Dao<T> {
     @Override
     public T getSingleResultFromNamedQuery(String queryName, Map<String, String> paramMap) {
         Query query = entityManager.createNamedQuery(queryName);
-        for (String name : paramMap.keySet()) {
-            query.setParameter(name, paramMap.get(name));
-        }
+        if (paramMap != null)
+            for (String name : paramMap.keySet()) {
+                query.setParameter(name, paramMap.get(name));
+            }
         return (T) query.getSingleResult();
     }
 
@@ -53,9 +54,10 @@ public class DaoImpl<T> extends AbstractDao implements Dao<T> {
     @Override
     public List<T> getResultListFromNamedQuery(String queryName, Map<String, String> paramMap) {
         Query query = entityManager.createNamedQuery(queryName);
-        for (String name : paramMap.keySet()) {
-            query.setParameter(name, paramMap.get(name));
-        }
+        if (paramMap != null)
+            for (String name : paramMap.keySet()) {
+                query.setParameter(name, paramMap.get(name));
+            }
         return (List<T>) query.getResultList();
     }
 }

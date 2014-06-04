@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Roles")
-public class Role implements Serializable {
+public class Role implements Serializable, Comparable<Role> {
 
     private static final long serialVersionUID = -2982346171367786230L;
 
@@ -83,6 +83,11 @@ public class Role implements Serializable {
     @Override
     public String toString() {
         return "Role [Id=" + Id + ", roleName=" + roleName + "]";
+    }
+
+    @Override
+    public int compareTo(Role o) {
+        return this.getRoleName().compareTo(o.getRoleName());
     }
 
 }

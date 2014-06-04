@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CourierCompanies")
-public class CourierCompany implements Serializable {
+public class CourierCompany implements Serializable, Comparable<CourierCompany> {
     private static final long serialVersionUID = -8599566022985360241L;
 
     @Id
@@ -142,6 +142,11 @@ public class CourierCompany implements Serializable {
     public String toString() {
         return "CourierCompany [Id=" + Id + ", idType=" + idType + ", location=" + location + ", companyName=" + companyName + ", warehouseCode="
                 + warehouseCode + ", address=" + address + ", phones=" + phones + "]";
+    }
+
+    @Override
+    public int compareTo(CourierCompany o) {
+        return this.getCompanyName().compareTo(o.getCompanyName());
     }
 
 }

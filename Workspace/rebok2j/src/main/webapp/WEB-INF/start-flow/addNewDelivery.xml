@@ -5,7 +5,8 @@
     <secured attributes="ROLE_USER" />
 
     <on-start>
-        <evaluate expression="userService.getAllUsersMap()" result="flowScope.users" />
+        <evaluate expression='userServiceImpl.fillDropDownList("User.findAllUsers")' result="flowScope.users" />
+        <evaluate expression='deliveryTypeServiceImpl.fillDropDownList("DeliveryType.findAll")' result="flowScope.deliveryTypeDropDown" />
     </on-start>
 
     <view-state id="deliveryType" view="user_deliveryType">

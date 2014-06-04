@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Autorizations")
-public class Autorization implements Serializable {
+public class Autorization implements Serializable, Comparable<Autorization> {
 
     private static final long serialVersionUID = 7473471713802663734L;
 
@@ -133,6 +133,11 @@ public class Autorization implements Serializable {
     public String toString() {
         return "Autorization [Id=" + Id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", autorizationCode="
                 + autorizationCode + ", dateofAutorization=" + dateofAutorization + ", creationDate=" + creationDate + "]";
+    }
+
+    @Override
+    public int compareTo(Autorization o) {
+        return this.getAutorizationCode().compareTo(o.getAutorizationCode());
     }
 
 }

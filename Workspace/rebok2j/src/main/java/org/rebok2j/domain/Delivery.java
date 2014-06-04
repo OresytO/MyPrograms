@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Deliveries")
-public class Delivery implements Serializable {
+public class Delivery implements Serializable, Comparable<Delivery> {
 
     private static final long serialVersionUID = -6048746691997605170L;
 
@@ -198,6 +198,11 @@ public class Delivery implements Serializable {
         return "Delivery [Id=" + Id + ", courierCompany=" + courierCompany + ", deliveryCode=" + deliveryCode + ", weight=" + weight + ", size=" + size
                 + ", cost=" + cost + ", dateOfSending=" + dateOfSending + ", dateOfReceiving=" + dateOfReceiving + ", sended=" + sended + ", recieved="
                 + recieved + ", typeOfDelivery=" + typeOfDelivery + ", creationDate=" + creationDate + "]";
+    }
+
+    @Override
+    public int compareTo(Delivery o) {
+        return this.getDeliveryCode().compareTo(o.getDeliveryCode());
     }
 
 }

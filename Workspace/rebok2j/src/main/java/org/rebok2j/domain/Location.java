@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Locations")
-public class Location implements Serializable {
+public class Location implements Serializable, Comparable<Location> {
 
     private static final long serialVersionUID = 5683268872194039757L;
 
@@ -83,6 +83,11 @@ public class Location implements Serializable {
     @Override
     public String toString() {
         return "Location [Id=" + Id + ", locationName=" + locationName + "]";
+    }
+
+    @Override
+    public int compareTo(Location o) {
+        return this.getLocationName().compareTo(o.getLocationName());
     }
 
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DeliveriesTypes")
 @NamedQueries({ @NamedQuery(name = "DeliveryType.findAll", query = "select dt from DeliveryType dt") })
-public class DeliveryType implements Serializable {
+public class DeliveryType implements Serializable, Comparable<DeliveryType> {
 
     private static final long serialVersionUID = 5420966512380043267L;
 
@@ -87,6 +87,11 @@ public class DeliveryType implements Serializable {
     @Override
     public String toString() {
         return "DeliveryType [Id=" + Id + ", deliveryType=" + deliveryType + "]";
+    }
+
+    @Override
+    public int compareTo(DeliveryType o) {
+        return this.getDeliveryType().compareToIgnoreCase(o.getDeliveryType());
     }
 
 }
