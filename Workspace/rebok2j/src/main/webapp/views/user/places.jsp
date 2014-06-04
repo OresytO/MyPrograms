@@ -1,13 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <div class="blockDiv">
     <div class="innerDiv">
         <fieldset>
             <legend class="legend">
-                <strong><spring:message code="label.departurDate" /></strong>
+                <strong><spring:message code="label.placeOfReceiving" /></strong>
             </legend>
-            <select class="dropDown" name="departurDate" onchange="javascript:onChange(this);">
+            <select class="dropDown" name="placeOfReceiving" onchange="javascript:onChange(this);">
                 <c:forEach var="user" items="${users}">
                     <c:if test="user.value">
                         <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>
@@ -23,9 +23,9 @@
     <div class="innerDiv">
         <fieldset>
             <legend class="legend">
-                <strong><spring:message code="label.receiveDate" /></strong>
+                <strong><spring:message code="label.placeOfDeparture" /></strong>
             </legend>
-            <select class="dropDown" name="receiveDate" onchange="javascript:onChange(this);">
+            <select class="dropDown" name="placeOfDeparture" onchange="javascript:onChange(this);">
                 <c:forEach var="user" items="${users}">
                     <c:if test="user.value">
                         <option selected="selected" value="${user.key.id}">${user.key.userNickname}</option>

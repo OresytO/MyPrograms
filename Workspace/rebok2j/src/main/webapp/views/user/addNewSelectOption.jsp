@@ -53,16 +53,14 @@
 </script>
 
 <div class="globalDiv">
-    <form id="addNewDelivery" method="post" style="text-align: left">
+    <form id="addNewSelectOption" method="post" style="text-align: left">
         <fieldset>
             <legend class="legend">
-                <strong><spring:message code="label.addNewDelivery" /> <sec:authentication property="name" /></strong>
+                <strong><spring:message code="label.addNewSelectOption" /> <sec:authentication property="name" /></strong>
             </legend>
-            <tiles:insertAttribute name="dropDownList" />
         </fieldset>
-        
-        <input type="submit" name="_eventId_next" value="next" /> <br /> 
-        <input type="submit" name="_eventId_prev" value="prev" /> Try clicking this to go back <br /> 
-        <input type="submit" name="_eventId_startOver" value="startOver" />
+
+        <input type="submit" name="_eventId_add" value="<spring:message code="label.add" />" formaction="/addNewSelectOption/add" formmethod="post"/> <br /> 
+        <input type="submit" name="_eventId_back" value="<spring:message code="label.back" />" formaction="/addNewSelectOption/back" formmethod="post" />
     </form>
 </div>

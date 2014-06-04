@@ -3,23 +3,23 @@ package org.rebok2j.models;
 import java.util.Map;
 
 public class DropDownListWrapper implements DropDownList {
-    private Map<String, Boolean> map;
+    private Map<Object, Object> map;
 
     /*------------------------------*/
 
     @Override
-    public Map<String, Boolean> getMap() {
+    public Map<Object, Object> getMap() {
         return map;
     }
 
     @Override
-    public void setMap(Map<String, Boolean> map) {
-        this.map = map;
+    public boolean put(Object key, Object isSelected) {
+        return (Boolean) map.put(key, isSelected);
     }
 
     @Override
-    public boolean put(String key, Boolean isSelected) {
-        return map.put(key, isSelected);
+    public void setMap(Map<Object, Object> map) {
+        this.map = map;
     }
 
 }

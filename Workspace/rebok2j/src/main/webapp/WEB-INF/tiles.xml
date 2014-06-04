@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
 
 <tiles-definitions>
 
@@ -14,7 +13,7 @@
     </definition>
 
     <!-- Security block -->
-    <definition name="login" extends="base.definition">
+    <definition id="login" name="login" extends="base.definition">
         <put-attribute name="body" value="/views/security/login.jsp" />
     </definition>
 
@@ -52,21 +51,53 @@
     </definition>
 
     <!-- flow block -->
-    <definition name="base.addNewDelivery" extends="base.definition">
+    <definition name="base.addNewDelivery" template="/views/tiles/addNewDelivery.jsp">
+        <put-attribute name="dropDownList" value="" />
+    </definition>
+
+    <definition name="user_deliveryType" extends="base.definition">
         <put-attribute name="body">
-            <definition template="/views/tiles/addNewDelivery.jsp">
-                <put-attribute name="one" value="/tiles/headlines.jsp" />
+            <definition extends="base.addNewDelivery">
+                <put-attribute name="dropDownList" value="/views/user/deliveryType.jsp" />
             </definition>
         </put-attribute>
     </definition>
 
-    <!-- <definition name="base.addNewDelivery.wrapper" template="/views/tiles/addNewDelivery.jsp"> <put-attribute name="base.addNewDelivery.body"> </definition> -->
-
-    <definition name="user_deliveryType" extends="base.addNewDelivery">
-        <put-attribute name="base.addNewDelivery.body" value="/views/user/deliveryType.jsp" />
+    <definition name="user_dates" extends="base.definition">
+        <put-attribute name="body">
+            <definition extends="base.addNewDelivery">
+                <put-attribute name="dropDownList" value="/views/user/dates.jsp" />
+            </definition>
+        </put-attribute>
     </definition>
 
-    <definition name="user_dates" extends="base.addNewDelivery">
-        <put-attribute name="base.addNewDelivery.body" value="/views/user/dates.jsp" />
+    <definition name="user_places" extends="base.definition">
+        <put-attribute name="body">
+            <definition extends="base.addNewDelivery">
+                <put-attribute name="dropDownList" value="/views/user/places.jsp" />
+            </definition>
+        </put-attribute>
     </definition>
+
+    <definition name="user_contacts" extends="base.definition">
+        <put-attribute name="body">
+            <definition extends="base.addNewDelivery">
+                <put-attribute name="dropDownList" value="/views/user/contacts.jsp" />
+            </definition>
+        </put-attribute>
+    </definition>
+
+    <definition name="user_sizeAndWeight" extends="base.definition">
+        <put-attribute name="body">
+            <definition extends="base.addNewDelivery">
+                <put-attribute name="dropDownList" value="/views/user/sizeAndWeight.jsp" />
+            </definition>
+        </put-attribute>
+    </definition>
+
+    <!-- addNewSelection -->
+    <definition name="user_addNewSelectOption" extends="base.definition">
+        <put-attribute name="body" value="/views/user/addNewSelectOption.jsp" />
+    </definition>
+
 </tiles-definitions>

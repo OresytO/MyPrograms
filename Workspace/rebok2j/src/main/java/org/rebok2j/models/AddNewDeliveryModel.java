@@ -1,80 +1,50 @@
 package org.rebok2j.models;
 
 public class AddNewDeliveryModel {
+    private DeliveryTypeModel deliveryTypeModel;
+    private DatesModel datesModel;
+    private PlacesModel placesModel;
+    private ContactsModel contactsModel;
+    private SizeAndWeightModel sizeAndWeightModel;
 
-    private DropDownList deliveryType;
-    private DropDownList departureDate;
-    private DropDownList receiveDate;
-    private DropDownList placeOfDeparture;
-    private DropDownList courierCompany;
-    private DropDownList contactPerson;
-    private DropDownList weight;
-    private DropDownList size;
-
-    /*------------------------------*/
-
-    public DropDownList getDeliveryType() {
-        return deliveryType;
+    public DeliveryTypeModel getDeliveryTypeModel() {
+        return deliveryTypeModel;
     }
 
-    public void setDeliveryType(DropDownList deliveryType) {
-        this.deliveryType = deliveryType;
+    public void setDeliveryTypeModel(DeliveryTypeModel deliveryTypeModel) {
+        this.deliveryTypeModel = deliveryTypeModel;
     }
 
-    public DropDownList getDepartureDate() {
-        return departureDate;
+    public DatesModel getDatesModel() {
+        return datesModel;
     }
 
-    public void setDepartureDate(DropDownList departureDate) {
-        this.departureDate = departureDate;
+    public void setDatesModel(DatesModel datesModel) {
+        this.datesModel = datesModel;
     }
 
-    public DropDownList getReceiveDate() {
-        return receiveDate;
+    public PlacesModel getPlacesModel() {
+        return placesModel;
     }
 
-    public void setReceiveDate(DropDownList receiveDate) {
-        this.receiveDate = receiveDate;
+    public void setPlacesModel(PlacesModel placesModel) {
+        this.placesModel = placesModel;
     }
 
-    public DropDownList getPlaceOfDeparture() {
-        return placeOfDeparture;
+    public ContactsModel getContactsModel() {
+        return contactsModel;
     }
 
-    public void setPlaceOfDeparture(DropDownList placeOfDeparture) {
-        this.placeOfDeparture = placeOfDeparture;
+    public void setContactsModel(ContactsModel contactsModel) {
+        this.contactsModel = contactsModel;
     }
 
-    public DropDownList getCourierCompany() {
-        return courierCompany;
+    public SizeAndWeightModel getSizeAndWeightModel() {
+        return sizeAndWeightModel;
     }
 
-    public void setCourierCompany(DropDownList courierCompany) {
-        this.courierCompany = courierCompany;
-    }
-
-    public DropDownList getContactPerson() {
-        return contactPerson;
-    }
-
-    public void setContactPerson(DropDownList contactPerson) {
-        this.contactPerson = contactPerson;
-    }
-
-    public DropDownList getWeight() {
-        return weight;
-    }
-
-    public void setWeight(DropDownList weight) {
-        this.weight = weight;
-    }
-
-    public DropDownList getSize() {
-        return size;
-    }
-
-    public void setSize(DropDownList size) {
-        this.size = size;
+    public void setSizeAndWeightModel(SizeAndWeightModel sizeAndWeightModel) {
+        this.sizeAndWeightModel = sizeAndWeightModel;
     }
 
 }
