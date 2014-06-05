@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class MyController extends AbstractControler {
+public class MyController {
     private static Logger log = Logger.getLogger(MyController.class.getName());
 
     @Autowired

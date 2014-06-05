@@ -22,7 +22,4 @@
 	<!-- We import the flow-config.xml located in the same directory -->
 	<import resource="flow-config.xml" />
 
-	<!-- Import Beans -->
-	<!-- <import resource="classpath:spring/hibernateBeans.xml" /> -->
-	<!-- <import resource="classpath:spring/springBeans.xml" /> -->
 </beans>
