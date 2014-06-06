@@ -17,9 +17,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * A custom {@link UserDetailsService} where user information is retrieved from a JPA repository
- */
 @Service
 @Transactional(readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService {
@@ -27,9 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private Dao<org.rebok2j.domain.User> dao;
 
-    /**
-     * Returns a populated {@link UserDetails} object. The username is first retrieved from the database and then mapped to a {@link UserDetails} object.
-     */
     @Override
     public UserDetails loadUserByUsername(String userNickname) throws UsernameNotFoundException {
         try {
@@ -47,13 +41,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
     }
 
-    /**
-     * Wraps {@link String} roles to {@link SimpleGrantedAuthority} objects
-     * 
-     * @param roles
-     *            {@link String} of roles
-     * @return list of granted authorities
-     */
     private Set<GrantedAuthority> getGrantedAuthorities(Set<Role> roles) {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         for (Role role : roles) {

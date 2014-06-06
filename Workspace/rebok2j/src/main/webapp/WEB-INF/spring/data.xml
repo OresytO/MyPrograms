@@ -12,38 +12,46 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
-	<!-- Activates annotation based transaction management -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>WEB-INF/jpa.properties</value>
+        </property>
+    </bean>
 
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="jpaVendorAdapter">
-			<bean
-				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" />
-		</property>
-		<property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml" />
-		<property name="persistenceUnitName" value="primary" />
-		<property name="jpaPropertyMap">
-			<map>
-				<entry key="hibernate.connection.url" value="${hibernate.connection.url}" />
-				<entry key="javax.persistence.jdbc.driver" value="${javax.persistence.jdbc.driver}" />
-				<entry key="javax.persistence.jdbc.url" value="${javax.persistence.jdbc.url}" />
-				<entry key="javax.persistence.jdbc.user" value="${javax.persistence.jdbc.user}" />
-				<entry key="javax.persistence.jdbc.password" value="${javax.persistence.jdbc.password}" />
-				<entry key="javax.persistence.schema-generation.create-source"
-					value="${javax.persistence.schema-generation.create-source}" />
-				<entry key="javax.persistence.schema-generation.drop-source"
-					value="${javax.persistence.schema-generation.drop-source}" />
-				<entry key="eclipselink.ddl-generation" value="${eclipselink.ddl-generation}" />
-				<entry key="eclipselink.weaving" value="${eclipselink.weaving}" />
-			</map>
-		</property>
-	</bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" />
+        </property>
+        <property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml" />
+        <property name="persistenceUnitName" value="primary" />
+        <property name="jpaProperties">
+            <props>
+                <prop key="javax.persistence.jdbc.driver">${javax.persistence.jdbc.driver}</prop>
+                <prop key="javax.persistence.jdbc.url">${javax.persistence.jdbc.url}</prop>
+                <prop key="javax.persistence.jdbc.user">${javax.persistence.jdbc.user}</prop>
+                <prop key="javax.persistence.jdbc.password">${javax.persistence.jdbc.password}</prop>
+                <prop key="javax.persistence.schema-generation.create-source">${javax.persistence.schema-generation.create-source}
+                </prop>
+                <prop key="javax.persistence.schema-generation.drop-source">${javax.persistence.schema-generation.drop-source}
+                </prop>
+                <prop key="javax.persistence.schema-generation.create-script-source">${javax.persistence.schema-generation.create-script-source}
+                </prop>
+                <prop key="javax.persistence.schema-generation.drop-script-source">${javax.persistence.schema-generation.drop-script-source}
+                </prop>
+                <prop key="javax.persistence.sql-load-script-source">${javax.persistence.sql-load-script-source}</prop>
+                <prop key="javax.persistence.schema-generation.database.action">${javax.persistence.schema-generation.database.action}
+                </prop>
+                <prop key="eclipselink.weaving">${eclipselink.weaving}</prop>
+            </props>
+        </property>
+    </bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- Activates annotation based transaction management -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

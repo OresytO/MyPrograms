@@ -1,4 +1,4 @@
-package org.rebok2j.service.impl;
+package org.rebok2j.service;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,6 @@ import java.util.TreeMap;
 import org.rebok2j.dao.Dao;
 import org.rebok2j.models.DropDownList;
 import org.rebok2j.models.DropDownListWrapper;
-import org.rebok2j.service.RebokService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractService<T> implements RebokService {
