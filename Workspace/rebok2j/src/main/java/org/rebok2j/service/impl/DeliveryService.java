@@ -4,7 +4,7 @@ import org.rebok2j.domain.Delivery;
 import org.rebok2j.service.AbstractService;
 import org.springframework.stereotype.Service;
 
-@Service("deliveryTypeService")
+@Service
 public class DeliveryService extends AbstractService<Delivery> {
 
 }

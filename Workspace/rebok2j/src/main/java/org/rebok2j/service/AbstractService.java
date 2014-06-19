@@ -9,7 +9,7 @@ import org.rebok2j.models.DropDownList;
 import org.rebok2j.models.DropDownListWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractService<T> implements RebokService<T> {
+public abstract class AbstractService<T> implements RebokService {
 
     @Autowired
     Dao<T> dao;

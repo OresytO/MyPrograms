@@ -25,7 +25,7 @@ public class MyController {
 
     @Autowired
     @Qualifier("deliveryTypeService")
-    private RebokService<DeliveryType> deliveryTypeService;
+    private RebokService deliveryTypeService;
 
     private String returnUrl;
 
@@ -46,15 +46,10 @@ public class MyController {
     }
 
     @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
-    public String addNewDelivery(Model model) {
-        deliveryTypeService.fillDropDownList("");
-        Map<String, Object> map = request.getParameterMap();
-        for (String obj : map.keySet()) {
-            System.out.println(obj.toString() + " -> " + map.get(obj).toString());
-        }
-        returnUrl = request.getHeader("Referer");
+    public String addNewDelivery(Model model) throws InstantiationException, IllegalAccessException {
+        model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillDropDownList("DeliveryType.findAll"));
         model.addAttribute("returnUrl", returnUrl);
-        return "addNewDeliveryn";
+        return "user_deliveryType";
     }
 
     @SuppressWarnings("unchecked")
