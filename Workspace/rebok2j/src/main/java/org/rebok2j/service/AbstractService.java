@@ -9,13 +9,13 @@ import org.rebok2j.models.DropDownList;
 import org.rebok2j.models.DropDownListWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractService<T> implements RebokService {
+public abstract class AbstractService<T> implements RebokService<T> {
 
     @Autowired
     Dao<T> dao;
 
     @SuppressWarnings("unchecked")
-    public Map<Object, Object> getMapFromDB(Dao<?> dao, String namedQuery) throws InstantiationException, IllegalAccessException {
+    private Map<Object, Object> getMapFromDB(String namedQuery) throws InstantiationException, IllegalAccessException {
 
         List<Object> resultList = (List<Object>) dao.getResultListFromNamedQuery(namedQuery, null);
         Map<Object, Object> resultMap = new TreeMap<>();
@@ -28,7 +28,7 @@ public abstract class AbstractService<T> implements RebokService {
     @Override
     public DropDownList fillDropDownList(String queryName) throws InstantiationException, IllegalAccessException {
         DropDownList deliveryType = new DropDownListWrapper();
-        deliveryType.setMap(getMapFromDB(dao, queryName));
+        deliveryType.setMap(getMapFromDB(queryName));
         System.out.println(deliveryType.getMap());
         return deliveryType;
     }

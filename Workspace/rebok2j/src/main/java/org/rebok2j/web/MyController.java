@@ -5,7 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.rebok2j.domain.DeliveryType;
+import org.rebok2j.service.RebokService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,10 @@ public class MyController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    @Qualifier("deliveryTypeService")
+    private RebokService<DeliveryType> deliveryTypeService;
 
     private String returnUrl;
 
@@ -36,6 +43,18 @@ public class MyController {
     @RequestMapping(value = "/login")
     public String signin() {
         return "login";
+    }
+
+    @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
+    public String addNewDelivery(Model model) {
+        deliveryTypeService.fillDropDownList("");
+        Map<String, Object> map = request.getParameterMap();
+        for (String obj : map.keySet()) {
+            System.out.println(obj.toString() + " -> " + map.get(obj).toString());
+        }
+        returnUrl = request.getHeader("Referer");
+        model.addAttribute("returnUrl", returnUrl);
+        return "addNewDeliveryn";
     }
 
     @SuppressWarnings("unchecked")

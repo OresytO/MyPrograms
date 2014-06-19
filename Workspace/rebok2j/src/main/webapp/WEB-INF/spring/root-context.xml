@@ -17,7 +17,5 @@
 
     <import resource="servlet-context.xml" />
     <import resource="data.xml" />
-    <!-- We import the flow-config.xml located in the same directory -->
-    <import resource="flow-config.xml" />
 
 </beans>
