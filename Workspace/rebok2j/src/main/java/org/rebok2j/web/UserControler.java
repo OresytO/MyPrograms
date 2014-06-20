@@ -40,7 +40,7 @@ public class UserControler {
     public String addNewDelivery(Model model) throws InstantiationException, IllegalAccessException {
         model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillDropDownList("DeliveryType.findAll"));
         model.addAttribute("returnUrl", returnUrl);
-        return "user_deliveryType";
+        return "user_addNewDelivery";
     }
 
     @SuppressWarnings("unchecked")

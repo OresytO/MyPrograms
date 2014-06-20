@@ -4,100 +4,55 @@
 
 <tiles-definitions>
 
-    <definition name="base.definition" template="/views/tiles/layout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/views/tiles/header.jsp" />
-        <put-attribute name="menu" value="/views/tiles/menu.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/views/tiles/footer.jsp" />
-    </definition>
+  <definition name="base.definition" template="/views/tiles/layout.jsp">
+    <put-attribute name="title" value=""/>
+    <put-attribute name="header" value="/views/tiles/header.jsp"/>
+    <put-attribute name="menu" value="/views/tiles/menu.jsp"/>
+    <put-attribute name="body" value=""/>
+    <put-attribute name="footer" value="/views/tiles/footer.jsp"/>
+  </definition>
 
-    <!-- Security block -->
-    <definition name="security_login" extends="base.definition">
-        <put-attribute name="body" value="/views/security/login.jsp" />
-    </definition>
+  <!-- Security block -->
+  <definition name="security_login" extends="base.definition">
+    <put-attribute name="body" value="/views/security/login.jsp"/>
+  </definition>
 
-    <definition name="security_logout" extends="base.definition">
-        <put-attribute name="body" value="/views/security/logout.jsp" />
-    </definition>
+  <definition name="security_logout" extends="base.definition">
+    <put-attribute name="body" value="/views/security/logout.jsp"/>
+  </definition>
 
-    <definition name="security_denied" extends="base.definition">
-        <put-attribute name="body" value="/views/security/denied.jsp" />
-    </definition>
+  <definition name="security_denied" extends="base.definition">
+    <put-attribute name="body" value="/views/security/denied.jsp"/>
+  </definition>
 
-    <definition name="welcome" extends="base.definition">
-        <put-attribute name="body" value="/views/tiles/welcome.jsp" />
-    </definition>
+  <definition name="welcome" extends="base.definition">
+    <put-attribute name="body" value="/views/tiles/welcome.jsp"/>
+  </definition>
 
-    <definition name="registration" extends="base.definition">
-        <put-attribute name="body" value="/views/user/registration.jsp" />
-    </definition>
+  <definition name="registration" extends="base.definition">
+    <put-attribute name="body" value="/views/user/registration.jsp"/>
+  </definition>
 
-    <!-- Menu block -->
-    <definition name="user_addNewDelivery" extends="base.definition">
-        <put-attribute name="body" value="/views/user/first.jsp" />
-    </definition>
+  <!-- Menu block -->
+  <definition name="user_addNewDelivery" extends="base.definition">
+    <put-attribute name="body" value="/views/user/addNewDelivery.jsp"/>
+  </definition>
 
-    <definition name="user_editExistingDelivery" extends="base.definition">
-        <put-attribute name="body" value="/views/user/second.jsp" />
-    </definition>
+  <definition name="user_editExistingDelivery" extends="base.definition">
+    <put-attribute name="body" value="/views/user/second.jsp"/>
+  </definition>
 
-    <definition name="user_printAutorization" extends="base.definition">
-        <put-attribute name="body" value="/views/user/third.jsp" />
-    </definition>
+  <definition name="user_printAuthorization" extends="base.definition">
+    <put-attribute name="body" value="/views/user/third.jsp"/>
+  </definition>
 
-    <definition name="end" extends="base.definition">
-        <put-attribute name="body" value="/views/guest/end.jsp" />
-    </definition>
+  <definition name="end" extends="base.definition">
+    <put-attribute name="body" value="/views/guest/end.jsp"/>
+  </definition>
 
-    <!-- flow block -->
-    <definition name="base.addNewDelivery" template="/views/tiles/addNewDelivery.jsp">
-        <put-attribute name="dropDownList" value="" />
-    </definition>
-
-    <definition name="user_deliveryType" extends="base.definition">
-        <put-attribute name="body">
-            <definition extends="base.addNewDelivery">
-                <put-attribute name="dropDownList" value="/views/user/deliveryType.jsp" />
-            </definition>
-        </put-attribute>
-    </definition>
-
-    <definition name="user_dates" extends="base.definition">
-        <put-attribute name="body">
-            <definition extends="base.addNewDelivery">
-                <put-attribute name="dropDownList" value="/views/user/dates.jsp" />
-            </definition>
-        </put-attribute>
-    </definition>
-
-    <definition name="user_places" extends="base.definition">
-        <put-attribute name="body">
-            <definition extends="base.addNewDelivery">
-                <put-attribute name="dropDownList" value="/views/user/places.jsp" />
-            </definition>
-        </put-attribute>
-    </definition>
-
-    <definition name="user_contacts" extends="base.definition">
-        <put-attribute name="body">
-            <definition extends="base.addNewDelivery">
-                <put-attribute name="dropDownList" value="/views/user/contacts.jsp" />
-            </definition>
-        </put-attribute>
-    </definition>
-
-    <definition name="user_sizeAndWeight" extends="base.definition">
-        <put-attribute name="body">
-            <definition extends="base.addNewDelivery">
-                <put-attribute name="dropDownList" value="/views/user/sizeAndWeight.jsp" />
-            </definition>
-        </put-attribute>
-    </definition>
-
-    <!-- addNewSelection -->
-    <definition name="user_addNewSelectOption" extends="base.definition">
-        <put-attribute name="body" value="/views/user/addNewSelectOption.jsp" />
-    </definition>
+  <!-- addNewSelection -->
+  <definition name="user_addNewSelectOption" extends="base.definition">
+    <put-attribute name="body" value="/views/user/addNewSelectOption.jsp"/>
+  </definition>
 
 </tiles-definitions>

@@ -4,7 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page session="false"%>
 
 
@@ -14,63 +13,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/rebok2j.css" />"/>
+<script type="text/javascript" src="<c:url value="/resources/js/rebok2j.js" />"></script>
 
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
-<style>
-.wrapper {
-	min-width: 1000px;
-	max-width: 5000px;
-	margin: 0 auto;
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-}
 
-.header {
-	height: 150px;
-	background: #FFE680;
-}
-
-.middle {
-	width: 100%;
-	padding: 0 0 100px;
-	position: relative;
-}
-
-.middle:after {
-	display: table;
-	clear: both;
-	content: '';
-}
-
-.container {
-	width: 100%;
-	float: left;
-	overflow: hidden;
-}
-
-.body {
-	padding: 0 0 0 270px;
-}
-
-.menu {
-	float: left;
-	width: 250px;
-	margin-left: -100%;
-	position: relative;
-	background: #B5E3FF;
-}
-
-.footer {
-	margin: -100px auto 0;
-	min-width: 1000px;
-	max-width: 5000px;
-	height: 100px;
-	background: #BFF08E;
-	position: relative;
-}
-</style>
 </head>
+
 <body>
 
     <div class="wrapper">

@@ -1,1 +1,1 @@
-<center>Copyright © 2014 OrestO. All rights reserved.</center>
+<center>Copyright ï¿½ 2014 OrestO. All rights reserved.</center>
