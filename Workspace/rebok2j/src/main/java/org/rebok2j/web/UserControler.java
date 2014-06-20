@@ -5,10 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.rebok2j.domain.DeliveryType;
 import org.rebok2j.service.RebokService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class MyController {
-    private static Logger log = Logger.getLogger(MyController.class.getName());
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+public class UserControler {
+    private static Logger log = Logger.getLogger(UserControler.class.getName());
 
     @Autowired
     private HttpServletRequest request;
@@ -33,16 +34,6 @@ public class MyController {
     public String addingStopToRoute(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
             @RequestParam(value = "Name") String name) {
         return "redirect:/";
-    }
-
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-    public String index() {
-        return "welcome";
-    }
-
-    @RequestMapping(value = "/login")
-    public String signin() {
-        return "login";
     }
 
     @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
@@ -87,16 +78,5 @@ public class MyController {
     public String printAutorization() {
         return "user_printAutorization";
     }
-
-    @RequestMapping(value = "/denied")
-    public String denied() {
-        return "denied";
-    }
-
-    // private String transformUrl(String url) {
-    // String tempUrl = returnUrl.substring(returnUrl.lastIndexOf("/" + url));
-    // System.out.println(tempUrl);
-    // return tempUrl;
-    // }
 
 }

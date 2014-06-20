@@ -13,15 +13,15 @@
     </definition>
 
     <!-- Security block -->
-    <definition id="login" name="login" extends="base.definition">
+    <definition name="security_login" extends="base.definition">
         <put-attribute name="body" value="/views/security/login.jsp" />
     </definition>
 
-    <definition name="logout" extends="base.definition">
+    <definition name="security_logout" extends="base.definition">
         <put-attribute name="body" value="/views/security/logout.jsp" />
     </definition>
 
-    <definition name="denied" extends="base.definition">
+    <definition name="security_denied" extends="base.definition">
         <put-attribute name="body" value="/views/security/denied.jsp" />
     </definition>
 

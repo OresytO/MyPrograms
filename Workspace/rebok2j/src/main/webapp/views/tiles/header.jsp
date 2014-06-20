@@ -13,13 +13,11 @@
         <em><strong> <font size="3" color="#FFFFFF"><spring:message code="label.guest" /></font></strong></em>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
-        <em><strong> <font size="3" color="#FFFFFF"><spring:message code="label.welcome" /> <sec:authentication
-                        property="name" /> </font></strong></em>
+        <em><strong> <font size="3" color="#FFFFFF"><spring:message code="label.welcome" /> <sec:authentication property="name" /> </font></strong></em>
     </sec:authorize>
 </div>
 <div>
-    <a class="btn btn-small btn-primary" href="login" id="getContentLogin"> <spring:message
-            code="label.loginOrRegistration" />
-    </a> <a class="btn btn-small btn-primary" href="logout" id="getContentLogout"> <spring:message code="label.logout" />
+    <a class="btn btn-small btn-primary" href="/login" id="getContentLogin"> <spring:message code="label.loginOrRegistration" />
+    </a> <a class="btn btn-small btn-primary" href="/logout" id="getContentLogout"> <spring:message code="label.logout" />
     </a>
 </div>
