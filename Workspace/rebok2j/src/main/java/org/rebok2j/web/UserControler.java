@@ -69,14 +69,16 @@ public class UserControler {
         return "redirect:" + returnUrl;
     }
 
-    @RequestMapping(value = "/user_editExistingDelivery")
+    @RequestMapping(value = "/editExistingDelivery")
     public String editExistingDelivery() {
-        return "editExistingDelivery";
+        return "user_editExistingDelivery";
     }
 
-    @RequestMapping(value = "/user_printAutorization")
+    @RequestMapping(value = "/printAuthorization")
     public String printAutorization() {
-        return "user_printAutorization";
+        return "user_printAuthorization";
     }
+
+
 
 }

@@ -23,7 +23,7 @@
                         code="label.editExistingDelivery" /></a>
             </p>
             <p>
-                <a class="button" href="/printAutorization" title="<spring:message code="label.printAuthorization"/>"><spring:message
+                <a class="button" href="/printAuthorization" title="<spring:message code="label.printAuthorization"/>"><spring:message
                         code="label.printAuthorization" /></a>
             </p>
         </div>

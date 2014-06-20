@@ -39,16 +39,16 @@
   </definition>
 
   <definition name="user_editExistingDelivery" extends="base.definition">
-    <put-attribute name="body" value="/views/user/second.jsp"/>
+    <put-attribute name="body" value="/views/user/editExistingDelivery.jsp"/>
   </definition>
 
   <definition name="user_printAuthorization" extends="base.definition">
-    <put-attribute name="body" value="/views/user/third.jsp"/>
+    <put-attribute name="body" value="/views/user/printAuthorization.jsp"/>
   </definition>
-
+<!--
   <definition name="end" extends="base.definition">
     <put-attribute name="body" value="/views/guest/end.jsp"/>
-  </definition>
+  </definition>-->
 
   <!-- addNewSelection -->
   <definition name="user_addNewSelectOption" extends="base.definition">
