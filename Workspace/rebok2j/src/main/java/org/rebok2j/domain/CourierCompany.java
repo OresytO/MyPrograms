@@ -3,19 +3,11 @@ package org.rebok2j.domain;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "CourierCompanies")
+@NamedQueries({ @NamedQuery(name = "CourierCompany.findAll", query = "select cc from CourierCompany cc") })
 public class CourierCompany implements Serializable, Comparable<CourierCompany> {
     private static final long serialVersionUID = -8599566022985360241L;
 
@@ -25,7 +17,7 @@ public class CourierCompany implements Serializable, Comparable<CourierCompany> 
     private Long Id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idType", nullable = false)
+    @JoinColumn(name = "idTypeId", nullable = false)
     private IdType idType;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3534738587">
+    <data-source source="LOCAL" name="MySQL - rebok2j@localhost" uuid="166e307d-d9e7-46ed-8861-d788b3ec2f5a">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/rebok2j</jdbc-url>
+      <user-name>root</user-name>
+      <schema-pattern>rebok2j.*</schema-pattern>
+      <default-schemas>rebok2j.*</default-schemas>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

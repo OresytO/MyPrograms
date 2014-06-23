@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-public class UserControler {
-    private static Logger log = Logger.getLogger(UserControler.class.getName());
+public class UserController {
+    private static Logger log = Logger.getLogger(UserController.class.getName());
 
     @Autowired
     private HttpServletRequest request;
@@ -27,6 +27,26 @@ public class UserControler {
     @Autowired
     @Qualifier("deliveryTypeService")
     private RebokService deliveryTypeService;
+
+    @Autowired
+    @Qualifier("authorizationService")
+    private RebokService authorizationService;
+
+    @Autowired
+    @Qualifier("courierCompanyService")
+    private RebokService courierCompanyService;
+
+    @Autowired
+    @Qualifier("deliveryService")
+    private RebokService deliveryService;
+
+    @Autowired
+    @Qualifier("idTypeService")
+    private RebokService idTypeService;
+
+    @Autowired
+    @Qualifier("locationService")
+    private RebokService locationService;
 
     private String returnUrl;
 
@@ -39,6 +59,8 @@ public class UserControler {
     @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
     public String addNewDelivery(Model model) throws InstantiationException, IllegalAccessException {
         model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillDropDownList("DeliveryType.findAll"));
+        model.addAttribute("courierCompanyDropDown", courierCompanyService.fillDropDownList("CourierCompany.findAll"));
+        model.addAttribute("locationDropDown", locationService.fillDropDownList("Location.findAll"));
         model.addAttribute("returnUrl", returnUrl);
         return "user_addNewDelivery";
     }

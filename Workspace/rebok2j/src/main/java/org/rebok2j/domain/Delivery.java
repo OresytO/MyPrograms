@@ -2,18 +2,11 @@ package org.rebok2j.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Deliveries")
+@NamedQueries({ @NamedQuery(name = "Delivery.findAll", query = "select d from Delivery d") })
 public class Delivery implements Serializable, Comparable<Delivery> {
 
     private static final long serialVersionUID = -6048746691997605170L;

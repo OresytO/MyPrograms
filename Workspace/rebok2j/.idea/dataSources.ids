@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - rebok2j@localhost" uuid="166e307d-d9e7-46ed-8861-d788b3ec2f5a">
+    <database-info product="MySQL" version="5.6.14" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.29 ( Revision: alexander.soklakov@oracle.com-20140120140810-s44574olh90i6i4l )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="rebok2j"/>
+    <table name="autorizations" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="AutorizationCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="creationDate" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="dateOfAutorization" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="forwarderId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="signedPersonId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_Autorizations_signedPersonId" columns="signedPersonId" ref-table="staff" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Autorizations_forwarderId" columns="forwarderId" ref-table="staff" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_Deliveries_autorization" table="deliveries" schema="" catalog="rebok2j" columns="autorizationId"/>
+      <index name="FK_Autorizations_forwarderId" unique="false" columns="forwarderId"/>
+      <index name="FK_Autorizations_signedPersonId" unique="false" columns="signedPersonId"/>
+    </table>
+    <table name="couriercompanies" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phones" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="warehouseCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idTypeId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="location" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_CourierCompanies_idTypeId" columns="idTypeId" ref-table="idtypes" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_CourierCompanies_location" columns="location" ref-table="locations" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_Deliveries_courierCompany" table="deliveries" schema="" catalog="rebok2j" columns="courierCompanyId"/>
+      <index name="FK_CourierCompanies_idTypeId" unique="false" columns="idTypeId"/>
+      <index name="FK_CourierCompanies_location" unique="false" columns="location"/>
+    </table>
+    <table name="deliveries" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="cost" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="creationDate" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="dateOfReceiving" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="dateOfSending" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="deliveryCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="recieved" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="sended" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="size" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="weight" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="autorizationId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="courierCompanyId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="typeOfDeliveryId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_Deliveries_typeOfDelivery" columns="typeOfDeliveryId" ref-table="deliveriestypes" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Deliveries_autorization" columns="autorizationId" ref-table="autorizations" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Deliveries_courierCompany" columns="courierCompanyId" ref-table="couriercompanies" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Deliveries_autorization" unique="false" columns="autorizationId"/>
+      <index name="FK_Deliveries_courierCompany" unique="false" columns="courierCompanyId"/>
+      <index name="FK_Deliveries_typeOfDelivery" unique="false" columns="typeOfDeliveryId"/>
+    </table>
+    <table name="deliveriestypes" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="deliveryType" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_Deliveries_typeOfDelivery" table="deliveries" schema="" catalog="rebok2j" columns="typeOfDeliveryId"/>
+    </table>
+    <table name="idtypes" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="idName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_CourierCompanies_idTypeId" table="couriercompanies" schema="" catalog="rebok2j" columns="idTypeId"/>
+    </table>
+    <table name="locations" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="locationName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_CourierCompanies_location" table="couriercompanies" schema="" catalog="rebok2j" columns="location"/>
+    </table>
+    <table name="roles" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="roleName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_users_roles_role_id" table="usersroles" schema="" catalog="rebok2j" columns="role_id"/>
+    </table>
+    <table name="staff" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="drivingLicense" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="lastName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="passport" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="powerToSign" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_Autorizations_signedPersonId" table="autorizations" schema="" catalog="rebok2j" columns="signedPersonId"/>
+      <exported-key name="FK_Autorizations_forwarderId" table="autorizations" schema="" catalog="rebok2j" columns="forwarderId"/>
+    </table>
+    <table name="users" schema="" catalog="rebok2j" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="userName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="userNickname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_users_roles_user_id" table="usersroles" schema="" catalog="rebok2j" columns="user_id"/>
+    </table>
+    <table name="usersroles" schema="" catalog="rebok2j" type="TABLE">
+      <column name="role_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="role_id,user_id"/>
+      <foreign-key name="FK_users_roles_role_id" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_users_roles_user_id" columns="user_id" ref-table="users" ref-schema="" ref-catalog="rebok2j" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_users_roles_user_id" unique="false" columns="user_id"/>
+    </table>
+  </data-source>
+</component>
