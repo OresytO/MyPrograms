@@ -38,10 +38,10 @@ public class Staff implements Serializable, Comparable<Staff> {
     private Boolean powerToSign;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "signedPerson")
-    private Set<Autorization> autorizationsSigned;
+    private Set<Autorization> authorizationsSigned;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "forwarder")
-    private Set<Autorization> autorizationsAsForwarder;
+    private Set<Autorization> authorizationsAsForwarder;
 
     /*-----------------------------------------------------------*/
 
@@ -96,20 +96,20 @@ public class Staff implements Serializable, Comparable<Staff> {
         this.powerToSign = powerToSign;
     }
 
-    public Set<Autorization> getAutorizationsSigned() {
-        return autorizationsSigned;
+    public Set<Autorization> getAuthorizationsSigned() {
+        return authorizationsSigned;
     }
 
-    public void setAutorizationsSigned(Set<Autorization> autorizationsSigned) {
-        this.autorizationsSigned = autorizationsSigned;
+    public void setAuthorizationsSigned(Set<Autorization> authorizationsSigned) {
+        this.authorizationsSigned = authorizationsSigned;
     }
 
-    public Set<Autorization> getAutorizationsAsForwarder() {
-        return autorizationsAsForwarder;
+    public Set<Autorization> getAuthorizationsAsForwarder() {
+        return authorizationsAsForwarder;
     }
 
-    public void setAutorizationsAsForwarder(Set<Autorization> autorizationsAsForwarder) {
-        this.autorizationsAsForwarder = autorizationsAsForwarder;
+    public void setAuthorizationsAsForwarder(Set<Autorization> authorizationsAsForwarder) {
+        this.authorizationsAsForwarder = authorizationsAsForwarder;
     }
 
     @Override
