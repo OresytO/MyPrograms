@@ -13,8 +13,11 @@ public interface Dao<T> {
 
     T findById(Long id);
 
-    T getSingleResultFromNamedQuery(String queryName, Map<String, String> paramMap);
+    T getSingleResult();
 
-    List<T> getResultListFromNamedQuery(String queryName, Map<String, String> paramMap);
+    List<T> getResultList();
 
+    List<T> getResultListFromNamedQuery(String namedQueryName, Map<String, String> paramMap);
+
+    T getSingleResultFromNamedQuery(String namedQueryName, Map<String, String> paramMap);
 }

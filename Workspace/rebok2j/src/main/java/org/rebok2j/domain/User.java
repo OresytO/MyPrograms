@@ -1,26 +1,15 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import static org.rebok2j.utils.DomainConstants.USER;
 
 @Entity
 @Table(name = "Users")
-@NamedQueries({ @NamedQuery(name = "User.findByNickname", query = "select u from User u where u.userNickname = :nickname"),
-        @NamedQuery(name = "User.findAllUsers", query = "select u from User u") })
+@NamedQueries({@NamedQuery(name = USER.FIND_BY_NICKNAME, query = USER.FIND_BY_NICKNAME_Q),
+        @NamedQuery(name = USER.FIND_ALL, query = USER.FIND_ALL_Q)})
 public class User implements Serializable, Comparable<User> {
 
     private static final long serialVersionUID = -7588331808777137405L;
@@ -43,7 +32,7 @@ public class User implements Serializable, Comparable<User> {
     private Boolean enabled;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "UsersRoles", joinColumns = { @JoinColumn(name = "user_id", updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = "role_id", updatable = true, nullable = true) })
+    @JoinTable(name = "UsersRoles", joinColumns = {@JoinColumn(name = "user_id", updatable = true, nullable = true)}, inverseJoinColumns = {@JoinColumn(name = "role_id", updatable = true, nullable = true)})
     private Set<Role> roles;
 
     /*-----------------------------------------------------------*/

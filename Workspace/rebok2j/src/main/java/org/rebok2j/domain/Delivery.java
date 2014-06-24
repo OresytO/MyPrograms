@@ -41,8 +41,8 @@ public class Delivery implements Serializable, Comparable<Delivery> {
     @Column(name = "sended")
     private Boolean sended;
 
-    @Column(name = "recieved")
-    private Boolean recieved;
+    @Column(name = "received")
+    private Boolean received;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typeOfDeliveryId", nullable = false)
@@ -52,8 +52,8 @@ public class Delivery implements Serializable, Comparable<Delivery> {
     private String creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autorizationId", nullable = false)
-    private Autorization autorization;
+    @JoinColumn(name = "authorizationId", nullable = false)
+    private Authorization authorization;
 
     /*-----------------------------------------------------------*/
 
@@ -132,12 +132,12 @@ public class Delivery implements Serializable, Comparable<Delivery> {
         this.sended = sended;
     }
 
-    public Boolean getRecieved() {
-        return recieved;
+    public Boolean getReceived() {
+        return received;
     }
 
-    public void setRecieved(Boolean recieved) {
-        this.recieved = recieved;
+    public void setReceived(Boolean received) {
+        this.received = received;
     }
 
     public DeliveryType getTypeOfDelivery() {
@@ -156,12 +156,12 @@ public class Delivery implements Serializable, Comparable<Delivery> {
         this.creationDate = creationDate;
     }
 
-    public Autorization getAutorization() {
-        return autorization;
+    public Authorization getAuthorization() {
+        return authorization;
     }
 
-    public void setAutorization(Autorization autorization) {
-        this.autorization = autorization;
+    public void setAuthorization(Authorization authorization) {
+        this.authorization = authorization;
     }
 
     @Override
@@ -189,8 +189,8 @@ public class Delivery implements Serializable, Comparable<Delivery> {
     @Override
     public String toString() {
         return "Delivery [Id=" + Id + ", courierCompany=" + courierCompany + ", deliveryCode=" + deliveryCode + ", weight=" + weight + ", size=" + size
-                + ", cost=" + cost + ", dateOfSending=" + dateOfSending + ", dateOfReceiving=" + dateOfReceiving + ", sended=" + sended + ", recieved="
-                + recieved + ", typeOfDelivery=" + typeOfDelivery + ", creationDate=" + creationDate + "]";
+                + ", cost=" + cost + ", dateOfSending=" + dateOfSending + ", dateOfReceiving=" + dateOfReceiving + ", sended=" + sended + ", received="
+                + received + ", typeOfDelivery=" + typeOfDelivery + ", creationDate=" + creationDate + "]";
     }
 
     @Override

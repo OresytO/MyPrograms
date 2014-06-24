@@ -1,9 +1,7 @@
 package org.rebok2j.service;
 
-import org.rebok2j.models.DropDownList;
+public interface RebokService<K> {
 
-public interface RebokService {
-
-    DropDownList fillDropDownList(String queryName) throws InstantiationException, IllegalAccessException;
+    K fillElement(String queryName) throws InstantiationException, IllegalAccessException;
 
 }

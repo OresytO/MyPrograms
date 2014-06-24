@@ -1,13 +1,14 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.*;
+import static org.rebok2j.utils.DomainConstants.COURIER_COMPANY;
 
 @Entity
 @Table(name = "CourierCompanies")
-@NamedQueries({ @NamedQuery(name = "CourierCompany.findAll", query = "select cc from CourierCompany cc") })
+@NamedQueries({@NamedQuery(name = COURIER_COMPANY.FIND_ALL, query = COURIER_COMPANY.FIND_ALL_Q)})
 public class CourierCompany implements Serializable, Comparable<CourierCompany> {
     private static final long serialVersionUID = -8599566022985360241L;
 

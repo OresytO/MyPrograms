@@ -1,11 +1,7 @@
 package org.rebok2j.web;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
-import org.rebok2j.service.RebokService;
+import org.rebok2j.models.MyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
 @Controller
 @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 public class UserController {
@@ -24,7 +23,7 @@ public class UserController {
     @Autowired
     private HttpServletRequest request;
 
-    @Autowired
+/*    @Autowired
     @Qualifier("deliveryTypeService")
     private RebokService deliveryTypeService;
 
@@ -46,22 +45,26 @@ public class UserController {
 
     @Autowired
     @Qualifier("locationService")
-    private RebokService locationService;
+    private RebokService locationService;*/
 
+    @Autowired
+    @Qualifier("AddNewDeliveryModel")
+    private MyModel addNewDeliveryModel;
     private String returnUrl;
 
-    @RequestMapping(value = "/adding", method = RequestMethod.POST, params = { "routeId", "routeType", "Name" })
+    @RequestMapping(value = "/adding", method = RequestMethod.POST, params = {"routeId", "routeType", "Name"})
     public String addingStopToRoute(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
-            @RequestParam(value = "Name") String name) {
+                                    @RequestParam(value = "Name") String name) {
         return "redirect:/";
     }
 
     @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
     public String addNewDelivery(Model model) throws InstantiationException, IllegalAccessException {
-        model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillDropDownList("DeliveryType.findAll"));
-        model.addAttribute("courierCompanyDropDown", courierCompanyService.fillDropDownList("CourierCompany.findAll"));
-        model.addAttribute("locationDropDown", locationService.fillDropDownList("Location.findAll"));
-        model.addAttribute("returnUrl", returnUrl);
+        /*model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillElement("DeliveryType.findAll"));
+        model.addAttribute("courierCompanyDropDown", courierCompanyService.fillElement("CourierCompany.findAll"));
+        model.addAttribute("locationDropDown", locationService.fillElement("Location.findAll"));*/
+
+        model = addNewDeliveryModel.getModel();
         return "user_addNewDelivery";
     }
 
@@ -100,7 +103,6 @@ public class UserController {
     public String printAutorization() {
         return "user_printAuthorization";
     }
-
 
 
 }

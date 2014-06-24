@@ -1,14 +1,15 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.*;
+import static org.rebok2j.utils.DomainConstants.AUTHORIZATION;
 
 @Entity
-@Table(name = "Autorizations")
-@NamedQueries({ @NamedQuery(name = "Autorization.findAll", query = "select a from Autorization a") })
-public class Autorization implements Serializable, Comparable<Autorization> {
+@Table(name = "Authorizations")
+@NamedQueries({@NamedQuery(name = AUTHORIZATION.FIND_ALL, query = AUTHORIZATION.FIND_ALL_Q)})
+public class Authorization implements Serializable, Comparable<Authorization> {
 
     private static final long serialVersionUID = 7473471713802663734L;
 
@@ -17,7 +18,7 @@ public class Autorization implements Serializable, Comparable<Autorization> {
     @Column(name = "id")
     private Long Id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "autorization")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "authorization")
     private Set<Delivery> deliveries;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,18 +29,18 @@ public class Autorization implements Serializable, Comparable<Autorization> {
     @JoinColumn(name = "forwarderId", nullable = false)
     private Staff forwarder;
 
-    @Column(name = "autorizationCode")
-    private String autorizationCode;
+    @Column(name = "authorizationCode")
+    private String authorizationCode;
 
-    @Column(name = "dateofAutorization")
-    private String dateofAutorization;
+    @Column(name = "dateofAuthorization")
+    private String dateofAuthorization;
 
     @Column(name = "creationDate")
     private String creationDate;
 
     /*-----------------------------------------------------------*/
 
-    public Autorization() {
+    public Authorization() {
         super();
     }
 
@@ -75,20 +76,20 @@ public class Autorization implements Serializable, Comparable<Autorization> {
         this.forwarder = forwarder;
     }
 
-    public String getAutorizationCode() {
-        return autorizationCode;
+    public String getAuthorizationCode() {
+        return authorizationCode;
     }
 
-    public void setAutorizationCode(String autorizationCode) {
-        this.autorizationCode = autorizationCode;
+    public void setAuthorizationCode(String authorizationCode) {
+        this.authorizationCode = authorizationCode;
     }
 
-    public String getDateofAutorization() {
-        return dateofAutorization;
+    public String getDateofAuthorization() {
+        return dateofAuthorization;
     }
 
-    public void setDateofAutorization(String dateofAutorization) {
-        this.dateofAutorization = dateofAutorization;
+    public void setDateofAuthorization(String dateofAuthorization) {
+        this.dateofAuthorization = dateofAuthorization;
     }
 
     public String getCreationDate() {
@@ -115,7 +116,7 @@ public class Autorization implements Serializable, Comparable<Autorization> {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Autorization other = (Autorization) obj;
+        Authorization other = (Authorization) obj;
         if (Id != other.Id)
             return false;
         return true;
@@ -123,13 +124,13 @@ public class Autorization implements Serializable, Comparable<Autorization> {
 
     @Override
     public String toString() {
-        return "Autorization [Id=" + Id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", autorizationCode="
-                + autorizationCode + ", dateofAutorization=" + dateofAutorization + ", creationDate=" + creationDate + "]";
+        return "Authorization [Id=" + Id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", authorizationCode="
+                + authorizationCode + ", dateofAuthorization=" + dateofAuthorization + ", creationDate=" + creationDate + "]";
     }
 
     @Override
-    public int compareTo(Autorization o) {
-        return this.getAutorizationCode().compareTo(o.getAutorizationCode());
+    public int compareTo(Authorization o) {
+        return this.getAuthorizationCode().compareTo(o.getAuthorizationCode());
     }
 
 }

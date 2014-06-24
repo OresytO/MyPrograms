@@ -1,10 +1,5 @@
 package org.rebok2j.service.impl;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.rebok2j.dao.Dao;
 import org.rebok2j.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 @Transactional(readOnly = true)
@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         try {
             Map<String, String> map = new HashMap<>();
             map.put("nickname", userNickname);
-            org.rebok2j.domain.User domainUser = dao.getSingleResultFromNamedQuery("User.findByNickname", map);
+            org.rebok2j.domain.User domainUser = dao.getSingleResultFromNamedQuery("findByNickname", map);
             boolean accountNonExpired = true;
             boolean credentialsNonExpired = true;
             boolean accountNonLocked = true;
