@@ -1,13 +1,14 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.*;
+import static org.rebok2j.utils.DomainConstants.ID_TYPE;
 
 @Entity
 @Table(name = "IdTypes")
-@NamedQueries({ @NamedQuery(name = "IdType.findAll", query = "select it from IdType it") })
+@NamedQueries({@NamedQuery(name = ID_TYPE.FIND_ALL, query = ID_TYPE.FIND_ALL_Q)})
 public class IdType implements Serializable, Comparable<IdType> {
 
     private static final long serialVersionUID = -8981711113476946436L;

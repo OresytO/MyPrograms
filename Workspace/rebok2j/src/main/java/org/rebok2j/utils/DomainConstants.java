@@ -26,6 +26,35 @@ public class DomainConstants {
         private static final String ENTITY_NAME = "CourierCompany";
         public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
         public static final String FIND_ALL_Q = "select entity from " + ENTITY_NAME + " entity";
+    }
 
+    public static class DELIVERY {
+        private static final String ENTITY_NAME = "Delivery";
+        public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
+        public static final String FIND_ALL_Q = "select entity from " + ENTITY_NAME + " entity";
+    }
+
+    public static class DELIVERY_TYPE {
+        private static final String ENTITY_NAME = "DeliveryType";
+        public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
+        public static final String FIND_ALL_Q = "select entity from " + ENTITY_NAME + " entity";
+    }
+
+    public static class ID_TYPE {
+        private static final String ENTITY_NAME = "IdType";
+        public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
+        public static final String FIND_ALL_Q = "select entity from " + ENTITY_NAME + " entity";
+    }
+
+    public static class LOCATION {
+        private static final String ENTITY_NAME = "Location";
+        public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
+        public static final String FIND_ALL_Q = "select entity from " + ENTITY_NAME + " entity";
+    }
+
+    public static class STAFF {
+        private static final String ENTITY_NAME = "Staff";
+        public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
+        public static final String FIND_ALL_Q = "select entity from " + ENTITY_NAME + " entity";
     }
 }

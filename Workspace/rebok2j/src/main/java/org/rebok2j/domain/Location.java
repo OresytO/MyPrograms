@@ -1,13 +1,14 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.*;
+import static org.rebok2j.utils.DomainConstants.LOCATION;
 
 @Entity
 @Table(name = "Locations")
-@NamedQueries({ @NamedQuery(name = "Location.findAll", query = "select l from Location l") })
+@NamedQueries({@NamedQuery(name = LOCATION.FIND_ALL, query = LOCATION.FIND_ALL_Q)})
 public class Location implements Serializable, Comparable<Location> {
 
     private static final long serialVersionUID = 5683268872194039757L;

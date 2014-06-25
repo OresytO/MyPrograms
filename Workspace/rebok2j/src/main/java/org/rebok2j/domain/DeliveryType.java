@@ -1,22 +1,14 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import static org.rebok2j.utils.DomainConstants.DELIVERY_TYPE;
 
 @Entity
 @Table(name = "DeliveriesTypes")
-@NamedQueries({ @NamedQuery(name = "DeliveryType.findAll", query = "select dt from DeliveryType dt") })
+@NamedQueries({@NamedQuery(name = DELIVERY_TYPE.FIND_ALL, query = DELIVERY_TYPE.FIND_ALL_Q)})
 public class DeliveryType implements Serializable, Comparable<DeliveryType> {
 
     private static final long serialVersionUID = 5420966512380043267L;

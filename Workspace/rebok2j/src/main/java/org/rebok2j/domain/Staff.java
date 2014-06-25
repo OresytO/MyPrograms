@@ -1,19 +1,14 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import static org.rebok2j.utils.DomainConstants.STAFF;
 
 @Entity
 @Table(name = "Staff")
+@NamedQueries({@NamedQuery(name = STAFF.FIND_ALL, query = STAFF.FIND_ALL_Q)})
 public class Staff implements Serializable, Comparable<Staff> {
     private static final long serialVersionUID = 1949287398495056789L;
 
