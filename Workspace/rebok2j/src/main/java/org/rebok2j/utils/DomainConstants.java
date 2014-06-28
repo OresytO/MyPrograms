@@ -11,7 +11,7 @@ public final class DomainConstants {
 
   public static final class USER {
     // Entity name
-    private static final String ENTITY_NAME = "User";
+    public static final String ENTITY_NAME = "User";
     // Params for Query
     public static final String NICKNAME = "nickname";
     // Queries name
@@ -24,7 +24,7 @@ public final class DomainConstants {
 
   public static final class AUTHORIZATION {
     // Entity name
-    private static final String ENTITY_NAME = "Authorization";
+    public static final String ENTITY_NAME = "Authorization";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries
@@ -33,7 +33,7 @@ public final class DomainConstants {
 
   public static final class COURIER_COMPANY {
     // Entity name
-    private static final String ENTITY_NAME = "CourierCompany";
+    public static final String ENTITY_NAME = "CourierCompany";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries
@@ -42,7 +42,7 @@ public final class DomainConstants {
 
   public static final class DELIVERY {
     // Entity name
-    private static final String ENTITY_NAME = "Delivery";
+    public static final String ENTITY_NAME = "Delivery";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries
@@ -51,7 +51,8 @@ public final class DomainConstants {
 
   public static final class DELIVERY_TYPE {
     // Entity name
-    private static final String ENTITY_NAME = "DeliveryType";
+    public static final String ENTITY_NAME = "DeliveryType";
+    public static final String ENTITY_NAME_FIELD = "deliveryType";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries
@@ -60,7 +61,7 @@ public final class DomainConstants {
 
   public static final class ID_TYPE {
     // Entity name
-    private static final String ENTITY_NAME = "IdType";
+    public static final String ENTITY_NAME = "IdType";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries
@@ -69,7 +70,7 @@ public final class DomainConstants {
 
   public static final class LOCATION {
     // Entity name
-    private static final String ENTITY_NAME = "Location";
+    public static final String ENTITY_NAME = "Location";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries
@@ -78,7 +79,7 @@ public final class DomainConstants {
 
   public static final class STAFF {
     // Entity name
-    private static final String ENTITY_NAME = "Staff";
+    public static final String ENTITY_NAME = "Staff";
     // Queries name
     public static final String FIND_ALL = ENTITY_NAME + DELIMITER_CHARACTER + FIND_ALL_G;
     // Queries

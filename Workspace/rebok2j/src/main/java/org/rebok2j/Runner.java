@@ -2,7 +2,7 @@ package org.rebok2j;
 
 public class Runner {
 
-    public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
        /* Server server = new Server(8080);
 
         Connector connector = new ServerConnector(server);
@@ -59,5 +59,5 @@ public class Runner {
         /*server.start();
         server.join();*/
 
-    }
+  }
 }

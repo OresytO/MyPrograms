@@ -10,17 +10,17 @@ import java.util.Map;
 /*It is global Dao interface based on generic types*/
 public interface GenericDao<T> {
 
-    void persist(T entity);
+  void persist(T entity);
 
-    T merge(T entity);
+  T merge(T entity);
 
-    void remove(T entity);
+  void remove(T entity);
 
-    T findById(Long id);
+  T findById(Long id);
 
-    List<T> getResultList();
+  List<T> getResultList();
 
-    List<T> getResultListFromNamedQuery(String namedQueryName, Map<String, String> paramMap);
+  List<T> getResultListFromNamedQuery(String namedQueryName, Map<String, String> paramMap);
 
-    T getSingleResultFromNamedQuery(String namedQueryName, Map<String, String> paramMap);
+  T getSingleResultFromNamedQuery(String namedQueryName, Map<String, String> paramMap);
 }

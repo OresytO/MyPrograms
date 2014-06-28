@@ -13,22 +13,22 @@ import java.util.Map;
 * implementation*/
 public interface Adapter {
 
-    @SuppressWarnings("unused")
-    Adapter getAuthorizationModel(String attributeName);
+  @SuppressWarnings("unused")
+  Adapter getAuthorizationModel(String attributeName);
 
-    Adapter getCourierCompanyModel(String attributeName);
+  Adapter getCourierCompanyModel(String attributeName);
 
-    @SuppressWarnings("unused")
-    Adapter getDeliveryModel(String attributeName);
+  @SuppressWarnings("unused")
+  Adapter getDeliveryModel(String attributeName);
 
-    Adapter getDeliveryTypeModel(String attributeName);
+  Adapter getDeliveryTypeModel(String attributeName);
 
-    @SuppressWarnings("unused")
-    Adapter getIdTypeModel(String attributeName);
+  @SuppressWarnings("unused")
+  Adapter getIdTypeModel(String attributeName);
 
-    Adapter getLocationModel(String attributeName);
+  Adapter getLocationModel(String attributeName);
 
-    Map<String, Object> getModel();
+  Map<String, Object> getModel();
 
-    void setModel(Map<String, Object> model);
+  void setModel(Map<String, Object> model);
 }

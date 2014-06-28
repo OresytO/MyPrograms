@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GuestController {
 /*    private static Logger log = Logger.getLogger(GuestController.class);*/
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String index() {
-        return "welcome";
-    }
+  @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+  public String index() {
+    return "welcome";
+  }
 
 }

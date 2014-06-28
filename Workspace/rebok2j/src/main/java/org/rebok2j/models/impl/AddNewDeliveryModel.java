@@ -12,14 +12,14 @@ import java.util.Map;
 @Service(Components.ADD_NEW_DELIVERY_MODEL)
 public class AddNewDeliveryModel implements MyModel {
 
-    @Autowired
-    private Adapter adapter;
+  @Autowired
+  private Adapter adapter;
 
-    @Override
-    public Map<String, Object> getModel() {
-        adapter.getDeliveryTypeModel(WebConstants.ALL_DELIVERY_TYPES)
-                .getLocationModel(WebConstants.ALL_LOCATIONS)
-                .getCourierCompanyModel(WebConstants.ALL_COURIER_COMPANIES);
-        return adapter.getModel();
-    }
+  @Override
+  public Map<String, Object> getModel() {
+    adapter.getDeliveryTypeModel(WebConstants.ALL_DELIVERY_TYPES)
+      .getLocationModel(WebConstants.ALL_LOCATIONS)
+      .getCourierCompanyModel(WebConstants.ALL_COURIER_COMPANIES);
+    return adapter.getModel();
+  }
 }

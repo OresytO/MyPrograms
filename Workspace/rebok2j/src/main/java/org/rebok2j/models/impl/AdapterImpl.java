@@ -1,7 +1,9 @@
 package org.rebok2j.models.impl;
 
+import org.apache.log4j.Logger;
 import org.rebok2j.dao.*;
 import org.rebok2j.models.Adapter;
+import org.rebok2j.utils.DomainConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,74 +12,83 @@ import java.util.Map;
 
 @Component
 public class AdapterImpl implements Adapter {
-    @Autowired
-    AuthorizationDao authorizationDao;
+  private static Logger log = Logger.getLogger(AdapterImpl.class);
 
-    @Autowired
-    CourierCompanyDao courierCompanyDao;
+  @Autowired
+  private AuthorizationDao authorizationDao;
 
-    @Autowired
-    DeliveryDao deliveryDao;
+  @Autowired
+  private CourierCompanyDao courierCompanyDao;
 
-    @Autowired
-    DeliveryTypeDao deliveryTypeDao;
+  @Autowired
+  private DeliveryDao deliveryDao;
 
-    @Autowired
-    IdTypeDao idTypeDao;
+  @Autowired
+  public DeliveryTypeDao deliveryTypeDao;
 
-    @Autowired
-    LocationDao locationDao;
+  @Autowired
+  private IdTypeDao idTypeDao;
 
-    private Map<String, Object> model;
+  @Autowired
+  private LocationDao locationDao;
 
-    public AdapterImpl() {
-        this.model = new LinkedHashMap<>();
-    }
+  private Map<String, Object> model;
 
-    @Override
-    public Adapter getAuthorizationModel(String attributeName) {
-        this.model.put(attributeName, authorizationDao.getResultList());
-        return this;
-    }
+  public AdapterImpl() {
+    this.model = new LinkedHashMap<>();
+  }
 
-    @Override
-    public Adapter getCourierCompanyModel(String attributeName) {
-        this.model.put(attributeName, courierCompanyDao.getResultList());
-        return this;
-    }
+  @Override
+  public Adapter getAuthorizationModel(String attributeName) {
+    this.model.put(attributeName, authorizationDao.getResultList());
+    return this;
+  }
 
-    @Override
-    public Adapter getDeliveryModel(String attributeName) {
-        this.model.put(attributeName, deliveryDao.getResultList());
-        return this;
-    }
+  @Override
+  public Adapter getCourierCompanyModel(String attributeName) {
+    this.model.put(attributeName, courierCompanyDao.getResultList());
+    return this;
+  }
 
-    @Override
-    public Adapter getDeliveryTypeModel(String attributeName) {
-        this.model.put(attributeName, deliveryTypeDao.getResultList());
-        return this;
-    }
+  @Override
+  public Adapter getDeliveryModel(String attributeName) {
+    this.model.put(attributeName, deliveryDao.getResultList());
+    return this;
+  }
 
-    @Override
-    public Adapter getIdTypeModel(String attributeName) {
-        this.model.put(attributeName, idTypeDao.getResultList());
-        return this;
-    }
+  @Override
+  public Adapter getDeliveryTypeModel(String attributeName) {
+    AbstractDao dao = getDao(DomainConstants.DELIVERY_TYPE.ENTITY_NAME_FIELD);
+    if (dao == null)
+      log.error("!!!!!!!!!!!!!!!!! dao == null !!!!!!!!!!!!!!!!!!!!!!!");
+    this.model.put(attributeName, deliveryTypeDao.getResultList());
+    return this;
+  }
 
-    @Override
-    public Adapter getLocationModel(String attributeName) {
-        this.model.put(attributeName, locationDao.getResultList());
-        return this;
-    }
+  @Override
+  public Adapter getIdTypeModel(String attributeName) {
+    this.model.put(attributeName, idTypeDao.getResultList());
+    return this;
+  }
 
-    @Override
-    public Map<String, Object> getModel() {
-        return this.model;
-    }
+  @Override
+  public Adapter getLocationModel(String attributeName) {
+    this.model.put(attributeName, locationDao.getResultList());
+    return this;
+  }
 
-    @Override
-    public void setModel(Map<String, Object> model) {
-        this.model = model;
-    }
+  @Override
+  public Map<String, Object> getModel() {
+    return this.model;
+  }
 
+  @Override
+  public void setModel(Map<String, Object> model) {
+    this.model = model;
+  }
+
+  private AbstractDao getDao(String typeName) {
+
+    return null;
+  }
 }

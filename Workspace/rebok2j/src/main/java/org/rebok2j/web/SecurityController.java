@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @PreAuthorize("permitAll")
 public class SecurityController {
-    private static Logger log = Logger.getLogger(SecurityController.class);
+  private static Logger log = Logger.getLogger(SecurityController.class);
 
-    @RequestMapping(value = "/login")
-    public String login() {
-        log.info("+++++++++++++++++++++++++++++++++++++++++ security_login");
-        return "security_login";
-    }
+  @RequestMapping(value = "/login")
+  public String login() {
+    log.info("+++++++++++++++++++++++++++++++++++++++++ security_login");
+    return "security_login";
+  }
 
-    @RequestMapping(value = "/denied")
-    public String denied() {
-        log.info("+++++++++++++++++++++++++++++++++++++++++ security_denied");
-        return "security_denied";
-    }
+  @RequestMapping(value = "/denied")
+  public String denied() {
+    log.info("+++++++++++++++++++++++++++++++++++++++++ security_denied");
+    return "security_denied";
+  }
 
 }

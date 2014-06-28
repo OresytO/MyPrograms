@@ -18,6 +18,8 @@ INSERT INTO `rebok2j`.`idTypes` (`idName`) VALUES ('driving lice');
 INSERT INTO `rebok2j`.`deliveriesTypes` (`type`) VALUES ('in');
 INSERT INTO `rebok2j`.`deliveriesTypes` (`type`) VALUES ('out');
 
-INSERT INTO `rebok2j`.`courierCompanies` (`address`, `companyName`, `phones`, `warehouseCode`, `idTypeId`, `location`) VALUES ('Lviv', 'companyName', '1111', '1', '1', '1');
+INSERT INTO `rebok2j`.`courierCompanies` (`address`, `companyName`, `phones`, `warehouseCode`, `idTypeId`, `location`)
+VALUES ('Lviv', 'companyName', '1111', '1', '1', '1');
 
-INSERT INTO `rebok2j`.`Authorizations` (`AuthorizationCode`, `creationDate`, `dateOfAuthorization`, `forwarderId`, `signedPersonId`) VALUES ('1111', '2014/05/27', '2014/05/27', '1', '1');
+INSERT INTO `rebok2j`.`Authorizations` (`AuthorizationCode`, `creationDate`, `dateOfAuthorization`, `forwarderId`, `signedPersonId`)
+VALUES ('1111', '2014/05/27', '2014/05/27', '1', '1');

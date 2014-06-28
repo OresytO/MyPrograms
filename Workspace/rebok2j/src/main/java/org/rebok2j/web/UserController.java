@@ -20,13 +20,13 @@ import java.util.Map;
 public class UserController {
     /*private static Logger log = Logger.getLogger(UserController.class);*/
 
-    @Autowired
-    private HttpServletRequest request;
+  @Autowired
+  private HttpServletRequest request;
 
-    @Autowired
-    @Qualifier(Components.ADD_NEW_DELIVERY_MODEL)
-    private MyModel addNewDeliveryModel;
-    private String returnUrl;
+  @Autowired
+  @Qualifier(Components.ADD_NEW_DELIVERY_MODEL)
+  private MyModel addNewDeliveryModel;
+  private String returnUrl;
 
     /*@RequestMapping(value = "/adding", method = RequestMethod.POST, params = {"routeId", "routeType", "Name"})
     public String addingStopToRoute(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
@@ -34,47 +34,47 @@ public class UserController {
         return "redirect:/";
     }*/
 
-    @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
-    public ModelAndView addNewDelivery() throws InstantiationException, IllegalAccessException {
-        Map<String, Object> model = addNewDeliveryModel.getModel();
-        return new ModelAndView("user_addNewDelivery", model);
-    }
+  @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
+  public ModelAndView addNewDelivery() throws InstantiationException, IllegalAccessException {
+    Map<String, Object> model = addNewDeliveryModel.getModel();
+    return new ModelAndView("user_addNewDelivery", model);
+  }
 
-    @SuppressWarnings("unchecked")
-    @RequestMapping(value = "/addNewSelectOption", method = RequestMethod.POST)
-    public String addNewSelectOption(Model model) {
-        System.out.println("!!!!!!!!test!!!!!!! -- " + System.currentTimeMillis());
-        System.out.println("return URL -> " + request.getHeader("Referer"));
-        Map<String, String[]> map = request.getParameterMap();
-        for (String obj : map.keySet()) {
-            System.out.println(obj + " -> " + map.get(obj));
-        }
-        returnUrl = request.getHeader("Referer");
-        model.addAttribute("returnUrl", returnUrl);
-        return "user_addNewSelectOption";
+  @SuppressWarnings("unchecked")
+  @RequestMapping(value = "/addNewSelectOption", method = RequestMethod.POST)
+  public String addNewSelectOption(Model model) {
+    System.out.println("!!!!!!!!test!!!!!!! -- " + System.currentTimeMillis());
+    System.out.println("return URL -> " + request.getHeader("Referer"));
+    Map<String, String[]> map = request.getParameterMap();
+    for (String obj : map.keySet()) {
+      System.out.println(obj + " -> " + map.get(obj));
     }
+    returnUrl = request.getHeader("Referer");
+    model.addAttribute("returnUrl", returnUrl);
+    return "user_addNewSelectOption";
+  }
 
-    @RequestMapping(value = "/addNewSelectOption/{param}", method = RequestMethod.POST)
-    public String add(@PathVariable String param, Model model) {
-        System.out.println("param -> " + param);
-        if (!param.equals("add") && !param.equals("back")) {
-            throw new IllegalArgumentException("Unknown parameter!!!");
-        } else if (param.equals("add")) {
-            // adding data to DB
-        }
-        System.out.println("returnUrl -> " + returnUrl);
-        return "redirect:" + returnUrl;
+  @RequestMapping(value = "/addNewSelectOption/{param}", method = RequestMethod.POST)
+  public String add(@PathVariable String param, Model model) {
+    System.out.println("param -> " + param);
+    if (!param.equals("add") && !param.equals("back")) {
+      throw new IllegalArgumentException("Unknown parameter!!!");
+    } else if (param.equals("add")) {
+      // adding data to DB
     }
+    System.out.println("returnUrl -> " + returnUrl);
+    return "redirect:" + returnUrl;
+  }
 
-    @RequestMapping(value = "/editExistingDelivery")
-    public String editExistingDelivery() {
-        return "user_editExistingDelivery";
-    }
+  @RequestMapping(value = "/editExistingDelivery")
+  public String editExistingDelivery() {
+    return "user_editExistingDelivery";
+  }
 
-    @RequestMapping(value = "/printAuthorization")
-    public String printAuthorization() {
-        return "user_printAuthorization";
-    }
+  @RequestMapping(value = "/printAuthorization")
+  public String printAuthorization() {
+    return "user_printAuthorization";
+  }
 
 
 }

@@ -11,5 +11,5 @@ import java.util.Map;
 * to add to your concrete model elements you need as for me
 * it is very simple to use this type of solution*/
 public interface MyModel {
-    public Map<String, Object> getModel();
+  public Map<String, Object> getModel();
 }
