@@ -2,64 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4afd813-9b87-44b4-9ea8-3160d05c19b4" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\DataInput.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\DropDown.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\Select.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\TextInput.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\impl\DatesModel.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\impl\DeliveryTypeModel.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\impl\DropDownListWrapper.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\impl\PlacesModel.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\models\impl\SizeAndWeightModel.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\AbstractService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\RebokService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\AuthorizationService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\CourierCompanyService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\DeliveryService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\DeliveryTypeService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\IdTypeService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\LocationService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\StaffService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\service\impl\UserServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\utils\DaoConstants.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\utils\ModelConstants.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/AbstractDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/AbstractDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/models/Adapter.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/models/Adapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/models/impl/AdapterImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/models/impl/AdapterImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Authorization.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Authorization.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/AuthorizationDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/AuthorizationDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/AuthorizationDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/AuthorizationDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/CourierCompany.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/CourierCompany.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/CourierCompanyDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/CourierCompanyDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/CourierCompanyDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/CourierCompanyDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/service/impl/CustomUserDetailsService.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/service/impl/CustomUserDetailsService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Delivery.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Delivery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/DeliveryDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/DeliveryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/DeliveryDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/DeliveryDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/DeliveryType.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/DeliveryType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/DeliveryTypeDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/DeliveryTypeDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/DeliveryTypeDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/DeliveryTypeDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/utils/DomainConstants.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/utils/DomainConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/GenericDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/GenericDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/IdType.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/IdType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/IdTypeDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/IdTypeDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/IdTypeDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/IdTypeDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Location.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Location.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/LocationDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/LocationDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/LocationDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/LocationDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/models/MyModel.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/models/MyModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Role.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Role.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/web/SecurityController.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/web/SecurityController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Staff.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/Staff.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/StaffDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/StaffDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/StaffDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/StaffDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/User.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/domain/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/web/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/web/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/UserDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/rebok2j/Runner.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/Runner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\web\AdminControler.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/web/AdminController.java" />
-      <change type="MOVED" beforePath="D:\TOP SECRET\Top secret\MyPrograms\Workspace\rebok2j\src\main\java\org\rebok2j\web\GuestControler.java" afterPath="$PROJECT_DIR$/src/main/java/org/rebok2j/web/GuestController.java" />
     </list>
     <list id="20aa6999-6a09-4a6b-a9ae-0ddd7a1e762f" name="Failed commit: Default" comment="ignore improve" />
     <ignored path="rebok2j.iws" />
@@ -179,8 +123,8 @@
       <file leaf-file-name="Runner.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/rebok2j/Runner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16625917" vertical-offset="0" max-vertical-offset="1224">
-              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.16625917" vertical-offset="0" max-vertical-offset="1173">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -222,7 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/IdTypeDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/LocationDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/StaffDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/dao/impl/UserDao.java" />
@@ -273,6 +216,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/web/GuestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/web/SecurityController.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/web/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/rebok2j/Runner.java" />
       </list>
     </option>
   </component>
@@ -1635,7 +1579,7 @@
       <workItem from="1403334806170" duration="12344000" />
       <workItem from="1403546653346" duration="3713000" />
       <workItem from="1403551575300" duration="13924000" />
-      <workItem from="1403719907798" duration="40957000" />
+      <workItem from="1403719907798" duration="41035000" />
     </task>
     <task id="LOCAL-00001" summary="ignore improve">
       <created>1403720143263</created>
@@ -1653,11 +1597,15 @@
       <created>1403942418659</created>
       <updated>1403942418659</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Resolving some warnings issues">
+      <created>1403947545677</created>
+      <updated>1403947545677</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77572000" />
+    <option name="totallyTimeSpent" value="77650000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1735,7 +1683,8 @@
     <MESSAGE value="Named Queries and constants updating" />
     <MESSAGE value="Global update for all layers" />
     <MESSAGE value="Global update for all layers sync" />
-    <option name="LAST_COMMIT_MESSAGE" value="Global update for all layers sync" />
+    <MESSAGE value="Resolving some warnings issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolving some warnings issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2204,8 +2153,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/rebok2j/Runner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16625917" vertical-offset="0" max-vertical-offset="1224">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.16625917" vertical-offset="0" max-vertical-offset="1173">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
