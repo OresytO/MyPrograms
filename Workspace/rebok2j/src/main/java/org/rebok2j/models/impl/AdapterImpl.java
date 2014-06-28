@@ -1,23 +1,15 @@
 package org.rebok2j.models.impl;
 
-import org.apache.log4j.Logger;
 import org.rebok2j.dao.*;
-import org.rebok2j.domain.Authorization;
-import org.rebok2j.domain.DeliveryType;
 import org.rebok2j.models.Adapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component
 public class AdapterImpl implements Adapter {
-    private static Logger log = Logger.getLogger(AdapterImpl.class);
-
     @Autowired
     AuthorizationDao authorizationDao;
 
@@ -62,12 +54,7 @@ public class AdapterImpl implements Adapter {
 
     @Override
     public Adapter getDeliveryTypeModel(String attributeName) {
-        log.error("------- getDeliveryTypeModel ------ start");
-        List<DeliveryType> list = deliveryTypeDao.getResultList();
-        log.error(attributeName + " -> " + list.toString());
-        this.model.put(attributeName, list);
-
-        log.error("------- getDeliveryTypeModel ------ end");
+        this.model.put(attributeName, deliveryTypeDao.getResultList());
         return this;
     }
 

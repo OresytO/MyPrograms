@@ -1,7 +1,8 @@
 package org.rebok2j.utils;
 
 /**
- * Created by OrestO on 6/24/2014.
+ * Created by OrestO
+ * on 6/24/2014.
  */
 public class DomainConstants {
     public static final String FIND_BY_NICKNAME_G = "findByNickName";

@@ -15,7 +15,7 @@ public class CourierCompany implements Domain, Serializable, Comparable<CourierC
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTypeId", nullable = false)
@@ -46,17 +46,19 @@ public class CourierCompany implements Domain, Serializable, Comparable<CourierC
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
+    @SuppressWarnings("unused")
     public IdType getIdType() {
         return idType;
     }
 
+    @SuppressWarnings("unused")
     public void setIdType(IdType idType) {
         this.idType = idType;
     }
@@ -73,38 +75,47 @@ public class CourierCompany implements Domain, Serializable, Comparable<CourierC
         return companyName;
     }
 
+    @SuppressWarnings("unused")
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    @SuppressWarnings("unused")
     public String getWarehouseCode() {
         return warehouseCode;
     }
 
+    @SuppressWarnings("unused")
     public void setWarehouseCode(String warehouseCode) {
         this.warehouseCode = warehouseCode;
     }
 
+    @SuppressWarnings("unused")
     public String getAddress() {
         return address;
     }
 
+    @SuppressWarnings("unused")
     public void setAddress(String address) {
         this.address = address;
     }
 
+    @SuppressWarnings("unused")
     public String getPhones() {
         return phones;
     }
 
+    @SuppressWarnings("unused")
     public void setPhones(String phones) {
         this.phones = phones;
     }
 
+    @SuppressWarnings("unused")
     public Set<Delivery> getDeliveries() {
         return deliveries;
     }
 
+    @SuppressWarnings("unused")
     public void setDeliveries(Set<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
@@ -113,7 +124,7 @@ public class CourierCompany implements Domain, Serializable, Comparable<CourierC
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -126,14 +137,12 @@ public class CourierCompany implements Domain, Serializable, Comparable<CourierC
         if (getClass() != obj.getClass())
             return false;
         CourierCompany other = (CourierCompany) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "CourierCompany [Id=" + Id + ", idType=" + idType + ", location=" + location + ", companyName=" + companyName + ", warehouseCode="
+        return "CourierCompany [id=" + id + ", idType=" + idType + ", location=" + location + ", companyName=" + companyName + ", warehouseCode="
                 + warehouseCode + ", address=" + address + ", phones=" + phones + "]";
     }
 

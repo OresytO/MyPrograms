@@ -16,7 +16,7 @@ public class DeliveryType implements Domain, Serializable, Comparable<DeliveryTy
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "type")
     private String type;
@@ -31,11 +31,11 @@ public class DeliveryType implements Domain, Serializable, Comparable<DeliveryTy
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getType() {
@@ -46,10 +46,12 @@ public class DeliveryType implements Domain, Serializable, Comparable<DeliveryTy
         this.type = type;
     }
 
+    @SuppressWarnings("unused")
     public Set<Delivery> getDeliveries() {
         return deliveries;
     }
 
+    @SuppressWarnings("unused")
     public void setDeliveries(Set<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
@@ -58,7 +60,7 @@ public class DeliveryType implements Domain, Serializable, Comparable<DeliveryTy
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -71,14 +73,12 @@ public class DeliveryType implements Domain, Serializable, Comparable<DeliveryTy
         if (getClass() != obj.getClass())
             return false;
         DeliveryType other = (DeliveryType) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "DeliveryType [Id=" + Id + ", type=" + type + "]";
+        return "DeliveryType [id=" + id + ", type=" + type + "]";
     }
 
     @Override

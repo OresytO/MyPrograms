@@ -16,7 +16,7 @@ public class IdType implements Domain, Serializable, Comparable<IdType> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "idName")
     private String idName;
@@ -30,25 +30,28 @@ public class IdType implements Domain, Serializable, Comparable<IdType> {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getIdName() {
         return idName;
     }
 
+    @SuppressWarnings("unused")
     public void setIdName(String idName) {
         this.idName = idName;
     }
 
+    @SuppressWarnings("unused")
     public Set<CourierCompany> getCourierCompanies() {
         return courierCompanies;
     }
 
+    @SuppressWarnings("unused")
     public void setCourierCompanies(Set<CourierCompany> courierCompanies) {
         this.courierCompanies = courierCompanies;
     }
@@ -57,7 +60,7 @@ public class IdType implements Domain, Serializable, Comparable<IdType> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -70,14 +73,12 @@ public class IdType implements Domain, Serializable, Comparable<IdType> {
         if (getClass() != obj.getClass())
             return false;
         IdType other = (IdType) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "IdType [Id=" + Id + ", idName=" + idName + "]";
+        return "IdType [id=" + id + ", idName=" + idName + "]";
     }
 
     @Override

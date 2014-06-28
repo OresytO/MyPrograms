@@ -6,6 +6,10 @@ import java.util.Set;
 
 import static org.rebok2j.utils.DomainConstants.AUTHORIZATION;
 
+/**
+ * Created by OrestO
+ * on 6/28/2014.
+ */
 @Entity
 @Table(name = "Authorizations")
 @NamedQueries({@NamedQuery(name = AUTHORIZATION.FIND_ALL, query = AUTHORIZATION.FIND_ALL_Q)})
@@ -16,7 +20,7 @@ public class Authorization implements Domain, Serializable, Comparable<Authoriza
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "authorization")
     private Set<Delivery> deliveries;
@@ -32,7 +36,7 @@ public class Authorization implements Domain, Serializable, Comparable<Authoriza
     @Column(name = "authorizationCode")
     private String authorizationCode;
 
-    @Column(name = "dateofAuthorization")
+    @Column(name = "dateOfAuthorization")
     private String dateofAuthorization;
 
     @Column(name = "creationDate")
@@ -45,57 +49,69 @@ public class Authorization implements Domain, Serializable, Comparable<Authoriza
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
+    @SuppressWarnings("unused")
     public Set<Delivery> getDeliveries() {
         return deliveries;
     }
 
+    @SuppressWarnings("unused")
     public void setDeliveries(Set<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
 
+    @SuppressWarnings("unused")
     public Staff getSignedPerson() {
         return signedPerson;
     }
 
+    @SuppressWarnings("unused")
     public void setSignedPerson(Staff signedPerson) {
         this.signedPerson = signedPerson;
     }
 
+    @SuppressWarnings("unused")
     public Staff getForwarder() {
         return forwarder;
     }
 
+    @SuppressWarnings("unused")
     public void setForwarder(Staff forwarder) {
         this.forwarder = forwarder;
     }
 
+    @SuppressWarnings("unused")
     public String getAuthorizationCode() {
         return authorizationCode;
     }
 
+    @SuppressWarnings("unused")
     public void setAuthorizationCode(String authorizationCode) {
         this.authorizationCode = authorizationCode;
     }
 
+    @SuppressWarnings("unused")
     public String getDateofAuthorization() {
         return dateofAuthorization;
     }
 
-    public void setDateofAuthorization(String dateofAuthorization) {
-        this.dateofAuthorization = dateofAuthorization;
+    @SuppressWarnings("unused")
+    public void setDateofAuthorization(String dateOfAuthorization) {
+        this.dateofAuthorization = dateOfAuthorization;
     }
 
+    @SuppressWarnings("unused")
     public String getCreationDate() {
         return creationDate;
     }
 
+    @SuppressWarnings("unused")
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
@@ -104,7 +120,7 @@ public class Authorization implements Domain, Serializable, Comparable<Authoriza
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -117,20 +133,18 @@ public class Authorization implements Domain, Serializable, Comparable<Authoriza
         if (getClass() != obj.getClass())
             return false;
         Authorization other = (Authorization) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "Authorization [Id=" + Id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", authorizationCode="
-                + authorizationCode + ", dateofAuthorization=" + dateofAuthorization + ", creationDate=" + creationDate + "]";
+        return "Authorization [id=" + id + ", deliveries=" + deliveries + ", signedPerson=" + signedPerson + ", forwarder=" + forwarder + ", authorizationCode="
+                + authorizationCode + ", dateOfAuthorization=" + dateofAuthorization + ", creationDate=" + creationDate + "]";
     }
 
     @Override
-    public int compareTo(Authorization o) {
-        return this.getAuthorizationCode().compareTo(o.getAuthorizationCode());
+    public int compareTo(Authorization authorization) {
+        return this.getAuthorizationCode().compareTo(authorization.getAuthorizationCode());
     }
 
 }

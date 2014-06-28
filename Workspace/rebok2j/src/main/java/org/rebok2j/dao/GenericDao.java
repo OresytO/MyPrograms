@@ -1,10 +1,13 @@
 package org.rebok2j.dao;
 
-import org.rebok2j.domain.Domain;
-
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by OrestO
+ * on 6/28/2014.
+ */
+/*It is global Dao interface based on generic types*/
 public interface GenericDao<T> {
 
     void persist(T entity);

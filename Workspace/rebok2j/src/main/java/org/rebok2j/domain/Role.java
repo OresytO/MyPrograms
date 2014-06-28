@@ -13,7 +13,7 @@ public class Role implements Domain, Serializable, Comparable<Role> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "roleName")
     private String roleName;
@@ -27,25 +27,28 @@ public class Role implements Domain, Serializable, Comparable<Role> {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getRoleName() {
         return roleName;
     }
 
+    @SuppressWarnings("unused")
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 
+    @SuppressWarnings("unused")
     public Set<User> getUsers() {
         return users;
     }
 
+    @SuppressWarnings("unused")
     public void setUsers(Set<User> users) {
         this.users = users;
     }
@@ -54,7 +57,7 @@ public class Role implements Domain, Serializable, Comparable<Role> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -67,14 +70,12 @@ public class Role implements Domain, Serializable, Comparable<Role> {
         if (getClass() != obj.getClass())
             return false;
         Role other = (Role) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "Role [Id=" + Id + ", roleName=" + roleName + "]";
+        return "Role [id=" + id + ", roleName=" + roleName + "]";
     }
 
     @Override

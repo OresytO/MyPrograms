@@ -15,7 +15,7 @@ public class Staff implements Domain, Serializable, Comparable<Staff> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "firstName")
     private String firstName;
@@ -44,65 +44,78 @@ public class Staff implements Domain, Serializable, Comparable<Staff> {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
+    @SuppressWarnings("unused")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    @SuppressWarnings("unused")
     public String getLastName() {
         return lastName;
     }
 
+    @SuppressWarnings("unused")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    @SuppressWarnings("unused")
     public String getPassport() {
         return passport;
     }
 
+    @SuppressWarnings("unused")
     public void setPassport(String passport) {
         this.passport = passport;
     }
 
+    @SuppressWarnings("unused")
     public String getDrivingLicense() {
         return drivingLicense;
     }
 
+    @SuppressWarnings("unused")
     public void setDrivingLicense(String drivingLicense) {
         this.drivingLicense = drivingLicense;
     }
 
+    @SuppressWarnings("unused")
     public Boolean getPowerToSign() {
         return powerToSign;
     }
 
+    @SuppressWarnings("unused")
     public void setPowerToSign(Boolean powerToSign) {
         this.powerToSign = powerToSign;
     }
 
+    @SuppressWarnings("unused")
     public Set<Authorization> getAuthorizationsSigned() {
         return authorizationsSigned;
     }
 
+    @SuppressWarnings("unused")
     public void setAuthorizationsSigned(Set<Authorization> authorizationsSigned) {
         this.authorizationsSigned = authorizationsSigned;
     }
 
+    @SuppressWarnings("unused")
     public Set<Authorization> getAuthorizationsAsForwarder() {
         return authorizationsAsForwarder;
     }
 
+    @SuppressWarnings("unused")
     public void setAuthorizationsAsForwarder(Set<Authorization> authorizationsAsForwarder) {
         this.authorizationsAsForwarder = authorizationsAsForwarder;
     }
@@ -111,7 +124,7 @@ public class Staff implements Domain, Serializable, Comparable<Staff> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -124,14 +137,12 @@ public class Staff implements Domain, Serializable, Comparable<Staff> {
         if (getClass() != obj.getClass())
             return false;
         Staff other = (Staff) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "Staff [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", passport=" + passport + ", drivingLicense=" + drivingLicense
+        return "Staff [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", passport=" + passport + ", drivingLicense=" + drivingLicense
                 + ", powerToSign=" + powerToSign + "]";
     }
 

@@ -17,7 +17,7 @@ public class User implements Domain, Serializable, Comparable<User> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "userNickname")
     private String userNickname;
@@ -41,17 +41,18 @@ public class User implements Domain, Serializable, Comparable<User> {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUserNickname() {
         return userNickname;
     }
 
+    @SuppressWarnings("unused")
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
     }
@@ -60,6 +61,7 @@ public class User implements Domain, Serializable, Comparable<User> {
         return password;
     }
 
+    @SuppressWarnings("unused")
     public void setPassword(String password) {
         this.password = password;
     }
@@ -68,6 +70,7 @@ public class User implements Domain, Serializable, Comparable<User> {
         return userName;
     }
 
+    @SuppressWarnings("unused")
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -76,6 +79,7 @@ public class User implements Domain, Serializable, Comparable<User> {
         return enabled;
     }
 
+    @SuppressWarnings("unused")
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
@@ -84,6 +88,7 @@ public class User implements Domain, Serializable, Comparable<User> {
         return roles;
     }
 
+    @SuppressWarnings("unused")
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
@@ -95,12 +100,19 @@ public class User implements Domain, Serializable, Comparable<User> {
 
     @Override
     public boolean equals(Object obj) {
-        return userNickname.equalsIgnoreCase((String) obj);
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        return !userNickname.equalsIgnoreCase(other.userNickname);
     }
 
     @Override
     public String toString() {
-        return "User [Id=" + Id + ", userName=" + userName + "]";
+        return "User [id=" + id + ", userName=" + userName + "]";
     }
 
     @Override

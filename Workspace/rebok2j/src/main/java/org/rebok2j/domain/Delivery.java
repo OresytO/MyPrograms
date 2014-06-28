@@ -15,7 +15,7 @@ public class Delivery implements Domain, Serializable, Comparable<Delivery> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "courierCompanyId", nullable = false)
@@ -62,17 +62,19 @@ public class Delivery implements Domain, Serializable, Comparable<Delivery> {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
+    @SuppressWarnings("unused")
     public CourierCompany getCourierCompany() {
         return courierCompany;
     }
 
+    @SuppressWarnings("unused")
     public void setCourierCompany(CourierCompany courierCompany) {
         this.courierCompany = courierCompany;
     }
@@ -81,86 +83,107 @@ public class Delivery implements Domain, Serializable, Comparable<Delivery> {
         return deliveryCode;
     }
 
+    @SuppressWarnings("unused")
     public void setDeliveryCode(String deliveryCode) {
         this.deliveryCode = deliveryCode;
     }
 
+    @SuppressWarnings("unused")
     public Double getWeight() {
         return weight;
     }
 
+    @SuppressWarnings("unused")
     public void setWeight(Double weight) {
         this.weight = weight;
     }
 
+    @SuppressWarnings("unused")
     public String getSize() {
         return size;
     }
 
+    @SuppressWarnings("unused")
     public void setSize(String size) {
         this.size = size;
     }
 
+    @SuppressWarnings("unused")
     public Double getCost() {
         return cost;
     }
 
+    @SuppressWarnings("unused")
     public void setCost(Double cost) {
         this.cost = cost;
     }
 
+    @SuppressWarnings("unused")
     public String getDateOfSending() {
         return dateOfSending;
     }
 
+    @SuppressWarnings("unused")
     public void setDateOfSending(String dateOfSending) {
         this.dateOfSending = dateOfSending;
     }
 
+    @SuppressWarnings("unused")
     public String getDateOfReceiving() {
         return dateOfReceiving;
     }
 
+    @SuppressWarnings("unused")
     public void setDateOfReceiving(String dateOfReceiving) {
         this.dateOfReceiving = dateOfReceiving;
     }
 
+    @SuppressWarnings("unused")
     public Boolean getSended() {
         return sended;
     }
 
+    @SuppressWarnings("unused")
     public void setSended(Boolean sended) {
         this.sended = sended;
     }
 
+    @SuppressWarnings("unused")
     public Boolean getReceived() {
         return received;
     }
 
+    @SuppressWarnings("unused")
     public void setReceived(Boolean received) {
         this.received = received;
     }
 
+    @SuppressWarnings("unused")
     public DeliveryType getTypeOfDelivery() {
         return typeOfDelivery;
     }
 
+    @SuppressWarnings("unused")
     public void setTypeOfDelivery(DeliveryType typeOfDelivery) {
         this.typeOfDelivery = typeOfDelivery;
     }
 
+    @SuppressWarnings("unused")
     public String getCreationDate() {
         return creationDate;
     }
 
+    @SuppressWarnings("unused")
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
+    @SuppressWarnings("unused")
     public Authorization getAuthorization() {
         return authorization;
     }
 
+    @SuppressWarnings("unused")
     public void setAuthorization(Authorization authorization) {
         this.authorization = authorization;
     }
@@ -169,7 +192,7 @@ public class Delivery implements Domain, Serializable, Comparable<Delivery> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -182,14 +205,12 @@ public class Delivery implements Domain, Serializable, Comparable<Delivery> {
         if (getClass() != obj.getClass())
             return false;
         Delivery other = (Delivery) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "Delivery [Id=" + Id + ", courierCompany=" + courierCompany + ", deliveryCode=" + deliveryCode + ", weight=" + weight + ", size=" + size
+        return "Delivery [id=" + id + ", courierCompany=" + courierCompany + ", deliveryCode=" + deliveryCode + ", weight=" + weight + ", size=" + size
                 + ", cost=" + cost + ", dateOfSending=" + dateOfSending + ", dateOfReceiving=" + dateOfReceiving + ", sended=" + sended + ", received="
                 + received + ", typeOfDelivery=" + typeOfDelivery + ", creationDate=" + creationDate + "]";
     }

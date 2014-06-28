@@ -1,6 +1,5 @@
 package org.rebok2j.service.impl;
 
-import org.rebok2j.dao.GenericDao;
 import org.rebok2j.dao.UserDao;
 import org.rebok2j.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +24,14 @@ import static org.rebok2j.utils.DomainConstants.USER;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserDao dao;
+    private UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String userNickname) throws UsernameNotFoundException {
         try {
             Map<String, String> map = new HashMap<>();
             map.put(USER.NICKNAME, userNickname);
-            org.rebok2j.domain.User domainUser = dao.getSingleResultFromNamedQuery(USER.FIND_BY_NICKNAME, map);
+            org.rebok2j.domain.User domainUser = userDao.getSingleResultFromNamedQuery(USER.FIND_BY_NICKNAME, map);
             boolean accountNonExpired = true;
             boolean credentialsNonExpired = true;
             boolean accountNonLocked = true;

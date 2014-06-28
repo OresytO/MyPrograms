@@ -1,7 +1,6 @@
 package org.rebok2j.dao;
 
 import org.apache.log4j.Logger;
-import org.rebok2j.domain.Domain;
 import org.rebok2j.utils.DomainConstants;
 import org.springframework.stereotype.Repository;
 
@@ -13,16 +12,17 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
+/*It is general DAO class for all common fields and methods*/
 @Repository
 public abstract class AbstractDao<T> implements GenericDao<T> {
     private static Logger log = Logger.getLogger(AbstractDao.class);
     public static final String PERSISTENCE_UNIT_NAME = "primary";
-    @PersistenceContext
-    // (name = "primary")
+    @PersistenceContext(name = PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;
 
     private Class<T> clazz;
 
+    @SuppressWarnings("unchecked")
     public AbstractDao() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;
@@ -53,13 +53,8 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getResultList() {
-        if (clazz == null) {
-            System.out.println("---------------- NUL ----------------------");
-            log.debug("---------------- NUL ----------------------");
-        }
-        //System.out.println(clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G);
-        //log.debug("+++++++++++++++++++++++++++++++++" + clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G);
         Query query = entityManager.createNamedQuery(clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G);
+        log.info("query to execute: " + clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G);
         return (List<T>) query.getResultList();
     }
 
@@ -67,6 +62,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
     @Override
     public List<T> getResultListFromNamedQuery(String namedQueryName, Map<String, String> paramMap) {
         Query query = entityManager.createNamedQuery(namedQueryName);
+        log.info("query to execute: " + namedQueryName);
         if (paramMap != null) {
             for (String key : paramMap.keySet()) {
                 query.setParameter(key, paramMap.get(key));
@@ -79,6 +75,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
     @Override
     public T getSingleResultFromNamedQuery(String namedQueryName, Map<String, String> paramMap) {
         Query query = entityManager.createNamedQuery(namedQueryName);
+        log.info("query to execute: " + namedQueryName);
         if (paramMap != null) {
             for (String key : paramMap.keySet()) {
                 query.setParameter(key, paramMap.get(key));

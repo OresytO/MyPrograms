@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @PreAuthorize("permitAll")
 public class SecurityController {
-    private static Logger log = Logger.getLogger(SecurityController.class.getName());
+    private static Logger log = Logger.getLogger(SecurityController.class);
 
     @RequestMapping(value = "/login")
-    public String signin() {
+    public String login() {
         log.info("+++++++++++++++++++++++++++++++++++++++++ security_login");
         return "security_login";
     }

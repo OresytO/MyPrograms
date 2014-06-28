@@ -16,7 +16,7 @@ public class Location implements Domain, Serializable, Comparable<Location> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "locationName")
     private String locationName;
@@ -30,25 +30,28 @@ public class Location implements Domain, Serializable, Comparable<Location> {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getLocationName() {
         return locationName;
     }
 
+    @SuppressWarnings("unused")
     public void setLocationName(String locationName) {
         this.locationName = locationName;
     }
 
+    @SuppressWarnings("unused")
     public Set<CourierCompany> getCourierCompanies() {
         return courierCompanies;
     }
 
+    @SuppressWarnings("unused")
     public void setCourierCompanies(Set<CourierCompany> courierCompanies) {
         this.courierCompanies = courierCompanies;
     }
@@ -57,7 +60,7 @@ public class Location implements Domain, Serializable, Comparable<Location> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
+        result = prime * result + (int) (id ^ (id >>> 32));
         return result;
     }
 
@@ -70,14 +73,12 @@ public class Location implements Domain, Serializable, Comparable<Location> {
         if (getClass() != obj.getClass())
             return false;
         Location other = (Location) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
+        return !id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "Location [Id=" + Id + ", locationName=" + locationName + "]";
+        return "Location [id=" + id + ", locationName=" + locationName + "]";
     }
 
     @Override

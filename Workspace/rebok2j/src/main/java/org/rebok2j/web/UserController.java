@@ -1,7 +1,5 @@
 package org.rebok2j.web;
 
-import org.apache.log4j.Logger;
-import org.rebok2j.domain.Domain;
 import org.rebok2j.models.MyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,59 +17,29 @@ import java.util.Map;
 @Controller
 @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 public class UserController {
-    private static Logger log = Logger.getLogger(UserController.class.getName());
+    /*private static Logger log = Logger.getLogger(UserController.class);*/
 
     @Autowired
     private HttpServletRequest request;
-
-/*    @Autowired
-    @Qualifier("deliveryTypeService")
-    private RebokService deliveryTypeService;
-
-    @Autowired
-    @Qualifier("authorizationService")
-    private RebokService authorizationService;
-
-    @Autowired
-    @Qualifier("courierCompanyService")
-    private RebokService courierCompanyService;
-
-    @Autowired
-    @Qualifier("deliveryService")
-    private RebokService deliveryService;
-
-    @Autowired
-    @Qualifier("idTypeService")
-    private RebokService idTypeService;
-
-    @Autowired
-    @Qualifier("locationService")
-    private RebokService locationService;*/
 
     @Autowired
     @Qualifier("addNewDeliveryModel")
     private MyModel addNewDeliveryModel;
     private String returnUrl;
 
-    @RequestMapping(value = "/adding", method = RequestMethod.POST, params = {"routeId", "routeType", "Name"})
+    /*@RequestMapping(value = "/adding", method = RequestMethod.POST, params = {"routeId", "routeType", "Name"})
     public String addingStopToRoute(@RequestParam(value = "routeId") Integer id, @RequestParam(value = "routeType") String routeType,
                                     @RequestParam(value = "Name") String name) {
         return "redirect:/";
-    }
+    }*/
 
     @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
     public ModelAndView addNewDelivery() throws InstantiationException, IllegalAccessException {
-        /*model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillElement("DeliveryType.findAll"));
-        model.addAttribute("courierCompanyDropDown", courierCompanyService.fillElement("CourierCompany.findAll"));
-        model.addAttribute("locationDropDown", locationService.fillElement("Location.findAll"));*/
-
         Map<String, Object> model = addNewDeliveryModel.getModel();
-        /*for (DeliveryType dt : (List<DeliveryType>) model.get("deliveryTypeDropDown"))
-            System.out.println(dt.getId());*/
         return new ModelAndView("user_addNewDelivery", model);
     }
 
-    @SuppressWarnings("unchecked")
+    /*@SuppressWarnings("unchecked")
     @RequestMapping(value = "/addNewSelectOption", method = RequestMethod.POST)
     public String addNewSelectOption(Model model) {
         System.out.println("!!!!!!!!test!!!!!!! -- " + System.currentTimeMillis());
@@ -84,7 +51,7 @@ public class UserController {
         returnUrl = request.getHeader("Referer");
         model.addAttribute("returnUrl", returnUrl);
         return "user_addNewSelectOption";
-    }
+    }*/
 
     @RequestMapping(value = "/addNewSelectOption/{param}", method = RequestMethod.POST)
     public String add(@PathVariable String param, Model model) {
@@ -104,7 +71,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/printAuthorization")
-    public String printAutorization() {
+    public String printAuthorization() {
         return "user_printAuthorization";
     }
 
