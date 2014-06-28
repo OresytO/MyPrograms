@@ -34,9 +34,9 @@
     </sec:authorize>
 </div>
 
-<script>
+<%--<script>
 	$("#accordion").accordion({
 		collapsible : true
 	});
-</script>
+</script>--%>
 

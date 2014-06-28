@@ -3,15 +3,17 @@
 }
 
 .blockDiv {
+    height: 33.33%;
+    width: 100%;
 	position: relative;
+    background: aqua;
+    float: left;
 }
 
 .innerDiv {
-	height: 33.33%;
 	width: 33.33%;
 	float: left;
 	position: relative;
-	background: aqua;
 }
 
 .text,.dropDown,.globalDiv,.innerSet {
