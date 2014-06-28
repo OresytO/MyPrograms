@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `CourierCompanies` (`id` BIGINT(20) NOT NULL AUTO_INC
 -- Table `deliveriesTypes`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `DeliveriesTypes` (`id` BIGINT(20) NOT NULL AUTO_INCREMENT,`deliveryType` VARCHAR(255) NULL DEFAULT NULL,PRIMARY KEY (`id`))ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+CREATE TABLE IF NOT EXISTS `DeliveriesTypes` (`id` BIGINT(20) NOT NULL AUTO_INCREMENT,`type` VARCHAR(255) NULL DEFAULT NULL,PRIMARY KEY (`id`))ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
 -- Table `deliveries`

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.rebok2j</groupId>
     <artifactId>rebok2j</artifactId>
@@ -6,52 +7,70 @@
     <packaging>war</packaging>
     <name>Rebok2J</name>
 
-    <!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> <version>3.1</version> <configuration> <source>1.7</source> 
-        <target>1.7</target> </configuration> </plugin> </plugins> </build> -->
+    <!-- <build>
+         <plugins>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.1</version>
+                 <configuration>
+                     <source>1.7</source>
+                     <target>1.7</target>
+                 </configuration>
+             </plugin>
+         </plugins>
+     </build>-->
 
-    <build>
-        <finalName>test</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
-                    <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <configuration>
-                        <warName>${project.artifactId}</warName>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <configuration>
-                        <projectNameTemplate>${project.artifactId}</projectNameTemplate>
-                        <wtpapplicationxml>true</wtpapplicationxml>
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                        <wtpversion>1.5</wtpversion>
-                        <classpathContainers>
-                            <classpathContainer>org.eclipse.jst.j2ee.internal.web.container</classpathContainer>
-                            <classpathContainer>org.eclipse.jst.j2ee.internal.module.container</classpathContainer>
-                        </classpathContainers>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>7.0.0.v20091005</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+    <build> <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <projectNameTemplate>${project.artifactId}</projectNameTemplate>
+                    <wtpapplicationxml>true</wtpapplicationxml>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <wtpversion>1.5</wtpversion>
+                    <classpathContainers>
+                        <classpathContainer>org.eclipse.jst.j2ee.internal.web.container</classpathContainer>
+                        <classpathContainer>org.eclipse.jst.j2ee.internal.module.container</classpathContainer>
+                    </classpathContainers>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.0.0.v20091005</version>
+
+            </plugin>
+            <!--<plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.1.5-SNAPSHOT</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                </configuration>
+            </plugin>-->
+        </plugins>
+    </pluginManagement>
+</build>
 
     <properties>
         <spring.version>4.0.4.RELEASE</spring.version>
@@ -60,13 +79,33 @@
         <mysql.version>5.1.25</mysql.version>
         <jstl.version>1.2</jstl.version>
         <eclipse.persistence.version>2.5.0</eclipse.persistence.version>
-        <javax.servlet.version>2.5</javax.servlet.version>
+        <javax.servlet.version>3.0.1</javax.servlet.version>
         <tiles.version>2.2.2</tiles.version>
         <org.slf4j-version>1.7.7</org.slf4j-version>
         <log4j.version>1.2.17</log4j.version>
+        <jetty.version>9.1.5.v20140505</jetty.version>
     </properties>
 
     <dependencies>
+
+        <!--<dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-deploy</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>-->
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -167,10 +206,10 @@
         <!-- Java EE -->
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
+            <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
-            <scope>provided</scope>
         </dependency>
+
 
         <dependency>
             <groupId>jstl</groupId>
@@ -221,10 +260,11 @@
             <version>${log4j.version}</version>
         </dependency>
 
-        <!-- <dependency> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-server</artifactId> <version>9.1.5.v20140505</version> </dependency> -->
-
-        <!-- <dependency> <groupId>org.mortbay.jetty</groupId> <artifactId>jetty</artifactId> <version>6.1.26</version> </dependency> -->
-
+        <!--<dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty</artifactId>
+            <version>6.1.26</version>
+        </dependency>-->
 
     </dependencies>
 </project>

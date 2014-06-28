@@ -1,6 +1,6 @@
 package org.rebok2j.service;
 
-import org.rebok2j.dao.Dao;
+import org.rebok2j.dao.GenericDao;
 import org.rebok2j.models.DropDown;
 import org.rebok2j.models.impl.DropDownListWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.TreeMap;
 public abstract class AbstractService<T> implements RebokService {
 
     @Autowired
-    Dao<T> dao;
+    GenericDao<T> dao;
 
     @SuppressWarnings("unchecked")
     private Map<Object, Object> getMapFromDB(String namedQuery) throws InstantiationException, IllegalAccessException {

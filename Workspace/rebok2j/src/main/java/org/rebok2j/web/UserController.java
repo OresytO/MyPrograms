@@ -1,6 +1,7 @@
 package org.rebok2j.web;
 
 import org.apache.log4j.Logger;
+import org.rebok2j.domain.Domain;
 import org.rebok2j.models.MyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -48,7 +50,7 @@ public class UserController {
     private RebokService locationService;*/
 
     @Autowired
-    @Qualifier("AddNewDeliveryModel")
+    @Qualifier("addNewDeliveryModel")
     private MyModel addNewDeliveryModel;
     private String returnUrl;
 
@@ -59,13 +61,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addNewDelivery", method = RequestMethod.GET)
-    public String addNewDelivery(Model model) throws InstantiationException, IllegalAccessException {
+    public ModelAndView addNewDelivery() throws InstantiationException, IllegalAccessException {
         /*model.addAttribute("deliveryTypeDropDown", deliveryTypeService.fillElement("DeliveryType.findAll"));
         model.addAttribute("courierCompanyDropDown", courierCompanyService.fillElement("CourierCompany.findAll"));
         model.addAttribute("locationDropDown", locationService.fillElement("Location.findAll"));*/
 
-        model = addNewDeliveryModel.getModel();
-        return "user_addNewDelivery";
+        Map<String, Object> model = addNewDeliveryModel.getModel();
+        /*for (DeliveryType dt : (List<DeliveryType>) model.get("deliveryTypeDropDown"))
+            System.out.println(dt.getId());*/
+        return new ModelAndView("user_addNewDelivery", model);
     }
 
     @SuppressWarnings("unchecked")
@@ -73,7 +77,7 @@ public class UserController {
     public String addNewSelectOption(Model model) {
         System.out.println("!!!!!!!!test!!!!!!! -- " + System.currentTimeMillis());
         System.out.println("return URL -> " + request.getHeader("Referer").toString());
-        Map<String, Object> map = request.getParameterMap();
+        Map<String, String[]> map = request.getParameterMap();
         for (String obj : map.keySet()) {
             System.out.println(obj.toString() + " -> " + map.get(obj).toString());
         }

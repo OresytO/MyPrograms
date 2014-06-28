@@ -1,9 +1,11 @@
 package org.rebok2j.dao;
 
+import org.rebok2j.domain.Domain;
+
 import java.util.List;
 import java.util.Map;
 
-public interface Dao<T> {
+public interface GenericDao<T> {
 
     void persist(T entity);
 
@@ -12,8 +14,6 @@ public interface Dao<T> {
     void remove(T entity);
 
     T findById(Long id);
-
-    T getSingleResult();
 
     List<T> getResultList();
 

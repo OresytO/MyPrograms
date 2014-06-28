@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Roles")
-public class Role implements Serializable, Comparable<Role> {
+public class Role implements Domain, Serializable, Comparable<Role> {
 
     private static final long serialVersionUID = -2982346171367786230L;
 

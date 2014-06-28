@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GuestControler {
     private static Logger log = Logger.getLogger(GuestControler.class.getName());
 
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String index() {
         return "welcome";
     }

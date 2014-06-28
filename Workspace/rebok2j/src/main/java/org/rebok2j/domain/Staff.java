@@ -9,7 +9,7 @@ import static org.rebok2j.utils.DomainConstants.STAFF;
 @Entity
 @Table(name = "Staff")
 @NamedQueries({@NamedQuery(name = STAFF.FIND_ALL, query = STAFF.FIND_ALL_Q)})
-public class Staff implements Serializable, Comparable<Staff> {
+public class Staff implements Domain, Serializable, Comparable<Staff> {
     private static final long serialVersionUID = 1949287398495056789L;
 
     @Id

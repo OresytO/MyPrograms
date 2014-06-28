@@ -9,7 +9,7 @@ import static org.rebok2j.utils.DomainConstants.AUTHORIZATION;
 @Entity
 @Table(name = "Authorizations")
 @NamedQueries({@NamedQuery(name = AUTHORIZATION.FIND_ALL, query = AUTHORIZATION.FIND_ALL_Q)})
-public class Authorization implements Serializable, Comparable<Authorization> {
+public class Authorization implements Domain, Serializable, Comparable<Authorization> {
 
     private static final long serialVersionUID = 7473471713802663734L;
 

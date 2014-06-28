@@ -9,7 +9,7 @@ import static org.rebok2j.utils.DomainConstants.ID_TYPE;
 @Entity
 @Table(name = "IdTypes")
 @NamedQueries({@NamedQuery(name = ID_TYPE.FIND_ALL, query = ID_TYPE.FIND_ALL_Q)})
-public class IdType implements Serializable, Comparable<IdType> {
+public class IdType implements Domain, Serializable, Comparable<IdType> {
 
     private static final long serialVersionUID = -8981711113476946436L;
 

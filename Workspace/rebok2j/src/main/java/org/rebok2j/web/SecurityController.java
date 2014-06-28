@@ -12,11 +12,13 @@ public class SecurityController {
 
     @RequestMapping(value = "/login")
     public String signin() {
+        log.info("+++++++++++++++++++++++++++++++++++++++++ security_login");
         return "security_login";
     }
 
     @RequestMapping(value = "/denied")
     public String denied() {
+        log.info("+++++++++++++++++++++++++++++++++++++++++ security_denied");
         return "security_denied";
     }
 

@@ -10,7 +10,7 @@ import static org.rebok2j.utils.DomainConstants.USER;
 @Table(name = "Users")
 @NamedQueries({@NamedQuery(name = USER.FIND_BY_NICKNAME, query = USER.FIND_BY_NICKNAME_Q),
         @NamedQuery(name = USER.FIND_ALL, query = USER.FIND_ALL_Q)})
-public class User implements Serializable, Comparable<User> {
+public class User implements Domain, Serializable, Comparable<User> {
 
     private static final long serialVersionUID = -7588331808777137405L;
 

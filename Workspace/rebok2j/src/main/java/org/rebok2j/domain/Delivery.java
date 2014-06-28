@@ -8,7 +8,7 @@ import static org.rebok2j.utils.DomainConstants.DELIVERY;
 @Entity
 @Table(name = "Deliveries")
 @NamedQueries({@NamedQuery(name = DELIVERY.FIND_ALL, query = DELIVERY.FIND_ALL_Q)})
-public class Delivery implements Serializable, Comparable<Delivery> {
+public class Delivery implements Domain, Serializable, Comparable<Delivery> {
 
     private static final long serialVersionUID = -6048746691997605170L;
 

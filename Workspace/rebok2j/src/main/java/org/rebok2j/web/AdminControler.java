@@ -1,13 +1,13 @@
 package org.rebok2j.web;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.rebok2j.service.RebokService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")

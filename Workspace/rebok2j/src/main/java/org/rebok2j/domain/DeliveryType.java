@@ -9,7 +9,7 @@ import static org.rebok2j.utils.DomainConstants.DELIVERY_TYPE;
 @Entity
 @Table(name = "DeliveriesTypes")
 @NamedQueries({@NamedQuery(name = DELIVERY_TYPE.FIND_ALL, query = DELIVERY_TYPE.FIND_ALL_Q)})
-public class DeliveryType implements Serializable, Comparable<DeliveryType> {
+public class DeliveryType implements Domain, Serializable, Comparable<DeliveryType> {
 
     private static final long serialVersionUID = 5420966512380043267L;
 
@@ -18,8 +18,8 @@ public class DeliveryType implements Serializable, Comparable<DeliveryType> {
     @Column(name = "id")
     private Long Id;
 
-    @Column(name = "deliveryType")
-    private String deliveryType;
+    @Column(name = "type")
+    private String type;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfDelivery")
     private Set<Delivery> deliveries;
@@ -38,12 +38,12 @@ public class DeliveryType implements Serializable, Comparable<DeliveryType> {
         Id = id;
     }
 
-    public String getDeliveryType() {
-        return deliveryType;
+    public String getType() {
+        return type;
     }
 
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Set<Delivery> getDeliveries() {
@@ -78,12 +78,12 @@ public class DeliveryType implements Serializable, Comparable<DeliveryType> {
 
     @Override
     public String toString() {
-        return "DeliveryType [Id=" + Id + ", deliveryType=" + deliveryType + "]";
+        return "DeliveryType [Id=" + Id + ", type=" + type + "]";
     }
 
     @Override
     public int compareTo(DeliveryType o) {
-        return this.getDeliveryType().compareToIgnoreCase(o.getDeliveryType());
+        return this.getType().compareToIgnoreCase(o.getType());
     }
 
 }

@@ -9,7 +9,7 @@ import static org.rebok2j.utils.DomainConstants.COURIER_COMPANY;
 @Entity
 @Table(name = "CourierCompanies")
 @NamedQueries({@NamedQuery(name = COURIER_COMPANY.FIND_ALL, query = COURIER_COMPANY.FIND_ALL_Q)})
-public class CourierCompany implements Serializable, Comparable<CourierCompany> {
+public class CourierCompany implements Domain, Serializable, Comparable<CourierCompany> {
     private static final long serialVersionUID = -8599566022985360241L;
 
     @Id
