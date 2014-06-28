@@ -1,5 +1,6 @@
 package org.rebok2j.service.impl;
 
+import org.rebok2j.utils.Components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-@Component
+@Component(Components.CUSTOM_AUTHENTICATION_PROVIDER)
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
   @Autowired

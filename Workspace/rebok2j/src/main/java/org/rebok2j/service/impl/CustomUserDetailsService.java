@@ -2,6 +2,7 @@ package org.rebok2j.service.impl;
 
 import org.rebok2j.dao.UserDao;
 import org.rebok2j.domain.Role;
+import org.rebok2j.utils.Components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +20,7 @@ import java.util.Set;
 
 import static org.rebok2j.utils.DomainConstants.USER;
 
-@Service
+@Service(Components.CUSTOM_USER_DETAILS_SERVICE)
 @Transactional(readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService {
 

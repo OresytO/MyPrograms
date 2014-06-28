@@ -6,4 +6,6 @@ package org.rebok2j.utils;
  */
 public class Components {
   public static final String ADD_NEW_DELIVERY_MODEL = "addNewDeliveryModel";
+  public static final String CUSTOM_AUTHENTICATION_PROVIDER = "customAuthenticationProvider";
+  public static final String CUSTOM_USER_DETAILS_SERVICE = "customUserDetailsService";
 }
