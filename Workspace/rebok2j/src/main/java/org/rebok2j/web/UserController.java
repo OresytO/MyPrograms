@@ -1,6 +1,7 @@
 package org.rebok2j.web;
 
 import org.rebok2j.models.MyModel;
+import org.rebok2j.utils.Components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,7 +24,7 @@ public class UserController {
     private HttpServletRequest request;
 
     @Autowired
-    @Qualifier("addNewDeliveryModel")
+    @Qualifier(Components.ADD_NEW_DELIVERY_MODEL)
     private MyModel addNewDeliveryModel;
     private String returnUrl;
 

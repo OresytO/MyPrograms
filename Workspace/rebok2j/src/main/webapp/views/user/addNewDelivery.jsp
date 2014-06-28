@@ -1,3 +1,4 @@
+<%@ page import="org.rebok2j.utils.WebConstants" %>
 <%@ page language="java" contentType="text/html; charset=UTF8" pageEncoding="UTF8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -5,7 +6,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
-<c:set var="val"><spring:message code="label.addNewOne" /></c:set>
+<c:set var="addNewOneLabel"><spring:message code="label.addNewOne" /></c:set>
+<c:set var="allDeliveryType" value="<%=WebConstants.ALL_DELIVERY_TYPES%>" />
+<c:set var="allLocation" value="<%=WebConstants.ALL_LOCATIONS%>" />
+<c:set var="allCourierCompany" value="<%=WebConstants.ALL_COURIER_COMPANIES%>" />
+
+<%
+
+%>
 
 <div class="globalDiv">
   <form id="addNewDelivery" method="post" style="text-align: left">
@@ -20,8 +28,8 @@
             <legend class="legend">
               <strong><spring:message code="label.type" /></strong>
             </legend>
-            <select class="dropDown" name="type" onchange="javascript:onChange(this, '${val}')">
-              <c:forEach var="type" items="${allDeliveryTypes}">
+            <select class="dropDown" name="type" onchange="onChange(this, '${addNewOneLabel}')">
+              <c:forEach var="type" items="${requestScope[allDeliveryType]}">
                 <c:if test="type.type">
                   <option selected="selected" value="${type.id}">${type.type}</option>
                 </c:if>
@@ -38,9 +46,8 @@
             <legend class="legend">
               <strong><spring:message code="label.placeOfReceiving" /></strong>
             </legend>
-            <select class="dropDown" name="placeOfReceiving"
-                    onchange="javascript:onChange(this, '${val}');">
-              <c:forEach var="placeOfReceiving" items="${allLocations}">
+            <select class="dropDown" name="placeOfReceiving" onchange="onChange(this, '${addNewOneLabel}');">
+              <c:forEach var="placeOfReceiving" items="${requestScope[allLocation]}">
                 <c:if test="placeOfReceiving.value">
                   <option selected="selected" value="${placeOfReceiving.id}">${placeOfReceiving.locationName}</option>
                 </c:if>
@@ -57,8 +64,8 @@
             <legend class="legend">
               <strong><spring:message code="label.placeOfDeparture" /></strong>
             </legend>
-            <select class="dropDown" name="placeOfDeparture" onchange="javascript:onChange(this, '${val}');">
-              <c:forEach var="placeOfDeparture" items="${allLocations}">
+            <select class="dropDown" name="placeOfDeparture" onchange="onChange(this, '${addNewOneLabel}');">
+              <c:forEach var="placeOfDeparture" items="${requestScope[allLocation]}">
                 <c:if test="placeOfDeparture.value">
                   <option selected="selected" value="${placeOfDeparture.id}">${placeOfDeparture.locationName}</option>
                 </c:if>
@@ -122,8 +129,8 @@
               <strong><spring:message code="label.courierCompany" /></strong>
             </legend>
             <select class="dropDown" name="courierCompany"
-                    onchange="javascript:onChange(this, <spring:message code="label.addNewOne" />);">
-              <c:forEach var="courierCompany" items="${allCourierCompanies}">
+                    onchange="onChange(this, <spring:message code="label.addNewOne" />);">
+              <c:forEach var="courierCompany" items="${requestScope[allCourierCompany]}">
                 <c:if test="courierCompany.value">
                   <option selected="selected" value="${courierCompany.id}">${courierCompany.companyName} ${courierCompany.warehouseCode}</option>
                 </c:if>
