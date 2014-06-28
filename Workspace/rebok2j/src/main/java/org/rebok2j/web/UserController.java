@@ -39,19 +39,19 @@ public class UserController {
         return new ModelAndView("user_addNewDelivery", model);
     }
 
-    /*@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addNewSelectOption", method = RequestMethod.POST)
     public String addNewSelectOption(Model model) {
         System.out.println("!!!!!!!!test!!!!!!! -- " + System.currentTimeMillis());
-        System.out.println("return URL -> " + request.getHeader("Referer").toString());
+        System.out.println("return URL -> " + request.getHeader("Referer"));
         Map<String, String[]> map = request.getParameterMap();
         for (String obj : map.keySet()) {
-            System.out.println(obj.toString() + " -> " + map.get(obj).toString());
+            System.out.println(obj + " -> " + map.get(obj));
         }
         returnUrl = request.getHeader("Referer");
         model.addAttribute("returnUrl", returnUrl);
         return "user_addNewSelectOption";
-    }*/
+    }
 
     @RequestMapping(value = "/addNewSelectOption/{param}", method = RequestMethod.POST)
     public String add(@PathVariable String param, Model model) {
