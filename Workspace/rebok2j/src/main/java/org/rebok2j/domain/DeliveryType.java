@@ -1,97 +1,89 @@
 package org.rebok2j.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import static org.rebok2j.utils.DomainConstants.DELIVERY_TYPE;
 
 @Entity
 @Table(name = "DeliveriesTypes")
-@NamedQueries({ @NamedQuery(name = "DeliveryType.findAll", query = "select dt from DeliveryType dt") })
-public class DeliveryType implements Serializable, Comparable<DeliveryType> {
+@NamedQueries({@NamedQuery(name = DELIVERY_TYPE.FIND_ALL, query = DELIVERY_TYPE.FIND_ALL_Q)})
+public class DeliveryType implements Domain, Serializable, Comparable<DeliveryType> {
 
-    private static final long serialVersionUID = 5420966512380043267L;
+  private static final long serialVersionUID = 5420966512380043267L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long Id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
-    @Column(name = "deliveryType")
-    private String deliveryType;
+  @Column(name = "type")
+  private String type;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfDelivery")
-    private Set<Delivery> deliveries;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfDelivery")
+  private Set<Delivery> deliveries;
 
     /*-----------------------------------------------------------*/
 
-    public DeliveryType() {
-        super();
-    }
+  public DeliveryType() {
+    super();
+  }
 
-    public long getId() {
-        return Id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public void setId(long id) {
-        Id = id;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public String getDeliveryType() {
-        return deliveryType;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public Set<Delivery> getDeliveries() {
-        return deliveries;
-    }
+  @SuppressWarnings("unused")
+  public Set<Delivery> getDeliveries() {
+    return deliveries;
+  }
 
-    public void setDeliveries(Set<Delivery> deliveries) {
-        this.deliveries = deliveries;
-    }
+  @SuppressWarnings("unused")
+  public void setDeliveries(Set<Delivery> deliveries) {
+    this.deliveries = deliveries;
+  }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (Id ^ (Id >>> 32));
-        return result;
-    }
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (int) (id ^ (id >>> 32));
+    return result;
+  }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        DeliveryType other = (DeliveryType) obj;
-        if (Id != other.Id)
-            return false;
-        return true;
-    }
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    DeliveryType other = (DeliveryType) obj;
+    return !id.equals(other.id);
+  }
 
-    @Override
-    public String toString() {
-        return "DeliveryType [Id=" + Id + ", deliveryType=" + deliveryType + "]";
-    }
+  @Override
+  public String toString() {
+    return "DeliveryType [id=" + id + ", type=" + type + "]";
+  }
 
-    @Override
-    public int compareTo(DeliveryType o) {
-        return this.getDeliveryType().compareToIgnoreCase(o.getDeliveryType());
-    }
+  @Override
+  public int compareTo(DeliveryType o) {
+    return this.getType().compareToIgnoreCase(o.getType());
+  }
 
 }
