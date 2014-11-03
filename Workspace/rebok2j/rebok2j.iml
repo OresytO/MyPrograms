@@ -4,10 +4,9 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/data.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/servlet-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/spring-security.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/org/rebok2j/configuration/SpringSecurityConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/org/rebok2j/configuration/WebMvcConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/org/rebok2j/configuration/PersistenceConfiguration.java</file>
         </fileset>
       </configuration>
     </facet>

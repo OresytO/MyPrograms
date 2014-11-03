@@ -10,7 +10,7 @@
 
   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="location">
-      <value>WEB-INF/jpa.properties</value>
+      <value>../../../resources/jpa.properties</value>
     </property>
   </bean>
 

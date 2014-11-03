@@ -5,12 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 /**
@@ -20,12 +23,12 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 @Configuration
 @EnableWebSecurity
-@EnableWebMvcSecurity
+//@EnableWebMvcSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Autowired
   @Qualifier(Components.CUSTOM_AUTHENTICATION_PROVIDER)
-  AuthenticationProvider authenticationProvider;
+  AuthenticationProvider customAuthenticationProvider;
 
   @Autowired
   @Qualifier(Components.CUSTOM_USER_DETAILS_SERVICE)
@@ -34,7 +37,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(WebSecurity web) throws Exception {
     //Spring Security ignores request to static resources such as CSS or JS files.
-    web.ignoring().antMatchers("/resources");
+    web.ignoring().antMatchers("/resources/**");
   }
 
 /*  @Override
@@ -46,11 +49,57 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
-    http.authorizeRequests()
-      .and().formLogin().loginPage("/login").failureUrl("/login/failure").defaultSuccessUrl("/")
-      .and().exceptionHandling().accessDeniedPage("/denied")
-      .and().logout().invalidateHttpSession(true).logoutSuccessUrl("/").logoutUrl("/logout")
-      .and().authenticationProvider(authenticationProvider).userDetailsService(userDetailsService);
-    http.addFilter(new DelegatingFilterProxy());
+    http
+      .authorizeRequests()
+        .antMatchers("/**")
+        .hasRole("USER")
+        .and()
+      .formLogin()
+        .loginPage("/login")
+        .failureUrl("/login/failure")
+        .defaultSuccessUrl("/welcome")
+        .permitAll()
+        .and()
+      .exceptionHandling()
+        .accessDeniedPage("/denied")
+        .and()
+      .logout()
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/login")
+        .invalidateHttpSession(true)
+;
+//        .and()
+//        .authenticationProvider(customAuthenticationProvider).userDetailsService(userDetailsService)
+//      .addFilterBefore(new DelegatingFilterProxy(), BasicAuthenticationFilter.class);
+
+//    http
+//        .authorizeRequests()
+//        .antMatchers("/**").hasRole("USER")
+//        .and()
+//        .formLogin();
   }
+
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth
+        .authenticationProvider(customAuthenticationProvider)
+        .userDetailsService(userDetailsService);
+  }
+//
+//  @Override
+//  protected void configure(HttpSecurity http) throws Exception {
+//    http
+//        .authorizeRequests()
+//        .antMatchers("/app/**").hasRole("ADMIN")
+//        .and()
+//        .formLogin()
+//        .loginPage("/index.jsp")
+//        .defaultSuccessUrl("/app/")
+//        .failureUrl("/index.jsp")
+//        .permitAll()
+//        .and()
+//        .logout()
+//        .logoutSuccessUrl("/index.jsp");
+//  }
+
 }

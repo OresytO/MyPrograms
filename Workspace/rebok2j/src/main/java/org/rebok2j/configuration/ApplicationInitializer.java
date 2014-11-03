@@ -15,6 +15,7 @@ import javax.servlet.ServletRegistration;
  * on 6/28/2014.
  */
 public class ApplicationInitializer implements WebApplicationInitializer {
+
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
     WebApplicationContext context = getContext(servletContext);
@@ -28,7 +29,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
     AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
     context.setConfigLocation("org.rebok2j.configuration");
     /*context.setConfigLocation("/WEB-INF/spring/root-context.xml");*/
-    context.register(WebMvcConfiguration.class);
+    context.register(WebMvcConfiguration.class, PersistenceConfiguration.class, SpringSecurityConfiguration.class);
     context.setServletContext(servletContext);
     return context;
   }

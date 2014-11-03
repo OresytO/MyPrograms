@@ -3,14 +3,16 @@ package org.rebok2j.configuration;
 import org.rebok2j.domain.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.PropertySource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -21,46 +23,36 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackageClasses = {Authorization.class, CourierCompany.class, Delivery.class, DeliveryType.class, IdType.class,
   Location.class, Role.class, Staff.class, User.class})
 @EnableTransactionManagement
-//@PropertySource("classpath:jpa.properties")
 public class PersistenceConfiguration {
 
+  public static final String JPA_PROPERTIES = "jpa.properties";
+  public static final String PACKAGE_TO_SCAN = "org.rebok2j.domain";
+
   @Bean
-  public JpaTransactionManager transactionManager() {
+  public JpaTransactionManager transactionManager() throws IOException {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
     return transactionManager;
   }
 
   @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws IOException {
     LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 
     entityManagerFactory.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
-    entityManagerFactory.setPackagesToScan("org.rebok2j.domain");
+    entityManagerFactory.setPackagesToScan(PACKAGE_TO_SCAN);
 
-    PropertySource propertySource = propertyPlaceHolderConfigurer().getAppliedPropertySources().get("classpath:jpa.properties");//"classpath:jpa.properties
+    ResourcePropertySource propertySource = new ResourcePropertySource(JPA_PROPERTIES, new ClassPathResource(JPA_PROPERTIES));
 
     Properties jpaProperties = new Properties();
-    /*<property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml" />
-    <property name="persistenceUnitName" value="primary" />*/
 
-
-    String[] arr = {"javax.persistence.jdbc.driver", "javax.persistence.jdbc.url", "javax.persistence.jdbc.user", "javax.persistence.jdbc.password",
-      "javax.persistence.schema-generation.create-source", "javax.persistence.schema-generation.drop-source",
-      "javax.persistence.schema-generation.create-script-source", "javax.persistence.schema-generation.drop-script-source",
-      "javax.persistence.sql-load-script-source", "javax.persistence.schema-generation.database.action", "eclipselink.weaving"};
-    for (String propertyName : arr) {
-      jpaProperties.put(propertyName, propertySource.getProperty(propertyName));
+    Map<String, Object> properties = propertySource.getSource();
+    for (String propertyName : properties.keySet()) {
+      jpaProperties.put(propertyName, properties.get(propertyName));
     }
     entityManagerFactory.setJpaProperties(jpaProperties);
 
     return entityManagerFactory;
   }
 
-  @Bean
-  public PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
-    PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
-    //configurer.setLocation(new ClassPathResource("classpath:jpa.properties"));
-    return configurer;
-  }
 }
