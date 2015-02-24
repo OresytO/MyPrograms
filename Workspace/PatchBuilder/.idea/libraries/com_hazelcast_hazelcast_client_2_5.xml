@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="com.hazelcast:hazelcast-client:2.5" type="repository">
+    <properties maven-id="com.hazelcast:hazelcast-client:2.5" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-client/2.5/hazelcast-client-2.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast/2.5/hazelcast-2.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-client/2.5/hazelcast-client-2.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-client/2.5/hazelcast-client-2.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

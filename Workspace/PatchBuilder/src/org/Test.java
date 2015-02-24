@@ -1,128 +1,92 @@
 package org;
 
-class A {
-    public String pu = "pu";
-    public static String pus = "pus";
-    public static final String pusf = "pusf";
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-    private String pr = "pr";
-    private static String prs = "prs";
-    private static final String prsf = "prsf";
+class SettingsProperty
+{
+  public String propertyName;
+  public String propertyValue;
 
-    public A(String pr, String prs) {
-        this.pr = pr;
-        this.prs = prs;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + pu + ",\t" + pus + ",\t" + pusf + ",\t" + pr + ",\t" + prs + ",\t" + prsf + "]";
-    }
-
-    public int meth1() {
-        try {
-            return 1;
-        } finally {
-            return 10;
-        }
-    }
-
-    public int meth2() {
-        try {
-            return 5;
-        } finally {
-            System.out.println(100);
-        }
-    }
+  SettingsProperty(String propertyName, String propertyValue) {
+    this.propertyName = propertyName;
+    this.propertyValue = propertyValue;
+  }
 }
 
-class B1 extends A {
+class PropertyHolder
+{
+  public Map<String, SettingsProperty> propertyMap;
 
-    public String pu = "pu1";
-    public static String pus = "pus1";
-    public static final String pusf = "pusf1";
-
-    private String pr = "pr1";
-    private static String prs = "prs1";
-    private static final String prsf = "prsf1";
-
-    public B1(String pr, String prs) {
-        super(pr, prs);
-        this.pr = pr;
-        this.prs = prs;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + pu + ",\t" + pus + ",\t" + pusf + ",\t" + pr + ",\t" + prs + ",\t" + prsf + "]";
-    }
-
-    public void meth() {
-        System.out.println("class B1");
-        prs = prs + "10";
-    }
+  public PropertyHolder(Map<String, SettingsProperty> propertyMap) {
+    this.propertyMap = propertyMap;
+  }
 }
 
-class B2 extends A {
+class C
+{
+  public static Map<String, SettingsProperty> getMap(SettingsProperty ... properties)
+  {
+    Map<String, SettingsProperty> map = new LinkedHashMap<>();
 
-    public B2(String pr, String prs) {
-        super(pr, prs);
+    for (SettingsProperty settingsProperty : properties)
+    {
+      map.put(settingsProperty.propertyName, settingsProperty);
     }
 
-    public void meth() {
-        System.out.println("class B2");
-    }
+    return map;
+  }
 }
 
-public class Test {
-    static void meth(Object str) {
-        System.out.println(str);
-    }
+public class Test
+{
 
-    public static void main(String[] args) {
+  public static void main(String[] args)
+  {
+    PropertyHolder propertyHolder = new PropertyHolder(C.getMap(
+        new SettingsProperty("prop1", "value1"),
+        new SettingsProperty("prop2", "value2"),
+        new SettingsProperty("prop3", "value3")));
 
-        String str = "1";
-        A a = new A("1", str);
-        System.out.println(a.meth1());
-        System.out.println(a.meth2());
-        // System.out.println(a);
-        // System.out.println(str);
-        // System.out.println();
-        //
-        // B1 b1 = new B1("3", str);
-        // System.out.println(a);
-        // System.out.println(b1);
-        // System.out.println(str);
-        // System.out.println();
-        //
-        // B2 b2 = new B2("5", str);
-        // System.out.println(a);
-        // System.out.println(b1);
-        // System.out.println(b2);
-        // System.out.println(str);
-        // System.out.println();
-        //
-        // a.meth();
-        // System.out.println(a);
-        // System.out.println(str);
-        // System.out.println();
-        //
-        // b1.meth();
-        // System.out.println(a);
-        // System.out.println(b1);
-        // System.out.println(str);
-        // System.out.println();
-        //
-        // b2.meth();
-        // System.out.println(a);
-        // System.out.println(b1);
-        // System.out.println(b2);
-        // System.out.println(str);
-        // System.out.println();
-        //
-        // System.out.println(a);
-        // System.out.println(b1);
-        // System.out.println(b2);
+    SettingsProperty prop1 = propertyHolder.propertyMap.get("prop1");
+    SettingsProperty prop2 = propertyHolder.propertyMap.get("prop2");
+    SettingsProperty prop3 = propertyHolder.propertyMap.get("prop3");
 
-    }
+    System.out.println("//---------------------1------------------------//");
+    System.out.println(prop1.propertyName + ", " + prop1.propertyValue);
+    System.out.println(prop2.propertyName + ", " + prop2.propertyValue);
+    System.out.println(prop3.propertyName + ", " + prop3.propertyValue);
+
+    propertyHolder.propertyMap.put("prop1", new SettingsProperty("prop1", "value3"));
+    propertyHolder.propertyMap.put("prop2", new SettingsProperty("prop2", "value1"));
+    propertyHolder.propertyMap.put("prop3", new SettingsProperty("prop3", "value2"));
+
+    System.out.println("//--------------------2-------------------------//");
+    System.out.println(prop1.propertyName + ", " + prop1.propertyValue);
+    System.out.println(prop2.propertyName + ", " + prop2.propertyValue);
+    System.out.println(prop3.propertyName + ", " + prop3.propertyValue);
+
+    propertyHolder.propertyMap.get("prop1").propertyValue = "value3";
+    propertyHolder.propertyMap.get("prop2").propertyValue = "value1";
+    propertyHolder.propertyMap.get("prop3").propertyValue = "value2";
+
+    System.out.println("//--------------------3-------------------------//");
+    System.out.println(prop1.propertyName + ", " + prop1.propertyValue);
+    System.out.println(prop2.propertyName + ", " + prop2.propertyValue);
+    System.out.println(prop3.propertyName + ", " + prop3.propertyValue);
+
+    prop1.propertyValue = "value3";
+    prop2.propertyValue = "value1";
+    prop3.propertyValue = "value2";
+
+    System.out.println("//--------------------4-------------------------//");
+    System.out.println(prop1.propertyName + ", " + prop1.propertyValue);
+    System.out.println(prop2.propertyName + ", " + prop2.propertyValue);
+    System.out.println(prop3.propertyName + ", " + prop3.propertyValue);
+
+    System.out.println("//--------------------5-------------------------//");
+    System.out.println(prop1 + ", " + propertyHolder.propertyMap.get("prop1"));
+    System.out.println(prop2 + ", " + propertyHolder.propertyMap.get("prop2"));
+    System.out.println(prop3 + ", " + propertyHolder.propertyMap.get("prop3"));
+  }
 }
