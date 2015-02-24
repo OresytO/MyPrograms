@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+
+  <definition name="base.definition" template="/views/tiles/layout.jsp">
+    <put-attribute name="title" value="" />
+    <put-attribute name="header" value="/views/tiles/header.jsp" />
+    <put-attribute name="menu" value="/views/tiles/menu.jsp" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/views/tiles/footer.jsp" />
+  </definition>
+
+  <!-- Security block -->
+  <definition name="security_login" extends="base.definition">
+    <put-attribute name="body" value="/views/security/login.jsp" />
+  </definition>
+
+  <definition name="security_logout" extends="base.definition">
+    <put-attribute name="body" value="/views/security/logout.jsp" />
+  </definition>
+
+  <definition name="security_denied" extends="base.definition">
+    <put-attribute name="body" value="/views/security/denied.jsp" />
+  </definition>
+
+  <definition name="welcome" extends="base.definition">
+    <put-attribute name="body" value="/views/tiles/welcome.jsp" />
+  </definition>
+
+  <definition name="registration" extends="base.definition">
+    <put-attribute name="body" value="/views/tiles/welcome.jsp" />
+  </definition>
+
+  <!-- Menu block -->
+  <definition name="user_addNewDelivery" extends="base.definition">
+    <put-attribute name="body" value="/views/user/addNewDelivery.jsp" />
+  </definition>
+
+  <definition name="user_editExistingDelivery" extends="base.definition">
+    <put-attribute name="body" value="/views/user/editExistingDelivery.jsp" />
+  </definition>
+
+  <definition name="user_printAuthorization" extends="base.definition">
+    <put-attribute name="body" value="/views/user/printAuthorization.jsp" />
+  </definition>
+  <!--
+    <definition name="end" extends="base.definition">
+      <put-attribute name="body" value="/views/guest/end.jsp"/>
+    </definition>-->
+
+  <!-- addNewSelection -->
+  <definition name="user_addNewSelectOption" extends="base.definition">
+    <put-attribute name="body" value="/views/user/addNewSelectOption.jsp" />
+  </definition>
+
+</tiles-definitions>

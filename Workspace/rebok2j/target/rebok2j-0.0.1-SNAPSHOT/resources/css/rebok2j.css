@@ -1,0 +1,87 @@
+.globalDiv {
+    background: black;
+}
+
+.blockDiv {
+    height: 33.33%;
+    width: 100%;
+    position: relative;
+    background: aqua;
+    float: left;
+}
+
+.innerDiv {
+    width: 33.33%;
+    float: left;
+    position: relative;
+}
+
+.text, .dropDown, .globalDiv, .innerSet {
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+}
+
+.dropDown {
+    width: 350px;
+    height: 50%;
+    width: 60%;
+    background: #FFE680;
+}
+
+.legend {
+    color: green;
+    align: left;
+}
+
+.wrapper {
+    min-width: 1000px;
+    max-width: 5000px;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+.header {
+    height: 150px;
+    background: #FFE680;
+}
+
+.middle {
+    width: 100%;
+    padding: 0 0 100px;
+    position: relative;
+}
+
+.middle:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.container {
+    width: 100%;
+    float: left;
+    overflow: hidden;
+}
+
+.body {
+    padding: 0 0 0 270px;
+}
+
+.menu {
+    float: left;
+    width: 250px;
+    margin-left: -100%;
+    position: relative;
+    background: #B5E3FF;
+}
+
+.footer {
+    margin: -100px auto 0;
+    min-width: 1000px;
+    max-width: 5000px;
+    height: 100px;
+    background: #BFF08E;
+    position: relative;
+}

@@ -1,0 +1,1 @@
+<center>Copyright � 2014 OrestO. All rights reserved.</center>
