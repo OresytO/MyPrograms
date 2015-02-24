@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="EclipseCodeFormatter">
-    <option name="defaultSettings" value="true" />
-    <option name="id" value="1402938271612" />
-    <option name="name" value="default" />
-    <option name="pathToConfigFileJava" value="D:/working/3.6.0/Trunk/build/src/main/resources/eclipse-formatting.xml" />
-  </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
+    <type id="Osmorc" />
   </component>
-  <component name="IdProvider" IDEtalkID="43C6F88AA2061FF8F13C8636F8543C9E" />
+  <component name="IdProvider" IDEtalkID="32976349CEEDD88BAE2A356689595C9F" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -20,7 +15,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
