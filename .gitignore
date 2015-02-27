@@ -2,3 +2,7 @@ Workspace/.metadata/
 Workspace/.target/
 Workspace/.build/
 Workspace/.idea/
+.metadata/
+.target/
+.build/
+.idea/
