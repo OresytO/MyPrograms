@@ -1,9 +1,7 @@
 .metadata/
 .target/
 .build/
-.idea/
-.idea/*
-.idea/**
 target/
 build/
+/.idea/
 .idea/workspace.xml
