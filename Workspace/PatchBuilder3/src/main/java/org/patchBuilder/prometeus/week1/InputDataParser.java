@@ -20,6 +20,11 @@ public class InputDataParser {
         Scanner scanner = new Scanner(inputStream);
         String line;
 
+        boolean isValueCounter = false;
+        Map<Integer, List<Integer>> counterMap = null;
+        Integer mapKey = null;
+        List<Integer> valuesList;
+
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
             if (line.isEmpty())
@@ -27,9 +32,42 @@ public class InputDataParser {
                 result.add(parseResult);
                 parseResult = new ParseResultImpl();
             }
-            parse(line, parseResult);
+//            parse(line, parseResult);
+
+            if (isValueCounter && !line.isEmpty()) {
+                mapKey = Integer.valueOf(line.substring(0, line.indexOf(" ")));
+                valuesList = new ArrayList<>();
+
+                int valStart= line.indexOf(" [") + 2;
+                int valEnd= line.indexOf(", ");
+                valuesList.add(Integer.valueOf(line.substring(valStart, valEnd)));
+                valStart = valEnd + 2;
+                valEnd = line.indexOf(", ", valStart);
+                valuesList.add(Integer.valueOf(line.substring(valStart, valEnd)));
+                valStart = valEnd + 2;
+                valEnd = line.indexOf("]", valStart);
+                valuesList.add(Integer.valueOf(line.substring(valStart, valEnd)));
+
+                counterMap.put(mapKey, valuesList);
+                parseResult.setCounterMap(counterMap);
+            } else if (line.isEmpty()) {
+                isValueCounter = false;
+            } else if (line.contains("X: ")) {
+                parseResult.setValueX(line.substring(3, line.length()));
+            } else if (line.contains("Y: ")) {
+                parseResult.setValueY(line.substring(3, line.length()));
+            } else if (line.contains("Z: ")) {
+                parseResult.setValueZ(line.substring(3, line.length()));
+            } else if (line.contains("Value counter")) {
+                isValueCounter = true;
+                counterMap = new HashMap<>();
+            }
         }
 
+        if (!result.contains(parseResult))
+        {
+            result.add(parseResult);
+        }
         scanner.close();
         inputStream.close();
         return result;
@@ -61,11 +99,11 @@ public class InputDataParser {
         } else if (line.isEmpty()) {
             isValueCounter = false;
         } else if (line.contains("X: ")) {
-            parseResult.setValueX(line.substring(3, line.length() - 1));
+            parseResult.setValueX(line.substring(3, line.length()));
         } else if (line.contains("Y: ")) {
-            parseResult.setValueY(line.substring(3, line.length() - 1));
+            parseResult.setValueY(line.substring(3, line.length()));
         } else if (line.contains("Z: ")) {
-            parseResult.setValueZ(line.substring(3, line.length() - 1));
+            parseResult.setValueZ(line.substring(3, line.length()));
         } else if (line.contains("Value counter")) {
             isValueCounter = true;
             counterMap = new HashMap<>();
