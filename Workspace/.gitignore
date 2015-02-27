@@ -2,5 +2,8 @@
 .target/
 .build/
 .idea/
+.idea/*
+.idea/**
 target/
 build/
+.idea/workspace.xml

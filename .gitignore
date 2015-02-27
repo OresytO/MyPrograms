@@ -6,3 +6,6 @@ Workspace/.idea/
 .target/
 .build/
 .idea/
+.idea/*
+.idea/**
+.idea/workspace.xml
