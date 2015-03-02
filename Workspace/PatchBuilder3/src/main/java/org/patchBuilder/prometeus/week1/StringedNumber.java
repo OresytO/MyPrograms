@@ -27,8 +27,8 @@ public class StringedNumber
 
   public StringedNumber(double number)
   {
-    isNegative = number > 0;
-    result = new StringBuilder("" + (isNegative ? (number * -1) : number));
+    isNegative = number < 0;
+    result = new StringBuilder("" + (int)(isNegative ? (number * -1) : number));
   }
 
   public StringedNumber result(StringedNumber y)
@@ -118,15 +118,16 @@ public class StringedNumber
     // -5 + -3 = -8
     if (this.isNegative() && b.isNegative())
     {
-      return this.add(b).makeNagative();
+      return this.makePositive().add(b.makePositive()).makeNegative();
     }
+    // 5 + -3 =
     else if (b.isNegative())
     {
-      return this.subtraction(b);
+      return this.subtraction(b.makePositive());
     }
     else if (this.isNegative())
     {
-      return this.subtraction(b).makeNagative();
+      return this.makePositive().subtraction(b).makeNegative();
     }
     else if (this.length() >= b.length())
     {
@@ -200,12 +201,12 @@ public class StringedNumber
     // 5 - -3 = 8
     if (!this.isNegative() && b.isNegative())
     {
-      return this.add(b);
+      return this.add(b.makePositive());
     }
     // -5 - 3 = -8
     else if (this.isNegative() && !b.isNegative())
     {
-      return this.add(b).makeNagative();
+      return this.makePositive().add(b).makeNegative();
     }
     else
     {
@@ -227,7 +228,7 @@ public class StringedNumber
       }
       else
       {
-        return /* !this.isNegative() ? "-" : "" + */b.orderedSubtraction(this);
+        return /* !this.isNegative() ? "-" : "" + */b.orderedSubtraction(this).makeNegative();
       }
     }
 
@@ -289,12 +290,12 @@ public class StringedNumber
           temp = this.numberAt(i) - b.numberAt(i);
           if (temp != 0)
           {
-            return temp;
+            return temp * (this.isNegative() ? -1 : 1);
           }
         }
       }
+      return (this.length() - b.length()) * (this.isNegative() ? -1 : 1);
     }
-    return this.length() - b.length();
   }
 
   public int length()
@@ -315,12 +316,18 @@ public class StringedNumber
   @Override
   public String toString()
   {
-    return result.toString();
+    return (isNegative() ? "-" : "") + result.toString();
   }
 
-  private StringedNumber makeNagative()
+  private StringedNumber makeNegative()
   {
     isNegative = true;
+    return this;
+  }
+
+  private StringedNumber makePositive()
+  {
+    isNegative = false;
     return this;
   }
 

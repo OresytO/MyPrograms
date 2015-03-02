@@ -71,4 +71,11 @@ public class StringedNumberTest
     assertEquals(4, stringedNumber.split(4).size());
     assertEquals(5, stringedNumber.split(5).size());
   }
+
+  @Test
+  public void resultTest()
+  {
+    assertEquals("220", new StringedNumber("11").result(new StringedNumber("20")).toString());
+    assertEquals("22000", new StringedNumber("110").result(new StringedNumber("200")).toString());
+  }
 }
