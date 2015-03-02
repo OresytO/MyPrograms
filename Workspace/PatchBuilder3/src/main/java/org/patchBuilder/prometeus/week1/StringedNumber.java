@@ -78,11 +78,12 @@ public class StringedNumber
       StringedNumber ac = a.result(c);
       StringedNumber bd = b.result(d);
       // ad+bc=(a+b)(c+d)−ac−bd
-//      StringedNumber adbc = subtraction(subtraction(result(add(a, b), add(c, d)), ac), bd);
+      // StringedNumber adbc = subtraction(subtraction(result(add(a, b), add(c,
+      // d)), ac), bd);
       StringedNumber adbc = a.add(b).result(c.add(d)).subtraction(ac).subtraction(bd);
       // X⋅Y=10nac+10n/2(ad+bc)+bd
       // result.append(Math.pow(10, n) * ac + Math.pow(10, n/2) * adbc + bd);
-      return powOfTen(n).result(ac).add(powOfTen(n/2).result(adbc)).add(bd);
+      return powOfTen(n).result(ac).add(powOfTen(n / 2).result(adbc)).add(bd);
     }
 
   }
@@ -208,13 +209,12 @@ public class StringedNumber
     }
     else
     {
-      /*boolean isMinus = false;*/
+      /* boolean isMinus = false; */
       // -5 - -3 = -2
       // -3 - -5 = 2
-      /*if (this.isNegative())
-      {
-        isMinus = true;
-      }*/
+      /*
+       * if (this.isNegative()) { isMinus = true; }
+       */
       // 5 - 5 = 0
       if (this.compareTo(b) == 0)
       {
@@ -223,11 +223,11 @@ public class StringedNumber
       // 5 - 3 = 2
       else if (this.compareTo(b) > 0)
       {
-        return /*this.isNegative() ? "-" : "" +*/ this.orderedSubtraction(b);
+        return /* this.isNegative() ? "-" : "" + */this.orderedSubtraction(b);
       }
       else
       {
-        return /*!this.isNegative() ? "-" : "" +*/ b.orderedSubtraction(this);
+        return /* !this.isNegative() ? "-" : "" + */b.orderedSubtraction(this);
       }
     }
 

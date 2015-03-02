@@ -17,9 +17,10 @@ public class StringedNumberTest
     assertEquals("2", new StringedNumber("5").add(new StringedNumber("-3")).toString());
     assertEquals("-8", new StringedNumber("-5").add(new StringedNumber("-3")).toString());
     assertEquals("1122", new StringedNumber("123").add(new StringedNumber("999")).toString());
-    assertEquals("57900000000000000000000000000000000000000000000000000000000000000000000000000000000",
-        new StringedNumber("12300000000000000000000000000000000000000000000000000000000000000000000000000000000").add(new StringedNumber("45600000000000000000000000000000000000000000000000000000000000000000000000000000000"))
-            .toString());
+    assertEquals(
+        "57900000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        new StringedNumber("12300000000000000000000000000000000000000000000000000000000000000000000000000000000").add(
+            new StringedNumber("45600000000000000000000000000000000000000000000000000000000000000000000000000000000")).toString());
 
     assertEquals("120", new StringedNumber("123").add(new StringedNumber("-3")).toString());
     assertEquals("-200", new StringedNumber("100").add(new StringedNumber("-300")).toString());
@@ -47,19 +48,20 @@ public class StringedNumberTest
     assertEquals("8", new StringedNumber("5").subtraction(new StringedNumber("-3")).toString());
     assertEquals("8", new StringedNumber("3").subtraction(new StringedNumber("-5")).toString());
     assertEquals("22", new StringedNumber("55").subtraction(new StringedNumber("33")).toString());
-    assertEquals("2000000000000000000000000000000000000000000000", new StringedNumber("5000000000000000000000000000000000000000000000").subtraction(new StringedNumber("3000000000000000000000000000000000000000000000"))
-        .toString());
+    assertEquals("2000000000000000000000000000000000000000000000",
+        new StringedNumber("5000000000000000000000000000000000000000000000").subtraction(new StringedNumber("3000000000000000000000000000000000000000000000")).toString());
 
     assertEquals("0", new StringedNumber("5").subtraction(new StringedNumber("5")).toString());
     assertEquals("0", new StringedNumber("33").subtraction(new StringedNumber("33")).toString());
 
     assertEquals("-2", new StringedNumber("3").subtraction(new StringedNumber("5")).toString());
     assertEquals("-22", new StringedNumber("33").subtraction(new StringedNumber("55")).toString());
-    assertEquals("-2000000000000000000000000000000000000000000000", new StringedNumber("3000000000000000000000000000000000000000000000").subtraction(new StringedNumber("5000000000000000000000000000000000000000000000"))
-        .toString());
+    assertEquals("-2000000000000000000000000000000000000000000000",
+        new StringedNumber("3000000000000000000000000000000000000000000000").subtraction(new StringedNumber("5000000000000000000000000000000000000000000000")).toString());
 
   }
 
+  @Test
   public void splitTest()
   {
     StringedNumber stringedNumber = new StringedNumber("12345678");
