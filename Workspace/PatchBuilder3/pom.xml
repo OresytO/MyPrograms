@@ -23,6 +23,7 @@
       <poi.ooxml.version>3.5-beta5</poi.ooxml.version>
       <hazelcast.version>3.2.6</hazelcast.version>
       <guava.version>18.0</guava.version>
+      <junit.version>4.4</junit.version>
   </properties>
 
   <build>
@@ -117,6 +118,12 @@
           <version>${guava.version}</version>
       </dependency>
 
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>${junit.version}</version>
+          <scope>test</scope>
+      </dependency>
 
   </dependencies>
 </project>
