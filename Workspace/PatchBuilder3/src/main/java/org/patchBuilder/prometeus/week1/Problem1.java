@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by OrestO on 2/24/2015.
+ *
+ * @author olozynskyy
+ * @since 3.7.0
  */
 public class Problem1
 {

@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author olozynskyy
- * @since 3.7.0.
+ * @since 3.7.0
  */
 public class ParseResultImpl implements ParseResult
 {

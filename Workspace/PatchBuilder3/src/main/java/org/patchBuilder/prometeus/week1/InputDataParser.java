@@ -9,8 +9,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
+ *
  * @author olozynskyy
- * @since 3.7.0.
+ * @since 3.7.0
  */
 public class InputDataParser
 {

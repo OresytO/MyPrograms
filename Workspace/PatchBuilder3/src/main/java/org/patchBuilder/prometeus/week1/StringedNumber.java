@@ -5,8 +5,8 @@ import java.util.List;
 
 /**
  *
- * @author OrestOskyy
- * @since 3.7.0.
+ * @author olozynskyy
+ * @since 3.7.0
  */
 public class StringedNumber
 {

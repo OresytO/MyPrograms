@@ -4,9 +4,10 @@ import org.patchBuilder.prometeus.week1.StringedNumber;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by OrestO on 3/1/2015.
+ *
+ * @author olozynskyy
+ * @since 3.7.0
  */
-
 public class StringedNumberTest
 {
   @Test
@@ -58,7 +59,6 @@ public class StringedNumberTest
     assertEquals("-22", new StringedNumber("33").subtraction(new StringedNumber("55")).toString());
     assertEquals("-2000000000000000000000000000000000000000000000",
         new StringedNumber("3000000000000000000000000000000000000000000000").subtraction(new StringedNumber("5000000000000000000000000000000000000000000000")).toString());
-
   }
 
   @Test
@@ -70,6 +70,5 @@ public class StringedNumberTest
     assertEquals(3, stringedNumber.split(3).size());
     assertEquals(4, stringedNumber.split(4).size());
     assertEquals(5, stringedNumber.split(5).size());
-
   }
 }
