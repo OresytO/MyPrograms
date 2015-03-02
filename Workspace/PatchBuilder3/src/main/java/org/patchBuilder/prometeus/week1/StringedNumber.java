@@ -33,7 +33,6 @@ public class StringedNumber
 
   public StringedNumber result(StringedNumber y)
   {
-    StringBuilder stringBuilder = new StringBuilder();
     // Adding Leading zeros
     int n;
     if (this.length() == y.length())
@@ -174,7 +173,7 @@ public class StringedNumber
       result.append(store);
     }
 
-    return new StringedNumber(result.reverse());
+    return new StringedNumber(result.reverse().toString());
   }
 
   public static StringedNumber powOfTen(int n)
@@ -264,7 +263,7 @@ public class StringedNumber
       }
     }
 
-    return new StringedNumber(result.reverse());
+    return new StringedNumber(result.reverse().toString());
   }
 
   // a=15, b=10 => 5
