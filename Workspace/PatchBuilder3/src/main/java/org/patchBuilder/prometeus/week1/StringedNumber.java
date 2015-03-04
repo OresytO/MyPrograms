@@ -10,28 +10,34 @@ import java.util.List;
  */
 public class StringedNumber
 {
-  private StringBuilder result;
+  private StringBuilder unsignedNumber;
   private boolean isNegative;
 
   public StringedNumber(String number)
   {
     isNegative = number.charAt(0) == '-';
-    result = new StringBuilder(isNegative ? number.substring(1) : number);
+    this.unsignedNumber = new StringBuilder(isNegative ? number.substring(1) : number);
+  }
+
+  public StringedNumber(StringedNumber number)
+  {
+    isNegative = number.isNegative();
+    this.unsignedNumber = new StringBuilder(number.getUnsignedNumber());
   }
 
   public StringedNumber(StringBuilder number)
   {
     isNegative = number.charAt(0) == '-';
-    result = new StringBuilder(isNegative ? number.substring(1) : number);
+    this.unsignedNumber = new StringBuilder(isNegative ? number.substring(1) : number);
   }
 
   public StringedNumber(double number)
   {
     isNegative = number < 0;
-    result = new StringBuilder("" + (int)(isNegative ? (number * -1) : number));
+    this.unsignedNumber = new StringBuilder("" + (int)(isNegative ? (number * -1) : number));
   }
 
-  public StringedNumber result(StringedNumber y)
+  public StringedNumber multiply(StringedNumber y)
   {
     // Adding Leading zeros
     int n;
@@ -42,19 +48,25 @@ public class StringedNumber
     else if (this.length() > y.length())
     {
       n = this.length();
-      y = y.addZeros(n);
+      y = y.addLeadingZeros(n - y.length());
     }
     else
     {
       n = y.length();
-      this.addZeros(n);
+      this.addLeadingZeros(n - this.length());
     }
 
+      if (n > 2 && n%2 == 1)
+      {
+          n++;
+          this.addLeadingZeros(n - this.length());
+          y.addLeadingZeros(n - y.length());
+      }
     // Split X
-    List<StringedNumber> splitedX = this.split(n);
+    List<StringedNumber> splitedX = this.split(2);
 
     // Split Y
-    List<StringedNumber> splitedY = y.split(n);
+    List<StringedNumber> splitedY = y.split(2);
 
     if (n <= 2)
     {
@@ -75,40 +87,66 @@ public class StringedNumber
       StringedNumber c = splitedY.get(0);
       StringedNumber d = splitedY.get(1);
 
-      StringedNumber ac = a.result(c);
-      StringedNumber bd = b.result(d);
-      // ad+bc=(a+b)(c+d)−ac−bd
-      // StringedNumber adbc = subtraction(subtraction(result(add(a, b), add(c,
-      // d)), ac), bd);
-      StringedNumber adbc = a.add(b).result(c.add(d)).subtraction(ac).subtraction(bd);
-      // X⋅Y=10nac+10n/2(ad+bc)+bd
-      // result.append(Math.pow(10, n) * ac + Math.pow(10, n/2) * adbc + bd);
-      return powOfTen(n).result(ac).add(powOfTen(n / 2).result(adbc)).add(bd);
+      StringedNumber ac = a.multiply(c);
+      StringedNumber bd = b.multiply(d);
+      StringedNumber adbc = a.add(b).multiply(c.add(d)).subtraction(ac).subtraction(bd);
+      return ac.addTailingZeros(n).add(adbc.addTailingZeros(n / 2)).add(bd);
+      // return powOfTen(n).multiply(ac).add(powOfTen(n / 2).multiply(adbc)).add(bd);
     }
 
   }
 
-  private StringedNumber addZeros(int n)
+  private StringedNumber addLeadingZeros(int n)
   {
-    for (int i = 0; i < n - result.length(); i++)
+    for (int i = 0; i < n; i++)
     {
-      result.insert(0, "0");
+      unsignedNumber.insert(0, "0");
     }
     return this;
   }
 
-  public List<StringedNumber> split(int n)
+    private StringedNumber addTailingZeros(int n)
+    {
+        if (isZero())
+        {
+            unsignedNumber.delete(0, unsignedNumber.length());
+            unsignedNumber.append(0);
+        }
+        else if (n == 0)
+        {
+            unsignedNumber.delete(0, unsignedNumber.length());
+            unsignedNumber.append(1);
+        }
+        else if (n == 1)
+        {
+            //DO nothing
+            return this;
+        }
+        else
+        {
+            for (int i = 0; i < n; i++)
+            {
+                unsignedNumber.append("0");
+            }
+        }
+        return this;
+    }
+
+    private boolean isZero()
+    {
+        return unsignedNumber.toString().replaceAll("0", "").length() == 0;
+    }
+
+    public List<StringedNumber> split(int n)
     {
       List<StringedNumber> list = new ArrayList<>(n);
       int previous = 0;
       for (int i = 1; i <= n; i++)
       {
-        list.add(new StringedNumber(result.substring(previous, i * result.length()/n)));
-        previous = i * result.length()/n;
+        list.add(new StringedNumber(unsignedNumber.substring(previous, i * unsignedNumber.length()/n)));
+        previous = i * unsignedNumber.length()/n;
 
       }
-//        list.add(result.substring(0, result.length()/2));
-//        list.add(result.substring(result.length()/2));
       return list;
     }
 
@@ -148,6 +186,10 @@ public class StringedNumber
     int temp;
     int diff = this.length() - b.length();
 
+      if (b.isZero())
+      {
+          return new StringedNumber(this);
+      }
     for (int i = this.length() - 1; i >= 0; i--)
     {
       if (i - diff >= 0)
@@ -166,7 +208,18 @@ public class StringedNumber
       }
       else
       {
-        break;
+          temp = this.numberAt(i) + store;
+          store = 0;
+          if (temp >= 10)
+          {
+              result.append(temp - 10);
+              store = 1;
+          }
+          else
+          {
+              result.append(temp);
+          }
+
       }
     }
 
@@ -224,11 +277,11 @@ public class StringedNumber
       // 5 - 3 = 2
       else if (this.compareTo(b) > 0)
       {
-        return /* this.isNegative() ? "-" : "" + */this.orderedSubtraction(b);
+        return this.orderedSubtraction(b);
       }
       else
       {
-        return /* !this.isNegative() ? "-" : "" + */b.orderedSubtraction(this).makeNegative();
+        return b.orderedSubtraction(this).makeNegative();
       }
     }
 
@@ -300,12 +353,12 @@ public class StringedNumber
 
   public int length()
   {
-    return result.length();
+    return unsignedNumber.length();
   }
 
   public int numberAt(int i)
   {
-    return Integer.parseInt("" + result.charAt(i));
+    return Integer.parseInt("" + unsignedNumber.charAt(i));
   }
 
   public boolean isNegative()
@@ -316,7 +369,7 @@ public class StringedNumber
   @Override
   public String toString()
   {
-    return (isNegative() ? "-" : "") + result.toString();
+    return (isNegative() ? "-" : "") + unsignedNumber.toString();
   }
 
   private StringedNumber makeNegative()
@@ -333,6 +386,11 @@ public class StringedNumber
 
   public int intValue()
   {
-    return Integer.parseInt(result.toString());
+    return Integer.parseInt(unsignedNumber.toString());
   }
+
+    public String getUnsignedNumber()
+    {
+        return unsignedNumber.toString();
+    }
 }

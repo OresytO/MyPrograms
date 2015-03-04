@@ -25,6 +25,8 @@ public class StringedNumberTest
 
     assertEquals("120", new StringedNumber("123").add(new StringedNumber("-3")).toString());
     assertEquals("-200", new StringedNumber("100").add(new StringedNumber("-300")).toString());
+    assertEquals("2200000", new StringedNumber("2200000").add(new StringedNumber("0")).toString());
+    assertEquals("220000", new StringedNumber("200000").add(new StringedNumber("20000")).toString());
 
   }
 
@@ -75,7 +77,9 @@ public class StringedNumberTest
   @Test
   public void resultTest()
   {
-    assertEquals("220", new StringedNumber("11").result(new StringedNumber("20")).toString());
-    assertEquals("22000", new StringedNumber("110").result(new StringedNumber("200")).toString());
+    assertEquals("220", new StringedNumber("11").multiply(new StringedNumber("20")).toString());
+    assertEquals("220000", new StringedNumber("110").multiply(new StringedNumber("2000")).toString());
+    assertEquals("220000", new StringedNumber("1100").multiply(new StringedNumber("200")).toString());
+    assertEquals("2200000", new StringedNumber("1100").multiply(new StringedNumber("2000")).toString());
   }
 }
