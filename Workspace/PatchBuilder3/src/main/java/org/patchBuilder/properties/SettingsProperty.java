@@ -21,7 +21,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_SETTINGS_PROPERTIES")
-public class SettingsProperty {
+public class SettingsProperty
+{
 
   public static final String TABLE_NAME = "tbl_SETTINGS_PROPERTIES";
 
@@ -51,50 +52,60 @@ public class SettingsProperty {
   private String description;
   public static final String DESCRIPTION_COLUMN = "DESCRIPTION";
 
-
   public static final String DELIMITER = ".";
 
-  public SettingsProperty(){
+  public SettingsProperty()
+  {
 
   }
 
-  public String getBeanName() {
+  public String getBeanName()
+  {
     return beanName;
   }
 
-  public void setBeanName(String beanName) {
+  public void setBeanName(String beanName)
+  {
     this.beanName = beanName;
   }
 
-  public String getPropertyName() {
+  public String getPropertyName()
+  {
     return propertyName;
   }
 
-  public void setPropertyName(String propertyName) {
+  public void setPropertyName(String propertyName)
+  {
     this.propertyName = propertyName;
   }
 
-  public String getCurrentValue() {
+  public String getCurrentValue()
+  {
     return currentValue;
   }
 
-  public void setCurrentValue(String currentValue) {
+  public void setCurrentValue(String currentValue)
+  {
     this.currentValue = currentValue;
   }
 
-  public String getDefaultValue() {
+  public String getDefaultValue()
+  {
     return defaultValue;
   }
 
-  public void setDefaultValue(String defaultValue) {
+  public void setDefaultValue(String defaultValue)
+  {
     this.defaultValue = defaultValue;
   }
 
-  public String getDescription() {
+  public String getDescription()
+  {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(String description)
+  {
     this.description = description;
   }
 }

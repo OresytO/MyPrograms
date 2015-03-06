@@ -17,16 +17,18 @@ package org.patchBuilder.query;
 //}
 
 public enum Oper {
-    EQU(" = "), GT(" > "), LT(" < "), GET(" >= "), LET(" <= "), NEQ(" <> "), IN(" IN ("), NIN(" NOT IN ("), LK(" LIKE "), NLK(" NOT LIKE ");
+  EQU(" = "), GT(" > "), LT(" < "), GET(" >= "), LET(" <= "), NEQ(" <> "), IN(" IN ("), NIN(" NOT IN ("), LK(" LIKE "), NLK(" NOT LIKE ");
 
-    String str;
+  String str;
 
-    Oper(String str) {
-        this.str = str;
-    }
+  Oper(String str)
+  {
+    this.str = str;
+  }
 
-    @Override
-    public String toString() {
-        return str;
-    }
+  @Override
+  public String toString()
+  {
+    return str;
+  }
 }

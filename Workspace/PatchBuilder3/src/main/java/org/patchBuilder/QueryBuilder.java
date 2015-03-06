@@ -7,23 +7,24 @@ import java.util.Map;
 import org.patchBuilder.templates.AbstractPatchQuery;
 import org.patchBuilder.templates.ReviewTagFixQuery;
 
-public interface QueryBuilder {
-    QueryBuilder build(Map<String, List<String>> map);
+public interface QueryBuilder
+{
+  QueryBuilder build(Map<String, List<String>> map);
 
-    QueryBuilder headerComment(String ticketCode, String Summary, String clientName, String Environments, int updatedRowCount, int runningTime);
+  QueryBuilder headerComment(String ticketCode, String Summary, String clientName, String Environments, int updatedRowCount, int runningTime);
 
-    QueryBuilder now();
+  QueryBuilder now();
 
-    QueryBuilder getClientIDForName(String name);
+  QueryBuilder getClientIDForName(String name);
 
-    QueryBuilder clear();
+  QueryBuilder clear();
 
-    File write2File(File output);
+  File write2File(File output);
 
-    @Override
-    String toString();
+  @Override
+  String toString();
 
-    AbstractPatchQuery addNewVar(String varName, String varValue);
+  AbstractPatchQuery addNewVar(String varName, String varValue);
 
-    ReviewTagFixQuery build(Map<String, List<String>> tagMap, List<String> localeList);
+  ReviewTagFixQuery build(Map<String, List<String>> tagMap, List<String> localeList);
 }

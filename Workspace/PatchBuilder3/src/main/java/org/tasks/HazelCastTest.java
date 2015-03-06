@@ -1,15 +1,13 @@
 package org.tasks;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
-
 import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentMap;
+
+import com.hazelcast.config.Config;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
 
 /**
  * @author olozynskyy
@@ -23,7 +21,7 @@ public class HazelCastTest
     Config config = new Config();
     HazelcastInstance h = Hazelcast.newHazelcastInstance(config);
     ConcurrentMap<String, SettingsProperty> map = h.getMap("orest-map");
-    map.put("key", new  SettingsProperty("firstProperty", "value for first property"));
+    map.put("key", new SettingsProperty("firstProperty", "value for first property"));
 
     System.out.println(map.get("key"));
 
@@ -79,10 +77,12 @@ public class HazelCastTest
     private String propertyName;
     private String currentValue;
 
-    private SettingsProperty() {
+    private SettingsProperty()
+    {
     }
 
-    private SettingsProperty(String propertyName, String currentValue) {
+    private SettingsProperty(String propertyName, String currentValue)
+    {
       this.propertyName = propertyName;
       this.currentValue = currentValue;
     }
@@ -118,12 +118,9 @@ public class HazelCastTest
     }
 
     @Override
-    public String toString() {
-      return "SettingsProperty{" +
-          "beanName='" + beanName + '\'' +
-          ", propertyName='" + propertyName + '\'' +
-          ", currentValue='" + currentValue + '\'' +
-          "}";
+    public String toString()
+    {
+      return "SettingsProperty{" + "beanName='" + beanName + '\'' + ", propertyName='" + propertyName + '\'' + ", currentValue='" + currentValue + '\'' + "}";
     }
   }
 }

@@ -8,7 +8,8 @@ class SettingsProperty
   public String propertyName;
   public String propertyValue;
 
-  SettingsProperty(String propertyName, String propertyValue) {
+  SettingsProperty(String propertyName, String propertyValue)
+  {
     this.propertyName = propertyName;
     this.propertyValue = propertyValue;
   }
@@ -18,14 +19,15 @@ class PropertyHolder
 {
   public Map<String, SettingsProperty> propertyMap;
 
-  public PropertyHolder(Map<String, SettingsProperty> propertyMap) {
+  public PropertyHolder(Map<String, SettingsProperty> propertyMap)
+  {
     this.propertyMap = propertyMap;
   }
 }
 
 class C
 {
-  public static Map<String, SettingsProperty> getMap(SettingsProperty ... properties)
+  public static Map<String, SettingsProperty> getMap(SettingsProperty... properties)
   {
     Map<String, SettingsProperty> map = new LinkedHashMap<>();
 
@@ -43,10 +45,7 @@ public class Test
 
   public static void main(String[] args)
   {
-    PropertyHolder propertyHolder = new PropertyHolder(C.getMap(
-        new SettingsProperty("prop1", "value1"),
-        new SettingsProperty("prop2", "value2"),
-        new SettingsProperty("prop3", "value3")));
+    PropertyHolder propertyHolder = new PropertyHolder(C.getMap(new SettingsProperty("prop1", "value1"), new SettingsProperty("prop2", "value2"), new SettingsProperty("prop3", "value3")));
 
     SettingsProperty prop1 = propertyHolder.propertyMap.get("prop1");
     SettingsProperty prop2 = propertyHolder.propertyMap.get("prop2");

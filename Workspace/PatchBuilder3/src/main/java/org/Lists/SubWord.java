@@ -1,19 +1,23 @@
 package org.Lists;
 
-public class SubWord {
-    private String subWord;
+public class SubWord
+{
+  private String subWord;
 
-    public SubWord() {
-    }
+  public SubWord()
+  {
+  }
 
-    public SubWord(String subWord) {
-        super();
-        this.subWord = subWord;
-    }
+  public SubWord(String subWord)
+  {
+    super();
+    this.subWord = subWord;
+  }
 
-    @Override
-    public String toString() {
-        return subWord.toString();
-    }
+  @Override
+  public String toString()
+  {
+    return subWord.toString();
+  }
 
 }

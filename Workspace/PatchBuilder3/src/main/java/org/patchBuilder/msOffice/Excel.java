@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -38,7 +37,7 @@ public class Excel
       // TODO: Auto-generated catch block
       e.printStackTrace();
     }
-      return null;
+    return null;
   }
 
   public static Sheet open(String fileName, int sheetNum)
@@ -102,7 +101,7 @@ public class Excel
 
   public static List<Row> getRows(Sheet sheet)
   {
-    if(sheet == null)
+    if (sheet == null)
       return null;
     List<Row> list = new ArrayList<>();
     for (Row row : sheet)
