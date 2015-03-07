@@ -17,8 +17,8 @@ public enum Profile {
 
   public static final String SETTINGS_PROPERTIES = "settings.properties";
   public static final String SYSTEM_PROPERTIES = "system.properties";
-  public static final String ROOT_FOLDER_OF_PROFILES = "D:\\SDS_BLUE\\3.7.0_DB properties\\blue-web\\schawk-parts-web\\src\\build\\resources";
-  public static final String DESCRIPTIONS_ROOT_PATH = "D:\\SDS_BLUE\\3.7.0_DB properties\\blue-web\\schawk-parts-web\\src\\resources";
+  public static final String ROOT_FOLDER_OF_PROFILES = "D:\\SDS_BLUE\\3.7.0_DB_properties\\blue-web\\schawk-parts-web\\src\\build\\resources";
+  public static final String DESCRIPTIONS_ROOT_PATH = "D:\\SDS_BLUE\\3.7.0_DB_properties\\blue-web\\schawk-parts-web\\src\\resources";
   public static final String SETTINGS_DESCRIPTIONS = "settingsdescriptions.properties";
   public static final String SYSTEM_DESCRIPTIONS = "systemdescriptions.properties";
 
@@ -110,11 +110,6 @@ public enum Profile {
   {
     StringBuilder property = new StringBuilder();
     property.append(properties.get(name));
-    int indexOfSingleQuote = property.indexOf("'");
-    if (indexOfSingleQuote >= 0 && property.charAt(indexOfSingleQuote + 1) != '/')
-    {
-      property.insert(indexOfSingleQuote, "'");
-    }
-    return property.toString();
+    return property.toString().replace("'", "''");
   }
 }

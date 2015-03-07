@@ -28,13 +28,13 @@ public class PropertiesSqlGenerator
     Writer writer = new FileWriter(outputPath);
     SqlWriter sqlWriter = new SqlWriter().insertStatement();
 
-    // int ids = 0;
-    // for (Profile profile : Profile.values())
-    // {
-    // ids = setIds(profile.getSystemMap(), ids);
-    // ids = setIds(profile.getSettingsMap(), ids);
-    // sqlWriter.valuesStatement(profile);
-    // }
+    int ids = 0;
+//    for (Profile profile : Profile.values())
+//    {
+      ids = setIds(Profile.CI.getSystemMap(), ids);
+      ids = setIds(Profile.CI.getSettingsMap(), ids);
+//      sqlWriter.valuesStatement(profile);
+//    }
 
     sqlWriter.valuesStatement(Profile.CI);
     sqlWriter.endGoStatement();
