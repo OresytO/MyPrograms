@@ -1,7 +1,9 @@
 package org.patchBuilder.prometeus.week1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author olozynskyy
@@ -11,6 +13,7 @@ public class StringedNumber
 {
   private StringBuilder unsignedNumber;
   private boolean isNegative;
+  private static Map<Integer, Integer> map = new HashMap<>();
 
   public StringedNumber(String number)
   {
@@ -69,14 +72,21 @@ public class StringedNumber
 
     if (n <= 2)
     {
-      long a = splitedX.get(0).intValue();
-      long b = splitedX.get(1).intValue();
-      long c = splitedY.get(0).intValue();
-      long d = splitedY.get(1).intValue();
+      int a = splitedX.get(0).intValue();
+      int b = splitedX.get(1).intValue();
+      int c = splitedY.get(0).intValue();
+      int d = splitedY.get(1).intValue();
 
-      long ac = a * c;
-      long bd = b * d;
-      long adbc = (a + b) * (c + d) - ac - bd;
+      int ac = a * c;
+      int bd = b * d;
+      int adbc = (a + b) * (c + d) - ac - bd;
+      if (map.containsKey(adbc)) {
+        Integer i = map.get(adbc);
+        map.put(adbc, ++i);
+      } else {
+        map.put(adbc, 1);
+      }
+      System.out.println(adbc);
       return new StringedNumber(Math.pow(10, n) * ac + Math.pow(10, n / 2) * adbc + bd);
     }
     else
@@ -93,8 +103,20 @@ public class StringedNumber
       StringedNumber adbc3 = adbc1.multiply(adbc2);
       StringedNumber adbc4 = adbc3.subtraction(ac);
       StringedNumber adbc = adbc4.subtraction(bd);
+//      if (map.containsKey(adbc))
+//      {
+//        Integer i = map.get(adbc);
+//
+//        map.put(adbc.intValue(), ++i);
+//      }
+//      else
+//      {
+//        map.put(adbc.intValue(), 1);
+//      }
       // StringedNumber adbc =
       // a.add(b).multiply(c.add(d)).subtraction(ac).subtraction(bd);
+
+      System.out.println(adbc);
       StringedNumber result = ac.addTailingZeros(n).add(adbc.addTailingZeros(n / 2)).add(bd);
       return result;
       // return powOfTen(n).multiply(ac).add(powOfTen(n /
@@ -450,5 +472,9 @@ public class StringedNumber
   public String getUnsignedNumber()
   {
     return unsignedNumber.toString();
+  }
+
+  public static Map<Integer, Integer> getMap() {
+    return map;
   }
 }

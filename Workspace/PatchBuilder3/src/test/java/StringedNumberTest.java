@@ -1,14 +1,10 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import org.patchBuilder.prometeus.week1.StringedNumber;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 
-import org.junit.Test;
-import org.patchBuilder.prometeus.week1.InputDataParser;
-import org.patchBuilder.prometeus.week1.ParseResult;
-import org.patchBuilder.prometeus.week1.StringedNumber;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author olozynskyy
@@ -103,21 +99,25 @@ public class StringedNumberTest
   @Test
   public void multiplyTest() throws IOException
   {
-    assertEquals("220", new StringedNumber("11").multiply(new StringedNumber("20")).toString());
-    assertEquals("7006652", new StringedNumber("1234").multiply(new StringedNumber("5678")).toString());
-    assertEquals("220000", new StringedNumber("110").multiply(new StringedNumber("2000")).toString());
-    assertEquals("220000", new StringedNumber("1100").multiply(new StringedNumber("200")).toString());
-    assertEquals("2200000", new StringedNumber("1100").multiply(new StringedNumber("2000")).toString());
-    assertEquals("287769407308846640970310151509826255482575362419155842891311909556878670000425352112987881085839680", new StringedNumber("21625695688898558125310188636840316594920403182768")
-        .multiply(new StringedNumber("13306827740879180856696800391510469038934180115260")).toString());
-
-    String filePath = "/InputForAlgo/Week1Problem1.txt";
-    InputStream inputStream = getClass().getResourceAsStream(filePath);
-    List<ParseResult> parseResults = InputDataParser.parse(inputStream);
-    System.out.println(parseResults.get(0).getCounterMap());
-    for (ParseResult parseResult : parseResults)
-    {
-      assertEquals(parseResult.getValueZ(), new StringedNumber(parseResult.getValueX()).multiply(new StringedNumber(parseResult.getValueY())).toString());
-    }
+//    assertEquals("7006652", new StringedNumber("1234").multiply(new StringedNumber("5678")).toString());
+//    assertEquals("220", new StringedNumber("11").multiply(new StringedNumber("20")).toString());
+//    assertEquals("220000", new StringedNumber("110").multiply(new StringedNumber("2000")).toString());
+//    assertEquals("220000", new StringedNumber("1100").multiply(new StringedNumber("200")).toString());
+//    assertEquals("2200000", new StringedNumber("1100").multiply(new StringedNumber("2000")).toString());
+//    assertEquals("287769407308846640970310151509826255482575362419155842891311909556878670000425352112987881085839680", new StringedNumber("21625695688898558125310188636840316594920403182768")
+//        .multiply(new StringedNumber("13306827740879180856696800391510469038934180115260")).toString());
+//
+//    String filePath = "/InputForAlgo/Week1Problem1.txt";
+//    InputStream inputStream = getClass().getResourceAsStream(filePath);
+//    List<ParseResult> parseResults = InputDataParser.parse(inputStream);
+//    System.out.println(parseResults.get(0).getCounterMap());
+//    for (ParseResult parseResult : parseResults)
+//    {
+//      assertEquals(parseResult.getValueZ(), new StringedNumber(parseResult.getValueX()).multiply(new StringedNumber(parseResult.getValueY())).toString());
+//    }
+    assertEquals("11989460275519080564894036768322865785999566885539505969749975204962718118914971586072960191064507745920086993438529097266122668", new StringedNumber("1685287499328328297814655639278583667919355849391453456921116729").multiply(new StringedNumber("7114192848577754587969744626558571536728983167954552999895348492")).toString());
+//    StringedNumber stringedNumber = new StringedNumber("49823261");
+//    assertEquals("2205647016448403", stringedNumber.multiply(new StringedNumber("44269423")).toString());
+    System.out.println(StringedNumber.getMap());
   }
 }
