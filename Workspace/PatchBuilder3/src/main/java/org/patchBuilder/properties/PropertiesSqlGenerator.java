@@ -15,7 +15,7 @@ public class PropertiesSqlGenerator
   {
     try
     {
-      generate("D:\\Result\\newSql.sql");
+      generate("D:\\Result\\newSql1.sql");
     }
     catch (IOException e)
     {

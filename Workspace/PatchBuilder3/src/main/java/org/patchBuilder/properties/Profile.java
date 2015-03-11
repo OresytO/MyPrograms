@@ -24,7 +24,7 @@ public enum Profile {
 
   private Map<String, Settings> settingsMap = new LinkedHashMap<>();
   private Map<String, Settings> systemMap = new LinkedHashMap<>();
-
+  private int sequence = 0;
   // ------
   Profile(String typeName)
   {
@@ -67,26 +67,26 @@ public enum Profile {
       }
     }
 
-    int sequence = 0;
-    this.getSystemMap().putAll(fulfillMap(systemProperties, systemDescriptions, sequence));
-    this.getSettingsMap().putAll(fulfillMap(settingsProperties, settingsDescriptions, sequence));
+    sequence = 0;
+    this.getSystemMap().putAll(fulfillMap(systemProperties, systemDescriptions));
+    this.getSettingsMap().putAll(fulfillMap(settingsProperties, settingsDescriptions));
     // ------
   }
 
-  private Map<String, Settings> fulfillMap(Map<String, String> systemProperties, Map<String, String> systemDescriptions, int sequence)
+  private Map<String, Settings> fulfillMap(Map<String, String> properties, Map<String, String> descriptions)
   {
     Map<String, Settings> result = new LinkedHashMap<>();
     final int BEAN_NAME = 0;
     final int PROPERTY_NAME = 1;
-    for (String name : systemProperties.keySet())
+    for (String name : properties.keySet())
     {
       String[] names = name.split("[.]", 2);
-      String value = getProperty(systemProperties, name);
+      String value = getProperty(properties, name);
       if (result.containsKey(names[PROPERTY_NAME]))
       {
         System.out.println(" duplication: " + names[PROPERTY_NAME] + " containing value [" + result.get(names[PROPERTY_NAME]).getCurrentValue() + "] new value [" + value + "]");
       }
-      result.put(names[PROPERTY_NAME], new Settings(0, names[BEAN_NAME], names[PROPERTY_NAME], value, value, this.name(), getProperty(systemDescriptions, names[PROPERTY_NAME]), sequence++, null));
+      result.put(names[PROPERTY_NAME], new Settings(0, names[BEAN_NAME], names[PROPERTY_NAME], value, value, this.name(), getProperty(descriptions, names[PROPERTY_NAME]), sequence++, null));
     }
     return result;
   }
