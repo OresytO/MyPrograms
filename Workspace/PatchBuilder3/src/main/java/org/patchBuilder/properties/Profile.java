@@ -68,12 +68,13 @@ public enum Profile {
     }
 
     sequence = 0;
-    this.getSystemMap().putAll(fulfillMap(systemProperties, systemDescriptions));
-    this.getSettingsMap().putAll(fulfillMap(settingsProperties, settingsDescriptions));
+    this.getSystemMap().putAll(fulfillMap(systemProperties, systemDescriptions, 1));
+    sequence = 0;
+    this.getSettingsMap().putAll(fulfillMap(settingsProperties, settingsDescriptions, 2));
     // ------
   }
 
-  private Map<String, Settings> fulfillMap(Map<String, String> properties, Map<String, String> descriptions)
+  private Map<String, Settings> fulfillMap(Map<String, String> properties, Map<String, String> descriptions, int type)
   {
     Map<String, Settings> result = new LinkedHashMap<>();
     final int BEAN_NAME = 0;
@@ -86,7 +87,7 @@ public enum Profile {
       {
         System.out.println(" duplication: " + names[PROPERTY_NAME] + " containing value [" + result.get(names[PROPERTY_NAME]).getCurrentValue() + "] new value [" + value + "]");
       }
-      result.put(names[PROPERTY_NAME], new Settings(0, names[BEAN_NAME], names[PROPERTY_NAME], value, value, this.name(), getProperty(descriptions, names[PROPERTY_NAME]), sequence++, null));
+      result.put(names[PROPERTY_NAME], new Settings(0, names[BEAN_NAME], names[PROPERTY_NAME], value, value, this.name(), getProperty(descriptions, names[PROPERTY_NAME]), sequence++, null, type));
     }
     return result;
   }

@@ -15,8 +15,9 @@ public class Settings implements Comparable<Settings>
   private String description;
   private int sequence;
   private String versionAdded;
+  private int type;
 
-  public Settings(Integer id, String beanName, String propertyName, String currentValue, String defaultValue, String profile, String description, int sequence, String versionAdded)
+  public Settings(Integer id, String beanName, String propertyName, String currentValue, String defaultValue, String profile, String description, int sequence, String versionAdded, int type)
   {
     this.id = id;
     this.beanName = beanName;
@@ -27,6 +28,7 @@ public class Settings implements Comparable<Settings>
     this.description = description;
     this.sequence = sequence;
     this.versionAdded = versionAdded;
+    this.type = type;
   }
 
   public Integer getId()
@@ -117,6 +119,16 @@ public class Settings implements Comparable<Settings>
   public void setVersionAdded(String versionAdded)
   {
     this.versionAdded = versionAdded;
+  }
+
+  public int getType()
+  {
+    return type;
+  }
+
+  public void setType(int type)
+  {
+    this.type = type;
   }
 
   @Override

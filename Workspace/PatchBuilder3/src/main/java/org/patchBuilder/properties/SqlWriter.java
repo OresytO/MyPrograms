@@ -17,7 +17,7 @@ public class SqlWriter
 
   public SqlWriter insertStatement()
   {
-    stringBuilder.append("BEGIN\n\tTRUNCATE TABLE SDS_SETTINGS_PROPERTIES;\n\tINSERT INTO SDS_SETTINGS_PROPERTIES ([ID], [BEAN_NAME], [PROPERTY_NAME], [CURRENT_VALUE], [DEFAULT_VALUE], [DESCRIPTION], [SEQUENCE], [VERSION_ADDED]) VALUES\n");
+    stringBuilder.append("BEGIN\n\tTRUNCATE TABLE SDS_SETTINGS_PROPERTIES;\n\tINSERT INTO SDS_SETTINGS_PROPERTIES ([ID], [BEAN_NAME], [PROPERTY_NAME], [CURRENT_VALUE], [DEFAULT_VALUE], [DESCRIPTION], [SEQUENCE], [VERSION_ADDED], [PROPERTY_TYPE]) VALUES\n");
     return this;
   }
 
@@ -37,7 +37,7 @@ public class SqlWriter
     {
       stringBuilder.append("\n\t('").append(tempSettings.getId()).append("', '").append(tempSettings.getBeanName()).append("', '").append(tempSettings.getPropertyName()).append("', '").append(tempSettings.getCurrentValue()).append("', '")
           .append(tempSettings.getDefaultValue()).append("', '").append(tempSettings.getDescription()).append("', ").append(tempSettings.getSequence()).append(", ")
-          .append(tempSettings.getVersionAdded()).append("),");
+          .append(tempSettings.getVersionAdded()).append(", ").append(tempSettings.getType()).append("),");
     }
   }
 
