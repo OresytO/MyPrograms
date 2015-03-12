@@ -1,25 +1,20 @@
 package com.rebok3J.model.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.*;
 
 import com.rebok3J.dao.DaoNamedQueries;
-import com.rebok3J.model.Visit;
-import com.rebok3J.model.Visitor;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
 @Entity
-@Table(name = VisitorImpl.VISITOR_TABLE)
-@NamedQueries({
-    @NamedQuery(name = VisitorImpl.FIND_ALL, query = VisitorImpl.FIND_ALL_QUERY)
-})
-public class VisitorImpl implements Visitor, DaoNamedQueries
+@Table(name = Visitor.VISITOR_TABLE)
+@NamedQueries({ @NamedQuery(name = Visitor.FIND_ALL, query = Visitor.FIND_ALL_QUERY) })
+public class Visitor implements DaoNamedQueries
 {
-  public static final String VISITOR_ENTITY = "VisitorImpl";
+  public static final String VISITOR_ENTITY = "Visitor";
   public static final String VISITOR_TABLE = "VISITOR";
 
   public static final String FIND_ALL = "Visitor.findAll";
@@ -35,60 +30,53 @@ public class VisitorImpl implements Visitor, DaoNamedQueries
   private String name;
   public static final String NAME_COLUMN = "NAME";
 
-  @Column(name = CREATE_DATE_COLUMN, nullable = false, columnDefinition = "DEFAULT CURRENT_TIMESTAMP")
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = CREATE_DATE_COLUMN, nullable = false)
   private Date createDate;
   public static final String CREATE_DATE_COLUMN = "CREATE_DATE";
 
-  @OneToMany(mappedBy = "id")
-  private List<Visit> visits;
+//  @OneToMany(mappedBy = "id")
+//  private List<Visitor> visits;
 
-  @Override
   public long getId()
   {
     return id;
   }
 
-  @Override
   public void setId(long id)
   {
     this.id = id;
   }
 
-  @Override
   public String getName()
   {
     return name;
   }
 
-  @Override
   public void setName(String name)
   {
     this.name = name;
   }
 
-  @Override
   public Date getCreateDate()
   {
     return createDate;
   }
 
-  @Override
   public void setCreateDate(Date createDate)
   {
     this.createDate = createDate;
   }
 
-  @Override
-  public List<Visit> getVisits()
-  {
-    return visits;
-  }
+//  public List<Visitor> getVisits()
+//  {
+//    return visits;
+//  }
 
-  @Override
-  public void setVisits(List<Visit> visits)
-  {
-    this.visits = visits;
-  }
+//  public void setVisits(List<Visitor> visits)
+//  {
+//    this.visits = visits;
+//  }
 
   @Override
   public boolean equals(Object o)
@@ -98,7 +86,7 @@ public class VisitorImpl implements Visitor, DaoNamedQueries
     if (o == null || getClass() != o.getClass())
       return false;
 
-    VisitorImpl visitor = (VisitorImpl) o;
+    Visitor visitor = (Visitor) o;
 
     if (createDate != null ? !createDate.equals(visitor.createDate) : visitor.createDate != null)
       return false;

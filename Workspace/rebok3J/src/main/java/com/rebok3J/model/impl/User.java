@@ -3,22 +3,20 @@ package com.rebok3J.model.impl;
 import javax.persistence.*;
 
 import com.rebok3J.dao.DaoNamedQueries;
-import com.rebok3J.model.User;
 
 /**
  * Created by OrestO on 3/11/2015.
  */
 @Entity
-@Table(name = UserImpl.USER_TABLE)
-@NamedQueries({
-    @NamedQuery(name = UserImpl.FIND_ALL, query = UserImpl.FIND_ALL_QUERY)
-})
-public class UserImpl implements User, DaoNamedQueries
+@Table(name = User.USER_TABLE)
+@NamedQueries({ @NamedQuery(name = User.FIND_ALL, query = User.FIND_ALL_QUERY) })
+//TODO: verify if needed interfaces for example User
+public class User implements DaoNamedQueries
 {
 
-  public static final String USER_ENTITY = "UserImpl";
+  public static final String USER_ENTITY = "User";
   public static final String USER_TABLE = "USER";
-  
+
   public static final String FIND_ALL = "User.findAll";
   public static final String FIND_ALL_QUERY = "select u from " + USER_ENTITY + " u";
 
@@ -40,49 +38,41 @@ public class UserImpl implements User, DaoNamedQueries
   private String password;
   public static final String PASSWORD_COLUMN = "PASSWORD";
 
-  @Override
   public String getName()
   {
     return name;
   }
 
-  @Override
   public void setName(String name)
   {
     this.name = name;
   }
 
-  @Override
   public String getLogin()
   {
     return login;
   }
 
-  @Override
   public void setLogin(String login)
   {
     this.login = login;
   }
 
-  @Override
   public String getPassword()
   {
     return password;
   }
 
-  @Override
   public void setPassword(String password)
   {
     this.password = password;
   }
 
-  @Override
   public long getId()
   {
     return id;
   }
 
-  @Override
   public void setId(long id)
   {
     this.id = id;
@@ -96,7 +86,7 @@ public class UserImpl implements User, DaoNamedQueries
     if (o == null || getClass() != o.getClass())
       return false;
 
-    UserImpl user = (UserImpl) o;
+    User user = (User) o;
 
     if (!login.equals(user.login))
       return false;
