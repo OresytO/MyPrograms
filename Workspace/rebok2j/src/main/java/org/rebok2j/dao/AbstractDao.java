@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -53,9 +54,9 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
   @SuppressWarnings("unchecked")
   @Override
   public List<T> getResultList() {
-    Query query = entityManager.createNamedQuery(clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G);
+    TypedQuery<T> query = DomainConstants.findAllQuery(entityManager, clazz);
     log.info("query to execute: " + clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G);
-    return (List<T>) query.getResultList();
+    return query.getResultList();
   }
 
   @SuppressWarnings("unchecked")

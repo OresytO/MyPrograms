@@ -1,5 +1,8 @@
 package org.rebok2j.utils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
 /**
  * Created by OrestO
  * on 6/24/2014.
@@ -88,5 +91,10 @@ public final class DomainConstants {
 
   private DomainConstants() {
     throw new IllegalAccessError("do not try to create instance of DomainConstants");
+  }
+
+  public static TypedQuery findAllQuery(EntityManager entityManager, Class<?> clazz)
+  {
+    return entityManager.createNamedQuery(clazz.getSimpleName() + DomainConstants.DELIMITER_CHARACTER + DomainConstants.FIND_ALL_G, clazz);
   }
 }
