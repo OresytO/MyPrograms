@@ -10,10 +10,13 @@ import com.rebok3J.model.VisitQueryHolder;
  * Created by OrestO on 3/12/2015.
  */
 @Entity
-@Table(name = VisitQueryHolder.VISIT_TABLE)
+@Table(name = Visit.VISIT_TABLE)
 @NamedQueries({ @NamedQuery(name = VisitQueryHolder.FIND_ALL, query = VisitQueryHolder.FIND_ALL_QUERY) })
-public class VisitImpl implements VisitQueryHolder
+public class Visit implements VisitQueryHolder
 {
+
+  public static final String VISIT_ENTITY = "Visit";
+  public static final String VISIT_TABLE = "\"VISIT\"";
 
   @Id
   @GeneratedValue
@@ -23,7 +26,7 @@ public class VisitImpl implements VisitQueryHolder
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = VISITOR_ID_COLUMN, nullable = false)
-  private VisitorImpl visitorId;
+  private Visitor visitorId;
   public static final String VISITOR_ID_COLUMN = "VISITOR_ID";
 
   @Temporal(TemporalType.TIMESTAMP)
@@ -41,12 +44,12 @@ public class VisitImpl implements VisitQueryHolder
     this.id = id;
   }
 
-  public VisitorImpl getVisitor()
+  public Visitor getVisitor()
   {
     return visitorId;
   }
 
-  public void setVisitorId(VisitorImpl visitorId)
+  public void setVisitorId(Visitor visitorId)
   {
     this.visitorId = visitorId;
   }
@@ -69,7 +72,7 @@ public class VisitImpl implements VisitQueryHolder
     if (o == null || getClass() != o.getClass())
       return false;
 
-    VisitImpl visit = (VisitImpl) o;
+    Visit visit = (Visit) o;
 
     if (dateOfVisit != null ? !dateOfVisit.equals(visit.dateOfVisit) : visit.dateOfVisit != null)
       return false;

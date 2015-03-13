@@ -3,6 +3,7 @@ package com.rebok3J.dao;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,4 +48,31 @@ public class DaoAbstract<T> implements Dao<T>
     return query.getResultList();
   }
 
+  @Override
+  public List<T> getResultListFromNamedQuery(String namedQueryName, Map<String, String> paramMap)
+  {
+    TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName, clazz);
+    if (paramMap != null)
+    {
+      for (String key : paramMap.keySet())
+      {
+        query.setParameter(key, paramMap.get(key));
+      }
+    }
+    return query.getResultList();
+  }
+
+  @Override
+  public T getSingleResultFromNamedQuery(String namedQueryName, Map<String, String> paramMap)
+  {
+    TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName, clazz);
+    if (paramMap != null)
+    {
+      for (String key : paramMap.keySet())
+      {
+        query.setParameter(key, paramMap.get(key));
+      }
+    }
+    return query.getSingleResult();
+  }
 }

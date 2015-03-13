@@ -11,15 +11,15 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.rebok3J.model.impl.UserImpl;
-import com.rebok3J.model.impl.VisitImpl;
-import com.rebok3J.model.impl.VisitorImpl;
+import com.rebok3J.model.impl.User;
+import com.rebok3J.model.impl.Visit;
+import com.rebok3J.model.impl.Visitor;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
 @Configuration
-@EnableJpaRepositories(basePackageClasses = { UserImpl.class, VisitImpl.class, VisitorImpl.class })
+@EnableJpaRepositories(basePackageClasses = { User.class, Visit.class, Visitor.class })
 @EnableTransactionManagement
 public class PersistenceConfiguration
 {

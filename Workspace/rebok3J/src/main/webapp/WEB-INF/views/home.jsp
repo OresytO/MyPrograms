@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-    <%--@elvariable id="usersList" type="java.util.List<com.rebok3J.model.impl.UserImpl>"--%>
+    <%--@elvariable id="usersList" type="java.util.List<com.rebok3J.model.impl.User>"--%>
     <c:forEach items="${usersList}" var="user">
         <tr>
             <td>${user.id}</td>

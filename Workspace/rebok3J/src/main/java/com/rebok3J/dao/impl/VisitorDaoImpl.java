@@ -4,12 +4,12 @@ import org.springframework.stereotype.Repository;
 
 import com.rebok3J.dao.DaoAbstract;
 import com.rebok3J.dao.VisitorDao;
-import com.rebok3J.model.impl.VisitorImpl;
+import com.rebok3J.model.impl.Visitor;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
 @Repository
-public class VisitorDaoImpl extends DaoAbstract<VisitorImpl> implements VisitorDao
+public class VisitorDaoImpl extends DaoAbstract<Visitor> implements VisitorDao
 {
 }

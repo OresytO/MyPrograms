@@ -1,18 +1,47 @@
-DROP TABLE IF EXISTS "USER";
-CREATE TABLE "USER" (
-  ID       INTEGER PRIMARY KEY,
-  NAME     VARCHAR(255)        NOT NULL,
-  LOGIN    VARCHAR(255) UNIQUE NOT NULL,
-  PASSWORD VARCHAR(255)        NOT NULL
-);
-INSERT INTO "USER" VALUES
-  (1, 'admin', 'admin', 'admin'),
-  (2, 'orest', 'oresto', 'oresyto');
-SELECT *
-FROM "USER";
-
+DROP TABLE IF EXISTS "USERS_ROLES";
 DROP TABLE IF EXISTS "VISIT";
 DROP TABLE IF EXISTS "VISITOR";
+DROP TABLE IF EXISTS "USER";
+DROP TABLE IF EXISTS "ROLE";
+
+CREATE TABLE "USER" (
+  ID            INTEGER PRIMARY KEY,
+  USER_NAME     VARCHAR(255)        NOT NULL,
+  USER_NICKNAME VARCHAR(255) UNIQUE NOT NULL,
+  PASSWORD      VARCHAR(255)        NOT NULL,
+  ENABLE        BOOLEAN             NOT NULL
+);
+INSERT INTO "USER" VALUES
+  (1, 'admin', 'admin', 'admin', TRUE),
+  (2, 'orest', 'oresto1', 'oresyto', TRUE),
+  (3, 'orest', 'oresto2', 'oresyto', TRUE),
+  (4, 'orest', 'oresto3', 'oresyto', TRUE);
+
+CREATE TABLE "ROLE" (
+  ID        INTEGER PRIMARY KEY,
+  ROLE_NAME VARCHAR(255) UNIQUE NOT NULL
+);
+INSERT INTO "ROLE" VALUES
+  (1, 'admin'),
+  (2, 'manager'),
+  (3, 'user');
+
+CREATE TABLE "USERS_ROLES" (
+  ID      INTEGER PRIMARY KEY,
+  USER_ID INTEGER REFERENCES "USER" (id),
+  ROLE_ID INTEGER REFERENCES "ROLE" (id)
+);
+INSERT INTO "USERS_ROLES" VALUES
+  (1, 1, 1),
+  (2, 1, 2),
+  (3, 1, 3),
+  (4, 2, 1),
+  (5, 2, 2),
+  (6, 2, 3),
+  (7, 3, 1),
+  (8, 3, 2),
+  (9, 4, 3);
+
 CREATE TABLE "VISITOR" (
   ID          INTEGER PRIMARY KEY,
   NAME        VARCHAR(255) NOT NULL,
@@ -21,8 +50,6 @@ CREATE TABLE "VISITOR" (
 INSERT INTO "VISITOR" VALUES
   (1, 'admin'),
   (2, 'orest');
-SELECT *
-FROM "VISITOR";
 
 CREATE TABLE "VISIT" (
   ID            INTEGER PRIMARY KEY,
@@ -32,5 +59,14 @@ CREATE TABLE "VISIT" (
 INSERT INTO "VISIT" VALUES
   (1, 2),
   (2, 2);
+
 SELECT *
 FROM "VISIT";
+SELECT *
+FROM "VISITOR";
+SELECT *
+FROM "USERS_ROLES";
+SELECT *
+FROM "ROLE";
+SELECT *
+FROM "USER";

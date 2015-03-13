@@ -10,10 +10,13 @@ import com.rebok3J.model.VisitorQueryHolder;
  * Created by OrestO on 3/12/2015.
  */
 @Entity
-@Table(name = VisitorQueryHolder.VISITOR_TABLE)
+@Table(name = Visitor.VISITOR_TABLE)
 @NamedQueries({ @NamedQuery(name = VisitorQueryHolder.FIND_ALL, query = VisitorQueryHolder.FIND_ALL_QUERY) })
-public class VisitorImpl implements VisitorQueryHolder
+public class Visitor implements VisitorQueryHolder
 {
+
+  public static final String VISITOR_ENTITY = "Visitor";
+  public static final String VISITOR_TABLE = "\"VISITOR\"";
 
   @Id
   @GeneratedValue
@@ -71,7 +74,7 @@ public class VisitorImpl implements VisitorQueryHolder
     if (o == null || getClass() != o.getClass())
       return false;
 
-    VisitorImpl visitor = (VisitorImpl) o;
+    Visitor visitor = (Visitor) o;
 
     if (createDate != null ? !createDate.equals(visitor.createDate) : visitor.createDate != null)
       return false;
