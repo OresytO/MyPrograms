@@ -8,15 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.springframework.stereotype.Repository;
-
 import com.rebok3J.dao.Dao;
 import com.rebok3J.dao.DaoNamedQueries;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
-@Repository
 //TODO: Copy named query work from @see org.rebok2j.utils.DomainConstants
 public class DaoAbstract<T> implements Dao<T>
 {

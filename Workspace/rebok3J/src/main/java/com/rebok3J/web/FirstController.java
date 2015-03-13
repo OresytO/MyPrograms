@@ -33,6 +33,6 @@ public class FirstController
   public String showUsers(Model model) throws InstantiationException, IllegalAccessException
   {
     model.addAttribute(USERS_LIST, userDao.loadAll());
-    return "home.jsp";
+    return "views/home";
   }
 }

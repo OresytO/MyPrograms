@@ -15,7 +15,7 @@ public class User implements DaoNamedQueries
 {
 
   public static final String USER_ENTITY = "User";
-  public static final String USER_TABLE = "USER";
+  public static final String USER_TABLE = "\"USER\"";
 
   public static final String FIND_ALL = "User.findAll";
   public static final String FIND_ALL_QUERY = "select u from " + USER_ENTITY + " u";

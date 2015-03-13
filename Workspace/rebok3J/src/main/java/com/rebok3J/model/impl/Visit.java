@@ -17,7 +17,7 @@ import com.rebok3J.dao.DaoNamedQueries;
 public class Visit implements DaoNamedQueries
 {
   public static final String VISIT_ENTITY = "Visit";
-  public static final String VISIT_TABLE = "VISIT";
+  public static final String VISIT_TABLE = "\"VISIT\"";
 
   public static final String FIND_ALL = "Visit.findAll";
   public static final String FIND_ALL_QUERY = "select u from " + VISIT_ENTITY + " u";
