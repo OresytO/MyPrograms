@@ -1,7 +1,0 @@
-package test.parser;
-
-public class Parser3 extends Parser {
-	public void parse(String str) {
-
-	}
-}

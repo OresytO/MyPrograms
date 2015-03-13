@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC
-    "-//SPRING//DTD BEAN//EN"
-    "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
-	<!-- Blank for now, but who knows, maybe we will have some business logic 
-		beans here. -->
-</beans>
