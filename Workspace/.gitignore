@@ -4,4 +4,6 @@
 target/
 build/
 /.idea/
+/.idea
+/target
 .idea/workspace.xml

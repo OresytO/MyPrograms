@@ -68,9 +68,9 @@ public enum Profile {
     }
 
     sequence = 0;
-    this.getSystemMap().putAll(fulfillMap(systemProperties, systemDescriptions, 1));
+    this.getSystemMap().putAll(fulfillMap(systemProperties, systemDescriptions, 0));
     sequence = 0;
-    this.getSettingsMap().putAll(fulfillMap(settingsProperties, settingsDescriptions, 2));
+    this.getSettingsMap().putAll(fulfillMap(settingsProperties, settingsDescriptions, 1));
     // ------
   }
 
