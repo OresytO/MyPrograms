@@ -11,7 +11,6 @@ import com.rebok3J.model.impl.UserImpl;
  */
 
 @Repository
-// TODO: verify if needed interfaces
 public class UserDaoImpl extends DaoAbstract<UserImpl> implements UserDao
 {
 }
