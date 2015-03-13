@@ -24,9 +24,9 @@ public class SimplePropertiesParser
     while (scanner.hasNextLine())
     {
       currentLine = scanner.nextLine().split("=");
-      if (currentLine.length >= 2 && !currentLine[key].startsWith("#"))
+      if (currentLine.length >= 1 && !currentLine[key].startsWith("#") && !currentLine[key].isEmpty())
       {
-        properties.put(currentLine[key], currentLine[value]);
+        properties.put(currentLine[key], currentLine.length == 1 ? "" : currentLine[value]);
       }
     }
     return properties;
