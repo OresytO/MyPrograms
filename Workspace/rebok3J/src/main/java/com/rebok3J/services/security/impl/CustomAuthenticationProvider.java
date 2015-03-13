@@ -1,4 +1,4 @@
-package com.rebok3J.springConfiguration.security.impl;
+package com.rebok3J.services.security.impl;
 
 import java.util.Collection;
 
