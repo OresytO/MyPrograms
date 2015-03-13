@@ -4,23 +4,16 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import com.rebok3J.dao.DaoNamedQueries;
+import com.rebok3J.model.VisitQueryHolder;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
 @Entity
-@Table(name = Visit.VISIT_TABLE)
-@NamedQueries({
-    @NamedQuery(name = Visit.FIND_ALL, query = Visit.FIND_ALL_QUERY)
-})
-public class Visit implements DaoNamedQueries
+@Table(name = VisitQueryHolder.VISIT_TABLE)
+@NamedQueries({ @NamedQuery(name = VisitQueryHolder.FIND_ALL, query = VisitQueryHolder.FIND_ALL_QUERY) })
+public class VisitImpl implements VisitQueryHolder
 {
-  public static final String VISIT_ENTITY = "Visit";
-  public static final String VISIT_TABLE = "\"VISIT\"";
-
-  public static final String FIND_ALL = "Visit.findAll";
-  public static final String FIND_ALL_QUERY = "select u from " + VISIT_ENTITY + " u";
 
   @Id
   @GeneratedValue
@@ -30,7 +23,7 @@ public class Visit implements DaoNamedQueries
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = VISITOR_ID_COLUMN, nullable = false)
-  private Visitor visitorId;
+  private VisitorImpl visitorId;
   public static final String VISITOR_ID_COLUMN = "VISITOR_ID";
 
   @Temporal(TemporalType.TIMESTAMP)
@@ -48,12 +41,12 @@ public class Visit implements DaoNamedQueries
     this.id = id;
   }
 
-  public Visitor getVisitor()
+  public VisitorImpl getVisitor()
   {
     return visitorId;
   }
 
-  public void setVisitorId(Visitor visitorId)
+  public void setVisitorId(VisitorImpl visitorId)
   {
     this.visitorId = visitorId;
   }
@@ -76,7 +69,7 @@ public class Visit implements DaoNamedQueries
     if (o == null || getClass() != o.getClass())
       return false;
 
-    Visit visit = (Visit) o;
+    VisitImpl visit = (VisitImpl) o;
 
     if (dateOfVisit != null ? !dateOfVisit.equals(visit.dateOfVisit) : visit.dateOfVisit != null)
       return false;

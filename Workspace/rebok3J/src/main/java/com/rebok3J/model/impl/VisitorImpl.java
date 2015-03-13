@@ -4,21 +4,16 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import com.rebok3J.dao.DaoNamedQueries;
+import com.rebok3J.model.VisitorQueryHolder;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
 @Entity
-@Table(name = Visitor.VISITOR_TABLE)
-@NamedQueries({ @NamedQuery(name = Visitor.FIND_ALL, query = Visitor.FIND_ALL_QUERY) })
-public class Visitor implements DaoNamedQueries
+@Table(name = VisitorQueryHolder.VISITOR_TABLE)
+@NamedQueries({ @NamedQuery(name = VisitorQueryHolder.FIND_ALL, query = VisitorQueryHolder.FIND_ALL_QUERY) })
+public class VisitorImpl implements VisitorQueryHolder
 {
-  public static final String VISITOR_ENTITY = "Visitor";
-  public static final String VISITOR_TABLE = "\"VISITOR\"";
-
-  public static final String FIND_ALL = "Visitor.findAll";
-  public static final String FIND_ALL_QUERY = "select u from " + VISITOR_ENTITY + " u";
 
   @Id
   @GeneratedValue
@@ -35,8 +30,8 @@ public class Visitor implements DaoNamedQueries
   private Date createDate;
   public static final String CREATE_DATE_COLUMN = "CREATE_DATE";
 
-//  @OneToMany(mappedBy = "id")
-//  private List<Visitor> visits;
+  // @OneToMany(mappedBy = "id")
+  // private List<Visitor> visits;
 
   public long getId()
   {
@@ -68,16 +63,6 @@ public class Visitor implements DaoNamedQueries
     this.createDate = createDate;
   }
 
-//  public List<Visitor> getVisits()
-//  {
-//    return visits;
-//  }
-
-//  public void setVisits(List<Visitor> visits)
-//  {
-//    this.visits = visits;
-//  }
-
   @Override
   public boolean equals(Object o)
   {
@@ -86,7 +71,7 @@ public class Visitor implements DaoNamedQueries
     if (o == null || getClass() != o.getClass())
       return false;
 
-    Visitor visitor = (Visitor) o;
+    VisitorImpl visitor = (VisitorImpl) o;
 
     if (createDate != null ? !createDate.equals(visitor.createDate) : visitor.createDate != null)
       return false;

@@ -2,23 +2,16 @@ package com.rebok3J.model.impl;
 
 import javax.persistence.*;
 
-import com.rebok3J.dao.DaoNamedQueries;
+import com.rebok3J.model.UserQueryHolder;
 
 /**
  * Created by OrestO on 3/11/2015.
  */
 @Entity
-@Table(name = User.USER_TABLE)
-@NamedQueries({ @NamedQuery(name = User.FIND_ALL, query = User.FIND_ALL_QUERY) })
-//TODO: verify if needed interfaces for example User
-public class User implements DaoNamedQueries
+@Table(name = UserQueryHolder.USER_TABLE)
+@NamedQueries({ @NamedQuery(name = UserQueryHolder.FIND_ALL, query = UserQueryHolder.FIND_ALL_QUERY) })
+public class UserImpl implements UserQueryHolder
 {
-
-  public static final String USER_ENTITY = "User";
-  public static final String USER_TABLE = "\"USER\"";
-
-  public static final String FIND_ALL = "User.findAll";
-  public static final String FIND_ALL_QUERY = "select u from " + USER_ENTITY + " u";
 
   @Id
   @GeneratedValue
@@ -86,7 +79,7 @@ public class User implements DaoNamedQueries
     if (o == null || getClass() != o.getClass())
       return false;
 
-    User user = (User) o;
+    UserImpl user = (UserImpl) o;
 
     if (!login.equals(user.login))
       return false;

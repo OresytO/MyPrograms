@@ -6,9 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.rebok3J.dao.impl.UserDaoImpl;
-import com.rebok3J.dao.impl.VisitDaoImpl;
-import com.rebok3J.dao.impl.VisitorDaoImpl;
+import com.rebok3J.dao.UserDao;
 
 /**
  * Created by OrestO on 3/11/2015.
@@ -18,13 +16,7 @@ public class FirstController
 {
 
   @Autowired
-  private UserDaoImpl userDao;
-
-  @Autowired
-  private VisitDaoImpl visitDao;
-
-  @Autowired
-  private VisitorDaoImpl visitorDao;
+  private UserDao userDao;
 
   public static final String SHOW_USERS_URL = "/showUsers";
   public static final String USERS_LIST = "usersList";
