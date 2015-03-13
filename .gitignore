@@ -7,3 +7,5 @@ build/
 .idea/workspace.xml
 /*.iml
 *.iml
+/apache-tomcat-8.0.20
+apache-tomcat-8.0.20/
