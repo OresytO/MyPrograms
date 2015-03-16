@@ -13,6 +13,7 @@ public class GuestController {
   @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
   public String index() {
     return "welcome";
+//    return "views/tiles/welcome.jsp";
   }
 
 }

@@ -45,8 +45,18 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
   protected void configure(HttpSecurity http) throws Exception
   {
 
-    http.authorizeRequests().antMatchers("/**").hasRole("USER").and().formLogin().loginPage("/login").failureUrl("/login/failure").defaultSuccessUrl("/welcome").permitAll().and().exceptionHandling()
-        .accessDeniedPage("/denied").and().logout().logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true);
+    http
+        .authorizeRequests()
+        .antMatchers("/**")
+        .hasRole("user")
+        .and().formLogin()
+        .loginPage("/admin/login")
+        .failureUrl("/login/failure")
+        .defaultSuccessUrl("/welcome")
+        .permitAll()
+        .and()
+        .exceptionHandling()
+        .accessDeniedPage("/denied").and().logout().logoutUrl("/logout").logoutSuccessUrl("/admin/login").invalidateHttpSession(true);
     // .and()
     // .authenticationProvider(customAuthenticationProvider).userDetailsService(userDetailsService)
     // .addFilterBefore(new DelegatingFilterProxy(),

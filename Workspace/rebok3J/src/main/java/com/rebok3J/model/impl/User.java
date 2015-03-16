@@ -45,9 +45,10 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
   public static final String ENABLE_COLUMN = "ENABLE";
 
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinTable(name = USERS_ROLES_TABLE, joinColumns = { @JoinColumn(name = USER_ID_COLUMN, updatable = true, nullable = true) }, inverseJoinColumns = { @JoinColumn(name = ROLE_ID_COLUMN, updatable = true, nullable = true) })
+  @JoinTable(name = USERS_ROLES_TABLE, joinColumns = { @JoinColumn(name = USER_ID_COLUMN, updatable = true, nullable = false) }, inverseJoinColumns = { @JoinColumn(name = ROLE_ID_COLUMN, updatable = true, nullable = false) })
   private List<Role> roles;
-  public static final String USERS_ROLES_TABLE = "USERS_ROLES";
+
+  public static final String USERS_ROLES_TABLE = "\"USERS_ROLES\"";
   public static final String USER_ID_COLUMN = "USER_ID";
   public static final String ROLE_ID_COLUMN = "ROLE_ID";
 
@@ -148,7 +149,7 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
   }
 
   @Override
-  public String getFindAll()
+  public String getFindAllQueryName()
   {
     return User.FIND_ALL;
   }

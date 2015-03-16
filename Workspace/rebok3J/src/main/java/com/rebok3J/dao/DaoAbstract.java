@@ -44,7 +44,7 @@ public class DaoAbstract<T> implements Dao<T>
     {
       throw new IllegalArgumentException("Unsupported operation!!! DAO no implements " + CommonQueryHolder.class);
     }
-    TypedQuery<T> query = entityManager.createNamedQuery(((CommonQueryHolder) clazz.newInstance()).getFindAll(), clazz);
+    TypedQuery<T> query = entityManager.createNamedQuery(((CommonQueryHolder) clazz.newInstance()).getFindAllQueryName(), clazz);
     return query.getResultList();
   }
 

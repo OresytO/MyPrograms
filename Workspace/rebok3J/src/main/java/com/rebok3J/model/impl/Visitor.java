@@ -99,7 +99,7 @@ public class Visitor implements VisitorQueryHolder
   }
 
   @Override
-  public String getFindAll()
+  public String getFindAllQueryName()
   {
     return FIND_ALL;
   }

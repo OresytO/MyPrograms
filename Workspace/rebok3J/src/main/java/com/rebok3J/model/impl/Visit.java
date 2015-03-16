@@ -97,7 +97,7 @@ public class Visit implements VisitQueryHolder
   }
 
   @Override
-  public String getFindAll()
+  public String getFindAllQueryName()
   {
     return FIND_ALL;
   }

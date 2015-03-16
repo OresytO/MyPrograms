@@ -16,5 +16,5 @@ public interface UserQueryHolder extends CommonQueryHolder
   public static final String FIND_BY_NICKNAME_QUERY = "select entity from " + User.USER_ENTITY + " entity where entity.userNickname = :" + User.USER_NICKNAME_COLUMN;
 
   @Override
-  String getFindAll();
+  String getFindAllQueryName();
 }

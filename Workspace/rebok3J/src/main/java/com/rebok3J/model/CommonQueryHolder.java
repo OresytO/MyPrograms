@@ -5,6 +5,6 @@ package com.rebok3J.model;
  */
 public interface CommonQueryHolder
 {
-  String getFindAll();
+  String getFindAllQueryName();
 
 }

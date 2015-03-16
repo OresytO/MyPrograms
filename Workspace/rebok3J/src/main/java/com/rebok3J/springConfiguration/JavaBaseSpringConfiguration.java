@@ -16,6 +16,9 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
  * Created by OrestO on 3/11/2015.
@@ -23,8 +26,8 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.rebok3J.*")
-@Import({ PersistenceConfiguration.class /* , SpringSecurityConfiguration.class */})
+@ComponentScan(basePackages = "com.rebok3J")
+@Import({ PersistenceConfiguration.class, SpringSecurityConfiguration.class })
 public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
 {
 
@@ -42,13 +45,41 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
     registry.jsp();
   }
 
+//  @Bean
+//  public InternalResourceViewResolver jspViewResolver()
+//  {
+//    InternalResourceViewResolver bean = new InternalResourceViewResolver();
+//    bean.setPrefix("/WEB-INF/views/");
+//    bean.setSuffix(".jsp");
+//    return bean;
+//  }
+
   @Bean
-  public InternalResourceViewResolver jspViewResolver()
-  {
-    InternalResourceViewResolver bean = new InternalResourceViewResolver();
-    bean.setPrefix("/WEB-INF/views/");
-    bean.setSuffix(".jsp");
-    return bean;
+  public ServletContextTemplateResolver templateResolver() {
+    ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+    resolver.setPrefix("/WEB-INF/views/");
+    resolver.setSuffix(".jsp");
+//    resolver.setTemplateMode("HTML5");
+//    resolver.setCacheable(false);
+    return resolver;
+  }
+
+  @Bean
+  public SpringTemplateEngine templateEngine() {
+    SpringTemplateEngine engine = new SpringTemplateEngine();
+    engine.setTemplateResolver(templateResolver());
+//    engine.addDialect(new DandelionDialect());
+//    engine.addDialect(new DataTablesDialect());
+    return engine;
+  }
+
+  @Bean
+  public ThymeleafViewResolver thymeleafViewResolver() {
+    ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+    viewResolver.setCharacterEncoding("UTF-8");
+    viewResolver.setOrder(1);
+    viewResolver.setTemplateEngine(templateEngine());
+    return viewResolver;
   }
 
   @Bean

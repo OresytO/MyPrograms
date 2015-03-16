@@ -1,6 +1,7 @@
 package com.rebok3J.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.rebok3J.dao.UserDao;
  * Created by OrestO on 3/11/2015.
  */
 @Controller
+@PreAuthorize("hasRole('admin')")
 public class FirstController
 {
 
@@ -25,6 +27,6 @@ public class FirstController
   public String showUsers(Model model) throws InstantiationException, IllegalAccessException
   {
     model.addAttribute(USERS_LIST, userDao.loadAll());
-    return "views/home";
+    return "views/admin/home";
   }
 }

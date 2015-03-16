@@ -11,5 +11,5 @@ public interface VisitQueryHolder extends CommonQueryHolder
   String FIND_ALL_QUERY = "select u from " + Visit.VISIT_ENTITY + " u";
 
   @Override
-  String getFindAll();
+  String getFindAllQueryName();
 }

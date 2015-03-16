@@ -4,14 +4,14 @@
 
 <html>
 <body>
-<h2>222Hello World!222</h2>
+<h2>333Hello World!333</h2>
 <table>
     <thead>
     <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>login</td>
-        <td>password</td>
+        <td><fmt:message key="user.id.title"/></td>
+        <td><fmt:message key="user.name.title"/></td>
+        <td><fmt:message key="user.login.title"/></td>
+        <td><fmt:message key="user.password.title"/></td>
     </tr>
     </thead>
 
@@ -29,3 +29,5 @@
 </table>
 </body>
 </html>
+
+
