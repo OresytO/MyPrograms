@@ -1,4 +1,14 @@
+.metadata/
+.build/
+build/
 /target
+target/
+.target/
+/.idea/
 /.idea
+.idea/
+.idea/workspace.xml
+.settings/
 /.settings
-/.out
+/out
+out/
