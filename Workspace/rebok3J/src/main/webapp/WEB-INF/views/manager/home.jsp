@@ -4,7 +4,7 @@
 
 <html>
 <body>
-<h2>Hello World! - admin</h2>
+<h2>Hello World! - manager</h2>
 <table>
     <thead>
     <tr>
