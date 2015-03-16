@@ -21,7 +21,7 @@ public class AdminController
   @Autowired
   private UserDao userDao;
 
-  public static final String SHOW_USERS_URL = "showUsers";
+  public static final String SHOW_USERS_URL = "/showUsers";
   public static final String USERS_LIST = "usersList";
 
   @RequestMapping(value = SHOW_USERS_URL, method = RequestMethod.GET)

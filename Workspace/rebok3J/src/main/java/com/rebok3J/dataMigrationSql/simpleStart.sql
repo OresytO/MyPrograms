@@ -38,8 +38,8 @@ INSERT INTO "USERS_ROLES" VALUES
   (4, 2, 1),
   (5, 2, 2),
   (6, 2, 3),
-  (7, 3, 1),
-  (8, 3, 2),
+  (7, 3, 2),
+  (8, 3, 3),
   (9, 4, 3);
 
 CREATE TABLE "VISITOR" (

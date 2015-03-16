@@ -47,8 +47,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
 
     http
         .authorizeRequests()
-        .antMatchers("/admin/**").hasRole("admin")
-        .antMatchers("/manager/**").hasRole("admin or manager")
+        .antMatchers("/admin/**").access("hasRole('admin')")
+        .antMatchers("/manager/**").access("hasRole('admin') or hasRole('manager')")
         .and().formLogin()
 //        .loginPage("/admin/login")
 //        .failureUrl("/login/failure")

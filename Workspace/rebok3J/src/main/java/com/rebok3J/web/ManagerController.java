@@ -24,7 +24,7 @@ public class ManagerController
   public static final String SHOW_USERS_URL = "/showUsers";
   public static final String USERS_LIST = "usersList";
 
-  @RequestMapping(name = SHOW_USERS_URL, method = RequestMethod.GET)
+  @RequestMapping(value = SHOW_USERS_URL, method = RequestMethod.GET)
   public String showUsers(Model model) throws InstantiationException, IllegalAccessException
   {
     model.addAttribute(USERS_LIST, userDao.loadAll());
