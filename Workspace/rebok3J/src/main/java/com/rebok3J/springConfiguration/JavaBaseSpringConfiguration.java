@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -44,21 +46,24 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
     registry.jsp();
   }
 
-//  @Bean
-//  public InternalResourceViewResolver jspViewResolver()
-//  {
-//    InternalResourceViewResolver bean = new InternalResourceViewResolver();
-//    bean.setPrefix("/WEB-INF/views/");
-//    bean.setSuffix(".jsp");
-//    return bean;
-//  }
+  @Bean
+  public InternalResourceViewResolver jspViewResolver()
+  {
+    InternalResourceViewResolver bean = new InternalResourceViewResolver();
+    bean.setViewClass(JstlView.class);
+    bean.setPrefix("/WEB-INF/views/");
+    bean.setSuffix(".jsp");
+    bean.setOrder(2);
+    bean.setViewNames("*jsp");
+    return bean;
+  }
 
   @Bean
   public ServletContextTemplateResolver templateResolver() {
     ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
-    resolver.setPrefix("/WEB-INF/views/");
-    resolver.setSuffix(".jsp");
-//    resolver.setTemplateMode("HTML5");
+    resolver.setPrefix("/WEB-INF/templates/");
+    resolver.setSuffix(".html");
+    resolver.setTemplateMode("HTML5");
 //    resolver.setCacheable(false);
     return resolver;
   }
@@ -78,6 +83,7 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
     viewResolver.setCharacterEncoding("UTF-8");
     viewResolver.setOrder(1);
     viewResolver.setTemplateEngine(templateEngine());
+    viewResolver.setViewNames(new String[]{"*.html", "*.xhtml"});
     return viewResolver;
   }
 
