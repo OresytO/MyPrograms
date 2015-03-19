@@ -28,6 +28,7 @@ public class ManagerController
   public String showUsers(Model model) throws InstantiationException, IllegalAccessException
   {
     model.addAttribute(USERS_LIST, userDao.loadAll());
-    return "views/manager/home";
+    model.addAttribute("controller", "MANAGER CONTROLLER");
+    return "manager/test";
   }
 }

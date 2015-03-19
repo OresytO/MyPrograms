@@ -13,7 +13,7 @@ import com.rebok3J.dao.UserDao;
  * Created by OrestO on 3/11/2015.
  */
 @Controller
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/admin**")
 @PreAuthorize("hasRole('admin')")
 public class AdminController
 {
@@ -28,6 +28,7 @@ public class AdminController
   public String showUsers(Model model) throws InstantiationException, IllegalAccessException
   {
     model.addAttribute(USERS_LIST, userDao.loadAll());
-    return "views/admin/home";
+    model.addAttribute("controller", "ADMIN CONTROLLER");
+    return "admin/test";
   }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        >
+<head>
+    <title>Login page</title>
+</head>
+<body>
+<div sec:authorize="hasRole('ROLE_ADMIN')"><h1>HOME PAGE --- ADMIN ---</h1></div>
+<h1>HOME PAGE</h1>
+<p>HOME PAGE</p>
+<a href="http://localhost:8080/rebok3J/admin/showUsers">admin</a>
+<a href="http://localhost:8080/rebok3J/manage/showUsers">manager</a>
+</body>
+</html>

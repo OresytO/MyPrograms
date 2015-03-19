@@ -12,10 +12,38 @@ public class SecurityController
 {
 
   public static final String LOGIN_URL = "/login";
-
   @RequestMapping(value = LOGIN_URL, method = RequestMethod.GET)
   public String showUsers()
   {
-    return "login";
+    return "security/login";
   }
+
+  public static final String HOME_URL = "/home";
+  @RequestMapping(value = HOME_URL, method = RequestMethod.GET)
+  public String showHome()
+  {
+    return "home";
+  }
+
+  public static final String DENIED_URL = "/denied";
+  @RequestMapping(value = DENIED_URL, method = RequestMethod.GET)
+  public String showDenied()
+  {
+    return "security/denied";
+  }
+
+  public static final String LOGOUT_URL = "/logout";
+  @RequestMapping(value = LOGOUT_URL, method = RequestMethod.GET)
+  public String showLogout()
+  {
+    return "security/logout";
+  }
+
+  public static final String FAILURE_URL = "/failure";
+  @RequestMapping(value = FAILURE_URL, method = RequestMethod.GET)
+  public String showFailure()
+  {
+    return "security/failure";
+  }
+
 }

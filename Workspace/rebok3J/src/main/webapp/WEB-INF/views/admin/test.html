@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header" lang="en">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../resources/css/style.css" th:href="@{/resources/css/style.css}" />
+    <title th:text="#{test.page.title}">Title</title>
+</head>
+
+<body>
+<h1>Title : #{test.page.title}</h1>
+
+<h1 th:text="'We get here from :' + ${controller}"></h1>
+
+<div th:if="${pageContext.request.userPrincipal.name != null}">
+    <h2 th:text="'Welcome : ' + ${pageContext.request.userPrincipal.name}"></h2>
+    | <a href="/bad/logout" th:href="/logout"> Logout</a></h2>
+</div>
+</body>
+</html>
