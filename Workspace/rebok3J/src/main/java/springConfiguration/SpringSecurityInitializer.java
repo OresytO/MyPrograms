@@ -1,4 +1,4 @@
-package com.rebok3J.springConfiguration;
+package springConfiguration;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

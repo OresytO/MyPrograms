@@ -1,4 +1,4 @@
-package com.rebok3J.springConfiguration;
+package springConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.rebok3J.springConfiguration;
+package springConfiguration;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -59,7 +59,7 @@ public class PersistenceConfiguration
     jpaProperties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/rebok3J_DB");
     jpaProperties.put("javax.persistence.jdbc.user", "postgres");
     jpaProperties.put("javax.persistence.jdbc.password", "njvfmkcd@2410@");
-    jpaProperties.put("eclipselink.weaving", "false");
+    jpaProperties.put("eclipselink.weaving", "static");
     entityManagerFactory.setJpaProperties(jpaProperties);
 
     return entityManagerFactory;

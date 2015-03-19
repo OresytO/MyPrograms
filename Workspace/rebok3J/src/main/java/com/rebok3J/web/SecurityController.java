@@ -16,6 +16,6 @@ public class SecurityController
   @RequestMapping(value = LOGIN_URL, method = RequestMethod.GET)
   public String showUsers()
   {
-    return "/views/security/login";
+    return "login";
   }
 }
