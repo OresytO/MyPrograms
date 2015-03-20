@@ -2,6 +2,8 @@ package springConfiguration;
 
 import java.util.Locale;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -60,6 +62,7 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
     SpringTemplateEngine engine = new SpringTemplateEngine();
     engine.setTemplateResolver(templateResolver());
     engine.addDialect(new SpringSecurityDialect());
+    engine.addDialect(new LayoutDialect());
     return engine;
   }
 
