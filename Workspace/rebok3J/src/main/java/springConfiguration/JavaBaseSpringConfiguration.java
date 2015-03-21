@@ -4,12 +4,14 @@ import java.util.Locale;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -90,23 +92,12 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
   // }
 
   @Bean
-  public ResourceBundleMessageSource messageSource()
+  public CookieLocaleResolver localeResolver()
   {
-    ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-    source.setBasename("messages");
-    return source;
+    CookieLocaleResolver resolver = new CookieLocaleResolver();
+    resolver.setDefaultLocale(new Locale("ua"));
+    return resolver;
   }
-
-  // @Bean
-  // public MessageSource messageSource()
-  // {
-  // ReloadableResourceBundleMessageSource messageSource = new
-  // ReloadableResourceBundleMessageSource();
-  // messageSource.setBasename("resources/messages");// "classpath:messages"
-  // messageSource.setUseCodeAsDefaultMessage(true);
-  // messageSource.setDefaultEncoding("UTF-8");
-  // return messageSource;
-  // }
 
   @Bean
   public LocaleChangeInterceptor localeChangeInterceptor()
@@ -117,10 +108,15 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
   }
 
   @Bean
-  public CookieLocaleResolver localeResolver()
-  {
-    CookieLocaleResolver resolver = new CookieLocaleResolver();
-    resolver.setDefaultLocale(new Locale("ua"));
-    return resolver;
+  public MessageSource messageSource() {
+    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+    messageSource.setBasename("WEB-INF/messages/messages");
+    messageSource.setDefaultEncoding("UTF-8");
+    messageSource.setUseCodeAsDefaultMessage(true);
+    return messageSource;
+  }
+
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(localeChangeInterceptor());
   }
 }

@@ -9,6 +9,6 @@
 <div th:if="${#authorization.expression('hasRole(''admin'')')}"></div>
 <h1>LOGOUT PAGE</h1>
 <p>LOGOUT PAGE</p>
-<a href="http://localhost:8080/rebok3J/login">login</a>
+<a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
 </body>
 </html>

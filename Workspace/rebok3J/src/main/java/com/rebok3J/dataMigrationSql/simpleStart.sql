@@ -13,9 +13,8 @@ CREATE TABLE "USER" (
 );
 INSERT INTO "USER" VALUES
   (1, 'admin', 'admin', 'admin', TRUE),
-  (2, 'orest', 'oresto1', 'oresyto', TRUE),
-  (3, 'orest', 'oresto2', 'oresyto', TRUE),
-  (4, 'orest', 'oresto3', 'oresyto', TRUE);
+  (2, 'orest', 'director', 'oresyto', TRUE),
+  (3, 'orest', 'manager', 'oresyto', TRUE);
 
 CREATE TABLE "ROLE" (
   ID        INTEGER PRIMARY KEY,
@@ -23,8 +22,8 @@ CREATE TABLE "ROLE" (
 );
 INSERT INTO "ROLE" VALUES
   (1, 'admin'),
-  (2, 'manager'),
-  (3, 'user');
+  (2, 'director'),
+  (3, 'manager');
 
 CREATE TABLE "USERS_ROLES" (
   ID      INTEGER PRIMARY KEY,
@@ -35,12 +34,9 @@ INSERT INTO "USERS_ROLES" VALUES
   (1, 1, 1),
   (2, 1, 2),
   (3, 1, 3),
-  (4, 2, 1),
-  (5, 2, 2),
-  (6, 2, 3),
-  (7, 3, 2),
-  (8, 3, 3),
-  (9, 4, 3);
+  (4, 2, 2),
+  (5, 2, 3),
+  (6, 3, 3);
 
 CREATE TABLE "VISITOR" (
   ID          INTEGER PRIMARY KEY,

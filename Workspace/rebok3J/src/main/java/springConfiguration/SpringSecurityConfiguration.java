@@ -31,9 +31,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
         .authorizeRequests()
         .antMatchers("/resources/**").permitAll()
         .antMatchers("/security/**").permitAll()
-//        .anyRequest().authenticated()
-        .antMatchers("/admin/**").access("hasRole('admin')")
-        .antMatchers("/manager/**").access("hasRole('manager')")
+        .antMatchers("/admin/**").hasAuthority("admin")
+        .antMatchers("/director/**").hasAuthority("director")
+        .antMatchers("/manager/**").hasAuthority("manager")
         .and().formLogin()
           .loginPage("/login")
           .failureUrl("/failure")
@@ -49,10 +49,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
           .logoutSuccessUrl("/login")
           .invalidateHttpSession(true)
           .permitAll();
-    // .and()
-    // .authenticationProvider(customAuthenticationProvider).userDetailsService(userDetailsService)
-    // .addFilterBefore(new DelegatingFilterProxy(),
-    // BasicAuthenticationFilter.class);
   }
 
   @Override
