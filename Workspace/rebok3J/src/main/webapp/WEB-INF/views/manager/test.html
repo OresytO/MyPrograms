@@ -8,6 +8,7 @@
 </head>
 <body>
 <div th:if="${#authorization.expression('hasRole(''admin'')')}"> Hello ADMIN</div>
+<div th:if="${#authorization.expression('hasRole(''director'')')}"> Hello DIRECTOR</div>
 <div th:if="${#authorization.expression('hasRole(''manager'')')}"> Hello MANAGER</div>
 <a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
 <a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>

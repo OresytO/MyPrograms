@@ -13,7 +13,6 @@ import com.rebok3J.dao.UserDao;
  */
 @Controller
 @RequestMapping(value = "/admin**")
-//@PreAuthorize("hasRole('admin')")
 public class AdminController
 {
 

@@ -13,7 +13,6 @@ import com.rebok3J.dao.UserDao;
  */
 @Controller
 @RequestMapping(value = "/director**")
-//@PreAuthorize("hasRole('manager') or hasRole('admin')")
 public class DirectorController
 {
 
@@ -27,7 +26,7 @@ public class DirectorController
   public String showUsers(Model model) throws InstantiationException, IllegalAccessException
   {
     model.addAttribute(USERS_LIST, userDao.loadAll());
-    model.addAttribute("controller", "MANAGER CONTROLLER");
-    return "manager/test";
+    model.addAttribute("controller", "DIRECTOR CONTROLLER");
+    return "director/test";
   }
 }
