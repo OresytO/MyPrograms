@@ -22,7 +22,7 @@ public class SecurityController
   @RequestMapping(value = HOME_URL, method = RequestMethod.GET)
   public String showHome()
   {
-    return "home";
+    return "layout/layout";
   }
 
   public static final String DENIED_URL = "/denied";

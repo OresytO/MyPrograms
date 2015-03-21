@@ -35,8 +35,8 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry)
   {
-    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
-    // registry.addResourceHandler("/webapp/**").addResourceLocations("/webapp/").setCachePeriod(31556926);
+//    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
+     registry.addResourceHandler("/webapp/resources/**").addResourceLocations("/webapp/").setCachePeriod(31556926);
   }
 
   // @Override
