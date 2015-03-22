@@ -1,19 +1,25 @@
 package springConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.rebok3J.model.impl.Role;
 
 /**
  * Created by OrestO on 3/12/2015.
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
 {
 
@@ -31,9 +37,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
         .authorizeRequests()
         .antMatchers("/resources/**").permitAll()
         .antMatchers("/security/**").permitAll()
-        .antMatchers("/admin/**").hasAuthority("admin")
-        .antMatchers("/director/**").hasAuthority("director")
-        .antMatchers("/manager/**").hasAuthority("manager")
+        .antMatchers("/admin/**").hasRole(Role.ADMIN)
+        .antMatchers("/director/**").hasRole(Role.DIRECTOR)
+        .antMatchers("/manager/**").hasRole(Role.MANAGER)
         .and().formLogin()
           .loginPage("/login")
           .failureUrl("/failure")
@@ -46,7 +52,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
           .accessDeniedPage("/denied")
         .and().logout()
         .logoutUrl("/logout")
-          .logoutSuccessUrl("/login")
           .invalidateHttpSession(true)
           .permitAll();
   }
@@ -56,4 +61,11 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
   {
     auth.authenticationProvider(customAuthenticationProvider).userDetailsService(userDetailsService);
   }
+
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
+
 }

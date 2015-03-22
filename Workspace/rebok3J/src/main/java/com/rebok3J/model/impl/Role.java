@@ -18,6 +18,14 @@ public class Role implements Serializable, Comparable<Role>
   public static final String ROLE_ENTITY = "Role";
   public static final String ROLE_TABLE = "\"ROLE\"";
 
+  public static final String ROLE = "ROLE_";
+  public static final String ADMIN = "ADMIN";
+  public static final String ROLE_ADMIN = ROLE + ADMIN;
+  public static final String DIRECTOR = "DIRECTOR";
+  public static final String ROLE_DIRECTOR = ROLE + DIRECTOR;
+  public static final String MANAGER = "MANAGER";
+  public static final String ROLE_MANAGER = ROLE + MANAGER;
+
   @Id
   @GeneratedValue
   @Column(name = ID_COLUMN)

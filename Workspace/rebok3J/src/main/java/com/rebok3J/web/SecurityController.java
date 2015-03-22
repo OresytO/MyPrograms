@@ -19,7 +19,7 @@ public class SecurityController
   }
 
   public static final String HOME_URL = "/home";
-  @RequestMapping(value = HOME_URL, method = RequestMethod.GET)
+  @RequestMapping(value = {HOME_URL, "/"}, method = RequestMethod.GET)
   public String showHome()
   {
     return "layout/layout";
@@ -36,7 +36,7 @@ public class SecurityController
   @RequestMapping(value = LOGOUT_URL, method = RequestMethod.GET)
   public String showLogout()
   {
-    return "security/logout";
+    return "security/login";
   }
 
   public static final String FAILURE_URL = "/failure";

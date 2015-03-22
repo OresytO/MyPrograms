@@ -5,8 +5,8 @@
 <body>
 
 <div th:fragment="header">
-    <div th:include="layout/headers::loginSwitcher" style="position: absolute; top: 100%; right: 0; display: block; z-index: 0"></div>
-    <div th:include="layout/headers::localSwitcher" style="position: relative; top: 100%; right: 0; display: block;"></div>
+    <div th:include="layout/headers::loginSwitcher" class="header-login-block"></div>
+    <div th:include="layout/headers::localSwitcher" class="header-lang-block"></div>
 </div>
 
 <div th:fragment="localSwitcher">
@@ -16,10 +16,10 @@
 </div>
 
 <div th:fragment="loginSwitcher">
-        <span th:if="${#authorization.expression('!isAuthenticated()')}" style="background-color: #3e8f3e">
+        <span th:if="${#authorization.expression('!isAuthenticated()')}">
             <a href="/login" th:href="@{/login}" th:text="#{header.label.login}">Login</a>
         </span>
-        <span th:if="${#authorization.expression('isAuthenticated()')}" style="background-color: #3e8f3e">
+        <span th:if="${#authorization.expression('isAuthenticated()')}">
             <a href="/logout" th:href="@{/logout}" th:text="#{header.label.logout}">Logout</a>
         </span>
 </div>

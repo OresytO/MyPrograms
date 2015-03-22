@@ -12,28 +12,36 @@
     <!--link to source of this menu http://code.stephenmorley.org/javascript/touch-friendly-drop-down-menus/ -->
     <ul class="dropdown">
         <li>
-            <a href="#" th:href="@{/home}" th:text="#{menu.tab.add}">Add</a>
+            <a href="#" th:text="#{menu.tab.add}">Add</a>
             <ul>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.add.visitor}">Add visitor</a></li>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.add.visit}">Add visit</a></li>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.add.service}">Add service</a></li>
+                <li><a href="#" th:href="@{/add/visitor}" th:text="#{menu.add.visitor}">Add visitor</a></li>
+                <li><a href="#" th:href="@{/add/visit}" th:text="#{menu.add.visit}">Add visit</a></li>
+                <li th:if="${#authorization.expression('hasRole(''manager'')')}">
+                    <a href="#" th:href="@{/add/service}" th:text="#{menu.add.service}">Add service</a>
+                </li>
             </ul>
         </li>
-        <li><a href="#" th:href="@{/home}" th:text="#{menu.tab.search}">Search</a>
+        <li><a href="#" th:text="#{menu.tab.search}">Search</a>
             <ul>
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visitor}">Search visitor</a></li>
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visit}">Search visit</a></li>
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.search.service}">Search service</a></li>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.salon}">Search salon</a></li>
+                <li th:if="${#authorization.expression('hasRole(''director'')')}">
+                    <a href="#" th:href="@{/home}" th:text="#{menu.search.salon}">Search salon</a>
+                </li>
             </ul>
         </li>
-        <li><a href="#" th:href="@{/home}" th:text="#{menu.tab.services}">Services</a>
+        <li><a href="#" th:text="#{menu.tab.services}">Services</a>
             <ul>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Add new service</a></li>
+                <!--<li><a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Solar1</a></li>-->
+                <li th:if="${#authorization.expression('hasRole(''director'')')}">
+                    <a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Add new service</a>
+                </li>
             </ul>
         </li>
-        <li><a href="#" th:href="@{/home}" th:text="#{menu.tab.reports}">Reports</a>
+        <li><a href="#" th:text="#{menu.tab.reports}">Reports</a>
             <ul>
+                <!--<li><a href="#" th:href="@{/home}" th:text="#{menu.reports.addNew}">Report1</a></li>-->
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.reports.addNew}">Add new report</a></li>
             </ul>
         </li>

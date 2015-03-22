@@ -1,0 +1,19 @@
+.header {
+  background-color: #204d74
+}
+
+.header-login-block {
+  position: relative;
+  top: 100%;
+  float: right;
+  display: inline-block;
+  padding: 3px;
+}
+
+.header-lang-block {
+  position: relative;
+  top: 100%;
+  float: right;
+  display: inline-block;
+  padding: 3px;
+}

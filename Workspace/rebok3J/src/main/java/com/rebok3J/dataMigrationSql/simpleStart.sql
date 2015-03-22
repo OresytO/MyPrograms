@@ -21,9 +21,9 @@ CREATE TABLE "ROLE" (
   ROLE_NAME VARCHAR(255) UNIQUE NOT NULL
 );
 INSERT INTO "ROLE" VALUES
-  (1, 'admin'),
-  (2, 'director'),
-  (3, 'manager');
+  (1, 'ROLE_ADMIN'),
+  (2, 'ROLE_DIRECTOR'),
+  (3, 'ROLE_MANAGER');
 
 CREATE TABLE "USERS_ROLES" (
   ID      INTEGER PRIMARY KEY,
