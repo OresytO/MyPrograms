@@ -12,7 +12,7 @@ import com.rebok3J.model.VisitQueryHolder;
 @Entity
 @Table(name = Visit.VISIT_TABLE)
 @NamedQueries({ @NamedQuery(name = VisitQueryHolder.FIND_ALL, query = VisitQueryHolder.FIND_ALL_QUERY) })
-public class Visit implements VisitQueryHolder
+public class Visit implements VisitQueryHolder, Comparable<Visit>
 {
 
   public static final String VISIT_ENTITY = "Visit";
@@ -28,6 +28,11 @@ public class Visit implements VisitQueryHolder
   @JoinColumn(name = VISITOR_ID_COLUMN, nullable = false)
   private Visitor visitorId;
   public static final String VISITOR_ID_COLUMN = "VISITOR_ID";
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = SERVICE_ID_COLUMN, nullable = false)
+  private Visitor serviceId;
+  public static final String SERVICE_ID_COLUMN = "SERVICE_ID";
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = DATE_OF_VISIT_COLUMN, nullable = false, columnDefinition = "DEFAULT CURRENT_TIMESTAMP")
@@ -64,6 +69,31 @@ public class Visit implements VisitQueryHolder
     this.dateOfVisit = dateOfVisit;
   }
 
+  public Visitor getVisitorId()
+  {
+    return visitorId;
+  }
+
+  public Visitor getServiceId()
+  {
+    return serviceId;
+  }
+
+  public void setServiceId(Visitor serviceId)
+  {
+    this.serviceId = serviceId;
+  }
+
+  public Date getDateOfVisit()
+  {
+    return dateOfVisit;
+  }
+
+  public void setDateOfVisit(Date dateOfVisit)
+  {
+    this.dateOfVisit = dateOfVisit;
+  }
+
   @Override
   public boolean equals(Object o)
   {
@@ -74,31 +104,32 @@ public class Visit implements VisitQueryHolder
 
     Visit visit = (Visit) o;
 
-    if (dateOfVisit != null ? !dateOfVisit.equals(visit.dateOfVisit) : visit.dateOfVisit != null)
-      return false;
     if (!visitorId.equals(visit.visitorId))
       return false;
+    if (!serviceId.equals(visit.serviceId))
+      return false;
+    return dateOfVisit.equals(visit.dateOfVisit);
 
-    return true;
   }
 
   @Override
   public int hashCode()
   {
     int result = visitorId.hashCode();
-    result = 31 * result + (dateOfVisit != null ? dateOfVisit.hashCode() : 0);
+    result = 31 * result + serviceId.hashCode();
+    result = 31 * result + dateOfVisit.hashCode();
     return result;
-  }
-
-  @Override
-  public String toString()
-  {
-    return "VisitImpl{" + "id=" + id + ", visitorId='" + visitorId + '\'' + ", createDate=" + dateOfVisit + '}';
   }
 
   @Override
   public String getFindAllQueryName()
   {
     return FIND_ALL;
+  }
+
+  @Override
+  public int compareTo(Visit o)
+  {
+    return this.getDateOfVisit().compareTo(o.getDateOfVisit());
   }
 }
