@@ -5,11 +5,45 @@
 <body>
 
 <div th:fragment="menu">
-    <div th:include="layout/menu::localSwitcher"></div>
+    <div th:include="layout/menu::menu1"></div>
 </div>
 
-<div th:fragment="localSwitcher">
+<div th:fragment="menu1">
+    <!--link to source of this menu http://code.stephenmorley.org/javascript/touch-friendly-drop-down-menus/ -->
+    <ul class="dropdown">
+        <li>
+            <a href="#" th:href="@{/home}" th:text="#{menu.tab.add}">Add</a>
+            <ul>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.add.visitor}">Add visitor</a></li>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.add.visit}">Add visit</a></li>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.add.service}">Add service</a></li>
+            </ul>
+        </li>
+        <li><a href="#" th:href="@{/home}" th:text="#{menu.tab.search}">Search</a>
+            <ul>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visitor}">Search visitor</a></li>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visit}">Search visit</a></li>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.service}">Search service</a></li>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.salon}">Search salon</a></li>
+            </ul>
+        </li>
+        <li><a href="#" th:href="@{/home}" th:text="#{menu.tab.services}">Services</a>
+            <ul>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Add new service</a></li>
+            </ul>
+        </li>
+        <li><a href="#" th:href="@{/home}" th:text="#{menu.tab.reports}">Reports</a>
+            <ul>
+                <li><a href="#" th:href="@{/home}" th:text="#{menu.reports.addNew}">Add new report</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        runOnLoad(Dropdown.initialise);
+    </script>
 </div>
+
 </body>
 
 </html>

@@ -10,10 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
@@ -35,8 +32,14 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry)
   {
-//    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
-     registry.addResourceHandler("/webapp/resources/**").addResourceLocations("/webapp/").setCachePeriod(31556926);
+    // registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
+    registry.addResourceHandler("/resources/").addResourceLocations("/resources/**").setCachePeriod(31556926);
+  }
+
+  @Override
+  public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
+  {
+    configurer.enable();
   }
 
   // @Override
@@ -108,7 +111,8 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
   }
 
   @Bean
-  public MessageSource messageSource() {
+  public MessageSource messageSource()
+  {
     ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
     messageSource.setBasename("WEB-INF/messages/messages");
     messageSource.setDefaultEncoding("UTF-8");
@@ -116,7 +120,8 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
     return messageSource;
   }
 
-  public void addInterceptors(InterceptorRegistry registry) {
+  public void addInterceptors(InterceptorRegistry registry)
+  {
     registry.addInterceptor(localeChangeInterceptor());
   }
 }

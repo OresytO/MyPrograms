@@ -5,13 +5,23 @@
 <body>
 
 <div th:fragment="header">
-    <div th:include="layout/headers::localSwitcher"></div>
+    <div th:include="layout/headers::loginSwitcher" style="position: absolute; top: 100%; right: 0; display: block; z-index: 0"></div>
+    <div th:include="layout/headers::localSwitcher" style="position: relative; top: 100%; right: 0; display: block;"></div>
 </div>
 
 <div th:fragment="localSwitcher">
     <span class="local_switcher">
     <a href="?lang=en">en</a> | <a href="?lang=ua">ua</a> | <a href="?lang=ru">rus</a>
 </span>
+</div>
+
+<div th:fragment="loginSwitcher">
+        <span th:if="${#authorization.expression('!isAuthenticated()')}" style="background-color: #3e8f3e">
+            <a href="/login" th:href="@{/login}" th:text="#{header.label.login}">Login</a>
+        </span>
+        <span th:if="${#authorization.expression('isAuthenticated()')}" style="background-color: #3e8f3e">
+            <a href="/logout" th:href="@{/logout}" th:text="#{header.label.logout}">Logout</a>
+        </span>
 </div>
 </body>
 
