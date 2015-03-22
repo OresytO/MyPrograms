@@ -37,9 +37,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
         .authorizeRequests()
         .antMatchers("/resources/**").permitAll()
         .antMatchers("/security/**").permitAll()
-        .antMatchers("/admin/**").hasRole(Role.ADMIN)
-        .antMatchers("/director/**").hasRole(Role.DIRECTOR)
-        .antMatchers("/manager/**").hasRole(Role.MANAGER)
+        .antMatchers("/service/**").hasRole(Role.ADMIN)
+        .antMatchers("/visitor/**").hasRole(Role.DIRECTOR)
+        .antMatchers("/visit/**").hasRole(Role.MANAGER)
         .and().formLogin()
           .loginPage("/login")
           .failureUrl("/failure")
@@ -64,7 +64,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
 
   @Bean
   @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
+  public AuthenticationManager authenticationManagerBean() throws Exception
+  {
     return super.authenticationManagerBean();
   }
 
