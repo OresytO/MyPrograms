@@ -32,7 +32,7 @@ public class Role implements Serializable, Comparable<Role>
   private Long id;
   public static final String ID_COLUMN = "ID";
 
-  @Column(name = ROLE_NAME_COLUMN)
+  @Column(name = ROLE_NAME_COLUMN, nullable = false)
   private String roleName;
   public static final String ROLE_NAME_COLUMN = "ROLE_NAME";
 
@@ -43,6 +43,12 @@ public class Role implements Serializable, Comparable<Role>
 
   public Role()
   {
+  }
+
+  public Role(String roleName, Set<User> users)
+  {
+    this.roleName = roleName;
+    this.users = users;
   }
 
   public Long getId()

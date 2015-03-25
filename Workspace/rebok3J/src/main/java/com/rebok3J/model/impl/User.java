@@ -28,19 +28,19 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
   private Long id;
   public static final String ID_COLUMN = "ID";
 
-  @Column(name = USER_NICKNAME_COLUMN)
+  @Column(name = USER_NICKNAME_COLUMN, nullable = false)
   private String userNickname;
   public static final String USER_NICKNAME_COLUMN = "USER_NICKNAME";
 
-  @Column(name = PASSWORD_COLUMN)
+  @Column(name = PASSWORD_COLUMN, nullable = false)
   private String password;
   public static final String PASSWORD_COLUMN = "PASSWORD";
 
-  @Column(name = USER_NAME_COLUMN)
+  @Column(name = USER_NAME_COLUMN, nullable = false)
   private String userName;
   public static final String USER_NAME_COLUMN = "USER_NAME";
 
-  @Column(name = ENABLE_COLUMN)
+  @Column(name = ENABLE_COLUMN, nullable = false)
   private Boolean enabled;
   public static final String ENABLE_COLUMN = "ENABLE";
 
@@ -56,6 +56,15 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
 
   public User()
   {
+  }
+
+  public User(String userNickname, String password, String userName, Boolean enabled, List<Role> roles)
+  {
+    this.userNickname = userNickname;
+    this.password = password;
+    this.userName = userName;
+    this.enabled = enabled;
+    this.roles = roles;
   }
 
   public Long getId()
