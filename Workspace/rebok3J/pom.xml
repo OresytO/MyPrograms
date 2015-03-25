@@ -25,6 +25,8 @@
     <junit.version>4.12</junit.version>
     <servlet.version>3.1.0</servlet.version>
     <postgressql.version>9.4-1201-jdbc41</postgressql.version>
+
+    <flyway.version>3.2.1</flyway.version>
   </properties>
 
   <dependencies>
@@ -148,6 +150,12 @@
       <version>2.5.0</version>
     </dependency>
     <!--PERSISTENCE - END-->
+
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway.version}</version>
+    </dependency>
 
     <!--OTHER - DEPENDENCY-->
     <!--TODO: Should remove after finding something new -->

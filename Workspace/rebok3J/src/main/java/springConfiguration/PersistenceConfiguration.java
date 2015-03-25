@@ -1,13 +1,18 @@
 package springConfiguration;
 
-import java.io.IOException;
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
+import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -28,41 +33,49 @@ public class PersistenceConfiguration
   public static final String JPA_PROPERTIES = "jpa.properties";
   public static final String PACKAGE_TO_SCAN = "com.rebok3J.model";
 
+  @Bean(initMethod = "migrate")
+  public Flyway flyway() {
+    Flyway flyway = new Flyway();
+    flyway.setBaselineOnMigrate(true);
+    flyway.setLocations("classpath:db/migration");
+    flyway.setDataSource(dataSource());
+    return flyway;
+  }
+
   @Bean
-  public JpaTransactionManager transactionManager() throws IOException
+  public DataSource dataSource() {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
+    dataSource.setDriverClassName("org.postgresql.Driver");
+    dataSource.setUrl("jdbc:postgresql://localhost:5432/rebok3J_DB");
+    dataSource.setUsername("postgres");
+    dataSource.setPassword("njvfmkcd@2410@");
+
+    return dataSource;
+  }
+
+  @Bean @DependsOn("flyway")
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+    entityManagerFactoryBean.setDataSource(dataSource());
+
+    entityManagerFactoryBean.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
+    entityManagerFactoryBean.setPackagesToScan(PACKAGE_TO_SCAN);
+    entityManagerFactoryBean.setJpaDialect(new EclipseLinkJpaDialect());
+    entityManagerFactoryBean.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
+    Properties properties = new Properties();
+    properties.setProperty("eclipselink.weaving", "static");
+    entityManagerFactoryBean.setJpaProperties(properties);
+
+    return entityManagerFactoryBean;
+  }
+
+  @Bean
+  public JpaTransactionManager transactionManager()
   {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
     return transactionManager;
-  }
-
-  @Bean
-  // TODO: Make it works and looks nice :)
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws IOException
-  {
-    LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-
-    entityManagerFactory.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
-    entityManagerFactory.setPackagesToScan(PACKAGE_TO_SCAN);
-
-    // ResourcePropertySource propertySource = new
-    // ResourcePropertySource(JPA_PROPERTIES, new
-    // ClassPathResource(JPA_PROPERTIES));
-
-    Properties jpaProperties = new Properties();
-
-    // Map<String, Object> properties = propertySource.getSource();
-    // for (String propertyName : properties.keySet()) {
-    // jpaProperties.put(propertyName, properties.get(propertyName));
-    // }
-    jpaProperties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-    jpaProperties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/rebok3J_DB");
-    jpaProperties.put("javax.persistence.jdbc.user", "postgres");
-    jpaProperties.put("javax.persistence.jdbc.password", "njvfmkcd@2410@");
-    jpaProperties.put("eclipselink.weaving", "static");
-    entityManagerFactory.setJpaProperties(jpaProperties);
-
-    return entityManagerFactory;
   }
 
 }

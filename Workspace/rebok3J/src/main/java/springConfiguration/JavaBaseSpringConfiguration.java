@@ -124,4 +124,5 @@ public class JavaBaseSpringConfiguration extends WebMvcConfigurerAdapter
   {
     registry.addInterceptor(localeChangeInterceptor());
   }
+
 }
