@@ -1,14 +1,17 @@
 package com.rebok3J.model;
 
-import com.rebok3J.model.impl.Visit;
+import static com.rebok3J.model.impl.Visit.VISIT_ENTITY;
 
 /**
- * Created by OrestO on 3/13/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/13/2015
  */
 public interface VisitQueryHolder extends CommonQueryHolder
 {
-  String FIND_ALL = "Visit.findAll";
-  String FIND_ALL_QUERY = "select u from " + Visit.VISIT_ENTITY + " u";
+  String FIND_ALL = VISIT_ENTITY + CommonQueryHolder.FIND_ALL;
+  String FIND_ALL_QUERY = "select u from " + VISIT_ENTITY + " u";
 
   @Override
   String getFindAllQueryName();

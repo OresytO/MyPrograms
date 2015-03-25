@@ -6,7 +6,10 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- * Created by OrestO on 3/13/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/13/2015
  */
 @Entity(name = Role.ROLE_ENTITY)
 @Table(name = Role.ROLE_TABLE)

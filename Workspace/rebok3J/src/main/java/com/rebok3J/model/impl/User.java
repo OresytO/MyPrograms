@@ -8,12 +8,17 @@ import javax.persistence.*;
 import com.rebok3J.model.UserQueryHolder;
 
 /**
- * Created by OrestO on 3/11/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/11/2015
  */
 @Entity
 @Table(name = User.USER_TABLE)
-@NamedQueries({ @NamedQuery(name = UserQueryHolder.FIND_ALL, query = UserQueryHolder.FIND_ALL_QUERY),
-    @NamedQuery(name = UserQueryHolder.FIND_BY_NICKNAME, query = UserQueryHolder.FIND_BY_NICKNAME_QUERY) })
+@NamedQueries({
+    @NamedQuery(name = UserQueryHolder.FIND_ALL, query = UserQueryHolder.FIND_ALL_QUERY),
+    @NamedQuery(name = UserQueryHolder.FIND_BY_NICKNAME, query = UserQueryHolder.FIND_BY_NICKNAME_QUERY)
+})
 public class User implements UserQueryHolder, Serializable, Comparable<User>
 {
 

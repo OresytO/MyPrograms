@@ -7,7 +7,10 @@ import javax.persistence.*;
 import com.rebok3J.model.VisitQueryHolder;
 
 /**
- * Created by OrestO on 3/12/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/12/2015
  */
 @Entity
 @Table(name = Visit.VISIT_TABLE)

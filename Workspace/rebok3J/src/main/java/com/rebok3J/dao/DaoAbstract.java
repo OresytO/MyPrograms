@@ -3,7 +3,6 @@ package com.rebok3J.dao;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,7 +11,10 @@ import javax.persistence.TypedQuery;
 import com.rebok3J.model.CommonQueryHolder;
 
 /**
- * Created by OrestO on 3/12/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/12/2015
  */
 // TODO: Copy named query work from @see org.rebok2j.utils.DomainConstants
 public class DaoAbstract<T> implements Dao<T>
@@ -24,6 +26,7 @@ public class DaoAbstract<T> implements Dao<T>
 
   private Class<T> clazz;
 
+  @SuppressWarnings("unchecked")
   public DaoAbstract()
   {
     Type t = getClass().getGenericSuperclass();
@@ -49,30 +52,60 @@ public class DaoAbstract<T> implements Dao<T>
   }
 
   @Override
-  public List<T> getResultListFromNamedQuery(String namedQueryName, Map<String, String> paramMap)
+  public List<T> getResultListFromNamedQuery(String namedQueryName, List<Param> params)
   {
-    TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName, clazz);
-    if (paramMap != null)
-    {
-      for (String key : paramMap.keySet())
-      {
-        query.setParameter(key, paramMap.get(key));
-      }
-    }
+    TypedQuery<T> query = fulfillQuery(namedQueryName, params);
     return query.getResultList();
   }
 
+  // @Override
+  // public List<T> getResultListFromNamedQuery(String namedQueryName,
+  // Map<String, String> paramMap)
+  // {
+  // TypedQuery<T> query = fulfillQuery(namedQueryName, paramMap);
+  // return query.getResultList();
+  // }
+
+  // @Override
+  // public T getSingleResultFromNamedQuery(String namedQueryName, Map<String,
+  // String> paramMap)
+  // {
+  // TypedQuery<T> query = fulfillQuery(namedQueryName, paramMap);
+  // return query.getSingleResult();
+  // }
+
   @Override
-  public T getSingleResultFromNamedQuery(String namedQueryName, Map<String, String> paramMap)
+  public T getSingleResultFromNamedQuery(String namedQueryName, List<Param> params)
+  {
+    TypedQuery<T> query = fulfillQuery(namedQueryName, params);
+    return query.getSingleResult();
+  }
+
+  // private TypedQuery<T> fulfillQuery(String namedQueryName, Map<String,
+  // String> paramMap)
+  // {
+  // TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName,
+  // clazz);
+  // if (paramMap != null)
+  // {
+  // for (String key : paramMap.keySet())
+  // {
+  // query.setParameter(key, paramMap.get(key));
+  // }
+  // }
+  // return query;
+  // }
+
+  private TypedQuery<T> fulfillQuery(String namedQueryName, List<Param> params)
   {
     TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName, clazz);
-    if (paramMap != null)
+    if (params != null)
     {
-      for (String key : paramMap.keySet())
+      for (Param param : params)
       {
-        query.setParameter(key, paramMap.get(key));
+        query.setParameter(param.getName(), param.getValue());
       }
     }
-    return query.getSingleResult();
+    return query;
   }
 }

@@ -1,19 +1,22 @@
 package com.rebok3J.model;
 
-import com.rebok3J.model.impl.User;
+import static com.rebok3J.model.impl.User.USER_ENTITY;
 
 /**
- * Created by OrestO on 3/13/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/13/2015
  */
 public interface UserQueryHolder extends CommonQueryHolder
 {
-  public static final String FIND_ALL = "User.findAll";
-  public static final String FIND_ALL_QUERY = "select u from " + User.USER_ENTITY + " u";
+  String FIND_ALL =  USER_ENTITY + CommonQueryHolder.FIND_ALL;
+  String FIND_ALL_QUERY = "select e from " + USER_ENTITY + " e";
 
   // Params for Query
-  public static final String NICKNAME = "nickname";
-  public static final String FIND_BY_NICKNAME = "User.findByNickname";
-  public static final String FIND_BY_NICKNAME_QUERY = "select entity from " + User.USER_ENTITY + " entity where entity.userNickname = :" + UserQueryHolder.NICKNAME;
+  String NICKNAME = "nickname";
+  String FIND_BY_NICKNAME = USER_ENTITY + "." + NICKNAME;
+  String FIND_BY_NICKNAME_QUERY = "select e from " + USER_ENTITY + " e where e.userNickname = :" + NICKNAME;
 
   @Override
   String getFindAllQueryName();
