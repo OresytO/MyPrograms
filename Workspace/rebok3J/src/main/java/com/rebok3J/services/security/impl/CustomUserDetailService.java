@@ -1,6 +1,11 @@
 package com.rebok3J.services.security.impl;
 
-import java.util.*;
+import static com.rebok3J.model.UserQueryHolder.FIND_BY_NICKNAME;
+import static com.rebok3J.model.UserQueryHolder.NICKNAME;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,11 +17,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rebok3J.dao.Param;
 import com.rebok3J.dao.UserDao;
 import com.rebok3J.model.impl.Role;
 
 /**
- * Created by OrestO on 3/13/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/13/2015
  */
 
 @Service
@@ -32,9 +41,7 @@ public class CustomUserDetailService implements UserDetailsService
   {
     try
     {
-      Map<String, String> map = new HashMap<>();
-      map.put(com.rebok3J.model.impl.User.NICKNAME, userNickname);
-      com.rebok3J.model.impl.User domainUser = userDao.getSingleResultFromNamedQuery(com.rebok3J.model.impl.User.FIND_BY_NICKNAME, map);
+      com.rebok3J.model.impl.User domainUser = userDao.getSingleResultFromNamedQuery(FIND_BY_NICKNAME, Param.get(NICKNAME, userNickname));
       boolean accountNonExpired = true;
       boolean credentialsNonExpired = true;
       boolean accountNonLocked = true;

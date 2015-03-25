@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by OrestO on 3/11/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/11/2015
  */
 @Controller
 @RequestMapping(value = "/service**")

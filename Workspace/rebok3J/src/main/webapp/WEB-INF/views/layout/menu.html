@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="#" th:href="@{/add/visitor}" th:text="#{menu.add.visitor}">Add visitor</a></li>
                 <li><a href="#" th:href="@{/add/visit}" th:text="#{menu.add.visit}">Add visit</a></li>
-                <li th:if="${#authorization.expression('hasRole(''manager'')')}">
+                <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                     <a href="#" th:href="@{/add/service}" th:text="#{menu.add.service}">Add service</a>
                 </li>
             </ul>
@@ -26,7 +26,7 @@
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visitor}">Search visitor</a></li>
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visit}">Search visit</a></li>
                 <li><a href="#" th:href="@{/home}" th:text="#{menu.search.service}">Search service</a></li>
-                <li th:if="${#authorization.expression('hasRole(''director'')')}">
+                <li th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}">
                     <a href="#" th:href="@{/home}" th:text="#{menu.search.salon}">Search salon</a>
                 </li>
             </ul>
@@ -34,7 +34,7 @@
         <li><a href="#" th:text="#{menu.tab.services}">Services</a>
             <ul>
                 <!--<li><a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Solar1</a></li>-->
-                <li th:if="${#authorization.expression('hasRole(''director'')')}">
+                <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                     <a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Add new service</a>
                 </li>
             </ul>

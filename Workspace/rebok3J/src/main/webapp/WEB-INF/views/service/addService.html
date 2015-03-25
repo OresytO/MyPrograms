@@ -12,5 +12,18 @@
 <div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
 <a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
 <a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>
+
+<div class="search-block">
+    <input type="text" id="searchSurname" name="searchSurname"/>
+    <br />
+    <label for="searchSurname" th:text="#{search.label}">Search label:</label>
+    <button id="searchButton" name="searchButton" onclick="sendContent()" type="button"
+            th:text="#{search.button}">Search button</button>
+</div>
+
+<!-- Results block -->
+<div id="resultsBlock">
+
+</div>
 </body>
 </html>

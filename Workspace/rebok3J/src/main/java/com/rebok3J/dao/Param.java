@@ -18,7 +18,7 @@ public class Param
     this.value = value;
   }
 
-  public static Param get(String key, String value)
+  private static Param get(String key, String value)
   {
     return new Param(key, value);
   }

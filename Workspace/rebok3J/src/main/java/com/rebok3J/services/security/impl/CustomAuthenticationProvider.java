@@ -14,7 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by OrestO on 3/13/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/13/2015
  */
 
 @Component
