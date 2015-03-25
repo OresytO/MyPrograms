@@ -16,7 +16,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.rebok3J.model.impl.Role;
 
 /**
- * Created by OrestO on 3/12/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/12/2015
  */
 @Configuration
 @EnableWebSecurity

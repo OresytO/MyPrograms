@@ -38,14 +38,6 @@ public class SecurityController
     return "security/denied";
   }
 
-//  public static final String LOGOUT_URL = "/logout";
-//
-//  @RequestMapping(value = LOGOUT_URL, method = RequestMethod.GET)
-//  public String showLogout()
-//  {
-//    return "layout/layout";
-//  }
-
   public static final String FAILURE_URL = "/failure";
 
   @RequestMapping(value = FAILURE_URL, method = RequestMethod.GET)
