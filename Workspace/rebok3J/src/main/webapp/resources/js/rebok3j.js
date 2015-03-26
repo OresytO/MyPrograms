@@ -6,7 +6,7 @@
  */
 
 function sendContent() {
-  var url = '/th-spring-integration/spring/guests';
+  var url = '/service/add';
 
-  $("#resultsBlock").load(url);
+  $(".content").load(url);
 }

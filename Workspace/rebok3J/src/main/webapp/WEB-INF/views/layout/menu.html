@@ -17,7 +17,7 @@
                 <li><a href="#" th:href="@{/add/visitor}" th:text="#{menu.add.visitor}">Add visitor</a></li>
                 <li><a href="#" th:href="@{/add/visit}" th:text="#{menu.add.visit}">Add visit</a></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a href="#" th:href="@{/add/service}" th:text="#{menu.add.service}">Add service</a>
+                    <button onclick="sendContent()" th:text="#{menu.add.service}">Add service</button>
                 </li>
             </ul>
         </li>
