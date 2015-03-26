@@ -9,6 +9,12 @@
 </div>
 
 <div th:fragment="menu1">
+
+    <script src="/resources/js/Dropdown.src.js" type="text/javascript" th:src="@{/resources/js/Dropdown.src.js}"></script>
+    <script src = "/resources/js/runOnLoad.src.js" type = "text/javascript" th:src="@{/resources/js/rebok3j.js}">
+        runOnLoad(Dropdown.initialise);
+    </script>
+
     <!--link to source of this menu http://code.stephenmorley.org/javascript/touch-friendly-drop-down-menus/ -->
     <ul class="dropdown">
         <li>
@@ -46,10 +52,6 @@
             </ul>
         </li>
     </ul>
-
-    <script type="text/javascript">
-        runOnLoad(Dropdown.initialise);
-    </script>
 </div>
 
 </body>

@@ -140,7 +140,7 @@ var Dropdown = (function(){
     var thisObject = this;
     return function(){ f.apply(thisObject, arguments); }
 
-  }
+  };
 
   /* Handles a mouse over event. The parameters are:
    *
@@ -163,7 +163,7 @@ var Dropdown = (function(){
           window.setTimeout(this.bind(this.open), (immediate ? 0 : DELAY));
     }
 
-  }
+  };
 
   // Handles a mouse out event.
   Menu.prototype.handleMouseOut = function(){
@@ -174,7 +174,7 @@ var Dropdown = (function(){
     // set the timeout
     this.timeout = window.setTimeout(this.bind(this.close), DELAY);
 
-  }
+  };
 
   /* Handles a click event. The parameter is:
    *
@@ -210,7 +210,7 @@ var Dropdown = (function(){
 
     }
 
-  }
+  };
 
   // Clears the timeout.
   Menu.prototype.clearTimeout = function(){
@@ -221,7 +221,7 @@ var Dropdown = (function(){
       this.timeout = null;
     }
 
-  }
+  };
 
   // Opens the last item hovered over.
   Menu.prototype.open = function(){
@@ -273,7 +273,7 @@ var Dropdown = (function(){
 
     }
 
-  }
+  };
 
   /* Closes the menus within the specified node. The parameter is:
    *
@@ -293,7 +293,7 @@ var Dropdown = (function(){
       items[i].className = items[i].className.replace(/\bdropdownOpen\b/g, '');
     }
 
-  }
+  };
 
   /* Returns an array containing the children of the specified node with the
    * specified tag name. The parameters are:
@@ -316,7 +316,7 @@ var Dropdown = (function(){
     // return the children
     return result;
 
-  }
+  };
 
   // return the public API
   return {

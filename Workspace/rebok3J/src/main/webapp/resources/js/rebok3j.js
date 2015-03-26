@@ -6,7 +6,7 @@
  */
 
 function sendContent() {
-  var url = '/service/add';
+  var url = '/rebok3J/service/add';
 
-  $(".content").load(url);
+  jQuery('.content').load(url);
 }
