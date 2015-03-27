@@ -11,44 +11,44 @@
 <div th:fragment="menu1">
 
     <script src="/resources/js/Dropdown.src.js" type="text/javascript" th:src="@{/resources/js/Dropdown.src.js}"></script>
-    <script src = "/resources/js/runOnLoad.src.js" type = "text/javascript" th:src="@{/resources/js/rebok3j.js}">
+    <script src="/resources/js/runOnLoad.src.js" type="text/javascript" th:src="@{/resources/js/rebok3j.js}">
         runOnLoad(Dropdown.initialise);
     </script>
 
     <!--link to source of this menu http://code.stephenmorley.org/javascript/touch-friendly-drop-down-menus/ -->
-    <ul class="dropdown">
+    <ul class="dropdown noCopy">
         <li>
-            <a href="#" th:text="#{menu.tab.add}">Add</a>
+            <span th:text="#{menu.tab.add}">Add</span>
             <ul>
-                <li><a href="#" th:href="@{/add/visitor}" th:text="#{menu.add.visitor}">Add visitor</a></li>
-                <li><a href="#" th:href="@{/add/visit}" th:text="#{menu.add.visit}">Add visit</a></li>
+                <li><span th:href="@{/add/visitor}" th:text="#{menu.add.visitor}">Add visitor</span></li>
+                <li><span th:href="@{/add/visit}" th:text="#{menu.add.visit}">Add visit</span></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <button onclick="sendContent()" th:text="#{menu.add.service}">Add service</button>
+                    <span onclick="sendContent()" th:text="#{menu.add.service}">Add service</span>
                 </li>
             </ul>
         </li>
-        <li><a href="#" th:text="#{menu.tab.search}">Search</a>
+        <li><span th:text="#{menu.tab.search}">Search</span>
             <ul>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visitor}">Search visitor</a></li>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.visit}">Search visit</a></li>
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.search.service}">Search service</a></li>
+                <li><span th:text="#{menu.search.visitor}">Search visitor</span></li>
+                <li><span th:text="#{menu.search.visit}">Search visit</span></li>
+                <li><span th:text="#{menu.search.service}">Search service</span></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}">
-                    <a href="#" th:href="@{/home}" th:text="#{menu.search.salon}">Search salon</a>
+                    <span th:text="#{menu.search.salon}">Search salon</span>
                 </li>
             </ul>
         </li>
-        <li><a href="#" th:text="#{menu.tab.services}">Services</a>
+        <li><span th:text="#{menu.tab.services}">Services</span>
             <ul>
-                <!--<li><a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Solar1</a></li>-->
+                <!--<li><a th:text="#{menu.services.addNew}">Solar1</a></li>-->
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a href="#" th:href="@{/home}" th:text="#{menu.services.addNew}">Add new service</a>
+                    <span th:text="#{menu.services.addNew}">Add new service</span>
                 </li>
             </ul>
         </li>
-        <li><a href="#" th:text="#{menu.tab.reports}">Reports</a>
+        <li><span th:text="#{menu.tab.reports}">Reports</span>
             <ul>
-                <!--<li><a href="#" th:href="@{/home}" th:text="#{menu.reports.addNew}">Report1</a></li>-->
-                <li><a href="#" th:href="@{/home}" th:text="#{menu.reports.addNew}">Add new report</a></li>
+                <!--<li><a th:text="#{menu.reports.addNew}">Report1</a></li>-->
+                <li><span th:text="#{menu.reports.addNew}">Add new report</span></li>
             </ul>
         </li>
     </ul>
