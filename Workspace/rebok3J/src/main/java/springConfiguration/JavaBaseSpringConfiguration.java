@@ -19,7 +19,10 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
- * Created by OrestO on 3/11/2015.
+ *
+ *
+ * @author OrestO
+ * @since 3/11/2015
  */
 
 @Configuration

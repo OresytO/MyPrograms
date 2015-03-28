@@ -2,15 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
         >
-<head lang="en">
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
 <body>
 <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
 <div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
 <div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-<a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
-<a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>
+<h2 th:text="#{search.visitor.form.title}">Search visitor</h2>
+<div>
+    <label for="ID" th:text="#{search.visitor.form.id}">ID</label>
+    <input type="text" id="ID" placeholder="ID" th:placeholder="#{search.visitor.form.id}"/>
+    <br/>
+    <!--TODO: should be an datatable-->
+    <label for="fullName" th:text="#{search.visitor.form.fullName}">Full name</label>
+    <input type="text" id="fullName" placeholder="Full name" th:placeholder="#{search.visitor.form.fullName}"/>
+    <br/>
+    <label for="phoneNumber" th:text="#{search.visitor.form.phoneNumber}">Phone number</label>
+    <input type="text" id="phoneNumber" placeholder="Phone number" th:placeholder="#{search.visitor.form.phoneNumber}"/>
+    <br/>
+
+    <button id="addNewVisit" type="button" th:text="#{search.visitor.form.button.addNewVisit}">Add new visit</button>
+    <button id="okButton" type="button" th:text="#{search.visitor.form.button.ok}">Ok</button>
+    <button id="cancel" type="button" th:text="#{search.visitor.form.button.cancel}">Cancel</button>
+    <button id="edit" type="button" th:text="#{search.visitor.form.button.edit}">Edit</button>
+</div>
 </body>
 </html>

@@ -15,20 +15,6 @@
 <a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
 <a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>
 
-<script src="/resources/js/runOnLoad.src.js" type="text/javascript">
-  function sendContent1() {
-    var url = '/rebok3J/home';
-
-    jQuery('.content').load(url);
-  }
-
-  function sendContent2() {
-    var url = '/rebok3J/service/search';
-
-    jQuery('.content').load(url);
-  }
-</script>
-
 <div>
   <label for="ID" th:text="#{add.service.form.service.id}">ID</label>
   <input type="text" id="ID" name="ID" placeholder="ID" th:placeholder="#{add.service.form.service.id}"/>

@@ -9,6 +9,22 @@
 <form method="post" th:method="post" action="/visit/add" th:action="@{/visit/add}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
+    <h2 th:text="add.visit.form.title">Add visit</h2>
+
+    <label for="service" th:text="#{add.visit.form.service}">Service</label>
+    <input type="text" id="service" placeholder="Service" th:placeholder="#{add.visit.form.service}"/>
+    <br/>
+
+    <label for="id" th:text="#{add.visit.form.service.id}">ID</label>
+    <input type="text" id="id" placeholder="ID" th:placeholder="#{add.visit.form.service.id}"/>
+    <br/>
+
+    <label for="name" th:text="#{add.visit.form.service.name}">Service name</label>
+    <input type="text" id="name" placeholder="Service name" th:placeholder="#{add.visit.form.service.name}"/>
+    <br/>
+
+    <button id="okButton" type="button" th:text="#{add.visit.form.button.ok}">Ok</button>
+    <button id="cancel" type="button" th:text="#{add.visit.form.button.cancel}">Cancel</button>
 </form>
 </body>
 </html>

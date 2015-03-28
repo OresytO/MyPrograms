@@ -10,7 +10,29 @@
 <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
 <div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
 <div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-<a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
-<a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>
+
+<h2 th:text="search.visit.form.title">Search visit</h2>
+
+<form method="post" th:method="post" action="/visit/add" th:action="@{/visit/add}">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <label for="visitDate" th:text="#{search.visit.form.visitDate}">Date of visit</label>
+    <input type="text" id="visitDate" placeholder="Date of visit" th:placeholder="#{search.visit.form.visitDate}"/>
+    <br/>
+
+    <label for="id" th:text="#{add.visit.form.service.id}">ID</label>
+    <input type="text" id="id" placeholder="ID" th:placeholder="#{add.visit.form.service.id}"/>
+    <br/>
+
+    <label for="id" th:text="#{add.visit.form.service.id}">Visitor full name</label>
+    <input type="text" id="id" placeholder="Visitor full name" th:placeholder="#{search.visit.form.visitorFullNam}"/>
+    <br/>
+
+    <label for="service" th:text="#{search.visit.form.service}">Service</label>
+    <input type="text" id="service" placeholder="Service" th:placeholder="#{search.visit.form.service}"/>
+
+    <button id="search" type="button" th:text="#{search.visit.form.button.search}">Search</button>
+    <button id="cancel" type="button" th:text="#{search.visit.form.button.cancel}">Cancel</button>
+
+</form>
 </body>
 </html>
