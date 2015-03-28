@@ -10,45 +10,40 @@
 
 <div th:fragment="menu1">
 
-    <script src="/resources/js/Dropdown.src.js" type="text/javascript" th:src="@{/resources/js/Dropdown.src.js}"></script>
-    <script src="/resources/js/runOnLoad.src.js" type="text/javascript" th:src="@{/resources/js/rebok3j.js}">
-        runOnLoad(Dropdown.initialise);
-    </script>
-
     <!--link to source of this menu http://code.stephenmorley.org/javascript/touch-friendly-drop-down-menus/ -->
     <ul class="dropdown noCopy">
         <li>
             <span th:text="#{menu.tab.add}">Add</span>
             <ul>
-                <li><span th:href="@{/add/visitor}" th:text="#{menu.add.visitor}">Add visitor</span></li>
-                <li><span th:href="@{/add/visit}" th:text="#{menu.add.visit}">Add visit</span></li>
+                <li><a th:href="@{/visitor/add}" th:text="#{menu.add.visitor}">Add visitor</a></li>
+                <li><a th:href="@{/visit/add}" th:text="#{menu.add.visit}">Add visit</a></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <span onclick="sendContent()" th:text="#{menu.add.service}">Add service</span>
+                    <a th:href="@{/service/add}" th:text="#{menu.add.service}">Add service</a>
                 </li>
             </ul>
         </li>
         <li><span th:text="#{menu.tab.search}">Search</span>
             <ul>
-                <li><span th:text="#{menu.search.visitor}">Search visitor</span></li>
-                <li><span th:text="#{menu.search.visit}">Search visit</span></li>
-                <li><span th:text="#{menu.search.service}">Search service</span></li>
+                <li><a th:href="@{/visitor/search}" th:text="#{menu.search.visitor}">Search visitor</a></li>
+                <li><a th:href="@{/visit/search}" th:text="#{menu.search.visit}">Search visit</a></li>
+                <li><a th:href="@{/service/search}" th:text="#{menu.search.service}">Search service</a></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}">
-                    <span th:text="#{menu.search.salon}">Search salon</span>
+                    <a th:href="@{/salon/search}" th:text="#{menu.search.salon}">Search salon</a>
                 </li>
             </ul>
         </li>
         <li><span th:text="#{menu.tab.services}">Services</span>
             <ul>
-                <!--<li><a th:text="#{menu.services.addNew}">Solar1</a></li>-->
+                <li><a th:href="@{/service/showAll}" th:text="#{menu.services.showAll}">Show all services</a></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <span th:text="#{menu.services.addNew}">Add new service</span>
+                    <a th:href="@{/service/add}" th:text="#{menu.services.addNew}">Add new service</a>
                 </li>
             </ul>
         </li>
         <li><span th:text="#{menu.tab.reports}">Reports</span>
             <ul>
-                <!--<li><a th:text="#{menu.reports.addNew}">Report1</a></li>-->
-                <li><span th:text="#{menu.reports.addNew}">Add new report</span></li>
+                <li><a th:href="@{/reports/showAll}" th:text="#{menu.reports.showAll}">Show all reports</a></li>
+                <li><a th:href="@{/reports/add}" th:text="#{menu.reports.addNew}">Add new report</a></li>
             </ul>
         </li>
     </ul>

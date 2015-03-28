@@ -19,14 +19,12 @@
     <hibernate.entitymanager.version>4.3.8.Final</hibernate.entitymanager.version>
 
     <thymeleaf.version>2.1.2.RELEASE</thymeleaf.version>
-
     <jackson.version>2.5.1</jackson.version>
-
     <junit.version>4.12</junit.version>
     <servlet.version>3.1.0</servlet.version>
     <postgressql.version>9.4-1201-jdbc41</postgressql.version>
-
     <flyway.version>3.2.1</flyway.version>
+    <joda.version>2.7</joda.version>
   </properties>
 
   <dependencies>
@@ -102,7 +100,6 @@
       <artifactId>thymeleaf-layout-dialect</artifactId>
       <version>1.2.7</version>
     </dependency>
-
     <!--THYMELEAF - END-->
 
     <!--JACKSON - START-->
@@ -151,11 +148,21 @@
     </dependency>
     <!--PERSISTENCE - END-->
 
+    <!--FLYWAY - START-->
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
       <version>${flyway.version}</version>
     </dependency>
+    <!--FLYWAY - END-->
+
+    <!--JODA - START-->
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>${joda.version}</version>
+    </dependency>
+    <!--JODA - END-->
 
     <!--OTHER - DEPENDENCY-->
     <!--TODO: Should remove after finding something new -->

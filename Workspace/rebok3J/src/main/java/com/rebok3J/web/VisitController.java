@@ -1,9 +1,9 @@
 package com.rebok3J.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -19,28 +19,24 @@ public class VisitController
   public static final String ADD_URL = "/add";
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.GET)
-  public String addVisit(Model model) throws InstantiationException, IllegalAccessException
+  public ModelAndView addVisit()
   {
-    return "visit/addVisit";
+    return MvHelper.get("visit/addVisit");
   }
 
-  // @Secured({Role.ROLE_ADMIN})
-  // @PreAuthorize("hasRole('ROLE_ADMIN')")
   public static final String SEARCH_URL = "/search";
 
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
-  public String searchVisit(Model model) throws InstantiationException, IllegalAccessException
+  public ModelAndView searchVisit()
   {
-    return "visit/searchVisit";
+    return MvHelper.get("visit/searchVisit");
   }
 
-  // @Secured({Role.ROLE_ADMIN})
-  // @PreAuthorize("hasRole('ROLE_ADMIN')")
   public static final String VIEW_URL = "/view";
 
   @RequestMapping(value = VIEW_URL, method = RequestMethod.GET)
-  public String viewVisit(Model model) throws InstantiationException, IllegalAccessException
+  public ModelAndView viewVisit()
   {
-    return "visit/viewVisit";
+    return MvHelper.get("visit/viewVisit");
   }
 }

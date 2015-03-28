@@ -56,7 +56,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter
           .accessDeniedPage("/denied")
         .and().logout()
           .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-          .logoutSuccessUrl("/home")
+          .logoutSuccessUrl("/login")
           .invalidateHttpSession(true)
           .permitAll();
   }

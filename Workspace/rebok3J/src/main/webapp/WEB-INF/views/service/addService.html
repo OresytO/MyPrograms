@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-    >
+        >
 <head lang="en">
-  <meta charset="UTF-8"/>
-  <title th:text="#{add.service.form.title}">Add service/title</title>
+    <meta charset="UTF-8"/>
+    <title th:text="#{add.service.form.title}">Add service/title</title>
 </head>
 <body>
 <h2 th:text="#{add.service.form.title}">Add service</h2>
@@ -12,36 +12,21 @@
 <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
 <div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
 <div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-<a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
-<a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>
-
-<script src="/resources/js/runOnLoad.src.js" type="text/javascript">
-  function sendContent1() {
-    var url = '/rebok3J/home';
-
-    jQuery('.content').load(url);
-  }
-
-  function sendContent2() {
-    var url = '/rebok3J/service/add';
-
-    jQuery('.content').load(url);
-  }
-</script>
 
 <div>
-  <label for="ID" th:text="#{add.service.form.service.id}">ID</label>
-  <input type="text" id="ID" name="ID" placeholder="ID" th:placeholder="#{add.service.form.service.id}"/>
-  <br/>
-  <label for="serviceName" th:text="#{add.service.form.service.name}">Service name</label>
-  <input type="text" id="serviceName" name="serviceName" placeholder="Service name" th:placeholder="#{add.service.form.service.name}"/>
-  <br/>
-  <button id="okButton" name="okButton" onclick="sendContent1()" type="button"
-          th:text="#{add.service.form.button.ok}">Ok
-  </button>
-  <button id="cancelButton" name="cancelButton" onclick="sendContent2()" type="button"
-          th:text="#{add.service.form.button.cancel}">Cancel
-  </button>
+    <label for="ID" th:text="#{add.service.form.service.id}">ID</label>
+    <input type="text" id="ID" name="ID" placeholder="ID" th:placeholder="#{add.service.form.service.id}"/>
+    <br/>
+    <label for="serviceName" th:text="#{add.service.form.service.name}">Service name</label>
+    <input type="text" id="serviceName" name="serviceName" placeholder="Service name"
+           th:placeholder="#{add.service.form.service.name}"/>
+    <br/>
+    <button id="okButton" name="okButton" onclick="sendContent1()" type="button"
+            th:text="#{add.service.form.button.ok}">Ok
+    </button>
+    <button id="cancelButton" name="cancelButton" onclick="sendContent2()" type="button"
+            th:text="#{add.service.form.button.cancel}">Cancel
+    </button>
 </div>
 </body>
 </html>

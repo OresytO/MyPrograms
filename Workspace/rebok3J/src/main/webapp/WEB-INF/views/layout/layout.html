@@ -7,14 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <link href="/resources/css/Dropdown.ltr.css" rel="stylesheet" media="screen" th:href="@{/resources/css/Dropdown.ltr.css}"/>
   <link href="/resources/css/rebok3j.css" rel="stylesheet" media="screen" th:href="@{/resources/css/rebok3j.css}"/>
-  <script src="/resources/js/rebok3j.js" type="text/javascript" th:src="@{/resources/js/rebok3j.js}"></script>
-  <script src = "/resources/js/jquery-2.1.3.min.js" type = "text/javascript" th:src="@{/resources/js/jquery-2.1.3.min.js}"></script>
-</head>
+  <script src="/resources/js/rebok3j.js" type="text/javascript" th:src="@{/resources/js/rebok3j.js}" charset="utf-8"></script>
+  <script src = "/resources/js/jquery-2.1.3.min.js" type = "text/javascript" th:src="@{/resources/js/jquery-2.1.3.min.js}" charset="utf-8"></script>
+ </head>
 <body>
 
 <div class="header" th:include="layout/headers::header"></div>
 <div class="menu" th:include="layout/menu::menu"></div>
-<div class="content" th:include="layout/content::content"></div>
+<div class="content" th:include="__${content}__"></div>
 <div class="footer" th:include="layout/footers::footer"></div>
 
 </body>

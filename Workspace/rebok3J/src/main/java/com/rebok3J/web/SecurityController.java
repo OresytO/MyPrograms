@@ -1,8 +1,10 @@
 package com.rebok3J.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -24,10 +26,11 @@ public class SecurityController
 
   public static final String HOME_URL = "/home";
 
+  @PreAuthorize("isAuthenticated()")
   @RequestMapping(value = { HOME_URL, "/" }, method = RequestMethod.GET)
-  public String showHome()
+  public ModelAndView showHome()
   {
-    return "layout/layout";
+    return MvHelper.get("layout/content::content");
   }
 
   public static final String DENIED_URL = "/denied";
