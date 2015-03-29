@@ -31,4 +31,16 @@ public class VisitServiceImpl implements VisitService
   {
     return visitDao.loadAll();
   }
+
+  @Override
+  public void save(Visit entity)
+  {
+    visitDao.save(entity);
+  }
+
+  @Override
+  public Visit update(Visit entity)
+  {
+    return visitDao.update(entity);
+  }
 }

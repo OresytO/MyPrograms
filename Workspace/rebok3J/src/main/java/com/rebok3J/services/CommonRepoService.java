@@ -3,6 +3,7 @@ package com.rebok3J.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author OrestO
@@ -16,4 +17,9 @@ public interface CommonRepoService<T>
 
   List<T> loadAll() throws InstantiationException, IllegalAccessException;
 
+  @Transactional
+  void save(T entity);
+
+  @Transactional
+  T update(T entity);
 }

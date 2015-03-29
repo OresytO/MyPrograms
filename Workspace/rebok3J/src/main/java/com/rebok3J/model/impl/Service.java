@@ -19,41 +19,48 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
 {
 
   public static final String SERVICE_ENTITY = "Service";
-  public static final String SERVICE_TABLE = "\"SERVICE\"";
+  public static final String SERVICE_TABLE = "\"service\"";
 
   @Id
-  @GeneratedValue
+  @SequenceGenerator(name = ID_SEQ, sequenceName = ID_SEQ, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = ID_SEQ)
   @Column(name = ID_COLUMN)
-  private long id;
-  public static final String ID_COLUMN = "ID";
+  private Long id;
+  public static final String ID_COLUMN = "id";
+  public static final String ID_SEQ = "service_id_seq";
 
   @Column(name = NAME_COLUMN, nullable = false)
   private String name;
-  public static final String NAME_COLUMN = "NAME";
+  public static final String NAME_COLUMN = "name";
 
   @Column(name = TYPE_COLUMN, nullable = false)
   private String type;
-  public static final String TYPE_COLUMN = "TYPE";
+  public static final String TYPE_COLUMN = "type";
 
   @Column(name = LAMP_DEFAULT_RESOURCE_COLUMN, nullable = true)
   private Integer lampDefaultResource;
-  public static final String LAMP_DEFAULT_RESOURCE_COLUMN = "LAMP_DEFAULT_RESOURCE";
+  public static final String LAMP_DEFAULT_RESOURCE_COLUMN = "lamp_default_resource";
 
   @Column(name = LAMP_TIME_WORKED_COLUMN, nullable = true)
   private Integer lampTimeWorked;
-  public static final String LAMP_TIME_WORKED_COLUMN = "LAMP_TIME_WORKED";
+  public static final String LAMP_TIME_WORKED_COLUMN = "lamp_time_worked";
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = CREATE_DATE_COLUMN, nullable = false)
   private Date createDate;
-  public static final String CREATE_DATE_COLUMN = "CREATE_DATE";
+  public static final String CREATE_DATE_COLUMN = "create_date";
 
-  public long getId()
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = LAST_UPDATE_TIMESTAMP_COLUMN, nullable = false)
+  private Date lastUpdated;
+  public static final String LAST_UPDATE_TIMESTAMP_COLUMN = "last_update_timestamp";
+
+  public Long getId()
   {
     return id;
   }
 
-  public void setId(long id)
+  public void setId(Long id)
   {
     this.id = id;
   }
@@ -98,12 +105,24 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
     this.lampTimeWorked = lampTimeWorked;
   }
 
-  public String getType() {
+  public String getType()
+  {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(String type)
+  {
     this.type = type;
+  }
+
+  public Date getLastUpdated()
+  {
+    return lastUpdated;
+  }
+
+  public void setLastUpdated(Date lastUpdated)
+  {
+    this.lastUpdated = lastUpdated;
   }
 
   @Override
@@ -140,5 +159,17 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
   public int compareTo(Service o)
   {
     return this.getName().compareTo(o.getName());
+  }
+
+  @PrePersist
+  public void createdTimestamp()
+  {
+    createDate = new Date();
+  }
+
+  @PreUpdate
+  public void lastUpdatedTimestamp()
+  {
+    lastUpdated = new Date();
   }
 }

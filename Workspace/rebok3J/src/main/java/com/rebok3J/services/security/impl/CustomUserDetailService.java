@@ -46,7 +46,7 @@ public class CustomUserDetailService implements UserDetailsService
       boolean credentialsNonExpired = true;
       boolean accountNonLocked = true;
 
-      return new User(domainUser.getUserName(), domainUser.getPassword().toLowerCase(), domainUser.getEnabled(), accountNonExpired, credentialsNonExpired, accountNonLocked,
+      return new User(domainUser.getUserName(), domainUser.getPassword().toLowerCase(), domainUser.isEnabled(), accountNonExpired, credentialsNonExpired, accountNonLocked,
           getGrantedAuthorities(domainUser.getRoles()));
     }
     catch (Exception e)

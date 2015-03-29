@@ -1,56 +1,60 @@
-CREATE TABLE IF NOT EXISTS "VISITOR" (
-  ID            SERIAL PRIMARY KEY,
-  LAST_NAME     VARCHAR(255) NOT NULL,
-  FIRST_NAME    VARCHAR(255) NOT NULL,
-  MIDDLE_NAME   VARCHAR(255) NOT NULL,
-  PHONES        VARCHAR(255),
-  EMAIL         VARCHAR(255),
-  STATUS        VARCHAR(255) NOT NULL,
-  NOTE          VARCHAR(255),
-  SEX           VARCHAR(255) NOT NULL,
-  DATE_OF_BIRTH DATE         NOT NULL,
-  CREATE_DATE   DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS "visitor" (
+  id                    BIGSERIAL PRIMARY KEY,
+  last_name             VARCHAR(255) NOT NULL,
+  first_name            VARCHAR(255) NOT NULL,
+  middle_name           VARCHAR(255) NOT NULL,
+  phones                VARCHAR(255),
+  email                 VARCHAR(255),
+  status                VARCHAR(255) NOT NULL,
+  note                  VARCHAR(255),
+  sex                   VARCHAR(255) NOT NULL,
+  date_of_birth         DATE         NOT NULL,
+  create_date           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_timestamp DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-TRUNCATE "VISITOR" CASCADE;
-INSERT INTO "VISITOR"(LAST_NAME, FIRST_NAME, MIDDLE_NAME, STATUS, SEX, DATE_OF_BIRTH)  VALUES
+TRUNCATE "visitor" CASCADE;
+INSERT INTO "visitor" (last_name, first_name, middle_name, status, sex, date_of_birth) VALUES
   ('lozynskyy', 'orest', 'igorovych', 'gold', 'men', '1986-02-21'),
   ('valko', 'seerhiy', 'mukolayovuch', 'gold', 'men', '1987-03-01');
 
-CREATE TABLE IF NOT EXISTS "SERVICE" (
-  ID                    SERIAL PRIMARY KEY,
-  NAME                  VARCHAR(255) NOT NULL,
-  TYPE                  VARCHAR(255) NOT NULL,
-  LAMP_DEFAULT_RESOURCE INTEGER,
-  LAMP_TIME_WORKED      INTEGER,
-  CREATE_DATE           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS "service" (
+  id                    BIGSERIAL PRIMARY KEY,
+  name                  VARCHAR(255) NOT NULL,
+  type                  VARCHAR(255) NOT NULL,
+  lamp_default_resource INTEGER,
+  lamp_time_worked      INTEGER,
+  create_date           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_timestamp DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-TRUNCATE "SERVICE" CASCADE;
-INSERT INTO "SERVICE" VALUES
-  (1, 'Solar1', 'Solar', 10000, 5000),
-  (2, 'Solar2', 'Solar', 20000, 3000);
+TRUNCATE "service" CASCADE;
+INSERT INTO "service" (name, type, lamp_default_resource, lamp_time_worked)  VALUES
+  ('Solar1', 'Solar', 10000, 5000),
+  ('Solar2', 'Solar', 20000, 3000);
 
-CREATE TABLE IF NOT EXISTS "SALON" (
-  ID                    SERIAL PRIMARY KEY,
-  NAME                  VARCHAR(255) NOT NULL,
-  ADDRESS               VARCHAR(255) NOT NULL,
-  CREATE_DATE           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS "salon" (
+  id                    BIGSERIAL PRIMARY KEY,
+  name                  VARCHAR(255) NOT NULL,
+  address               VARCHAR(255) NOT NULL,
+  create_date           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_timestamp DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-TRUNCATE "SALON" CASCADE;
-INSERT INTO "SALON" VALUES
-  (1, 'Salon1', 'Lviv'),
-  (2, 'Salon2', 'Kyiv');
+TRUNCATE "salon" CASCADE;
+INSERT INTO "salon"(name, address)  VALUES
+  ('Salon1', 'Lviv'),
+  ('Salon2', 'Kyiv');
 
-CREATE TABLE IF NOT EXISTS "VISIT" (
-  ID            SERIAL PRIMARY KEY,
-  VISITOR_ID    INTEGER REFERENCES "VISITOR" (id),
-  SERVICE_ID    INTEGER REFERENCES "SERVICE" (id),
-  DATE_OF_VISIT DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS "visit" (
+  id                    BIGSERIAL PRIMARY KEY,
+  visitor_id            INTEGER REFERENCES "visitor" (id),
+  service_id            INTEGER REFERENCES "service" (id),
+  date_of_visit         DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_timestamp DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-TRUNCATE "VISIT" CASCADE;
-INSERT INTO "VISIT" VALUES
-  (1, 1, 1),
-  (2, 1, 2),
-  (3, 1, 2),
-  (4, 2, 2),
-  (5, 2, 2),
-  (6, 2, 1);
+TRUNCATE "visit" CASCADE;
+INSERT INTO "visit" (visitor_id, service_id)  VALUES
+  (1, 1),
+  (1, 2),
+  (1, 2),
+  (2, 2),
+  (2, 2),
+  (2, 1);

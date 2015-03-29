@@ -19,7 +19,7 @@ public class Role implements Serializable, Comparable<Role>
   private static final long serialVersionUID = -2982346171367786230L;
 
   public static final String ROLE_ENTITY = "Role";
-  public static final String ROLE_TABLE = "\"ROLE\"";
+  public static final String ROLE_TABLE = "\"role\"";
 
   public static final String ROLE = "ROLE_";
   public static final String ADMIN = "ADMIN";
@@ -30,14 +30,16 @@ public class Role implements Serializable, Comparable<Role>
   public static final String ROLE_MANAGER = ROLE + MANAGER;
 
   @Id
-  @GeneratedValue
+  @SequenceGenerator(name = ID_SEQ, sequenceName = ID_SEQ, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = ID_SEQ)
   @Column(name = ID_COLUMN)
   private Long id;
-  public static final String ID_COLUMN = "ID";
+  public static final String ID_COLUMN = "id";
+  public static final String ID_SEQ = "role_id_seq";
 
   @Column(name = ROLE_NAME_COLUMN, nullable = false)
   private String roleName;
-  public static final String ROLE_NAME_COLUMN = "ROLE_NAME";
+  public static final String ROLE_NAME_COLUMN = "role_name";
 
   @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
   private Set<User> users;

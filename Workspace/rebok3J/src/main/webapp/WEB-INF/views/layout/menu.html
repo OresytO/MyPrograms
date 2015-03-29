@@ -20,6 +20,9 @@
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                     <a th:href="@{/service/add}" th:text="#{menu.add.service}">Add service</a>
                 </li>
+                <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <a th:href="@{/salon/add}" th:text="#{menu.add.salon}">Add salon</a>
+                </li>
             </ul>
         </li>
         <li><span th:text="#{menu.tab.search}">Search</span>

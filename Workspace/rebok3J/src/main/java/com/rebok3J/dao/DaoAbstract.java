@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.rebok3J.model.CommonQueryHolder;
 
 /**
@@ -52,27 +54,25 @@ public class DaoAbstract<T> implements Dao<T>
   }
 
   @Override
+  @Transactional
+  public void save(T entity)
+  {
+    entityManager.persist(entity);
+  }
+
+  @Override
+  @Transactional
+  public T update(T entity)
+  {
+    return entityManager.merge(entity);
+  }
+
+  @Override
   public List<T> getResultListFromNamedQuery(String namedQueryName, List<Param> params)
   {
     TypedQuery<T> query = fulfillQuery(namedQueryName, params);
     return query.getResultList();
   }
-
-  // @Override
-  // public List<T> getResultListFromNamedQuery(String namedQueryName,
-  // Map<String, String> paramMap)
-  // {
-  // TypedQuery<T> query = fulfillQuery(namedQueryName, paramMap);
-  // return query.getResultList();
-  // }
-
-  // @Override
-  // public T getSingleResultFromNamedQuery(String namedQueryName, Map<String,
-  // String> paramMap)
-  // {
-  // TypedQuery<T> query = fulfillQuery(namedQueryName, paramMap);
-  // return query.getSingleResult();
-  // }
 
   @Override
   public T getSingleResultFromNamedQuery(String namedQueryName, List<Param> params)
@@ -80,21 +80,6 @@ public class DaoAbstract<T> implements Dao<T>
     TypedQuery<T> query = fulfillQuery(namedQueryName, params);
     return query.getSingleResult();
   }
-
-  // private TypedQuery<T> fulfillQuery(String namedQueryName, Map<String,
-  // String> paramMap)
-  // {
-  // TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName,
-  // clazz);
-  // if (paramMap != null)
-  // {
-  // for (String key : paramMap.keySet())
-  // {
-  // query.setParameter(key, paramMap.get(key));
-  // }
-  // }
-  // return query;
-  // }
 
   private TypedQuery<T> fulfillQuery(String namedQueryName, List<Param> params)
   {
@@ -108,4 +93,5 @@ public class DaoAbstract<T> implements Dao<T>
     }
     return query;
   }
+
 }

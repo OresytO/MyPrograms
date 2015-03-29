@@ -30,4 +30,16 @@ public class ServiceServiceImpl implements ServiceService
   {
     return serviceDao.loadAll();
   }
+
+  @Override
+  public void save(Service entity)
+  {
+    serviceDao.save(entity);
+  }
+
+  @Override
+  public Service update(Service entity)
+  {
+    return serviceDao.update(entity);
+  }
 }

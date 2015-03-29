@@ -31,4 +31,16 @@ public class SalonServiceImpl implements SalonService
   {
     return salonDao.loadAll();
   }
+
+  @Override
+  public void save(Salon entity)
+  {
+    salonDao.save(entity);
+  }
+
+  @Override
+  public Salon update(Salon entity)
+  {
+    return salonDao.update(entity);
+  }
 }

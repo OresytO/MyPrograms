@@ -19,67 +19,74 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
 {
 
   public static final String VISITOR_ENTITY = "Visitor";
-  public static final String VISITOR_TABLE = "\"VISITOR\"";
+  public static final String VISITOR_TABLE = "\"visitor\"";
 
   @Id
-  @GeneratedValue
+  @SequenceGenerator(name = ID_SEQ, sequenceName = ID_SEQ, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = ID_SEQ)
   @Column(name = ID_COLUMN)
-  private long id;
-  public static final String ID_COLUMN = "ID";
+  private Long id;
+  public static final String ID_COLUMN = "id";
+  public static final String ID_SEQ = "visitor_id_seq";
 
   @Column(name = LAST_NAME_COLUMN, nullable = false)
   private String lastName;
-  public static final String LAST_NAME_COLUMN = "LAST_NAME";
+  public static final String LAST_NAME_COLUMN = "last_name";
 
   @Column(name = FIRST_NAME_COLUMN, nullable = false)
   private String firstName;
-  public static final String FIRST_NAME_COLUMN = "FIRST_NAME";
+  public static final String FIRST_NAME_COLUMN = "first_name";
 
   @Column(name = MIDDLE_NAME_COLUMN, nullable = false)
   private String middleName;
-  public static final String MIDDLE_NAME_COLUMN = "MIDDLE_NAME";
+  public static final String MIDDLE_NAME_COLUMN = "middle_name";
 
-  /*TODO: here should be the list*/
+  /* TODO: here should be the list */
   @Column(name = PHONES_COLUMN, nullable = true)
   private String phones;
-  public static final String PHONES_COLUMN = "PHONES";
+  public static final String PHONES_COLUMN = "phones";
 
   @Column(name = EMAIL_COLUMN, nullable = true)
   private String email;
-  public static final String EMAIL_COLUMN = "EMAIL";
+  public static final String EMAIL_COLUMN = "email";
 
-  /*TODO: here should be list of entity Status*/
+  /* TODO: here should be list of entity Status */
   @Column(name = STATUS_COLUMN, nullable = true)
   private String status;
-  public static final String STATUS_COLUMN = "STATUS";
+  public static final String STATUS_COLUMN = "status";
 
   @Column(name = NOTE_COLUMN, nullable = true)
   private String note;
-  public static final String NOTE_COLUMN = "NOTE";
+  public static final String NOTE_COLUMN = "note";
 
   @Column(name = SEX_COLUMN, nullable = false)
   private String sex;
-  public static final String SEX_COLUMN = "SEX";
+  public static final String SEX_COLUMN = "sex";
 
   @Temporal(TemporalType.DATE)
   @Column(name = DATE_OF_BIRTH_COLUMN, nullable = false)
   private Date dateOfBirth;
-  public static final String DATE_OF_BIRTH_COLUMN = "DATE_OF_BIRTH";
+  public static final String DATE_OF_BIRTH_COLUMN = "date_of_birth";
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = CREATE_DATE_COLUMN, nullable = false)
   private Date createDate;
-  public static final String CREATE_DATE_COLUMN = "CREATE_DATE";
+  public static final String CREATE_DATE_COLUMN = "create_date";
+
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = LAST_UPDATE_TIMESTAMP_COLUMN, nullable = false)
+  private Date lastUpdated;
+  public static final String LAST_UPDATE_TIMESTAMP_COLUMN = "last_update_timestamp";
 
   // @OneToMany(mappedBy = "id")
   // private List<Visitor> visits;
 
-  public long getId()
+  public Long getId()
   {
     return id;
   }
 
-  public void setId(long id)
+  public void setId(Long id)
   {
     this.id = id;
   }
@@ -184,6 +191,16 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
     this.createDate = createDate;
   }
 
+  public Date getLastUpdated()
+  {
+    return lastUpdated;
+  }
+
+  public void setLastUpdated(Date lastUpdated)
+  {
+    this.lastUpdated = lastUpdated;
+  }
+
   @Override
   public boolean equals(Object o)
   {
@@ -245,14 +262,24 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
   @Override
   public int compareTo(Visitor o)
   {
-    return this.getLastName().compareToIgnoreCase(o.getLastName()) 
-        - this.getFirstName().compareToIgnoreCase(o.getFirstName()) 
-        - this.getMiddleName().compareToIgnoreCase(o.getMiddleName())
+    return this.getLastName().compareToIgnoreCase(o.getLastName()) - this.getFirstName().compareToIgnoreCase(o.getFirstName()) - this.getMiddleName().compareToIgnoreCase(o.getMiddleName())
         - this.getDateOfBirth().compareTo(o.getDateOfBirth());
   }
 
   public String getFullName()
   {
     return lastName + " " + firstName + " " + middleName;
+  }
+
+  @PrePersist
+  public void createdTimestamp()
+  {
+    createDate = new Date();
+  }
+
+  @PreUpdate
+  public void lastUpdatedTimestamp()
+  {
+    lastUpdated = new Date();
   }
 }

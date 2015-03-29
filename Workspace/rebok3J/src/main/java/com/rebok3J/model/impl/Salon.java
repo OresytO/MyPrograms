@@ -19,33 +19,40 @@ public class Salon implements SalonQueryHolder, Comparable<Salon>
 {
 
   public static final String SALON_ENTITY = "Salon";
-  public static final String SALON_TABLE = "\"SALON\"";
+  public static final String SALON_TABLE = "\"salon\"";
 
   @Id
-  @GeneratedValue
+  @SequenceGenerator(name = ID_SEQ, sequenceName = ID_SEQ, allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = ID_SEQ)
   @Column(name = ID_COLUMN)
-  private long id;
-  public static final String ID_COLUMN = "ID";
+  private Long id;
+  public static final String ID_COLUMN = "id";
+  public static final String ID_SEQ = "salon_id_seq";
 
   @Column(name = NAME_COLUMN, nullable = false)
   private String name;
-  public static final String NAME_COLUMN = "NAME";
+  public static final String NAME_COLUMN = "name";
 
   @Column(name = ADDRESS_COLUMN, nullable = false)
   private String address;
-  public static final String ADDRESS_COLUMN = "ADDRESS";
+  public static final String ADDRESS_COLUMN = "address";
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = CREATE_DATE_COLUMN, nullable = false)
   private Date createDate;
-  public static final String CREATE_DATE_COLUMN = "CREATE_DATE";
+  public static final String CREATE_DATE_COLUMN = "create_date";
 
-  public long getId()
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = LAST_UPDATE_TIMESTAMP_COLUMN, nullable = false)
+  private Date lastUpdated;
+  public static final String LAST_UPDATE_TIMESTAMP_COLUMN = "last_update_timestamp";
+
+  public Long getId()
   {
     return id;
   }
 
-  public void setId(long id)
+  public void setId(Long id)
   {
     this.id = id;
   }
@@ -80,6 +87,16 @@ public class Salon implements SalonQueryHolder, Comparable<Salon>
     this.createDate = createDate;
   }
 
+  public Date getLastUpdated()
+  {
+    return lastUpdated;
+  }
+
+  public void setLastUpdated(Date lastUpdated)
+  {
+    this.lastUpdated = lastUpdated;
+  }
+
   @Override
   public String getFindAllQueryName()
   {
@@ -90,5 +107,18 @@ public class Salon implements SalonQueryHolder, Comparable<Salon>
   public int compareTo(Salon o)
   {
     return this.getName().compareTo(o.getName());
+  }
+
+  @PrePersist
+  public void createdTimestamp()
+  {
+    createDate = new Date();
+    lastUpdated = new Date();
+  }
+
+  @PreUpdate
+  public void lastUpdatedTimestamp()
+  {
+    lastUpdated = new Date();
   }
 }

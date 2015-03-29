@@ -10,7 +10,7 @@ import static com.rebok3J.model.impl.Salon.SALON_ENTITY;
  */
 public interface SalonQueryHolder extends CommonQueryHolder
 {
-  String FIND_ALL =  SALON_ENTITY + CommonQueryHolder.FIND_ALL;
+  String FIND_ALL = SALON_ENTITY + CommonQueryHolder.FIND_ALL;
   String FIND_ALL_QUERY = "select e from " + SALON_ENTITY + " e";
 
   @Override

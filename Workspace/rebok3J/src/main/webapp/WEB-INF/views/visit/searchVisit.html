@@ -18,7 +18,7 @@
 
     <tbody>
     <tr th:each="visit : ${allVisits}">
-        <td th:text="${visit.getFormattedDateofVisit()}"></td>
+        <td th:text="${visit.getFormattedDateOfVisit()}"></td>
         <td th:text="${visit.getId()}"></td>
         <td th:text="${visit.getVisitor().getFullName()}"></td>
         <td th:text="${visit.getService().getName()}"></td>

@@ -10,6 +10,7 @@ import com.rebok3J.model.impl.Salon;
  */
 
 @Service
-public interface SalonService extends CommonRepoService<Salon> {
+public interface SalonService extends CommonRepoService<Salon>
+{
 
 }

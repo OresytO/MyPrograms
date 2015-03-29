@@ -14,6 +14,10 @@ public interface Dao<T>
 
   List<T> loadAll() throws IllegalAccessException, InstantiationException;
 
+  void save(T entity);
+
+  T update(T entity);
+
   List<T> getResultListFromNamedQuery(String namedQueryName, List<Param> params);
 
   // List<T> getResultListFromNamedQuery(String namedQueryName, Map<String,

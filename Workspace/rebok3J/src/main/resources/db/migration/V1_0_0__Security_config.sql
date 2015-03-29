@@ -1,33 +1,35 @@
-CREATE TABLE IF NOT EXISTS "USER" (
-  ID            SERIAL PRIMARY KEY,
-  USER_NAME     VARCHAR(255)        NOT NULL,
-  USER_NICKNAME VARCHAR(255) UNIQUE NOT NULL,
-  PASSWORD      VARCHAR(255)        NOT NULL,
-  ENABLE        BOOLEAN             NOT NULL
+CREATE TABLE IF NOT EXISTS "user" (
+  id                    BIGSERIAL PRIMARY KEY,
+  user_name             VARCHAR(255)        NOT NULL,
+  user_nickname         VARCHAR(255) UNIQUE NOT NULL,
+  password              VARCHAR(255)        NOT NULL,
+  enable                BOOLEAN             NOT NULL,
+  create_date           DATE                NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_timestamp DATE                NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-TRUNCATE "USER" CASCADE ;
-INSERT INTO "USER" VALUES
-  (1, 'admin', 'admin', 'admin', TRUE),
-  (2, 'orest', 'director', 'oresyto', TRUE),
-  (3, 'orest', 'manager', 'oresyto', TRUE);
+TRUNCATE "user" CASCADE;
+INSERT INTO "user"(user_name, user_nickname, password, enable)  VALUES
+  ('admin', 'admin', 'admin', TRUE),
+  ('orest', 'director', 'oresyto', TRUE),
+  ('orest', 'manager', 'oresyto', TRUE);
 
-CREATE TABLE IF NOT EXISTS "ROLE" (
-  ID        SERIAL PRIMARY KEY,
-  ROLE_NAME VARCHAR(255) UNIQUE NOT NULL
+CREATE TABLE IF NOT EXISTS "role" (
+  id        BIGSERIAL PRIMARY KEY,
+  role_name VARCHAR(255) UNIQUE NOT NULL
 );
-TRUNCATE "ROLE" CASCADE;
-INSERT INTO "ROLE" VALUES
-  (1, 'ROLE_ADMIN'),
-  (2, 'ROLE_DIRECTOR'),
-  (3, 'ROLE_MANAGER');
+TRUNCATE "role" CASCADE;
+INSERT INTO "role"(role_name) VALUES
+  ('ROLE_ADMIN'),
+  ('ROLE_DIRECTOR'),
+  ('ROLE_MANAGER');
 
-CREATE TABLE IF NOT EXISTS "USERS_ROLES" (
-  ID      SERIAL PRIMARY KEY,
-  USER_ID INTEGER REFERENCES "USER" (id),
-  ROLE_ID INTEGER REFERENCES "ROLE" (id)
+CREATE TABLE IF NOT EXISTS "users_roles" (
+  id      BIGSERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES "user" (id),
+  role_id INTEGER REFERENCES "role" (id)
 );
-TRUNCATE "USERS_ROLES";
-INSERT INTO "USERS_ROLES"(USER_ID, ROLE_ID) VALUES
+TRUNCATE "users_roles";
+INSERT INTO "users_roles" (user_id, role_id) VALUES
   (1, 1),
   (1, 2),
   (1, 3),

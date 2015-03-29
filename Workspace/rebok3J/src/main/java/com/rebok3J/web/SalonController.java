@@ -30,7 +30,7 @@ public class SalonController
   public static final String ADD_URL = "/add";
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.GET)
-  public ModelAndView addNewSalonShow()
+  public ModelAndView addNewSalonShow(@ModelAttribute AddNewSalonDTO addNewSalonDTO)
   {
     return MvHelper.get("salon/addSalon");
   }
@@ -38,6 +38,7 @@ public class SalonController
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
   public ModelAndView addNewSalon(@ModelAttribute AddNewSalonDTO addNewSalonDTO)
   {
+    salonService.save(addNewSalonDTO.getEntity());
     return MvHelper.get("salon/viewSalon");
   }
 
