@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+        >
+<body>
+<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
+<div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
+<div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
+<div>
+    <label for="ID" th:text="#{add.service.form.service.id}">ID</label>
+    <input type="text" id="ID" name="ID" placeholder="ID" th:placeholder="#{add.service.form.service.id}"/>
+    <br/>
+    <label for="serviceName" th:text="#{add.service.form.service.name}">Service name</label>
+    <input type="text" id="serviceName" name="serviceName" placeholder="Service name" th:placeholder="#{add.service.form.service.name}"/>
+    <br/>
+    <button id="okButton" name="okButton" onclick="sendContent1()" type="button"
+            th:text="#{add.service.form.button.ok}">Ok
+    </button>
+    <button id="cancelButton" name="cancelButton" onclick="sendContent2()" type="button"
+            th:text="#{add.service.form.button.cancel}">Cancel
+    </button>
+</div>
+</body>
+</html>

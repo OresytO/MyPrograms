@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.joda.time.format.DateTimeFormat;
+
 import com.rebok3J.model.VisitQueryHolder;
 
 /**
@@ -29,12 +31,12 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = VISITOR_ID_COLUMN, nullable = false)
-  private Visitor visitorId;
+  private Visitor visitor;
   public static final String VISITOR_ID_COLUMN = "VISITOR_ID";
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = SERVICE_ID_COLUMN, nullable = false)
-  private Visitor serviceId;
+  private Service service;
   public static final String SERVICE_ID_COLUMN = "SERVICE_ID";
 
   @Temporal(TemporalType.TIMESTAMP)
@@ -52,16 +54,6 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
     this.id = id;
   }
 
-  public Visitor getVisitor()
-  {
-    return visitorId;
-  }
-
-  public void setVisitorId(Visitor visitorId)
-  {
-    this.visitorId = visitorId;
-  }
-
   public Date getCreateDate()
   {
     return dateOfVisit;
@@ -72,19 +64,19 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
     this.dateOfVisit = dateOfVisit;
   }
 
-  public Visitor getVisitorId()
+  public Visitor getVisitor()
   {
-    return visitorId;
+    return visitor;
   }
 
-  public Visitor getServiceId()
+  public Service getService()
   {
-    return serviceId;
+    return service;
   }
 
-  public void setServiceId(Visitor serviceId)
+  public void setService(Service service)
   {
-    this.serviceId = serviceId;
+    this.service = service;
   }
 
   public Date getDateOfVisit()
@@ -107,9 +99,9 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
 
     Visit visit = (Visit) o;
 
-    if (!visitorId.equals(visit.visitorId))
+    if (!visitor.equals(visit.visitor))
       return false;
-    if (!serviceId.equals(visit.serviceId))
+    if (!service.equals(visit.service))
       return false;
     return dateOfVisit.equals(visit.dateOfVisit);
 
@@ -118,8 +110,8 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
   @Override
   public int hashCode()
   {
-    int result = visitorId.hashCode();
-    result = 31 * result + serviceId.hashCode();
+    int result = visitor.hashCode();
+    result = 31 * result + service.hashCode();
     result = 31 * result + dateOfVisit.hashCode();
     return result;
   }
@@ -134,5 +126,15 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
   public int compareTo(Visit o)
   {
     return this.getDateOfVisit().compareTo(o.getDateOfVisit());
+  }
+
+  public String getFormattedDateofVisit()
+  {
+    return getFormattedDateofVisit("dd-MM-yyyy hh:mm");
+  }
+
+  public String getFormattedDateofVisit(String format)
+  {
+    return DateTimeFormat.forPattern(format).print(dateOfVisit.getTime());
   }
 }

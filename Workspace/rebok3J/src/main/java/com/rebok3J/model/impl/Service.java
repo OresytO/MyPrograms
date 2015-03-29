@@ -31,6 +31,10 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
   private String name;
   public static final String NAME_COLUMN = "NAME";
 
+  @Column(name = TYPE_COLUMN, nullable = false)
+  private String type;
+  public static final String TYPE_COLUMN = "TYPE";
+
   @Column(name = LAMP_DEFAULT_RESOURCE_COLUMN, nullable = true)
   private Integer lampDefaultResource;
   public static final String LAMP_DEFAULT_RESOURCE_COLUMN = "LAMP_DEFAULT_RESOURCE";
@@ -94,6 +98,14 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
     this.lampTimeWorked = lampTimeWorked;
   }
 
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
   @Override
   public boolean equals(Object o)
   {
@@ -106,11 +118,7 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
 
     if (!name.equals(service.name))
       return false;
-    if (lampDefaultResource != null ? !lampDefaultResource.equals(service.lampDefaultResource) : service.lampDefaultResource != null)
-      return false;
-    if (lampTimeWorked != null ? !lampTimeWorked.equals(service.lampTimeWorked) : service.lampTimeWorked != null)
-      return false;
-    return createDate.equals(service.createDate);
+    return type.equals(service.type);
 
   }
 
@@ -118,9 +126,7 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
   public int hashCode()
   {
     int result = name.hashCode();
-    result = 31 * result + (lampDefaultResource != null ? lampDefaultResource.hashCode() : 0);
-    result = 31 * result + (lampTimeWorked != null ? lampTimeWorked.hashCode() : 0);
-    result = 31 * result + createDate.hashCode();
+    result = 31 * result + type.hashCode();
     return result;
   }
 

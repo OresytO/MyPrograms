@@ -1,9 +1,16 @@
 package com.rebok3J.web;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.rebok3J.model.impl.Visit;
+import com.rebok3J.services.VisitService;
 
 /**
  *
@@ -15,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/visit**")
 public class VisitController
 {
+
+  @Autowired
+  private VisitService visitService;
 
   public static final String ADD_URL = "/add";
 
@@ -38,5 +48,11 @@ public class VisitController
   public ModelAndView viewVisit()
   {
     return MvHelper.get("visit/viewVisit");
+  }
+
+  @ModelAttribute("allVisits")
+  public List<Visit> allVisits() throws IllegalAccessException, InstantiationException
+  {
+    return visitService.loadAll();
   }
 }

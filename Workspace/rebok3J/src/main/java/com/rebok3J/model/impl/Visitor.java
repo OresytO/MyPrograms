@@ -250,4 +250,9 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
         - this.getMiddleName().compareToIgnoreCase(o.getMiddleName())
         - this.getDateOfBirth().compareTo(o.getDateOfBirth());
   }
+
+  public String getFullName()
+  {
+    return lastName + " " + firstName + " " + middleName;
+  }
 }

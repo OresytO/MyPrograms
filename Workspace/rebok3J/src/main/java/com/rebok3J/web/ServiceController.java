@@ -1,9 +1,16 @@
 package com.rebok3J.web;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.rebok3J.model.impl.Service;
+import com.rebok3J.services.ServiceService;
 
 /**
  *
@@ -15,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/service**")
 public class ServiceController
 {
+
+  @Autowired
+  private ServiceService serviceService;
 
   public static final String ADD_URL = "/add";
 
@@ -38,5 +48,11 @@ public class ServiceController
   public ModelAndView viewService()
   {
     return MvHelper.get("service/viewService");
+  }
+
+  @ModelAttribute("allServices")
+  public List<Service> allServices() throws IllegalAccessException, InstantiationException
+  {
+    return serviceService.loadAll();
   }
 }

@@ -2,32 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
         >
-<head lang="en">
-  <meta charset="UTF-8"/>
-  <title th:text="#{menu.search.service}">Search service</title>
-</head>
+
 <body>
-<h2 th:text="#{menu.search.service}">Search service</h2>
 
-<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-<a th:href="@{/login}" href="http://localhost:8080/rebok3J/login1">login</a>
-<a th:href="@{/logout}" href="http://localhost:8080/rebok3J/logout1">logout</a>
+  <h2 th:text="#{search.service.form.title}">Search service</h2>
 
-<div>
-  <label for="ID" th:text="#{add.service.form.service.id}">ID</label>
-  <input type="text" id="ID" name="ID" placeholder="ID" th:placeholder="#{add.service.form.service.id}"/>
-  <br/>
-  <label for="serviceName" th:text="#{add.service.form.service.name}">Service name</label>
-  <input type="text" id="serviceName" name="serviceName" placeholder="Service name" th:placeholder="#{add.service.form.service.name}"/>
-  <br/>
-  <button id="okButton" name="okButton" onclick="sendContent1()" type="button"
-          th:text="#{add.service.form.button.ok}">Ok
-  </button>
-  <button id="cancelButton" name="cancelButton" onclick="sendContent2()" type="button"
-          th:text="#{add.service.form.button.cancel}">Cancel
-  </button>
-</div>
+  <label for="visits" th:text="#{search.service.form.services}">Services</label>
+  <table id="visits" class="dataTable">
+    <thead>
+    <tr>
+      <td th:text="#{search.service.form.id}">ID</td>
+      <td th:text="#{search.service.form.name}">Name</td>
+      <td th:text="#{search.service.form.type}">Type</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="service : ${allServices}">
+      <td th:text="${service.getId()}"></td>
+      <td th:text="${service.getName()}"></td>
+      <td th:text="${service.getType()}"></td>
+    </tr>
+    </tbody>
+  </table>
+
 </body>
 </html>

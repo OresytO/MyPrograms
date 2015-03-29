@@ -9,7 +9,7 @@
 <form method="post" th:method="post" action="/visit/add" th:action="@{/visit/add}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-    <h2 th:text="add.visit.form.title">Add visit</h2>
+    <h2 th:text="#{add.visit.form.title}">Add visit</h2>
 
     <label for="service" th:text="#{add.visit.form.service}">Service</label>
     <input type="text" id="service" placeholder="Service" th:placeholder="#{add.visit.form.service}"/>
