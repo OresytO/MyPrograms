@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.rebok3J.dao.VisitorDao;
 import com.rebok3J.model.impl.Visitor;
 import com.rebok3J.services.VisitorService;
+import com.rebok3J.web.forms.elements.SelectDTO;
 
 /**
  * @author OrestO
@@ -42,5 +43,11 @@ public class VisitorServiceImpl implements VisitorService
   public Visitor update(Visitor entity)
   {
     return visitorDao.update(entity);
+  }
+
+  @Override
+  public List<SelectDTO> getAllVisitorsForSelect()
+  {
+    return visitorDao.getAllServicesForSelect();
   }
 }

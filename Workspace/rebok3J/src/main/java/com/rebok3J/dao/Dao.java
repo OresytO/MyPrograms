@@ -27,4 +27,8 @@ public interface Dao<T>
   // paramMap);
 
   T getSingleResultFromNamedQuery(String namedQueryName, List<Param> params);
+
+  List<Object> getResultListFromNamedNativeQuery(String namedNativeQueryName, List<Param> params);
+
+  Object getSingleResultFromNamedNativeQuery(String namedNativeQueryName, List<Param> params);
 }

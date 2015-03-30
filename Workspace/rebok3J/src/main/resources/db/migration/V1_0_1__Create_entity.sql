@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "service" (
   last_update_timestamp DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 TRUNCATE "service" CASCADE;
-INSERT INTO "service" (name, type, lamp_default_resource, lamp_time_worked)  VALUES
+INSERT INTO "service" (name, type, lamp_default_resource, lamp_time_worked) VALUES
   ('Solar1', 'Solar', 10000, 5000),
   ('Solar2', 'Solar', 20000, 3000);
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS "salon" (
   last_update_timestamp DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 TRUNCATE "salon" CASCADE;
-INSERT INTO "salon"(name, address)  VALUES
+INSERT INTO "salon" (name, address) VALUES
   ('Salon1', 'Lviv'),
   ('Salon2', 'Kyiv');
 
@@ -48,10 +48,11 @@ CREATE TABLE IF NOT EXISTS "visit" (
   visitor_id            INTEGER REFERENCES "visitor" (id),
   service_id            INTEGER REFERENCES "service" (id),
   date_of_visit         DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  create_date           DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
   last_update_timestamp DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 TRUNCATE "visit" CASCADE;
-INSERT INTO "visit" (visitor_id, service_id)  VALUES
+INSERT INTO "visit" (visitor_id, service_id) VALUES
   (1, 1),
   (1, 2),
   (1, 2),

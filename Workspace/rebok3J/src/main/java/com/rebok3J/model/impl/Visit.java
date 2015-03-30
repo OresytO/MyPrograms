@@ -16,7 +16,9 @@ import com.rebok3J.model.VisitQueryHolder;
  */
 @Entity
 @Table(name = Visit.VISIT_TABLE)
-@NamedQueries({ @NamedQuery(name = VisitQueryHolder.FIND_ALL, query = VisitQueryHolder.FIND_ALL_QUERY) })
+@NamedQueries({
+    @NamedQuery(name = VisitQueryHolder.FIND_ALL, query = VisitQueryHolder.FIND_ALL_QUERY)
+})
 public class Visit implements VisitQueryHolder, Comparable<Visit>
 {
 
@@ -169,6 +171,7 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
   public void createdTimestamp()
   {
     createDate = new Date();
+    lastUpdated = new Date();
   }
 
   @PreUpdate

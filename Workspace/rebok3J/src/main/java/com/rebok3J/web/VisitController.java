@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rebok3J.model.impl.Visit;
+import com.rebok3J.services.ServiceService;
 import com.rebok3J.services.VisitService;
+import com.rebok3J.services.VisitorService;
+import com.rebok3J.web.forms.AddNewVisitDTO;
+import com.rebok3J.web.forms.AddNewVisitForm;
 
 /**
  *
@@ -26,12 +30,30 @@ public class VisitController
   @Autowired
   private VisitService visitService;
 
+  @Autowired
+  private ServiceService serviceService;
+
+  @Autowired
+  private VisitorService visitorService;
+
   public static final String ADD_URL = "/add";
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.GET)
-  public ModelAndView addVisit()
+  public ModelAndView addNewVisitShow(@ModelAttribute AddNewVisitForm addNewVisitForm, @ModelAttribute AddNewVisitDTO addNewVisitDTO)
   {
-    return MvHelper.get("visit/addVisit");
+    addNewVisitForm.setAllServicesForSelect(serviceService.getAllServicesForSelect());
+    addNewVisitForm.setAllVisitors(visitorService.getAllVisitorsForSelect());
+
+    ModelAndView mv = MvHelper.get("visit/addVisit");
+    mv.addObject("addNewVisitForm", addNewVisitForm);
+    return mv;
+  }
+
+  @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
+  public ModelAndView addNewVisit(@ModelAttribute AddNewVisitDTO addNewVisitDTO)
+  {
+    visitService.save(addNewVisitDTO.getEntity());
+    return MvHelper.get("visit/viewVisit");
   }
 
   public static final String SEARCH_URL = "/search";

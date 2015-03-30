@@ -1,6 +1,6 @@
 package com.rebok3J.model;
 
-import static com.rebok3J.model.impl.Visitor.VISITOR_ENTITY;
+import static com.rebok3J.model.impl.Visitor.*;
 
 /**
  *
@@ -15,4 +15,9 @@ public interface VisitorQueryHolder extends CommonQueryHolder
 
   @Override
   String getFindAllQueryName();
+
+  String GET_ALL_VISITORS_FOR_SELECT = VISITOR_ENTITY + ".getAllVisitorsForSelect";
+  String GET_ALL_VISITORS_FOR_SELECT_QUERY = "select " + ID_COLUMN + ", " + LAST_NAME_COLUMN + ", " + FIRST_NAME_COLUMN + ", " + MIDDLE_NAME_COLUMN + "  from " + VISITOR_TABLE;
+
+  String getAllServicesForSelect();
 }

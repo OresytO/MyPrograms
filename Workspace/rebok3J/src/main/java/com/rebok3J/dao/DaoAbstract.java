@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,7 @@ public class DaoAbstract<T> implements Dao<T>
   {
     if (clazz == null || !(clazz.newInstance() instanceof CommonQueryHolder))
     {
-      throw new IllegalArgumentException("Unsupported operation!!! DAO no implements " + CommonQueryHolder.class);
+      throw new IllegalArgumentException("Unsupported operation!!! DAO do not implements " + CommonQueryHolder.class);
     }
     TypedQuery<T> query = entityManager.createNamedQuery(((CommonQueryHolder) clazz.newInstance()).getFindAllQueryName(), clazz);
     return query.getResultList();
@@ -84,6 +85,33 @@ public class DaoAbstract<T> implements Dao<T>
   private TypedQuery<T> fulfillQuery(String namedQueryName, List<Param> params)
   {
     TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName, clazz);
+    if (params != null)
+    {
+      for (Param param : params)
+      {
+        query.setParameter(param.getName(), param.getValue());
+      }
+    }
+    return query;
+  }
+
+  @Override
+  public List<Object> getResultListFromNamedNativeQuery(String namedNativeQueryName, List<Param> params)
+  {
+    Query query = fulfillNativeQuery(namedNativeQueryName, params);
+    return query.getResultList();
+  }
+
+  @Override
+  public Object getSingleResultFromNamedNativeQuery(String namedNativeQueryName, List<Param> params)
+  {
+    Query query = fulfillNativeQuery(namedNativeQueryName, params);
+    return query.getSingleResult();
+  }
+
+  private Query fulfillNativeQuery(String namedQueryName, List<Param> params)
+  {
+    Query query = entityManager.createNamedQuery(namedQueryName);
     if (params != null)
     {
       for (Param param : params)

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rebok3J.model.impl.Service;
 import com.rebok3J.services.ServiceService;
+import com.rebok3J.web.forms.AddNewServiceDTO;
 
 /**
  *
@@ -29,9 +30,16 @@ public class ServiceController
   public static final String ADD_URL = "/add";
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.GET)
-  public ModelAndView addService()
+  public ModelAndView addNewServiceShow(@ModelAttribute AddNewServiceDTO addNewServiceDTO)
   {
     return MvHelper.get("service/addService");
+  }
+
+  @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
+  public ModelAndView addNewService(@ModelAttribute AddNewServiceDTO addNewServiceDTO)
+  {
+    serviceService.save(addNewServiceDTO.getEntity());
+    return MvHelper.get("service/viewService");
   }
 
   public static final String SEARCH_URL = "/search";

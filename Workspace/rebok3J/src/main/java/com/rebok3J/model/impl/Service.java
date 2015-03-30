@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.rebok3J.model.AbstractModel;
 import com.rebok3J.model.ServiceQueryHolder;
 
 /**
@@ -14,8 +15,17 @@ import com.rebok3J.model.ServiceQueryHolder;
  */
 @Entity
 @Table(name = Service.SERVICE_TABLE)
-@NamedQueries({ @NamedQuery(name = ServiceQueryHolder.FIND_ALL, query = ServiceQueryHolder.FIND_ALL_QUERY) })
-public class Service implements ServiceQueryHolder, Comparable<Service>
+@NamedNativeQueries({
+    @NamedNativeQuery(
+        name = ServiceQueryHolder.GET_ALL_SERVICES_FOR_SELECT,
+        query = ServiceQueryHolder.GET_ALL_SERVICES_FOR_SELECT_QUERY/*,
+        resultSetMapping = "resultForSelect"*/
+    )
+})
+@NamedQueries({
+    @NamedQuery(name = ServiceQueryHolder.FIND_ALL, query = ServiceQueryHolder.FIND_ALL_QUERY)
+})
+public class Service extends AbstractModel implements ServiceQueryHolder, Comparable<Service>
 {
 
   public static final String SERVICE_ENTITY = "Service";
@@ -156,6 +166,12 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
   }
 
   @Override
+  public String getAllServicesForSelect()
+  {
+    return GET_ALL_SERVICES_FOR_SELECT;
+  }
+
+  @Override
   public int compareTo(Service o)
   {
     return this.getName().compareTo(o.getName());
@@ -165,6 +181,7 @@ public class Service implements ServiceQueryHolder, Comparable<Service>
   public void createdTimestamp()
   {
     createDate = new Date();
+    lastUpdated = new Date();
   }
 
   @PreUpdate

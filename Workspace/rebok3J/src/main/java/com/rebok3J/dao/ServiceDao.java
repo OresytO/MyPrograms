@@ -1,8 +1,11 @@
 package com.rebok3J.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.rebok3J.model.impl.Service;
+import com.rebok3J.web.forms.elements.SelectDTO;
 
 /**
  *
@@ -14,4 +17,5 @@ import com.rebok3J.model.impl.Service;
 @Repository
 public interface ServiceDao extends Dao<Service>
 {
+  List<SelectDTO> getAllServicesForSelect();
 }

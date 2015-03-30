@@ -203,6 +203,7 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
   public void createdTimestamp()
   {
     createDate = new Date();
+    lastUpdated = new Date();
   }
 
   @PreUpdate

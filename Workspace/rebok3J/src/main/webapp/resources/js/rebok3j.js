@@ -26,4 +26,5 @@ $(document).ready(function () {
     return false;
   });
   $('table.dataTable').dataTable();
+  $('input.datePicker').datepicker();
 });

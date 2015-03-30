@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.rebok3J.dao.ServiceDao;
 import com.rebok3J.model.impl.Service;
 import com.rebok3J.services.ServiceService;
+import com.rebok3J.web.forms.elements.SelectDTO;
 
 /**
  * @author OrestO
@@ -41,5 +42,11 @@ public class ServiceServiceImpl implements ServiceService
   public Service update(Service entity)
   {
     return serviceDao.update(entity);
+  }
+
+  @Override
+  public List<SelectDTO> getAllServicesForSelect()
+  {
+    return serviceDao.getAllServicesForSelect();
   }
 }

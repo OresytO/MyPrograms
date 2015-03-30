@@ -1,30 +1,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
         >
-
 <body>
-<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-<form method="post" th:method="post" action="/visit/add" th:action="@{/visit/add}">
+<h2 th:text="#{add.visit.form.title}">Add visit</h2>
+
+<form action="/visit/add" th:action="@{/visit/add}" method="post" th:method="post" th:object="${addNewVisitDTO}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-    <h2 th:text="#{add.visit.form.title}">Add visit</h2>
-
-    <label for="service" th:text="#{add.visit.form.service}">Service</label>
-    <input type="text" id="service" placeholder="Service" th:placeholder="#{add.visit.form.service}"/>
+    <label for="services" th:text="#{add.visit.form.services}"></label>
+    <select id="services" th:field="*{selectedService}">
+        <option th:each="service : ${addNewVisitForm.allServicesForSelect}"
+                th:value="${service.key}"
+                th:text="${service.value}"></option>
+    </select>
     <br/>
 
-    <label for="id" th:text="#{add.visit.form.service.id}">ID</label>
-    <input type="text" id="id" placeholder="ID" th:placeholder="#{add.visit.form.service.id}"/>
+    <label for="visitors" th:text="#{add.visit.form.visitors}">ID</label>
+    <select id="visitors" th:field="*{selectedVisitor}">
+        <option th:each="visitor : ${addNewVisitForm.allVisitors}"
+                th:value="${visitor.key}"
+                th:text="${visitor.value}"></option>
+    </select>
     <br/>
 
-    <label for="name" th:text="#{add.visit.form.service.name}">Service name</label>
-    <input type="text" id="name" placeholder="Service name" th:placeholder="#{add.visit.form.service.name}"/>
-    <br/>
+    <!--<label for="dateOfVisit" th:text="#{add.visit.form.dateOfVisit}">ID</label>-->
+    <!--<input id="dateOfVisit" class="datePicker" type="datetime" th:field="*{dateOfVisit}"/>-->
+    <!--<br/>-->
 
-    <button id="okButton" type="button" th:text="#{add.visit.form.button.ok}">Ok</button>
-    <button id="cancel" type="button" th:text="#{add.visit.form.button.cancel}">Cancel</button>
+    <button id="okButton" type="submit" th:text="#{add.visit.form.button.ok}">Ok</button>
+    <button id="cancel" type="reset" th:text="#{add.visit.form.button.cancel}">Cancel</button>
+
 </form>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.rebok3J.web.forms;
 
+import com.rebok3J.model.impl.Service;
+
 /**
  * @author OrestO
  * @since 3/28/2015
@@ -27,5 +29,14 @@ public class AddNewServiceDTO
   public void setServiceType(String serviceType)
   {
     this.serviceType = serviceType;
+  }
+
+  public Service getEntity()
+  {
+    Service service = new Service();
+    service.setId(null);
+    service.setName(getServiceName());
+    service.setType(getServiceType());
+    return service;
   }
 }

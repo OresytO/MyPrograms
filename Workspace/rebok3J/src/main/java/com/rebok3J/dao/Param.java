@@ -25,10 +25,16 @@ public class Param
 
   public static List<Param> get(String... values)
   {
+    if (values.length == 0)
+    {
+      return new ArrayList<>(0);
+    }
+
     if (values.length % 2 != 0)
     {
       throw new IllegalArgumentException("Can't create parameters, get values.length " + values.length);
     }
+
     List<Param> paramList = new ArrayList<>(values.length / 2);
     for (int i = 0; i < values.length;)
     {

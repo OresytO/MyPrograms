@@ -14,6 +14,14 @@ import com.rebok3J.model.VisitorQueryHolder;
  */
 @Entity
 @Table(name = Visitor.VISITOR_TABLE)
+
+@NamedNativeQueries({
+    @NamedNativeQuery(
+        name = VisitorQueryHolder.GET_ALL_VISITORS_FOR_SELECT,
+        query = VisitorQueryHolder.GET_ALL_VISITORS_FOR_SELECT_QUERY/*,
+        resultSetMapping = "resultForSelect"*/
+    )
+})
 @NamedQueries({ @NamedQuery(name = VisitorQueryHolder.FIND_ALL, query = VisitorQueryHolder.FIND_ALL_QUERY) })
 public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
 {
@@ -260,6 +268,12 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
   }
 
   @Override
+  public String getAllServicesForSelect()
+  {
+    return GET_ALL_VISITORS_FOR_SELECT;
+  }
+
+  @Override
   public int compareTo(Visitor o)
   {
     return this.getLastName().compareToIgnoreCase(o.getLastName()) - this.getFirstName().compareToIgnoreCase(o.getFirstName()) - this.getMiddleName().compareToIgnoreCase(o.getMiddleName())
@@ -275,6 +289,7 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
   public void createdTimestamp()
   {
     createDate = new Date();
+    lastUpdated = new Date();
   }
 
   @PreUpdate

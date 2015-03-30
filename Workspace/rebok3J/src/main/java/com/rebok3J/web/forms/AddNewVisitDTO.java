@@ -1,75 +1,56 @@
 package com.rebok3J.web.forms;
 
+import com.rebok3J.model.impl.Service;
+import com.rebok3J.model.impl.Visit;
+import com.rebok3J.model.impl.Visitor;
+
 /**
  * @author OrestO
  * @since 3/28/2015
  */
 public class AddNewVisitDTO
 {
-  private String visitorLastName;
-  private String visitorId;
-  private String visitorFirstName;
-  private String visitorMiddleName;
-  private String visitorSex;
-  private String serviceName;
+  private Visitor selectedVisitor;
+  private Service selectedService;
+//  private Date dateOfVisit;
 
-  public String getVisitorLastName()
+//  public Date getDateOfVisit()
+//  {
+//    return dateOfVisit;
+//  }
+
+//  public void setDateOfVisit(Date dateOfVisit)
+//  {
+//    this.dateOfVisit = dateOfVisit;
+//  }
+
+  public Visitor getSelectedVisitor()
   {
-    return visitorLastName;
+    return selectedVisitor;
   }
 
-  public void setVisitorLastName(String visitorLastName)
+  public void setSelectedVisitor(Visitor selectedVisitor)
   {
-    this.visitorLastName = visitorLastName;
+    this.selectedVisitor = selectedVisitor;
   }
 
-  public String getVisitorId()
+  public Service getSelectedService()
   {
-    return visitorId;
+    return selectedService;
   }
 
-  public void setVisitorId(String visitorId)
+  public void setSelectedService(Service selectedService)
   {
-    this.visitorId = visitorId;
+    this.selectedService = selectedService;
   }
 
-  public String getVisitorFirstName()
+  public Visit getEntity()
   {
-    return visitorFirstName;
-  }
-
-  public void setVisitorFirstName(String visitorFirstName)
-  {
-    this.visitorFirstName = visitorFirstName;
-  }
-
-  public String getVisitorMiddleName()
-  {
-    return visitorMiddleName;
-  }
-
-  public void setVisitorMiddleName(String visitorMiddleName)
-  {
-    this.visitorMiddleName = visitorMiddleName;
-  }
-
-  public String getVisitorSex()
-  {
-    return visitorSex;
-  }
-
-  public void setVisitorSex(String visitorSex)
-  {
-    this.visitorSex = visitorSex;
-  }
-
-  public String getServiceName()
-  {
-    return serviceName;
-  }
-
-  public void setServiceName(String serviceName)
-  {
-    this.serviceName = serviceName;
+    Visit visit = new Visit();
+    visit.setId(null);
+    visit.setVisitor(getSelectedVisitor());
+    visit.setService(getSelectedService());
+//    visit.setDateOfVisit(getDateOfVisit());
+    return visit;
   }
 }
