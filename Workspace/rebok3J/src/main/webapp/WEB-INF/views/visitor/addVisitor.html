@@ -3,49 +3,44 @@
       xmlns:th="http://www.thymeleaf.org"
         >
 <body>
+<h2 th:text="#{add.visitor.form.title}">Add visitor</h2>
 
-<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-
-<form action="/visitor/add" th:action="@{/visitor/add}" method="post" th:method="post">
+<form th:action="@{/visitor/add}" th:method="post" th:object="${addNewVisitorDTO}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-    <label for="lastName" th:text="#{add.visitor.form.lastName}">Last name</label>
-    <input type="text" id="lastName" placeholder="Last name" th:placeholder="#{add.visitor.form.lastName}"/>
+    <label for="lastName" th:text="#{add.visitor.form.lastName}"></label>
+    <input type="text" id="lastName" th:placeholder="#{add.visitor.form.lastName}" th:field="*{lastName}"/>
     <br/>
-    <label for="firstName" th:text="#{add.visitor.form.firstName}">First name</label>
-    <input type="text" id="firstName" placeholder="First name" th:placeholder="#{add.visitor.form.firstName}"/>
+    <label for="firstName" th:text="#{add.visitor.form.firstName}"></label>
+    <input type="text" id="firstName" th:placeholder="#{add.visitor.form.firstName}" th:field="*{firstName}"/>
     <br/>
-    <label for="middleName" th:text="#{add.visitor.form.middleName}">Middle name</label>
-    <input type="text" id="middleName" placeholder="Middle name" th:placeholder="#{add.visitor.form.middleName}"/>
+    <label for="middleName" th:text="#{add.visitor.form.middleName}"></label>
+    <input type="text" id="middleName" th:placeholder="#{add.visitor.form.middleName}" th:field="*{middleName}"/>
     <br/>
-    <label for="sex" th:text="#{add.visitor.form.sex}">Sex</label>
-    <select id="sex">
-        <option th:text="#{add.visitor.form.sex.woman}">Woman</option>
-        <option th:text="#{add.visitor.form.sex.man}">Man</option>
+    <label for="sex" th:text="#{add.visitor.form.sex}"></label>
+    <select id="sex" th:field="*{sex}">
+        <option th:each="sex : ${addNewVisitorForm.sexes}"
+                th:value="${sex.key}"
+                th:text="#{${sex.value}}"></option>
     </select>
     <br/>
-    <label for="dateOfBirth" th:text="#{add.visitor.form.dateOfBirth}">Date of Birth</label>
-    <input type="text" id="dateOfBirth" th:placeholder="#{add.service.form.service.id}"/>
+    <label for="dateOfBirth" th:text="#{add.visitor.form.dateOfBirth}"></label>
+    <input id="dateOfBirth" class="datePicker" type="datetime" th:field="*{dateOfBirth}"/>
     <br/>
-    <label for="phoneNumber" th:text="#{add.visitor.form.phoneNumbers}">Phone numbers</label>
-    <select id="phoneNumber">
-        <option th:remove="tag">some phone number</option>
-        <option th:text="#{add.visitor.form.phoneNumber.addNew}">Add new phone number</option>
-    </select>
+    <label for="phone" th:text="#{add.visitor.form.phoneNumber}"></label>
+    <input type="text" id="phone" th:placeholder="#{add.visitor.form.phoneNumber}" th:field="*{phoneNumber}"/>
     <br/>
-    <label for="email" th:text="#{add.visitor.form.email}">Email</label>
-    <input type="text" id="email" placeholder="Email" th:placeholder="#{add.visitor.form.email}"/>
+    <label for="email" th:text="#{add.visitor.form.email}"></label>
+    <input type="email" id="email" th:placeholder="#{add.visitor.form.email}" th:field="*{email}"/>
     <br/>
-    <label for="status" th:text="#{add.visitor.form.status}">Status</label>
-    <input type="text" id="status" placeholder="Status" th:placeholder="#{add.visitor.form.status}"/>
+    <label for="status" th:text="#{add.visitor.form.status}"></label>
+    <input type="text" id="status" th:placeholder="#{add.visitor.form.status}" th:field="*{status}"/>
     <br/>
-    <label for="note" th:text="#{add.visitor.form.note}">Note</label>
-    <input type="text" id="note" placeholder="Note" th:placeholder="#{add.visitor.form.note}"/>
+    <label for="note" th:text="#{add.visitor.form.note}"></label>
+    <input type="text" id="note" th:placeholder="#{add.visitor.form.note}" th:field="*{note}"/>
     <br/>
-    <button type="submit" th:text="#{add.visitor.form.button.add}">Add</button>
-    <button type="reset" th:text="#{add.visitor.form.button.cancel}">Cancel</button>
+    <button type="submit" th:text="#{add.visitor.form.button.add}"></button>
+    <button type="reset" th:text="#{add.visitor.form.button.cancel}"></button>
 </form>
 </body>
 </html>

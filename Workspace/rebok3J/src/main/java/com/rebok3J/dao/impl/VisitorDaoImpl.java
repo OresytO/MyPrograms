@@ -30,7 +30,7 @@ public class VisitorDaoImpl extends DaoAbstract<Visitor> implements VisitorDao
     for (Object object : list)
     {
       Object[] objects = (Object[]) object;
-      result.add(new SelectDTO(objects[0].toString(), objects[1] + " " + objects[2] + " " + objects[3]));
+      result.add(new SelectDTO((Long) objects[0], objects[1] + " " + objects[2] + " " + objects[3]));
     }
 
     return result;

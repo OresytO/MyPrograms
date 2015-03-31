@@ -6,25 +6,25 @@ package com.rebok3J.web.forms.elements;
  */
 public class SelectDTO
 {
-  private String key;
+  private Long key;
   private String value;
 
   public SelectDTO()
   {
   }
 
-  public SelectDTO(String key, String value)
+  public SelectDTO(Long key, String value)
   {
     this.key = key;
     this.value = value;
   }
 
-  public String getKey()
+  public Long getKey()
   {
     return key;
   }
 
-  public void setKey(String key)
+  public void setKey(Long key)
   {
     this.key = key;
   }

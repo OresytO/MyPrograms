@@ -3,19 +3,19 @@ CREATE TABLE IF NOT EXISTS "visitor" (
   last_name             VARCHAR(255) NOT NULL,
   first_name            VARCHAR(255) NOT NULL,
   middle_name           VARCHAR(255) NOT NULL,
-  phones                VARCHAR(255),
+  phone                 VARCHAR(255),
   email                 VARCHAR(255),
   status                VARCHAR(255) NOT NULL,
   note                  VARCHAR(255),
-  sex                   VARCHAR(255) NOT NULL,
+  sex                   INTEGER NOT NULL,
   date_of_birth         DATE         NOT NULL,
   create_date           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
   last_update_timestamp DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 TRUNCATE "visitor" CASCADE;
 INSERT INTO "visitor" (last_name, first_name, middle_name, status, sex, date_of_birth) VALUES
-  ('lozynskyy', 'orest', 'igorovych', 'gold', 'men', '1986-02-21'),
-  ('valko', 'seerhiy', 'mukolayovuch', 'gold', 'men', '1987-03-01');
+  ('lozynskyy', 'orest', 'igorovych', 'gold', 1, '1986-02-21'),
+  ('valko', 'seerhiy', 'mukolayovuch', 'gold', 1, '1987-03-01');
 
 CREATE TABLE IF NOT EXISTS "service" (
   id                    BIGSERIAL PRIMARY KEY,

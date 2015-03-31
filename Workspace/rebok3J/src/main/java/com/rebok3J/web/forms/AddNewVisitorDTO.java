@@ -1,8 +1,9 @@
 package com.rebok3J.web.forms;
 
-import java.util.List;
+import java.util.Date;
 
-import org.joda.time.DateTime;
+import com.rebok3J.model.Sex;
+import com.rebok3J.model.impl.Visitor;
 
 /**
  * @author OrestO
@@ -14,8 +15,8 @@ public class AddNewVisitorDTO
   private String firstName;
   private String middleName;
   private String sex;
-  private DateTime dateOfBirth;
-  private List<String> phoneNumbers;
+  private Date dateOfBirth;
+  private String phoneNumber;
   private String email;
   private String status;
   private String Note;
@@ -60,24 +61,24 @@ public class AddNewVisitorDTO
     this.sex = sex;
   }
 
-  public DateTime getDateOfBirth()
+  public Date getDateOfBirth()
   {
     return dateOfBirth;
   }
 
-  public void setDateOfBirth(DateTime dateOfBirth)
+  public void setDateOfBirth(Date dateOfBirth)
   {
     this.dateOfBirth = dateOfBirth;
   }
 
-  public List<String> getPhoneNumbers()
+  public String getPhoneNumber()
   {
-    return phoneNumbers;
+    return phoneNumber;
   }
 
-  public void setPhoneNumbers(List<String> phoneNumbers)
+  public void setPhoneNumber(String phoneNumber)
   {
-    this.phoneNumbers = phoneNumbers;
+    this.phoneNumber = phoneNumber;
   }
 
   public String getEmail()
@@ -108,5 +109,21 @@ public class AddNewVisitorDTO
   public void setNote(String note)
   {
     Note = note;
+  }
+
+  public Visitor getEntity()
+  {
+    Visitor visitor = new Visitor();
+    visitor.setId(null);
+    visitor.setLastName(getLastName());
+    visitor.setFirstName(getFirstName());
+    visitor.setMiddleName(getMiddleName());
+    visitor.setSex(Sex.getValueOf(getSex()));
+    visitor.setDateOfBirth(getDateOfBirth());
+    visitor.setPhone(getPhoneNumber());
+    visitor.setEmail(getEmail());
+    visitor.setStatus(getStatus());
+    visitor.setNote(getNote());
+    return visitor;
   }
 }

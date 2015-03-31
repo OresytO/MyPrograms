@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rebok3J.model.impl.Visitor;
 import com.rebok3J.services.VisitorService;
 import com.rebok3J.web.forms.AddNewVisitorDTO;
+import com.rebok3J.web.forms.AddNewVisitorForm;
 
 /**
  * @author OrestO
@@ -19,38 +20,46 @@ import com.rebok3J.web.forms.AddNewVisitorDTO;
  */
 @Controller
 @RequestMapping(value = "/visitor**")
-public class VisitorController {
+public class VisitorController
+{
   @Autowired
   private VisitorService visitorService;
 
   public static final String ADD_URL = "/add";
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.GET)
-  public ModelAndView addNewVisitorShow() {
+  public ModelAndView addNewVisitorShow(@ModelAttribute AddNewVisitorDTO addNewVisitorDTO, @ModelAttribute AddNewVisitorForm addNewVisitorForm)
+  {
     return MvHelper.get("visitor/addVisitor");
   }
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
-  public ModelAndView addNewVisitor(@ModelAttribute AddNewVisitorDTO addNewVisitorDTO) {
+  public ModelAndView addNewVisitor(@ModelAttribute AddNewVisitorDTO addNewVisitorDTO)
+  {
+    visitorService.save(addNewVisitorDTO.getEntity());
     return MvHelper.get("visitor/viewVisitor");
   }
 
   public static final String SEARCH_URL = "/search";
 
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
-  public ModelAndView searchVisitorShow() {
+  public ModelAndView searchVisitorShow()
+  {
     return MvHelper.get("visitor/searchVisitor");
   }
 
   public static final String VIEW_URL = "/view";
 
   @RequestMapping(value = VIEW_URL, method = RequestMethod.GET)
-  public ModelAndView viewVisitor() {
+  public ModelAndView viewVisitor()
+  {
     return MvHelper.get("visitor/viewVisitor");
   }
 
   @ModelAttribute("allVisitors")
-  public List<Visitor> allVisitors() throws IllegalAccessException, InstantiationException {
+  public List<Visitor> allVisitors() throws IllegalAccessException, InstantiationException
+  {
     return visitorService.loadAll();
   }
+
 }

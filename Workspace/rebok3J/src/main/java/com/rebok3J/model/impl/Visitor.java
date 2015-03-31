@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.persistence.*;
 
 import com.rebok3J.model.ModelObjectImpl;
+import com.rebok3J.model.Sex;
 import com.rebok3J.model.VisitorQueryHolder;
 
 /**
@@ -51,8 +52,8 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
 
   /* TODO: here should be the list */
   @Column(name = PHONES_COLUMN, nullable = true)
-  private String phones;
-  public static final String PHONES_COLUMN = "phones";
+  private String phone;
+  public static final String PHONES_COLUMN = "phone";
 
   @Column(name = EMAIL_COLUMN, nullable = true)
   private String email;
@@ -68,7 +69,7 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
   public static final String NOTE_COLUMN = "note";
 
   @Column(name = SEX_COLUMN, nullable = false)
-  private String sex;
+  private Sex sex;
   public static final String SEX_COLUMN = "sex";
 
   @Temporal(TemporalType.DATE)
@@ -129,14 +130,14 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
     this.middleName = middleName;
   }
 
-  public String getPhones()
+  public String getPhone()
   {
-    return phones;
+    return phone;
   }
 
-  public void setPhones(String phones)
+  public void setPhone(String phone)
   {
-    this.phones = phones;
+    this.phone = phone;
   }
 
   public String getEmail()
@@ -169,12 +170,12 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
     this.note = note;
   }
 
-  public String getSex()
+  public Sex getSex()
   {
     return sex;
   }
 
-  public void setSex(String sex)
+  public void setSex(Sex sex)
   {
     this.sex = sex;
   }
@@ -224,7 +225,7 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
   @Override
   public String toString()
   {
-    return "Visitor{" + "id=" + id + ", lastName='" + lastName + "', firstName='" + firstName + "', middleName='" + middleName + "', phones='" + phones + "', email='" + email + "', status='" + status
+    return "Visitor{" + "id=" + id + ", lastName='" + lastName + "', firstName='" + firstName + "', middleName='" + middleName + "', phone='" + phone + "', email='" + email + "', status='" + status
         + "', note='" + note + "', sex='" + sex + "', dateOfBirth=" + dateOfBirth + ", createDate=" + createDate + '}';
   }
 
