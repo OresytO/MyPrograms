@@ -2,8 +2,10 @@ package com.rebok3J.model.impl;
 
 import java.util.Date;
 
+import javax.annotation.Nonnull;
 import javax.persistence.*;
 
+import com.rebok3J.model.ModelObjectImpl;
 import com.rebok3J.model.VisitorQueryHolder;
 
 /**
@@ -16,15 +18,13 @@ import com.rebok3J.model.VisitorQueryHolder;
 @Table(name = Visitor.VISITOR_TABLE)
 
 @NamedNativeQueries({
-    @NamedNativeQuery(
-        name = VisitorQueryHolder.GET_ALL_VISITORS_FOR_SELECT,
-        query = VisitorQueryHolder.GET_ALL_VISITORS_FOR_SELECT_QUERY/*,
-        resultSetMapping = "resultForSelect"*/
-    )
+    @NamedNativeQuery(name = VisitorQueryHolder.GET_ALL_VISITORS_FOR_SELECT, query = VisitorQueryHolder.GET_ALL_VISITORS_FOR_SELECT_QUERY)
 })
 @NamedQueries({ @NamedQuery(name = VisitorQueryHolder.FIND_ALL, query = VisitorQueryHolder.FIND_ALL_QUERY) })
-public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
+public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHolder
 {
+
+  private static final long serialVersionUID = 1L;
 
   public static final String VISITOR_ENTITY = "Visitor";
   public static final String VISITOR_TABLE = "\"visitor\"";
@@ -210,48 +210,15 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
   }
 
   @Override
-  public boolean equals(Object o)
+  public int hashCode()
   {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-
-    Visitor visitor = (Visitor) o;
-
-    if (!lastName.equals(visitor.lastName))
-      return false;
-    if (!firstName.equals(visitor.firstName))
-      return false;
-    if (!middleName.equals(visitor.middleName))
-      return false;
-    if (phones != null ? !phones.equals(visitor.phones) : visitor.phones != null)
-      return false;
-    if (email != null ? !email.equals(visitor.email) : visitor.email != null)
-      return false;
-    if (status != null ? !status.equals(visitor.status) : visitor.status != null)
-      return false;
-    if (note != null ? !note.equals(visitor.note) : visitor.note != null)
-      return false;
-    if (!sex.equals(visitor.sex))
-      return false;
-    return dateOfBirth.equals(visitor.dateOfBirth);
-
+    return super.hashCode(id);
   }
 
   @Override
-  public int hashCode()
+  public boolean equals(Object obj)
   {
-    int result = lastName.hashCode();
-    result = 31 * result + firstName.hashCode();
-    result = 31 * result + middleName.hashCode();
-    result = 31 * result + (phones != null ? phones.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
-    result = 31 * result + (status != null ? status.hashCode() : 0);
-    result = 31 * result + (note != null ? note.hashCode() : 0);
-    result = 31 * result + sex.hashCode();
-    result = 31 * result + dateOfBirth.hashCode();
-    return result;
+    return obj instanceof Visitor && super.equals(this, (Visitor) obj);
   }
 
   @Override
@@ -274,10 +241,10 @@ public class Visitor implements VisitorQueryHolder, Comparable<Visitor>
   }
 
   @Override
-  public int compareTo(Visitor o)
+  public int compareTo(@Nonnull Visitor obj)
   {
-    return this.getLastName().compareToIgnoreCase(o.getLastName()) - this.getFirstName().compareToIgnoreCase(o.getFirstName()) - this.getMiddleName().compareToIgnoreCase(o.getMiddleName())
-        - this.getDateOfBirth().compareTo(o.getDateOfBirth());
+    return this.getLastName().compareToIgnoreCase(obj.getLastName()) - this.getFirstName().compareToIgnoreCase(obj.getFirstName()) - this.getMiddleName().compareToIgnoreCase(obj.getMiddleName())
+        - this.getDateOfBirth().compareTo(obj.getDateOfBirth());
   }
 
   public String getFullName()

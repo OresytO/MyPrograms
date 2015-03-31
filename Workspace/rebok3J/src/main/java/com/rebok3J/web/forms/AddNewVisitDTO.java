@@ -1,8 +1,10 @@
 package com.rebok3J.web.forms;
 
-import com.rebok3J.model.impl.Service;
+import java.util.Date;
+
 import com.rebok3J.model.impl.Visit;
-import com.rebok3J.model.impl.Visitor;
+import com.rebok3J.services.ServiceService;
+import com.rebok3J.services.VisitorService;
 
 /**
  * @author OrestO
@@ -10,47 +12,47 @@ import com.rebok3J.model.impl.Visitor;
  */
 public class AddNewVisitDTO
 {
-  private Visitor selectedVisitor;
-  private Service selectedService;
-//  private Date dateOfVisit;
+  private String selectedVisitor;
+  private String selectedService;
+  private Date dateOfVisit;
 
-//  public Date getDateOfVisit()
-//  {
-//    return dateOfVisit;
-//  }
+  public Date getDateOfVisit()
+  {
+    return dateOfVisit;
+  }
 
-//  public void setDateOfVisit(Date dateOfVisit)
-//  {
-//    this.dateOfVisit = dateOfVisit;
-//  }
+  public void setDateOfVisit(Date dateOfVisit)
+  {
+    this.dateOfVisit = dateOfVisit;
+  }
 
-  public Visitor getSelectedVisitor()
+  public String getSelectedVisitor()
   {
     return selectedVisitor;
   }
 
-  public void setSelectedVisitor(Visitor selectedVisitor)
+  public void setSelectedVisitor(String selectedVisitor)
   {
     this.selectedVisitor = selectedVisitor;
   }
 
-  public Service getSelectedService()
+  public String getSelectedService()
   {
     return selectedService;
   }
 
-  public void setSelectedService(Service selectedService)
+  public void setSelectedService(String selectedService)
   {
     this.selectedService = selectedService;
   }
 
-  public Visit getEntity()
+  public Visit getEntity(ServiceService serviceService, VisitorService visitorService)
   {
     Visit visit = new Visit();
     visit.setId(null);
-    visit.setVisitor(getSelectedVisitor());
-    visit.setService(getSelectedService());
-//    visit.setDateOfVisit(getDateOfVisit());
+    visit.setVisitor(visitorService.findById(Long.parseLong(getSelectedVisitor())));
+    visit.setService(serviceService.findById(Long.parseLong(getSelectedService())));
+    visit.setDateOfVisit(getDateOfVisit());
     return visit;
   }
 }

@@ -1,11 +1,12 @@
 package com.rebok3J.model.impl;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.persistence.*;
 
+import com.rebok3J.model.ModelObjectImpl;
 import com.rebok3J.model.UserQueryHolder;
 
 /**
@@ -16,12 +17,14 @@ import com.rebok3J.model.UserQueryHolder;
  */
 @Entity
 @Table(name = User.USER_TABLE)
-@NamedQueries({ @NamedQuery(name = UserQueryHolder.FIND_ALL, query = UserQueryHolder.FIND_ALL_QUERY),
-    @NamedQuery(name = UserQueryHolder.FIND_BY_NICKNAME, query = UserQueryHolder.FIND_BY_NICKNAME_QUERY) })
-public class User implements UserQueryHolder, Serializable, Comparable<User>
+@NamedQueries({
+    @NamedQuery(name = UserQueryHolder.FIND_ALL, query = UserQueryHolder.FIND_ALL_QUERY),
+    @NamedQuery(name = UserQueryHolder.FIND_BY_NICKNAME, query = UserQueryHolder.FIND_BY_NICKNAME_QUERY)
+})
+public class User extends ModelObjectImpl<User> implements UserQueryHolder
 {
 
-  private static final long serialVersionUID = -7588331808777137405L;
+  private static final long serialVersionUID = 1L;
 
   public static final String USER_ENTITY = "User";
   public static final String USER_TABLE = "\"user\"";
@@ -169,16 +172,15 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
   }
 
   @Override
+  public int hashCode()
+  {
+    return super.hashCode(id);
+  }
+
+  @Override
   public boolean equals(Object obj)
   {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    User other = (User) obj;
-    return !userNickname.equalsIgnoreCase(other.userNickname);
+    return obj instanceof User && super.equals(this, (User) obj);
   }
 
   @Override
@@ -188,9 +190,9 @@ public class User implements UserQueryHolder, Serializable, Comparable<User>
   }
 
   @Override
-  public int compareTo(User o)
+  public int compareTo(@Nonnull User obj)
   {
-    return this.getUserNickname().compareTo(o.getUserNickname());
+    return this.getUserNickname().compareTo(obj.getUserNickname());
   }
 
   @Override

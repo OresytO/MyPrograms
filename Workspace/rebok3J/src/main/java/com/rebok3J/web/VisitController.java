@@ -52,7 +52,7 @@ public class VisitController
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
   public ModelAndView addNewVisit(@ModelAttribute AddNewVisitDTO addNewVisitDTO)
   {
-    visitService.save(addNewVisitDTO.getEntity());
+    visitService.save(addNewVisitDTO.getEntity(serviceService, visitorService));
     return MvHelper.get("visit/viewVisit");
   }
 

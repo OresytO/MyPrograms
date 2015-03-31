@@ -2,10 +2,12 @@ package com.rebok3J.model.impl;
 
 import java.util.Date;
 
+import javax.annotation.Nonnull;
 import javax.persistence.*;
 
 import org.joda.time.format.DateTimeFormat;
 
+import com.rebok3J.model.ModelObjectImpl;
 import com.rebok3J.model.VisitQueryHolder;
 
 /**
@@ -19,8 +21,10 @@ import com.rebok3J.model.VisitQueryHolder;
 @NamedQueries({
     @NamedQuery(name = VisitQueryHolder.FIND_ALL, query = VisitQueryHolder.FIND_ALL_QUERY)
 })
-public class Visit implements VisitQueryHolder, Comparable<Visit>
+public class Visit extends ModelObjectImpl<Visit> implements VisitQueryHolder
 {
+
+  private static final long serialVersionUID = 1L;
 
   public static final String VISIT_ENTITY = "Visit";
   public static final String VISIT_TABLE = "\"visit\"";
@@ -44,7 +48,7 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
   public static final String SERVICE_ID_COLUMN = "service_id";
 
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = DATE_OF_VISIT_COLUMN, nullable = false, columnDefinition = "DEFAULT CURRENT_TIMESTAMP")
+  @Column(name = DATE_OF_VISIT_COLUMN, nullable = false)
   private Date dateOfVisit;
   public static final String DATE_OF_VISIT_COLUMN = "date_of_visit";
 
@@ -119,30 +123,15 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
   }
 
   @Override
-  public boolean equals(Object o)
+  public int hashCode()
   {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-
-    Visit visit = (Visit) o;
-
-    if (!visitor.equals(visit.visitor))
-      return false;
-    if (!service.equals(visit.service))
-      return false;
-    return dateOfVisit.equals(visit.dateOfVisit);
-
+    return super.hashCode(id);
   }
 
   @Override
-  public int hashCode()
+  public boolean equals(Object obj)
   {
-    int result = visitor.hashCode();
-    result = 31 * result + service.hashCode();
-    result = 31 * result + dateOfVisit.hashCode();
-    return result;
+    return obj instanceof Visit && super.equals(this, (Visit) obj);
   }
 
   @Override
@@ -152,9 +141,9 @@ public class Visit implements VisitQueryHolder, Comparable<Visit>
   }
 
   @Override
-  public int compareTo(Visit o)
+  public int compareTo(@Nonnull Visit obj)
   {
-    return this.getDateOfVisit().compareTo(o.getDateOfVisit());
+    return this.getDateOfVisit().compareTo(obj.getDateOfVisit());
   }
 
   public String getFormattedDateOfVisit()

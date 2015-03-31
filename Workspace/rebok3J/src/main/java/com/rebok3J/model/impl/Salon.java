@@ -2,8 +2,10 @@ package com.rebok3J.model.impl;
 
 import java.util.Date;
 
+import javax.annotation.Nonnull;
 import javax.persistence.*;
 
+import com.rebok3J.model.ModelObjectImpl;
 import com.rebok3J.model.SalonQueryHolder;
 
 /**
@@ -14,9 +16,13 @@ import com.rebok3J.model.SalonQueryHolder;
  */
 @Entity
 @Table(name = Salon.SALON_TABLE)
-@NamedQueries({ @NamedQuery(name = SalonQueryHolder.FIND_ALL, query = SalonQueryHolder.FIND_ALL_QUERY) })
-public class Salon implements SalonQueryHolder, Comparable<Salon>
+@NamedQueries({
+    @NamedQuery(name = SalonQueryHolder.FIND_ALL, query = SalonQueryHolder.FIND_ALL_QUERY)
+})
+public class Salon extends ModelObjectImpl<Salon> implements SalonQueryHolder
 {
+
+  private static final long serialVersionUID = 1L;
 
   public static final String SALON_ENTITY = "Salon";
   public static final String SALON_TABLE = "\"salon\"";
@@ -104,9 +110,21 @@ public class Salon implements SalonQueryHolder, Comparable<Salon>
   }
 
   @Override
-  public int compareTo(Salon o)
+  public int hashCode()
   {
-    return this.getName().compareTo(o.getName());
+    return super.hashCode(id);
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    return obj instanceof Salon && super.equals(this, (Salon) obj);
+  }
+
+  @Override
+  public int compareTo(@Nonnull Salon obj)
+  {
+    return this.getName().compareTo(obj.getName());
   }
 
   @PrePersist

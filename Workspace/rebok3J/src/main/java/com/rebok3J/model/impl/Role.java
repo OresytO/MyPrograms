@@ -1,9 +1,11 @@
 package com.rebok3J.model.impl;
 
-import java.io.Serializable;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
 import javax.persistence.*;
+
+import com.rebok3J.model.ModelObjectImpl;
 
 /**
  *
@@ -13,10 +15,10 @@ import javax.persistence.*;
  */
 @Entity(name = Role.ROLE_ENTITY)
 @Table(name = Role.ROLE_TABLE)
-public class Role implements Serializable, Comparable<Role>
+public class Role extends ModelObjectImpl<Role>
 {
 
-  private static final long serialVersionUID = -2982346171367786230L;
+  private static final long serialVersionUID = 1L;
 
   public static final String ROLE_ENTITY = "Role";
   public static final String ROLE_TABLE = "\"role\"";
@@ -71,19 +73,16 @@ public class Role implements Serializable, Comparable<Role>
     return roleName;
   }
 
-  @SuppressWarnings("unused")
   public void setRoleName(String roleName)
   {
     this.roleName = roleName;
   }
 
-  @SuppressWarnings("unused")
   public Set<User> getUsers()
   {
     return users;
   }
 
-  @SuppressWarnings("unused")
   public void setUsers(Set<User> users)
   {
     this.users = users;
@@ -92,23 +91,13 @@ public class Role implements Serializable, Comparable<Role>
   @Override
   public int hashCode()
   {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + (int) (id ^ (id >>> 32));
-    return result;
+    return super.hashCode(id);
   }
 
   @Override
   public boolean equals(Object obj)
   {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Role other = (Role) obj;
-    return !id.equals(other.id);
+    return obj instanceof Role && super.equals(this, (Role) obj);
   }
 
   @Override
@@ -118,9 +107,9 @@ public class Role implements Serializable, Comparable<Role>
   }
 
   @Override
-  public int compareTo(Role o)
+  public int compareTo(@Nonnull Role obj)
   {
-    return this.getRoleName().compareTo(o.getRoleName());
+    return this.getRoleName().compareTo(obj.getRoleName());
   }
 
 }

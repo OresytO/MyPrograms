@@ -2,9 +2,10 @@ package com.rebok3J.model.impl;
 
 import java.util.Date;
 
+import javax.annotation.Nonnull;
 import javax.persistence.*;
 
-import com.rebok3J.model.AbstractModel;
+import com.rebok3J.model.ModelObjectImpl;
 import com.rebok3J.model.ServiceQueryHolder;
 
 /**
@@ -16,17 +17,15 @@ import com.rebok3J.model.ServiceQueryHolder;
 @Entity
 @Table(name = Service.SERVICE_TABLE)
 @NamedNativeQueries({
-    @NamedNativeQuery(
-        name = ServiceQueryHolder.GET_ALL_SERVICES_FOR_SELECT,
-        query = ServiceQueryHolder.GET_ALL_SERVICES_FOR_SELECT_QUERY/*,
-        resultSetMapping = "resultForSelect"*/
-    )
+    @NamedNativeQuery(name = ServiceQueryHolder.GET_ALL_SERVICES_FOR_SELECT, query = ServiceQueryHolder.GET_ALL_SERVICES_FOR_SELECT_QUERY)
 })
 @NamedQueries({
     @NamedQuery(name = ServiceQueryHolder.FIND_ALL, query = ServiceQueryHolder.FIND_ALL_QUERY)
 })
-public class Service extends AbstractModel implements ServiceQueryHolder, Comparable<Service>
+public class Service extends ModelObjectImpl<Service> implements ServiceQueryHolder
 {
+
+  private static final long serialVersionUID = 1L;
 
   public static final String SERVICE_ENTITY = "Service";
   public static final String SERVICE_TABLE = "\"service\"";
@@ -136,27 +135,15 @@ public class Service extends AbstractModel implements ServiceQueryHolder, Compar
   }
 
   @Override
-  public boolean equals(Object o)
+  public int hashCode()
   {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-
-    Service service = (Service) o;
-
-    if (!name.equals(service.name))
-      return false;
-    return type.equals(service.type);
-
+    return super.hashCode(id);
   }
 
   @Override
-  public int hashCode()
+  public boolean equals(Object obj)
   {
-    int result = name.hashCode();
-    result = 31 * result + type.hashCode();
-    return result;
+    return obj instanceof Service && super.equals(this, (Service) obj);
   }
 
   @Override
@@ -172,9 +159,9 @@ public class Service extends AbstractModel implements ServiceQueryHolder, Compar
   }
 
   @Override
-  public int compareTo(Service o)
+  public int compareTo(@Nonnull Service obj)
   {
-    return this.getName().compareTo(o.getName());
+    return this.getName().compareTo(obj.getName());
   }
 
   @PrePersist
