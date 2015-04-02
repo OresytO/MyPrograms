@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="visitor : ${allVisitors}">
+    <tr th:each="visitor : ${allVisitors}" th:action="@{/visitor/view/__${visitor.getId()}__}">
         <td th:text="${visitor.getId()}"></td>
         <td th:text="${visitor.getFullName()}"></td>
         <td th:text="${visitor.getPhone()}"></td>

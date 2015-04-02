@@ -3,12 +3,34 @@
         >
 <body>
 <h2 th:text="#{visitor.form.title}">Visitor</h2>
-<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Hello ADMIN</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"> Hello DIRECTOR</div>
-<div th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}"> Hello MANAGER</div>
-<form method="post" th:method="post" action="/visit/add" th:action="@{/visit/add}">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-</form>
+<label for="lastName" th:text="#{add.visitor.form.lastName}"></label>
+<input type="text" th:readonly="true" id="lastName" th:value="${visitor.lastName}"/>
+<br/>
+<label for="firstName" th:text="#{add.visitor.form.firstName}"></label>
+<input type="text" th:readonly="true" id="firstName" th:value="${visitor.firstName}"/>
+<br/>
+<label for="middleName" th:text="#{add.visitor.form.middleName}"></label>
+<input type="text" th:readonly="true" id="middleName" th:value="${visitor.middleName}"/>
+<br/>
+<label for="sex" th:text="#{add.visitor.form.sex}"></label>
+<input type="text" th:readonly="true" id="sex" th:value="${visitor.sex}"/>
+<br/>
+<label for="dateOfBirth" th:text="#{add.visitor.form.dateOfBirth}"></label>
+<input id="dateOfBirth" th:readonly="true" type="datetime" th:value="${visitor.dateOfBirth}"/>
+<br/>
+<label for="phone" th:text="#{add.visitor.form.phoneNumber}"></label>
+<input type="text" th:readonly="true" id="phone" th:value="${visitor.phone}"/>
+<br/>
+<label for="email" th:text="#{add.visitor.form.email}"></label>
+<input type="email" id="email" th:value="${visitor.email}"/>
+<br/>
+<label for="status" th:text="#{add.visitor.form.status}"></label>
+<input type="text" th:readonly="true" id="status" th:value="${visitor.status}"/>
+<br/>
+<label for="note" th:text="#{add.visitor.form.note}"></label>
+<input type="text" th:readonly="true" id="note" th:value="${visitor.note}"/>
+<br/>
+
 </body>
 </html>
