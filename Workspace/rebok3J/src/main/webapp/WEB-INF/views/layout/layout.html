@@ -17,10 +17,14 @@
 </head>
 <body>
 
-<div class="header" th:include="layout/headers::header"></div>
-<div class="menu" th:include="layout/menu::menu"></div>
-<div class="content" th:include="__${content}__"></div>
-<div class="footer" th:include="layout/footers::footer"></div>
+<div id="wrap">
+    <div id="main" class="clearfix">
+        <div id="header" th:include="layout/headers::header"></div>
+        <div id="menu" th:include="layout/menu::menu"></div>
+        <div id="content" th:include="__${content}__"></div>
+    </div>
+</div>
+<div id="footer" th:include="layout/footers::footer"></div>
 
 </body>
 </html>

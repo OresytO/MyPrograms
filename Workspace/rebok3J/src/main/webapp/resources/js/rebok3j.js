@@ -25,6 +25,18 @@ $(document).ready(function () {
     });
     return false;
   });
-  $('table.dataTable').dataTable();
+  $('table.dataTable').dataTable({
+    "scrollY": "440px",
+    "scrollCollapse": true/*,
+    "jQueryUI": true*/
+  });
   $('input.datePicker').datepicker();
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 1){
+      $('.header').addClass("sticky");
+    }
+    else{
+      $('.header').removeClass("sticky");
+    }
+  });
 });
