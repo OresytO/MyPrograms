@@ -54,8 +54,7 @@ public class VisitorController
   @RequestMapping(value = VIEW_URL, method = RequestMethod.GET)
   public ModelAndView viewVisitor(@PathVariable Long id)
   {
-    Visitor visitor = visitorService.findById(id);
-    return MvHelper.get("visitor/viewVisitor").addObject("visitor", visitor);
+    return MvHelper.get("visitor/viewVisitor").addObject(visitorService.findById(id));
   }
 
   @ModelAttribute("allVisitors")

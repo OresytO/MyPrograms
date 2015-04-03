@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,12 +51,12 @@ public class SalonController
     return MvHelper.get("salon/searchSalon");
   }
 
-  public static final String VIEW_URL = "/view";
+  public static final String VIEW_URL = "/view/{id}";
 
   @RequestMapping(value = VIEW_URL, method = RequestMethod.GET)
-  public ModelAndView viewSalon()
+  public ModelAndView viewSalon(@PathVariable Long id)
   {
-    return MvHelper.get("salon/viewSalon");
+    return MvHelper.get("salon/viewSalon").addObject(salonService.findById(id));
   }
 
   @ModelAttribute("allSalons")

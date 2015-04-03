@@ -39,7 +39,7 @@ $(document).ready(function () {
       $('.header').removeClass("sticky");
     }
   });
-  $('table#visitors.dataTable tbody tr').click(function(){
+  $('table.dataTable tbody tr.searchable').click(function(){
     window.location.href=this.closest("tr").getAttribute("action");
   })
 });

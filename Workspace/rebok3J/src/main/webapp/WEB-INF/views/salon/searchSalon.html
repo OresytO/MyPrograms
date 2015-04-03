@@ -15,7 +15,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="salon : ${allSalons}">
+    <tr th:each="salon : ${allSalons}" th:action="@{/salon/view/__${salon.getId()}__}" th:class="searchable">
         <td th:text="${salon.getName()}"></td>
         <td th:text="${salon.getAddress()}"></td>
     </tr>

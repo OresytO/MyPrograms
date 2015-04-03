@@ -8,11 +8,11 @@
 <form action="/salon/add" th:action="@{/salon/add}" method="post" th:method="post" th:object="${addNewSalonDTO}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-    <label for="name" th:text="#{add.salon.form.service.name}">Salon name</label>
-    <input type="text" id="name" placeholder="Salon name" th:placeholder="#{add.salon.form.service.name}" th:field="*{salonName}"/>
+    <label for="name" th:text="#{add.salon.form.name}">Salon name</label>
+    <input type="text" id="name" th:placeholder="#{add.salon.form.name}" th:field="*{salonName}"/>
     <br/>
-    <label for="address" th:text="#{add.salon.form.service.address}">Salon address</label>
-    <input type="text" id="address" placeholder="Salon address" th:placeholder="#{add.salon.form.service.address}" th:field="*{salonAddress}"/>
+    <label for="address" th:text="#{add.salon.form.address}">Salon address</label>
+    <input type="text" id="address" th:placeholder="#{add.salon.form.address}" th:field="*{salonAddress}"/>
     <br/>
 
     <button id="okButton" th:text="#{add.salon.form.button.ok}" type="submit" th:type="submit">Ok</button>
