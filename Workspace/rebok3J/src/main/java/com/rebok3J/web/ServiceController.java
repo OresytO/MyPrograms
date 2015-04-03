@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,23 +40,23 @@ public class ServiceController
   public ModelAndView addNewService(@ModelAttribute AddNewServiceDTO addNewServiceDTO)
   {
     serviceService.save(addNewServiceDTO.getEntity());
-    return MvHelper.get("service/viewService");
+    return MvHelper.get("service/searchService");
   }
 
   public static final String SEARCH_URL = "/search";
 
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
-  public ModelAndView searchService()
+  public ModelAndView searchService() throws InstantiationException, IllegalAccessException
   {
-    return MvHelper.get("service/searchService");
+    return MvHelper.get("service/searchService").addObject("allServices", allServices());
   }
 
-  public static final String VIEW_URL = "/view";
+  public static final String VIEW_URL = "/view/{id}";
 
   @RequestMapping(value = VIEW_URL, method = RequestMethod.GET)
-  public ModelAndView viewService()
+  public ModelAndView viewService(@PathVariable Long id)
   {
-    return MvHelper.get("service/viewService");
+    return MvHelper.get("service/viewService").addObject(serviceService.findById(id));
   }
 
   @ModelAttribute("allServices")

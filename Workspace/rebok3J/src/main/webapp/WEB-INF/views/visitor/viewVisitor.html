@@ -2,7 +2,7 @@
       xmlns:th="http://www.thymeleaf.org"
         >
 <body>
-<h2 th:text="#{visitor.form.title}">Visitor</h2>
+<h2 th:text="#{visitor.form.title}"></h2>
 
 <label for="lastName" th:text="#{visitor.form.lastName}"></label>
 <input type="text" th:readonly="true" id="lastName" th:value="${visitor.lastName}"/>

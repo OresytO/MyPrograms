@@ -5,7 +5,7 @@
 
 <body>
 
-  <h2 th:text="#{search.service.form.title}">Search service</h2>
+  <h2 th:text="#{search.service.form.title}"></h2>
 
   <label for="visits" th:text="#{search.service.form.services}">Services</label>
   <table id="visits" class="dataTable">
@@ -18,7 +18,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="service : ${allServices}">
+    <tr th:each="service : ${allServices}" th:action="@{/service/view/__${service.getId()}__}" th:class="searchable">
       <td th:text="${service.getId()}"></td>
       <td th:text="${service.getName()}"></td>
       <td th:text="${service.getType()}"></td>

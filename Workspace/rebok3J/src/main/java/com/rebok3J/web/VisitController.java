@@ -53,15 +53,15 @@ public class VisitController
   public ModelAndView addNewVisit(@ModelAttribute AddNewVisitDTO addNewVisitDTO)
   {
     visitService.save(addNewVisitDTO.getEntity(serviceService, visitorService));
-    return MvHelper.get("visit/viewVisit");
+    return MvHelper.get("visit/searchVisit");
   }
 
   public static final String SEARCH_URL = "/search";
 
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
-  public ModelAndView searchVisit()
+  public ModelAndView searchVisit() throws InstantiationException, IllegalAccessException
   {
-    return MvHelper.get("visit/searchVisit");
+    return MvHelper.get("visit/searchVisit").addObject("allVisits", allVisits());
   }
 
   public static final String VIEW_URL = "/view";

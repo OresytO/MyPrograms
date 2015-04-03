@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
         >
 <body>
-<h2 th:text="#{add.service.form.title}">Add service</h2>
+<h2 th:text="#{add.service.form.title}"></h2>
 
 <form action="/service/add" th:action="@{/service/add}" method="post" th:method="post" th:object="${addNewServiceDTO}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

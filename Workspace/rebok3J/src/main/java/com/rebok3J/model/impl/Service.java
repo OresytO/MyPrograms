@@ -54,6 +54,14 @@ public class Service extends ModelObjectImpl<Service> implements ServiceQueryHol
   private Integer lampTimeWorked;
   public static final String LAMP_TIME_WORKED_COLUMN = "lamp_time_worked";
 
+  @Column(name = AIRING_DEFAULT_RESOURCE_COLUMN, nullable = true)
+  private Integer airingDefaultResource;
+  public static final String AIRING_DEFAULT_RESOURCE_COLUMN = "airing_default_resource";
+
+  @Column(name = AIRING_TIME_WORKED_COLUMN, nullable = true)
+  private Integer airingTimeWorked;
+  public static final String AIRING_TIME_WORKED_COLUMN = "airing_time_worked";
+
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = CREATE_DATE_COLUMN, nullable = false)
   private Date createDate;
@@ -132,6 +140,26 @@ public class Service extends ModelObjectImpl<Service> implements ServiceQueryHol
   public void setLastUpdated(Date lastUpdated)
   {
     this.lastUpdated = lastUpdated;
+  }
+
+  public Integer getAiringDefaultResource()
+  {
+    return airingDefaultResource;
+  }
+
+  public void setAiringDefaultResource(Integer airingDefaultResource)
+  {
+    this.airingDefaultResource = airingDefaultResource;
+  }
+
+  public Integer getAiringTimeWorked()
+  {
+    return airingTimeWorked;
+  }
+
+  public void setAiringTimeWorked(Integer airingTimeWorked)
+  {
+    this.airingTimeWorked = airingTimeWorked;
   }
 
   @Override

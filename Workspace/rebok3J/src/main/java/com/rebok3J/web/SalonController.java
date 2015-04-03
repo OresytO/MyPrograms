@@ -40,15 +40,15 @@ public class SalonController
   public ModelAndView addNewSalon(@ModelAttribute AddNewSalonDTO addNewSalonDTO)
   {
     salonService.save(addNewSalonDTO.getEntity());
-    return MvHelper.get("salon/viewSalon");
+    return MvHelper.get("salon/searchSalon");
   }
 
   public static final String SEARCH_URL = "/search";
 
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
-  public ModelAndView searchSalonShow()
+  public ModelAndView searchSalon() throws InstantiationException, IllegalAccessException
   {
-    return MvHelper.get("salon/searchSalon");
+    return MvHelper.get("salon/searchSalon").addObject("allSalons", allSalons());
   }
 
   public static final String VIEW_URL = "/view/{id}";
