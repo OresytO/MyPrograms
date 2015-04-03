@@ -37,7 +37,7 @@
         </li>
         <li><span th:text="#{menu.tab.services}">Services</span>
             <ul>
-                <li><a th:href="@{/service/showAll}" th:text="#{menu.services.showAll}">Show all services</a></li>
+                <li><a th:href="@{/service/search}" th:text="#{menu.services.showAll}">Show all services</a></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                     <a th:href="@{/service/add}" th:text="#{menu.services.addNew}">Add new service</a>
                 </li>
@@ -45,7 +45,7 @@
         </li>
         <li><span th:text="#{menu.tab.reports}">Reports</span>
             <ul>
-                <li><a th:href="@{/reports/showAll}" th:text="#{menu.reports.showAll}">Show all reports</a></li>
+                <li><a th:href="@{/reports/search}" th:text="#{menu.reports.showAll}">Show all reports</a></li>
                 <li><a th:href="@{/reports/add}" th:text="#{menu.reports.addNew}">Add new report</a></li>
             </ul>
         </li>
