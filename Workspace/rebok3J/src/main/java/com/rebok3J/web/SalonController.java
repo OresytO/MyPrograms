@@ -37,10 +37,10 @@ public class SalonController
   }
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
-  public ModelAndView addNewSalon(@ModelAttribute AddNewSalonDTO addNewSalonDTO)
+  public ModelAndView addNewSalon(@ModelAttribute AddNewSalonDTO addNewSalonDTO) throws InstantiationException, IllegalAccessException
   {
     salonService.save(addNewSalonDTO.getEntity());
-    return MvHelper.get("salon/searchSalon");
+    return MvHelper.get("salon/searchSalon").addObject("allSalons", allSalons());
   }
 
   public static final String SEARCH_URL = "/search";
@@ -48,7 +48,7 @@ public class SalonController
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
   public ModelAndView searchSalon() throws InstantiationException, IllegalAccessException
   {
-    return MvHelper.get("salon/searchSalon").addObject("allSalons", allSalons());
+    return MvHelper.get("salon/searchSalon");
   }
 
   public static final String VIEW_URL = "/view/{id}";

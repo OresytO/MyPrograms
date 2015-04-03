@@ -37,10 +37,10 @@ public class ServiceController
   }
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
-  public ModelAndView addNewService(@ModelAttribute AddNewServiceDTO addNewServiceDTO)
+  public ModelAndView addNewService(@ModelAttribute AddNewServiceDTO addNewServiceDTO) throws InstantiationException, IllegalAccessException
   {
     serviceService.save(addNewServiceDTO.getEntity());
-    return MvHelper.get("service/searchService");
+    return MvHelper.get("service/searchService").addObject("allServices", allServices());
   }
 
   public static final String SEARCH_URL = "/search";
@@ -48,7 +48,7 @@ public class ServiceController
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
   public ModelAndView searchService() throws InstantiationException, IllegalAccessException
   {
-    return MvHelper.get("service/searchService").addObject("allServices", allServices());
+    return MvHelper.get("service/searchService");
   }
 
   public static final String VIEW_URL = "/view/{id}";

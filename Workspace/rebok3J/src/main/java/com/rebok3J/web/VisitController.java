@@ -50,18 +50,18 @@ public class VisitController
   }
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
-  public ModelAndView addNewVisit(@ModelAttribute AddNewVisitDTO addNewVisitDTO)
+  public ModelAndView addNewVisit(@ModelAttribute AddNewVisitDTO addNewVisitDTO) throws InstantiationException, IllegalAccessException
   {
     visitService.save(addNewVisitDTO.getEntity(serviceService, visitorService));
-    return MvHelper.get("visit/searchVisit");
+    return MvHelper.get("visit/searchVisit").addObject("allVisits", allVisits());
   }
 
   public static final String SEARCH_URL = "/search";
 
   @RequestMapping(value = SEARCH_URL, method = RequestMethod.GET)
-  public ModelAndView searchVisit() throws InstantiationException, IllegalAccessException
+  public ModelAndView searchVisit()
   {
-    return MvHelper.get("visit/searchVisit").addObject("allVisits", allVisits());
+    return MvHelper.get("visit/searchVisit");
   }
 
   public static final String VIEW_URL = "/view";
