@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+        >
+<body>
+<h2 th:text="#{report.search.serviceLoadReport.form.title}">Search salon</h2>
+
+<table id="serviceLoadReports" class="dataTable">
+    <thead>
+    <tr>
+        <td th:text="#{report.search.serviceLoadReport.form.id}"></td>
+        <td th:text="#{report.search.serviceLoadReport.form.name}"></td>
+        <td th:text="#{report.search.serviceLoadReport.form.createDate}"></td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="serviceLoadReport : ${allServiceLoadReports}"
+        th:action="@{/reports/serviceLoad/view/__${serviceLoadReport.getId()}__}" th:class="searchable">
+        <td th:text="${serviceLoadReport.getId()}"></td>
+        <td th:text="${serviceLoadReport.getName()}"></td>
+        <td th:text="${serviceLoadReport.getCreateDate()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

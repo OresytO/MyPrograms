@@ -43,10 +43,10 @@
                 </li>
             </ul>
         </li>
-        <li><span th:text="#{menu.tab.reports}">Reports</span>
+        <li th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}"><span th:text="#{menu.tab.reports}">Reports</span>
             <ul>
-                <li><a th:href="@{/reports/search}" th:text="#{menu.reports.showAll}">Show all reports</a></li>
-                <li><a th:href="@{/reports/add}" th:text="#{menu.reports.addNew}">Add new report</a></li>
+                <li><a th:href="@{/reports/serviceLoad/search}" th:text="#{menu.reports.serviceLoad}"></a></li>
+                <li><a th:href="@{/report/add}" th:text="#{menu.reports.addNew}"></a></li>
             </ul>
         </li>
     </ul>

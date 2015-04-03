@@ -61,3 +61,13 @@ INSERT INTO "visit" (visitor_id, service_id) VALUES
   (2, 2),
   (2, 2),
   (2, 1);
+
+CREATE TABLE IF NOT EXISTS "service_load_report" (
+  id                    BIGSERIAL PRIMARY KEY,
+  name                  VARCHAR(255) NOT NULL,
+  create_date           DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+TRUNCATE "service_load_report" CASCADE;
+INSERT INTO "service_load_report" (name) VALUES
+  ('Report1'),
+  ('Report2');
