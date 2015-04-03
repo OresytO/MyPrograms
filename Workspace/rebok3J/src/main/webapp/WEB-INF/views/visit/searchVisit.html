@@ -17,7 +17,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="visit : ${allVisits}">
+    <tr th:each="visit : ${allVisits}" th:action="@{/visit/view/__${visit.getId()}__}" th:class="searchable" >
         <td th:text="${visit.getFormattedDateOfVisit()}"></td>
         <td th:text="${visit.getId()}"></td>
         <td th:text="${visit.getVisitor().getFullName()}"></td>

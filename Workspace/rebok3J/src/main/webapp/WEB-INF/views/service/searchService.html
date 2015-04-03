@@ -2,29 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
         >
-
 <body>
+<h2 th:text="#{search.service.form.title}"></h2>
 
-  <h2 th:text="#{search.service.form.title}"></h2>
-
-  <label for="visits" th:text="#{search.service.form.services}">Services</label>
-  <table id="visits" class="dataTable">
+<label for="visits" th:text="#{search.service.form.services}">Services</label>
+<table id="visits" class="dataTable">
     <thead>
     <tr>
-      <td th:text="#{search.service.form.id}">ID</td>
-      <td th:text="#{search.service.form.name}">Name</td>
-      <td th:text="#{search.service.form.type}">Type</td>
+        <td th:text="#{search.service.form.id}">ID</td>
+        <td th:text="#{search.service.form.name}">Name</td>
+        <td th:text="#{search.service.form.type}">Type</td>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="service : ${allServices}" th:action="@{/service/view/__${service.getId()}__}" th:class="searchable">
-      <td th:text="${service.getId()}"></td>
-      <td th:text="${service.getName()}"></td>
-      <td th:text="${service.getType()}"></td>
+        <td th:text="${service.getId()}"></td>
+        <td th:text="${service.getName()}"></td>
+        <td th:text="${service.getType()}"></td>
     </tr>
     </tbody>
-  </table>
+</table>
 
 </body>
 </html>

@@ -25,12 +25,20 @@ $(document).ready(function () {
     });
     return false;
   });
-  $('table.dataTable').dataTable({
+  var searchableDataTable = $('table.dataTable').dataTable({
     "scrollY": "440px",
     "scrollCollapse": true/*,
     "jQueryUI": true*/
   });
+  searchableDataTable.$('td').each( function () {
+
+    $(this).click(function () {
+      window.location.href = this.closest("tr.searchable").getAttribute("action");
+    })
+  });
+
   $('input.datePicker').datepicker();
+
   $(window).scroll(function() {
     if ($(this).scrollTop() > 1){
       $('.header').addClass("sticky");
@@ -39,7 +47,5 @@ $(document).ready(function () {
       $('.header').removeClass("sticky");
     }
   });
-  $('table.dataTable tbody tr.searchable').click(function(){
-    window.location.href=this.closest("tr").getAttribute("action");
-  })
 });
+
