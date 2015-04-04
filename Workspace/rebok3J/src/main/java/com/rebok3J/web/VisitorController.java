@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rebok3J.model.impl.Visitor;
+import com.rebok3J.services.StatusService;
 import com.rebok3J.services.VisitorService;
 import com.rebok3J.web.forms.AddNewVisitorDTO;
 import com.rebok3J.web.forms.AddNewVisitorForm;
@@ -26,18 +27,22 @@ public class VisitorController
   @Autowired
   private VisitorService visitorService;
 
+  @Autowired
+  private StatusService statusService;
+
   public static final String ADD_URL = "/add";
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.GET)
-  public ModelAndView addNewVisitorShow(@ModelAttribute AddNewVisitorDTO addNewVisitorDTO, @ModelAttribute AddNewVisitorForm addNewVisitorForm)
+  public ModelAndView addNewVisitorShow(@ModelAttribute AddNewVisitorDTO addNewVisitorDTO, @ModelAttribute AddNewVisitorForm addNewVisitorForm) throws IllegalAccessException, InstantiationException
   {
+    addNewVisitorForm.setStatuses(statusService.loadAll());
     return MvHelper.get("visitor/addVisitor");
   }
 
   @RequestMapping(value = ADD_URL, method = RequestMethod.POST)
   public ModelAndView addNewVisitor(@ModelAttribute AddNewVisitorDTO addNewVisitorDTO) throws InstantiationException, IllegalAccessException
   {
-    visitorService.save(addNewVisitorDTO.getEntity());
+    visitorService.save(addNewVisitorDTO.getEntity(statusService));
     return MvHelper.get("visitor/searchVisitor").addObject("allVisitors", allVisitors());
   }
 

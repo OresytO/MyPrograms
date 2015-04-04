@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.rebok3J.model.Sex;
 import com.rebok3J.model.impl.Visitor;
+import com.rebok3J.services.StatusService;
 
 /**
  * @author OrestO
@@ -111,7 +112,7 @@ public class AddNewVisitorDTO
     Note = note;
   }
 
-  public Visitor getEntity()
+  public Visitor getEntity(StatusService statusService)
   {
     Visitor visitor = new Visitor();
     visitor.setId(null);
@@ -122,7 +123,7 @@ public class AddNewVisitorDTO
     visitor.setDateOfBirth(getDateOfBirth());
     visitor.setPhone(getPhoneNumber());
     visitor.setEmail(getEmail());
-    visitor.setStatus(getStatus());
+    visitor.setStatus(statusService.findById(Long.parseLong(getStatus())));
     visitor.setNote(getNote());
     return visitor;
   }

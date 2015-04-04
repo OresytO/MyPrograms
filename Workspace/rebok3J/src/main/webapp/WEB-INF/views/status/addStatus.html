@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+        >
+<body>
+<h2 th:text="#{add.status.form.title}"></h2>
+
+<form action="/status/add" th:action="@{/status/add}" method="post" th:method="post" th:object="${addNewStatusDTO}">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <label for="name" th:text="#{add.status.form.name}"></label>
+    <input type="text" id="name" th:placeholder="#{add.status.form.name}" th:field="*{statusName}"/>
+    <br/>
+
+    <button id="okButton" th:text="#{add.status.form.button.ok}" type="submit" th:type="submit"></button>
+    <button id="cancelButton" th:text="#{add.status.form.button.cancel}" type="reset" th:type="reset"></button>
+</form>
+</body>
+</html>

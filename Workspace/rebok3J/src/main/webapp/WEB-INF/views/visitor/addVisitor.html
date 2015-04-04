@@ -34,7 +34,11 @@
     <input type="email" id="email" th:placeholder="#{add.visitor.form.email}" th:field="*{email}"/>
     <br/>
     <label for="status" th:text="#{add.visitor.form.status}"></label>
-    <input type="text" id="status" th:placeholder="#{add.visitor.form.status}" th:field="*{status}"/>
+    <select id="status" th:field="*{status}">
+        <option th:each="status : ${addNewVisitorForm.statuses}"
+                th:value="${status.key}"
+                th:text="#{${status.value}}"></option>
+    </select>
     <br/>
     <label for="note" th:text="#{add.visitor.form.note}"></label>
     <input type="text" id="note" th:placeholder="#{add.visitor.form.note}" th:field="*{note}"/>

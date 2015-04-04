@@ -13,15 +13,18 @@
     <!--link to source of this menu http://code.stephenmorley.org/javascript/touch-friendly-drop-down-menus/ -->
     <ul class="dropdown noCopy">
         <li>
-            <span th:text="#{menu.tab.add}">Add</span>
+            <span th:text="#{menu.tab.add}"></span>
             <ul>
-                <li><a th:href="@{/visitor/add}" th:text="#{menu.add.visitor}">Add visitor</a></li>
-                <li><a th:href="@{/visit/add}" th:text="#{menu.add.visit}">Add visit</a></li>
+                <li><a th:href="@{/visitor/add}" th:text="#{menu.add.visitor}"></a></li>
+                <li><a th:href="@{/visit/add}" th:text="#{menu.add.visit}"></a></li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a th:href="@{/service/add}" th:text="#{menu.add.service}">Add service</a>
+                    <a th:href="@{/service/add}" th:text="#{menu.add.service}"></a>
                 </li>
                 <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a th:href="@{/salon/add}" th:text="#{menu.add.salon}">Add salon</a>
+                    <a th:href="@{/salon/add}" th:text="#{menu.add.salon}"></a>
+                </li>
+                <li th:if="${#authorization.expression('hasRole(''ROLE_DIRECTOR'')')}">
+                    <a th:href="@{/status/add}" th:text="#{menu.add.status}"></a>
                 </li>
             </ul>
         </li>

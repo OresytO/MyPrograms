@@ -59,10 +59,10 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
   private String email;
   public static final String EMAIL_COLUMN = "email";
 
-  /* TODO: here should be list of entity Status */
-  @Column(name = STATUS_COLUMN, nullable = true)
-  private String status;
-  public static final String STATUS_COLUMN = "status";
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = STATUS_ID_COLUMN, nullable = false)
+  private Status status;
+  public static final String STATUS_ID_COLUMN = "status_id";
 
   @Column(name = NOTE_COLUMN, nullable = true)
   private String note;
@@ -150,12 +150,12 @@ public class Visitor extends ModelObjectImpl<Visitor> implements VisitorQueryHol
     this.email = email;
   }
 
-  public String getStatus()
+  public Status getStatus()
   {
     return status;
   }
 
-  public void setStatus(String status)
+  public void setStatus(Status status)
   {
     this.status = status;
   }
