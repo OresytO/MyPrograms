@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -51,7 +52,7 @@ public class CustomUserDetailService implements UserDetailsService
     }
     catch (Exception e)
     {
-      throw new RuntimeException(e);
+      throw new BadCredentialsException("Bad Credentials");
     }
   }
 
