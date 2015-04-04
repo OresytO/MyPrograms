@@ -126,7 +126,7 @@ body > #wrap {
 }
 
 .searchable{
-  cursor: default;
+  cursor: pointer;
 }
 
 .searchable:hover{
